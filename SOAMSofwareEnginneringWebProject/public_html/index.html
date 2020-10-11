@@ -9,8 +9,109 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="navstyle.css">
     </head>
     <body>
-        <div>TODO write content</div>
+       <button class="netflix-nav-btn netflix-open-btn">
+	<i class="fa fa-bars" aria-hidden="true"></i>
+</button>
+
+<img class="netflix-logo" src="https://logos-download.com/wp-content/uploads/2016/03/Netflix_logo.png" alt="Netflix Logo" />
+<p class="netflix-text">
+	Mobile Navigation
+</p>
+
+<div class="netflix-nav netflix-nav-black">
+	<div class="netflix-nav netflix-nav-red">
+		<div class="netflix-nav netflix-nav-white">
+			
+			<button class="netflix-nav-btn netflix-close-btn"><i class="fas fa-times"></i></button>
+			
+			<img class="netflix-logo" src="https://logos-download.com/wp-content/uploads/2016/03/Netflix_logo.png" alt="Netflix Logo" />
+			
+			<ul class="netflix-list">
+				<li><a href="#">Teams</a></li>
+				<li><a href="#">Locations</a></li>
+				<li><a href="#">Life at netflix</a></li>
+				<li>
+					<ul>
+						<li><a href="#">Netflix culture memo</a></li>
+						<li><a href="#">Work life philosophy</a></li>
+						<li><a href="#">Inclusion & Diversity</a></li>
+						<li><a href="#">Wearenetflix</a></li>
+						<li><a href="#">Blog</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="social-panel-container">
+	<div class="social-panel">
+		<p>Created with <i class="fa fa-heart"></i> by
+			<a target="_blank" href="https://florin-pop.com">Florin Pop</a></p>
+		<button class="close-btn"><i class="fas fa-times"></i></button>
+		<h4>Get in touch on</h4>
+		<ul>
+			<li>
+				<a href="https://twitter.com/florinpop1705" target="_blank">
+					<i class="fab fa-twitter"></i>
+				</a>
+			</li>
+			<li>
+				<a href="https://instagram.com/florinpop17" target="_blank">
+					<i class="fab fa-instagram"></i>
+				</a>
+			</li>
+			<li>
+				<a href="https://facebook.com/florinpop17" target="_blank">
+					<i class="fab fa-facebook"></i>
+				</a>
+			</li>
+			<li>
+				<a href="https://linkedin.com/in/florinpop17" target="_blank">
+					<i class="fab fa-linkedin"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<button class="floating-btn">
+	Get in Touch
+</button>
+        <script>/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+const netflix_open_btn = document.querySelector('.netflix-open-btn');
+const netflix_close_btn = document.querySelector('.netflix-close-btn');
+const netflix_nav = document.querySelectorAll('.netflix-nav');
+
+netflix_open_btn.addEventListener('click', () => {
+	netflix_nav.forEach(nav_el => { nav_el.classList.add('visible') });
+});
+
+netflix_close_btn.addEventListener('click', () => {
+	netflix_nav.forEach(nav_el => { nav_el.classList.remove('visible') });
+});
+
+// GET IN TOUCH COMPONENT
+const floating_btn = document.querySelector('.floating-btn');
+const close_btn = document.querySelector('.close-btn');
+const social_panel_container = document.querySelector('.social-panel-container');
+
+floating_btn.addEventListener('click', () => {
+	social_panel_container.classList.toggle('visible')
+});
+
+close_btn.addEventListener('click', () => {
+	social_panel_container.classList.remove('visible')
+});</script>
     </body>
 </html>
