@@ -1,0 +1,28 @@
+Questions:
+
+1) Need to be a member to enroll?
+if (yes)
+{
+	1.1) Add course to their account - similar to add-to-cart type system || Apply for interview to enroll in course
+	1.2) Profile page to view enrolled courses
+		1.2.1) 1 course per student or multiple courses per student
+			1.2.1.1) 1 module per course or multiple modules per course
+	1.3) Seperate member login to view exam results
+}
+
+2) Administration side for staff?
+if(yes)
+{
+	2.1) Can create courses
+	2.2) Can delete members/students from course
+	2.3) Admins put student results online (populate DB)
+	2.4) View all members (by course/all)
+}
+
+3) Register+Pay for course without being a member
+	3.1) Seperate pay-wall for course/registration (simulation)
+4) Purchase instruments from academy or are they supplied
+5) Responsive website
+6) Use third party APIs (E.g. pre-developed chat bots)
+7) Comments/Review section on site
+

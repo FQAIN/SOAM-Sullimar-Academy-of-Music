@@ -1,0 +1,76 @@
+Answers:
+Coding on Rails (Team Name):
+
+Minutes:
+hiring to take system online
+
+Issues:
+keeping track of bookings
+inefficient bookings
+bookings being changed and rewritten
+keep track of payments coming in
+
+Business Parts:
+external teachers / booking exams
+provide own certificates
+[process results & see results online + cert is always a hard copy]
+
+provide own exams
+>ring up, currently using booklet for info
+>application forms follow
+>>Updated every 2 years (syllabus) prices change
+[Admins can change syllabus and prices]
+
+Info:
+post application form
+processed in office
+exams 3 times a year (summer,)
+[Application Form: Prefer to be done online]
+[Book tuition in academy + apply exams]
+
+cheques/payments get lost
+issues allocating examiners
+trying to take everything online
+payment through Cr.Card
+[PayPal possibly]
+
+multi-grade exams (1,2,3)
+
+Process:
+summer exam applications
+examiners go out to location (schools etc)(examination centre)
+
+use local centres to set up exam - use non-local examiner e.g. Thurles exam centre = Kerry based examiner
+
+List of teachers - qualified examiners
+
+"SAOM" > Sullimar Academy of Music
+
+upskilling teachers
+[list of available examiners]
+[examiner | location | area of operation]
+
+
+students come from across the country for limerick-based-centre
+
+instrument teaching / voice teaching
+
+Make inquiries available online
+
+<>chat rooms to be made online
+
+create own books
+can be ordered directly from academy
+<Require payment to access>
+[Order only | any can order a book | to take exam must be official book]
+
+Teachers Area - can login, view updates and information on webinars, up & coming courses 
+<create and share information with one another?> 
+[admin notify staff of offers and events]
+
+Performances
+<Box office booking system for academy performances>
+
+[sylabus + prices available to public online]
+
+[Drop-Down List of examination centres per student - can pick whats convenient for them to undertake exam]

@@ -1,0 +1,46 @@
+Search Functionality:
+
+Pierce:
+update book [Admin - Search Via Book ID/Book Name/BookCategory]
+view timetable (student) [Student - Search Via Course Name/Course Code]
+delete staff/teacher [Admin - Search Via Email/ID]
+
+Fyaz:
+update staff [Admin - Search Via Email/ID]
+view course details [All Users - Search Via Name/CourseCategory]
+view all students [Admin - Narrow Search Via Name/ID/CourseCode]
+
+Joe:
+update student [Admin - Search Via Name/ID]
+update course details [Admin - Search Via Name/CourseCode]
+purchase a book [All Users - Search Via Name/ID/BookCategory]
+update student result (external) [Examiner - Search Via ID]???
+view exam details by location [Students/Teachers - Search Via Location/UserCategory]
+delete a book [Admin - Search Via Name/ID]
+delete student [Admin - Search Via ID/Name]
+
+Dylan:
+view book orders [Admin - Search Via ID]
+view staff details [Admin - Narrow Search Via Email/ID]
+delete course details [Admin - Search Via Name/CourseCode/CourseCategory]
+
+
+Date/Calendar Search:
+delete event/delete event details [Admin - Search Via Name/Date/ID]
+book an exam [Students/Teachers - Search Via Date/Name/ID/UserCategory]
+
+Rough Work:
+{
+	book an exam [Students/Teachers - Search Via Date/Name/ID/UserCategory]
+	view exam details by location [Students/Teachers - Search Via Location/UserCategory]
+}
+{
+	if(UserType != Admin)
+	{
+		view course details [All Users - Search Via Name/CourseCategory]
+	}
+	else if(UserType == Admin)
+	{
+		update course details [Admin - Search Via Name/CourseCode]
+	}
+}
