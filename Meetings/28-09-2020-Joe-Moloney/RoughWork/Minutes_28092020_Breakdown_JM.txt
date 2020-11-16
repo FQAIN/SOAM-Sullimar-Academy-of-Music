@@ -1,0 +1,17 @@
+Minutes_28092020_Breakdown
+
+1] Results are processed online
+2] Students can view exam results online
+3] Administration can change syllabus and prices
+4] Application Form to be filled out online
+5] Book tuition online + apply for exams online
+6] Payments online E.g. PayPal
+7] Teachers+Students can apply to do exams
+8] Local Centres for exam require non-local examiner
+9] List of Available Examiners [Examiner | Home_Location | Operational Areas]
+10] Chat Rooms (Collect.chat/tawk.to)
+11] Order Books online - don't need to be a member to order
+12] Teachers Area [Admininstration add and update news & info]
+13] Box Office System [Anyone can order tickets to view performances]
+14] Syllabus + prices available to members and non-members
+15] Drop-Down list of examination centres based on students location
