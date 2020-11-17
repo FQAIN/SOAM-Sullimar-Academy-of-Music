@@ -120,6 +120,11 @@
                 </div>
             </nav>
         </header>
+       <div id="container">
+  <div id="hero-text"><h1>Sullimar Academy of Music</h1></div>
+  <div id="overlay"></div>
+</div>
+     
         <footer class="page-footer">
             <small>Made with <span>❤</span> by <a href="http://georgemartsoukos.com/" target="_blank">George Martsoukos</a>
             </small>
