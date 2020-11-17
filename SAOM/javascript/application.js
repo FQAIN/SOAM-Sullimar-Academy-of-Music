@@ -1,5 +1,4 @@
-
-        const pageHeader = document.querySelector(".page-header");
+const pageHeader = document.querySelector(".page-header");
 const openMobMenu = document.querySelector(".open-mobile-menu");
 const closeMobMenu = document.querySelector(".close-mobile-menu");
 const toggleSearchForm = document.querySelector(".search");
@@ -23,7 +22,7 @@ toggleSearchForm.addEventListener("click", () => {
 });
 
 window.addEventListener("resize", () => {
-  pageHeader.querySelectorAll("*").forEach(function(el) {
+  pageHeader.querySelectorAll("*").forEach(function (el) {
     el.classList.add(noTransition);
   });
   clearTimeout(resize);
@@ -31,8 +30,7 @@ window.addEventListener("resize", () => {
 });
 
 function resizingComplete() {
-  pageHeader.querySelectorAll("*").forEach(function(el) {
+  pageHeader.querySelectorAll("*").forEach(function (el) {
     el.classList.remove(noTransition);
   });
 }
-
