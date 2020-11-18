@@ -378,13 +378,13 @@
         <div class="video-overlay"></div>
         <div class="video-content">
             <div class="inner">
-                <span>Video Presentation</span>
-                <h2>Sed et risus ac sapien congue mattis.</h2>
+                <span>SAOM PERFORMANCE</span>
+                <h2>LOOK AT SOME OF OUR STUDENTS PLAYING DIFFERENT INSTRUMENTS</h2>
                 <a href="http://youtube.com" target="_blank"><i class="fa fa-play"></i></a>
             </div>
         </div>
         <video autoplay="" loop="" muted>
-        	<source src="highway-loop.mp4" type="video/mp4" />
+            <source src="House Music 2019 - Instrumental winners - Bishop's Stortford College.mp4" type="video/mp4" />
         </video>
     </section>
 
