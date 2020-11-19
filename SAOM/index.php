@@ -60,7 +60,7 @@
                                 
                                 <li><a href="#">Admin</a>
                                     <ul class="sub-menu">
-                                        <li><a href="listStudents.html">View All Students</a>
+                                       <li><a href="listStudents.html">View All Students</a>
                                         <li><a href="listCourses.html">View All Courses</a>
                                         <li><a href="viewExams.html">View Exam Details</a>
                                         <li><a href="addEvent.html">Add an Event</a>
@@ -69,10 +69,15 @@
                                         <li><a href="privateTuiton.html">Allocate Private Tuiton For Student</a>
                                         <li><a href="processStudentTimetable.html">Process Student Timetable</a>
                                         <li><a href="teacherDashboard.html">Teachers Area/Dashboard</a>
-                                        <li><a href="ProcessTeacherTimetable.html">Process Teacher Timetable</a>  
+                                              <li><a href="ProcessTeacherTimetable.html">Process Teacher Timetable</a>  
                                         <li><a href="BookACourse.html">Book a course</a>  
                                         <li><a href="updateABook.html">update a Book</a>  
                                         <li><a href="AddItemToTeachersArea.html">Add Item To Teachers Area</a>  
+                                        <li><a href="updateCourseDetails.html">Update Course Details</a>  
+                                        <li><a href="updateEventDetails.html">Update Event Details</a>  
+                                        <li><a href="updateStudentResults.php">Update Student Results</a>  
+                                        <li><a href="addNewCourse.php">Add New Course</a>  
+                                        <li><a href="bookLesson.php">Book Lesson</a>  
                                     
                                     </ul>
                                 </li>
