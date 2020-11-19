@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SAOM - Login</title>
+        <title>SAOM - Book Exam</title>
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,9 +24,8 @@
 
 <body>
  
- 
     
-         <div class="wrap">
+          <div class="wrap">
             <header id="header">
                 <div class="container">
                     <div class="row">
@@ -119,6 +118,7 @@
                 </div>
             </header>
         </div>
+
     
     <section class="banner" id="top">
         <div class="container">
@@ -126,8 +126,8 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="banner-caption">
                         <div class="line-dec"></div>
-                        <h2>Login for Students/Staff</h2>
-                        <span>Login section for staff and students in SAOM</span>
+                        <h2>Book Exam</h2>
+                        <span>Book an Exam from SAOM</span>
                         <div class="blue-button">
                             <a class="scrollTo" data-scrollTo="popular" href="#">Discover More</a>
                         </div>
@@ -135,12 +135,12 @@
                     <div class="submit-form">
                         <form id="form-submit" action="" method="get">
                             <div class="row">
-                 <div class="col-md-9 second-item">
+                                <div class="col-md-9 second-item">
                                     <fieldset>
                                         <input name="location" type="text" class="form-control" id="location" placeholder="Please Enter something to search" required="">
                                     </fieldset>
                                 </div>
-                                <div class="col-md-3">
+                          <div class="col-md-3">
                                     <fieldset>
                                         <button type="submit" id="form-submit" class="btn">Search Now</button>
                                     </fieldset>
@@ -154,36 +154,117 @@
     </section>
 
     <section class="" id="">
-<div class="global-container">
-	<div class="card login-form">
-	<div class="card-body">
-		<h3 class="card-title text-center">Log in to SAOM</h3>
-        <br>
-		<div class="card-text">
-			
-			<form>
-				
-				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputPassword1">Password</label>
-					<a href="#" style="float:right;font-size:12px;">Forgot password?</a>
-					<input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
-				</div>
-				<button type="submit" class="btn">Sign in</button>
-				
-				<div class="sign-up">
-					Don't have an account? <a href="#">Create One</a>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-</div>
+        <div class="container-fluid">
+
+            <h1 class=""><strong>Book an Exam</strong></h1>
+        </div>
+        <div class="panel-body">
 
 
+            <form name="template" class="form-horizontal">
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Exam Name</label>
+                        <div class="col-md-9">
+                            <select name="element1" id="element1" class="form-control" type="text">
+                                <option value="item1">Item 1</option>
+                                <option value="item2">Item 2</option>
+                                <option value="item3">Item 3</option>
+                            </select>
+                            <span class="help-block">Select an option</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Date</label>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <input name="date" type="date" class="form-control">
+                            <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                            </div>
+                            <span class="help-block">Select a valid date</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Full Name</label>
+                        <div class="col-md-9 has-feedback">
+                            <input name="element2" class="form-control" type="text" />
+ 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Email</label>
+                        <div class="col-md-9">
+                            <input name="element3" class="form-control" type="text" />
+                        </div>
+                    </div>
+            
+                     <div class="form-group">
+                        <label class="col-md-3 control-label">Address</label>
+                        <div class="col-md-9">
+                            <input name="element3" class="form-control" type="text" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Age</label>
+                        <div class="col-md-9">
+                            <input name="element5" class="form-control input-lg" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Category</label>
+                        <div class="col-md-9">
+                            <input name="element6" class="form-control input-sm" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Tag Name and Description</label>
+                        <div class="col-md-9">
+                            <textarea name="element7" class="form-control input-lg" rows="3"></textarea>
+                        </div>
+
+                    </div>
+
+                 
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+
+                                    <button class="btn" id="btnCancel">
+                                        Cancel <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+
+
+                                    <button class="btn" id="btnReset">
+                                        Reset Form <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+
+
+                                    <button class="btn" id="btnSave">
+                                        Book <span class="glyphicon glyphicon-cloud-upload"></span>
+                                    </button>
+
+                        </div>
+                    </div>
+                 
+
+                </div>
+
+            </form>
+        </div>
 
     </section>
 
