@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SAOM - Login</title>
+        <title>SAOM - Update Book Details</title>
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -104,6 +104,7 @@
         </header>
     </div>
       
+
     
     <section class="banner" id="top">
         <div class="container">
@@ -111,8 +112,8 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="banner-caption">
                         <div class="line-dec"></div>
-                        <h2>Login for Students/Staff</h2>
-                        <span>Login section for staff and students in SAOM</span>
+                        <h2>Update book Details</h2>
+                        <span>Welcome Back Mr.  Pierce Griffin</span>
                         <div class="blue-button">
                             <a class="scrollTo" data-scrollTo="popular" href="#">Discover More</a>
                         </div>
@@ -120,7 +121,7 @@
                     <div class="submit-form">
                         <form id="form-submit" action="" method="get">
                             <div class="row">
-                 <div class="col-md-9 second-item">
+                                <div class="col-md-9 second-item">
                                     <fieldset>
                                         <input name="location" type="text" class="form-control" id="location" placeholder="Please Enter something to search" required="">
                                     </fieldset>
@@ -139,34 +140,72 @@
     </section>
 
     <section class="" id="">
-<div class="global-container">
-	<div class="card login-form">
-	<div class="card-body">
-		<h3 class="card-title text-center">Log in to SAOM</h3>
-        <br>
-		<div class="card-text">
-			
-			<form>
-				
-				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputPassword1">Password</label>
-					<a href="#" style="float:right;font-size:12px;">Forgot password?</a>
-					<input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
-				</div>
-				<button type="submit" class="btn">Sign in</button>
-				
-				<div class="sign-up">
-					Don't have an account? <a href="#">Create One</a>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-</div>
+
+
+<div class="container">
+
+      <div class="panel-heading"> Book Details</div>
+           <div class="col-md-6">
+      <div class="panel-body">
+        <div class="form-horizontal">
+ <form>
+     <div class="form-group">
+	<label class="col-sm-2 control-label">Book Name</label>
+        <div class="col-sm-7">
+         <input class="form-control" type="text" name="firstName" placeholder="How To Write About Music" ng-model="me.firstName">
+        </div>
+        </div>
+	<div class="form-group">
+	 <label class="col-sm-2 control-label">Author Name</label>
+        <div class="col-sm-7">
+        <input class="form-control" type="text" name="lastName" placeholder="Pierce Griffin" ng-model="me.lastName">
+          </div>
+           </div>
+        <div class="form-group">
+         <label class="col-sm-2 control-label">Price</label>
+         <div class="col-sm-7">
+         <input class="form-control" type="text" name="Price" placeholder="50.00" ng-model="me.email">
+              </div>
+            </div>
+            
+            <div class="form-group">
+           <label class="col-sm-2 control-label">Category</label>
+           <div class="col-sm-7">
+          <input class="form-control" type="text" name="title" placeholder="Violin" ng-model="me.email">
+              </div>
+            </div>
+            <div class="form-group">
+             <label class="col-sm-2 control-label">Year</label>
+           <div class="col-sm-7">
+            <input class="form-control" type="text" name="startDate" placeholder=" 2011" ng-model="me.email">
+              </div>
+            </div>            
+            <div class="form-group">
+           <label class="col-sm-2 control-label">ISBN</label>
+             <div class="col-sm-7">
+            <input class="form-control" type="text" name="location" placeholder="3483204" ng-model="me.email">
+            </div>
+           </div>
+           
+          <div class="form-group">
+             <div class="col-sm-offset-2 col-sm-10">
+           <button class="btn" ng-click="updateMe()">Update</button>
+              							</div>
+            						</div>
+     
+					          </form>
+        				</div>  
+      </div>
+    </div>
+           <div class="col-md-6">
+                      <div class="form-group">
+                                                                               <label class="col-sm-2 control-label">Image</label>
+              							<div class="col-sm-offset-2 col-sm-10">
+                								<img src="img/9781628920437.jpg">
+              							</div>
+            						</div>
+    </div>
+    </div> 
 
 
 
@@ -246,7 +285,7 @@
     </footer>
 
     <div class="sub-footer">
-        <p>Copyright &copy; 2020 SAOM
+        <p>Copyright &copy; 2020 SAOM 
     
     	- Design: <a rel="nofollow" href="#">Enigma Crackers</a></p>
     </div>
