@@ -1,5 +1,4 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
-
 <section class="" id="">
     <h2 class="text-center">List of Book Orders</h2>
     <div class="table-responsive mx-auto" style="width: 100%; padding: 40px;">
@@ -26,19 +25,6 @@
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>Mark</td>
-
-                 
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                                        <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                   
                 </tr>
                 <tr>
                     <th scope="row">1</th>
@@ -49,9 +35,17 @@
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>Mark</td>
-                   
                 </tr>
-
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                </tr>
             <th scope="row">1</th>
             <td>Mark</td>
             <td>Otto</td>
@@ -60,7 +54,6 @@
             <td>Otto</td>
             <td>@mdo</td>
             <td>Mark</td>
-           
             </tr>
             <tr>
                 <th scope="row">1</th>
@@ -71,7 +64,6 @@
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>Mark</td>
-               
             </tr>
             <tr>
                 <th scope="row">1</th>
@@ -82,7 +74,6 @@
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>Mark</td>
-               
             </tr>
             <tr>
                 <th scope="row">1</th>
@@ -93,7 +84,6 @@
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>Mark</td>
-                
             </tr>
             <tr>
                 <th scope="row">1</th>
@@ -104,7 +94,6 @@
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>Mark</td>
-            
             </tr>
             <tr>
                 <th scope="row">1</th>
@@ -115,7 +104,6 @@
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>Mark</td>
-               
             </tr>
             <tr>
                 <th scope="row">1</th>
@@ -130,6 +118,4 @@
             </tbody>
         </table>
     </div>
-
-
 </section>

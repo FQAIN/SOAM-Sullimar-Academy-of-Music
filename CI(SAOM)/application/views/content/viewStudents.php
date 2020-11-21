@@ -30,8 +30,6 @@
                     <td>Mark</td>
                     <!-- Large modal -->
                     <td><button type="button" class="blue-button btn" data-toggle="modal" data-target=".bd-example-modal-lg">Update</button>
-
-
                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -48,15 +46,11 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Student Name</label>
-
-                                                        <input class="form-control" type="text" name="firstName"
-                                                               placeholder=" John Doe" ng-model="me.firstName">
+                                                        <input class="form-control" type="text" name="firstName" placeholder=" John Doe" ng-model="me.firstName">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Student Course</label>
-
-                                                        <input class="form-control" type="text" name="firstName"
-                                                               placeholder="Pianno" ng-model="me.firstName">
+                                                        <input class="form-control" type="text" name="firstName" placeholder="Pianno" ng-model="me.firstName">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <fieldset>
@@ -66,27 +60,19 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">DOB</label>
-
-                                                        <input class="form-control" type="date" name="firstName"
-                                                               placeholder="2.50" ng-model="me.firstName">
+                                                        <input class="form-control" type="date" name="firstName" placeholder="2.50" ng-model="me.firstName">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Age</label>
-
-                                                        <input class="form-control" type="text" name="firstName"
-                                                               placeholder="28" ng-model="me.firstName">
+                                                        <input class="form-control" type="text" name="firstName" placeholder="28" ng-model="me.firstName">
                                                     </div>
-                                                     <div class="col-md-6">
+                                                    <div class="col-md-6">
                                                         <label class="control-label">Date of Enrollment</label>
-
-                                                        <input class="form-control" type="date" name="firstName"
-                                                               placeholder="Vocals" ng-model="me.firstName">
+                                                        <input class="form-control" type="date" name="firstName" placeholder="Vocals" ng-model="me.firstName">
                                                     </div>
-                                                     <div class="col-md-6">
+                                                    <div class="col-md-6">
                                                         <label class="control-label">Address</label>
-
-                                                        <input class="form-control" type="text" name="firstName"
-                                                               placeholder="Dublin" ng-model="me.firstName">
+                                                        <input class="form-control" type="text" name="firstName" placeholder="Dublin" ng-model="me.firstName">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <fieldset>
@@ -111,8 +97,6 @@
                                     </div>      
                                 </div>
                             </div>
-
-
                     </td>    
                     <td><button class="blue-button btn">Delete</button></td>
                 </tr>
@@ -142,7 +126,6 @@
                     </td>    
                     <td><button class="blue-button btn">Delete</button></td>
                 </tr>
-
             <th scope="row">1</th>
             <td>Mark</td>
             <td>Otto</td>
@@ -236,5 +219,4 @@
             </tbody>
         </table>
     </div>
-
 </section>

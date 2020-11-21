@@ -77,21 +77,21 @@ class Home extends CI_Controller {
         );
         $this->load->view('layout', $view_data);
     }
-    
-        public function profile() {
+
+    public function profile() {
         $view_data = array(
             'content' => $this->load->view('content/profile', null, true)
         );
         $this->load->view('layout', $view_data);
     }
 
-        public function shoppingCart() {
+    public function shoppingCart() {
         $view_data = array(
             'content' => $this->load->view('content/shoppingCart', null, true)
         );
         $this->load->view('layout', $view_data);
     }
-    
+
     public function register() {
         $view_data = array(
             'content' => $this->load->view('content/register', null, true)
@@ -182,40 +182,40 @@ class Home extends CI_Controller {
         );
         $this->load->view('adminLayout', $view_data);
     }
-    
+
     public function processTeachersTimetables() {
         $view_data = array(
             'content' => $this->load->view('content/processTeachersTimetables', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
-    
-        public function viewStudentTimetables() {
+
+    public function viewStudentTimetables() {
         $view_data = array(
             'content' => $this->load->view('content/viewStudentTimetables', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
-    
-            public function viewTeachersTimetables() {
+
+    public function viewTeachersTimetables() {
         $view_data = array(
             'content' => $this->load->view('content/viewTeachersTimetables', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
 
-    
-                public function generateReports() {
+    public function generateReports() {
         $view_data = array(
             'content' => $this->load->view('content/generateReports', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
-    
-                    public function generateResultSheet() {
+
+    public function generateResultSheet() {
         $view_data = array(
             'content' => $this->load->view('content/generateResultSheet', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
+
 }

@@ -6,9 +6,7 @@
                 <h3 class="card-title text-center">Register to SAOM</h3>
                 <br>
                 <div class="card-text">
-
                     <form>
-
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -35,15 +33,9 @@
                             <input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
                         </div>
                         <button type="submit" class="btn">Sign up</button>
-
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </section>
-

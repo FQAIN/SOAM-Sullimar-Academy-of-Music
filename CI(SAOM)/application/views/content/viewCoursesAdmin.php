@@ -1,5 +1,4 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
-
 <section class="" id="">
     <h2 class="text-center">List of Courses</h2>
     <div class="table-responsive mx-auto" style="width: 100%; padding: 40px;">
@@ -24,8 +23,6 @@
                     <td>Mark</td>
                     <!-- Large modal -->
                     <td><button type="button" class="blue-button btn" data-toggle="modal" data-target=".bd-example-modal-lg">Update</button>
-
-
                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -42,15 +39,11 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Course Name</label>
-
-                                                        <input class="form-control" type="text" name="firstName"
-                                                               placeholder="Violin" ng-model="me.firstName">
+                                                        <input class="form-control" type="text" name="firstName" placeholder="Violin" ng-model="me.firstName">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Course Level</label>
-
-                                                        <input class="form-control" type="text" name="firstName"
-                                                               placeholder="Level 7 " ng-model="me.firstName">
+                                                        <input class="form-control" type="text" name="firstName" placeholder="Level 7 " ng-model="me.firstName">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <fieldset>
@@ -60,9 +53,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Years</label>
-
-                                                        <input class="form-control" type="text" name="firstName"
-                                                               placeholder="2 Years" ng-model="me.firstName">
+                                                        <input class="form-control" type="text" name="firstName" placeholder="2 Years" ng-model="me.firstName">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <fieldset>
@@ -87,8 +78,6 @@
                                     </div>      
                                 </div>
                             </div>
-
-
                     </td>    
                     <td><button class="blue-button btn">Delete</button></td>
                 </tr>
@@ -112,7 +101,6 @@
                     </td>    
                     <td><button class="blue-button btn">Delete</button></td>
                 </tr>
-
             <th scope="row">1</th>
             <td>Mark</td>
             <td>Otto</td>
@@ -185,7 +173,6 @@
             </tbody>
         </table>
     </div>
-
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
             <div class="wrapper">
@@ -205,15 +192,11 @@
                                             </div>
                                             <div class="col-md-20">
                                                 <label class="control-label">Course Name</label>
-
-                                                <input class="form-control" type="text" name="firstName"
-                                                       placeholder="Violin" ng-model="me.firstName">
+                                                <input class="form-control" type="text" name="firstName" placeholder="Violin" ng-model="me.firstName">
                                             </div>
                                             <div class="col-md-20">
                                                 <label class="control-label">Course Level</label>
-
-                                                <input class="form-control" type="text" name="firstName"
-                                                       placeholder="Level 7 " ng-model="me.firstName">
+                                                <input class="form-control" type="text" name="firstName" placeholder="Level 7 " ng-model="me.firstName">
                                             </div>
                                             <div class="col-md-20">
                                                 <fieldset>
@@ -223,28 +206,19 @@
                                             </div>
                                             <div class="col-md-20">
                                                 <label class="control-label">Start Date</label>
-
-                                                <input class="form-control" type="date" name="firstName"
-                                                       placeholder="Level 7 " ng-model="me.firstName">
+                                                <input class="form-control" type="date" name="firstName" placeholder="Level 7 " ng-model="me.firstName">
                                             </div>
-
                                             <div class="col-md-20">
                                                 <label class="control-label">End Date</label>
-
-                                                <input class="form-control" type="date" name="firstName"
-                                                       placeholder="Level 7 " ng-model="me.firstName">
+                                                <input class="form-control" type="date" name="firstName" placeholder="Level 7 " ng-model="me.firstName">
                                             </div>
                                             <div class="col-md-20">
                                                 <label class="control-label">Upload Picture</label>
-
-                                                <input class="form-control" type="file" name="firstName"
-                                                       placeholder="Level 7 " ng-model="me.firstName">
+                                                <input class="form-control" type="file" name="firstName" placeholder="Level 7 " ng-model="me.firstName">
                                             </div>
                                             <div class="col-md-20">
                                                 <label class="control-label">Years</label>
-
-                                                <input class="form-control" type="text" name="firstName"
-                                                       placeholder="2 Years" ng-model="me.firstName">
+                                                <input class="form-control" type="text" name="firstName" placeholder="2 Years" ng-model="me.firstName">
                                             </div>
                                             <div class="col-md-12">
                                                 <fieldset>
@@ -252,7 +226,6 @@
                                                     <button type="submit" id="form-submit" class="btn">Cancel</button>
                                                 </fieldset>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +233,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>  
             <div id="modal" class="modal">
                 <div class="modal-content">
@@ -323,5 +295,4 @@
             </div>
         </div>
     </div>
-
 </section>

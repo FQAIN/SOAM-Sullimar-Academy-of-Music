@@ -4,11 +4,8 @@
         <h1 class=""><strong>Teacher Web Timetables</strong></h1>
     </div>
     <div class="panel-body">
-
-
         <form name="template" class="form-horizontal">
             <div class="col-md-6">
-
                 <div class="form-group">
                     <label class="col-md-3 control-label">Department</label>
                     <div class="col-md-9">
@@ -20,7 +17,6 @@
                         <span class="help-block">Select an option</span>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="col-md-3 control-label">Course Name</label>
                     <div class="col-md-9">
@@ -51,7 +47,6 @@
                         <span class="help-block">Select an option</span>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="col-md-3 control-label">Week(s) to View</label>
                     <div class="col-md-9">
@@ -62,30 +57,20 @@
                         <span class="help-block">Select an option</span>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-9">
-
                         <button class="btn" id="btnCancel">
                             Cancel <span class="fa fa-remove"></span>
                         </button>
-
-
                         <button class="btn" id="btnReset">
                             Reset Form <span class="fa fa-refresh"></span>
                         </button>
-
-
                         <button class="btn" id="btnSave">
                             View <span class="fa fa-cloud-upload"></span>
                         </button>
-
                     </div>
                 </div>
-
             </div>
-
-
         </form>
     </div>
 </section>

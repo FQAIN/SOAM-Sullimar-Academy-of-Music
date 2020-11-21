@@ -1,4 +1,4 @@
-<?php $img_url = base_url() . "assets/img/";?>
+<?php $img_url = base_url() . "assets/img/"; ?>
 <section class="popular-places" id="popular">
     <div class="container-fluid">
         <div class="row">
@@ -12,7 +12,7 @@
         <div class="owl-carousel owl-theme">
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 1</h4>
                         <span>76 listings</span>
@@ -24,7 +24,7 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 2</h4>
                         <span>18 listings</span>
@@ -36,7 +36,7 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 3</h4>
                         <span>55 listings</span>
@@ -48,7 +48,7 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 4</h4>
                         <span>66 listings</span>
@@ -60,7 +60,7 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 5</h4>
                         <span>82 listings</span>
@@ -72,7 +72,7 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 6</h4>
                         <span>76 listings</span>
@@ -84,7 +84,7 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 7</h4>
                         <span>36 listings</span>
@@ -96,7 +96,7 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url."9781628920437.jpg"?>" alt="">
+                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
                         <h4>Book 8</h4>
                         <span>48 listings</span>
@@ -109,7 +109,6 @@
         </div>
     </div>
 </section>
-
 <section class="featured-places" id="blog">
     <div class="container">
         <div class="row">
@@ -124,7 +123,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
-                        <img src="<?php echo $img_url."audience-868074_1920.jpg"?>" alt="">
+                        <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="">
                         <div class="overlay-content">
                             <ul>
                                 <li><i class="fa fa-star"></i></li>
@@ -161,7 +160,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
-                        <img src="<?php echo $img_url."audience-868074_1920.jpg"?>" alt="">
+                        <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="">
                         <div class="overlay-content">
                             <ul>
                                 <li><i class="fa fa-star"></i></li>
@@ -198,7 +197,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
-                        <img src="<?php echo $img_url."audience-868074_1920.jpg"?>" alt="">
+                        <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="">
                         <div class="overlay-content">
                             <ul>
                                 <li><i class="fa fa-star"></i></li>
@@ -235,7 +234,6 @@
         </div>
     </div>
 </section>
-
 <section id="video-container">
     <div class="video-overlay"></div>
     <div class="video-content">
@@ -249,7 +247,6 @@
         <source src="assets/House Music 2019 - Instrumental winners - Bishop's Stortford College.mp4" type="video/mp4" />
     </video>
 </section>
-
 <section class="our-services" id="services">
     <div class="container">
         <div class="row">
@@ -289,7 +286,6 @@
         </div>
     </div>
 </section>
-
 <section class="contact" id="contact">
     <div id="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.3906854187785!2d-8.638198684640777!3d52.63485427983608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485b5b79ff40c8a5%3A0x22ca49f2cc3abfcd!2s25%20The%20Crescent%2C%20Kilteragh%2C%20Dooradoyle%2C%20Co.%20Limerick%2C%20V94%20FDN8!5e0!3m2!1sen!2sie!4v1605648532060!5m2!1sen!2sie"  width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -355,7 +351,7 @@
                                                 <li><span>Address:</span><a href="#">company.co</a></li>
                                             </ul>
                                         </div>
-                                       </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
