@@ -5,7 +5,7 @@ $css_url = base_url() . "assets/css/"; //assign CSS url directory
 $script_url = base_url() . "assets/js/"; //assign JS scripts url directory
 ?>
 
-<?php include("partials/header.php");?>
+<?php include("partials/adminHeader.php");?>
 
 <?php include("partials/hero.php");?>
 

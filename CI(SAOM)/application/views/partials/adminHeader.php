@@ -21,4 +21,4 @@
         <script src="<?php echo $js_base."vendor/modernizr-2.8.3-respond-1.4.2.min.js"?>"></script>
 
     </head>
-    <?php include('nav.php');?>
+    <?php include('navAdmin.php');?>

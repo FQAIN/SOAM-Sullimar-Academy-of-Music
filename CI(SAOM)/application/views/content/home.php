@@ -246,7 +246,7 @@
         </div>
     </div>
     <video autoplay="" loop="" muted>
-        <source src="House Music 2019 - Instrumental winners - Bishop's Stortford College.mp4" type="video/mp4" />
+        <source src="assets/House Music 2019 - Instrumental winners - Bishop's Stortford College.mp4" type="video/mp4" />
     </video>
 </section>
 
@@ -284,6 +284,82 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <div id="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.3906854187785!2d-8.638198684640777!3d52.63485427983608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485b5b79ff40c8a5%3A0x22ca49f2cc3abfcd!2s25%20The%20Crescent%2C%20Kilteragh%2C%20Dooradoyle%2C%20Co.%20Limerick%2C%20V94%20FDN8!5e0!3m2!1sen!2sie!4v1605648532060!5m2!1sen!2sie"  width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="wrapper">
+                <div class="section-heading">
+                    <span>Contact Us</span>
+                    <h2>Please Contact Us To Get In Touch With Us</h2>
+                </div>
+                <button id="modBtn" class="modal-btn">Talk to us</button>
+            </div>  
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <div class="close fa fa-close"></div>
+                    <div class="row">
+                        <div class="col-md-8"> 
+                            <div class="left-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="section-heading">
+                                            <span>Talk To Us</span>
+                                            <h2>Let's have a discussion</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <fieldset>
+                                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <fieldset>
+                                            <button type="submit" id="form-submit" class="btn">Send Message</button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="right-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="content">                                          
+                                            <div class="section-heading">
+                                                <span>More About Us</span>
+                                                <h2>Venue Company</h2>
+                                            </div>
+                                            <p>Etiam viverra nibh at lorem hendrerit porta non nec ligula. Donec hendrerit porttitor pretium. Suspendisse fermentum nec risus eu bibendum.</p>
+                                            <ul>
+                                                <li><span>Phone:</span><a href="#">010-050-0550</a></li>
+                                                <li><span>Email:</span><a href="#">hi@company.co</a></li>
+                                                <li><span>Address:</span><a href="#">company.co</a></li>
+                                            </ul>
+                                        </div>
+                                       </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>      
                 </div>
             </div>
         </div>
