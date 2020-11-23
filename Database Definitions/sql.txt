@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Books` (
   `image` VARCHAR(45) NULL,
   `Book Orders_idBook Orders` INT NOT NULL,
   PRIMARY KEY (`idBooks`),
-  INDEX `fk_Books_Book Orders1_idx` (`Book Orders_idBook Orders` ASC) VISIBLE,
+  INDEX `fk_Books_Book Orders1_idx` (`Book Orders_idBook Orders` ASC) ,
   CONSTRAINT `fk_Books_Book Orders1`
     FOREIGN KEY (`Book Orders_idBook Orders`)
     REFERENCES `saom`.`Book Orders` (`idBook Orders`)
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Exams` (
   `examCategory` VARCHAR(45) NULL,
   `Book Exams_idBook Exams` INT NOT NULL,
   PRIMARY KEY (`idExams`),
-  INDEX `fk_Exams_Book Exams1_idx` (`Book Exams_idBook Exams` ASC) VISIBLE,
+  INDEX `fk_Exams_Book Exams1_idx` (`Book Exams_idBook Exams` ASC),
   CONSTRAINT `fk_Exams_Book Exams1`
     FOREIGN KEY (`Book Exams_idBook Exams`)
     REFERENCES `saom`.`Book Exams` (`idBook Exams`)
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Events` (
   `image` VARCHAR(45) NULL,
   `Book Events_idBook Events` INT NOT NULL,
   PRIMARY KEY (`idEvents`),
-  INDEX `fk_Events_Book Events1_idx` (`Book Events_idBook Events` ASC) VISIBLE,
+  INDEX `fk_Events_Book Events1_idx` (`Book Events_idBook Events` ASC),
   CONSTRAINT `fk_Events_Book Events1`
     FOREIGN KEY (`Book Events_idBook Events`)
     REFERENCES `saom`.`Book Events` (`idBook Events`)
@@ -119,11 +119,11 @@ CREATE TABLE IF NOT EXISTS `saom`.`Shopping cart` (
   `Book Lessons_idBook Lessons` INT NOT NULL,
   `Book Exams_idBook Exams` INT NOT NULL,
   PRIMARY KEY (`idShopping cart`),
-  INDEX `fk_Shopping cart_Book Events1_idx` (`Book Events_idBook Events` ASC) VISIBLE,
-  INDEX `fk_Shopping cart_Book Orders1_idx` (`Book Orders_idBook Orders` ASC) VISIBLE,
-  INDEX `fk_Shopping cart_Book Course1_idx` (`Book Course_idBook Course` ASC) VISIBLE,
-  INDEX `fk_Shopping cart_Book Lessons1_idx` (`Book Lessons_idBook Lessons` ASC) VISIBLE,
-  INDEX `fk_Shopping cart_Book Exams1_idx` (`Book Exams_idBook Exams` ASC) VISIBLE,
+  INDEX `fk_Shopping cart_Book Events1_idx` (`Book Events_idBook Events` ASC),
+  INDEX `fk_Shopping cart_Book Orders1_idx` (`Book Orders_idBook Orders` ASC),
+  INDEX `fk_Shopping cart_Book Course1_idx` (`Book Course_idBook Course` ASC),
+  INDEX `fk_Shopping cart_Book Lessons1_idx` (`Book Lessons_idBook Lessons` ASC),
+  INDEX `fk_Shopping cart_Book Exams1_idx` (`Book Exams_idBook Exams` ASC),
   CONSTRAINT `fk_Shopping cart_Book Events1`
     FOREIGN KEY (`Book Events_idBook Events`)
     REFERENCES `saom`.`Book Events` (`idBook Events`)
@@ -175,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `saom`.`Student` (
   `Shopping cart_idShopping cart` INT NOT NULL,
   `Process Student Timetable_idProcess Student Timetable` INT NOT NULL,
   PRIMARY KEY (`idMember`),
-  INDEX `fk_Student_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC) VISIBLE,
-  INDEX `fk_Student_Process Student Timetable1_idx` (`Process Student Timetable_idProcess Student Timetable` ASC) VISIBLE,
+  INDEX `fk_Student_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC) ,
+  INDEX `fk_Student_Process Student Timetable1_idx` (`Process Student Timetable_idProcess Student Timetable` ASC),
   CONSTRAINT `fk_Student_Shopping cart1`
     FOREIGN KEY (`Shopping cart_idShopping cart`)
     REFERENCES `saom`.`Shopping cart` (`idShopping cart`)
@@ -202,8 +202,8 @@ CREATE TABLE IF NOT EXISTS `saom`.`Courses` (
   `Student_idMember` INT NOT NULL,
   `Book Course_idBook Course` INT NOT NULL,
   PRIMARY KEY (`idCourses`),
-  INDEX `fk_Courses_Student_idx` (`Student_idMember` ASC) VISIBLE,
-  INDEX `fk_Courses_Book Course1_idx` (`Book Course_idBook Course` ASC) VISIBLE,
+  INDEX `fk_Courses_Student_idx` (`Student_idMember` ASC),
+  INDEX `fk_Courses_Book Course1_idx` (`Book Course_idBook Course` ASC) ,
   CONSTRAINT `fk_Courses_Student`
     FOREIGN KEY (`Student_idMember`)
     REFERENCES `saom`.`Student` (`idMember`)
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Lessons` (
   `Date` DATE NULL,
   `Book Lessons_idBook Lessons` INT NOT NULL,
   PRIMARY KEY (`idLessons`),
-  INDEX `fk_Lessons_Book Lessons1_idx` (`Book Lessons_idBook Lessons` ASC) VISIBLE,
+  INDEX `fk_Lessons_Book Lessons1_idx` (`Book Lessons_idBook Lessons` ASC),
   CONSTRAINT `fk_Lessons_Book Lessons1`
     FOREIGN KEY (`Book Lessons_idBook Lessons`)
     REFERENCES `saom`.`Book Lessons` (`idBook Lessons`)
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Staffs` (
   `image` VARCHAR(45) NULL,
   `Shopping cart_idShopping cart` INT NOT NULL,
   PRIMARY KEY (`idStaffs`),
-  INDEX `fk_Staffs_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC) VISIBLE,
+  INDEX `fk_Staffs_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC),
   CONSTRAINT `fk_Staffs_Shopping cart1`
     FOREIGN KEY (`Shopping cart_idShopping cart`)
     REFERENCES `saom`.`Shopping cart` (`idShopping cart`)
@@ -271,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Process Exams` (
   `date` DATE NULL,
   `Exam Center_idExam Center` INT NOT NULL,
   PRIMARY KEY (`idProcess Exams`),
-  INDEX `fk_Process Exams_Exam Center1_idx` (`Exam Center_idExam Center` ASC) VISIBLE,
+  INDEX `fk_Process Exams_Exam Center1_idx` (`Exam Center_idExam Center` ASC),
   CONSTRAINT `fk_Process Exams_Exam Center1`
     FOREIGN KEY (`Exam Center_idExam Center`)
     REFERENCES `saom`.`Exam Center` (`idExam Center`)
@@ -285,8 +285,8 @@ CREATE TABLE IF NOT EXISTS `saom`.`Private Tuition` (
   `Student_idMember` INT NOT NULL,
   `Staffs_idStaffs` INT NOT NULL,
   PRIMARY KEY (`idPrivate Tuition`),
-  INDEX `fk_Private Tuition_Student1_idx` (`Student_idMember` ASC) VISIBLE,
-  INDEX `fk_Private Tuition_Staffs1_idx` (`Staffs_idStaffs` ASC) VISIBLE,
+  INDEX `fk_Private Tuition_Student1_idx` (`Student_idMember` ASC),
+  INDEX `fk_Private Tuition_Staffs1_idx` (`Staffs_idStaffs` ASC),
   CONSTRAINT `fk_Private Tuition_Student1`
     FOREIGN KEY (`Student_idMember`)
     REFERENCES `saom`.`Student` (`idMember`)
@@ -307,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Process Teacher Timetable` (
   `time Slots` VARCHAR(45) NULL,
   `Staffs_idStaffs` INT NOT NULL,
   PRIMARY KEY (`idProcess Teacher Timetable`),
-  INDEX `fk_Process Teacher Timetable_Staffs1_idx` (`Staffs_idStaffs` ASC) VISIBLE,
+  INDEX `fk_Process Teacher Timetable_Staffs1_idx` (`Staffs_idStaffs` ASC),
   CONSTRAINT `fk_Process Teacher Timetable_Staffs1`
     FOREIGN KEY (`Staffs_idStaffs`)
     REFERENCES `saom`.`Staffs` (`idStaffs`)
@@ -321,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`View Student Timetable` (
   `weeks to view` VARCHAR(45) NULL,
   `Student_idMember` INT NOT NULL,
   PRIMARY KEY (`idView Student Timetable`),
-  INDEX `fk_View Student Timetable_Student1_idx` (`Student_idMember` ASC) VISIBLE,
+  INDEX `fk_View Student Timetable_Student1_idx` (`Student_idMember` ASC),
   CONSTRAINT `fk_View Student Timetable_Student1`
     FOREIGN KEY (`Student_idMember`)
     REFERENCES `saom`.`Student` (`idMember`)
@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`View Teacher Timetable` (
   `weeks to view` VARCHAR(45) NULL,
   `Staffs_idStaffs` INT NOT NULL,
   PRIMARY KEY (`idView Teacher Timetable`),
-  INDEX `fk_View Teacher Timetable_Staffs1_idx` (`Staffs_idStaffs` ASC) VISIBLE,
+  INDEX `fk_View Teacher Timetable_Staffs1_idx` (`Staffs_idStaffs` ASC),
   CONSTRAINT `fk_View Teacher Timetable_Staffs1`
     FOREIGN KEY (`Staffs_idStaffs`)
     REFERENCES `saom`.`Staffs` (`idStaffs`)
@@ -359,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Generate Result Sheet` (
   `Result` VARCHAR(45) NULL,
   `Student_idMember` INT NOT NULL,
   PRIMARY KEY (`idGenerate Result Sheet`),
-  INDEX `fk_Generate Result Sheet_Student1_idx` (`Student_idMember` ASC) VISIBLE,
+  INDEX `fk_Generate Result Sheet_Student1_idx` (`Student_idMember` ASC),
   CONSTRAINT `fk_Generate Result Sheet_Student1`
     FOREIGN KEY (`Student_idMember`)
     REFERENCES `saom`.`Student` (`idMember`)
@@ -378,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Member` (
   `address` VARCHAR(45) NULL,
   `Shopping cart_idShopping cart` INT NOT NULL,
   PRIMARY KEY (`idMember`),
-  INDEX `fk_Member_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC) VISIBLE,
+  INDEX `fk_Member_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC),
   CONSTRAINT `fk_Member_Shopping cart1`
     FOREIGN KEY (`Shopping cart_idShopping cart`)
     REFERENCES `saom`.`Shopping cart` (`idShopping cart`)
@@ -391,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `saom`.`Purchase` (
   `datePurchased` DATE NULL,
   `Shopping cart_idShopping cart` INT NOT NULL,
   PRIMARY KEY (`idPurchase`),
-  INDEX `fk_Purchase_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC) VISIBLE,
+  INDEX `fk_Purchase_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC),
   CONSTRAINT `fk_Purchase_Shopping cart1`
     FOREIGN KEY (`Shopping cart_idShopping cart`)
     REFERENCES `saom`.`Shopping cart` (`idShopping cart`)
