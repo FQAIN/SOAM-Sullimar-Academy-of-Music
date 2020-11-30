@@ -189,7 +189,7 @@ ENGINE = InnoDB;
 -- Table `saom`.`Events`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `saom`.`Events` (
-  `eventID` INT NOT NULL,
+  `eventID` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `dateOfEvent` DATE NULL,
