@@ -15,14 +15,14 @@ Class SAOMBook extends CI_Model {
     function addEntryEvent() {
 
 
-//Inserts address details from form into associative array with keys same name as database fields
+        //Inserts address details from form into associative array with keys same name as database fields
         $event_data['name'] = $this->input->post('name');
         $event_data['description'] = $this->input->post('description');
         $event_data['dateOfEvent'] = $this->input->post('dateOfEvent');
         $event_data['price'] = $this->input->post('price');
         $event_data['location'] = $this->input->post('location');
         $event_data['Image'] = $this->input->post('Image');
-//Calls the stored procedure to add a address details to the address table
+        //Calls the stored procedure to add a address details to the address table
         $stored_proc_call = "CALL AddEvent(?, ?, ?, ?, ?, ?)";
         $this->db->query($stored_proc_call, $event_data);
     }
@@ -36,11 +36,7 @@ Class SAOMBook extends CI_Model {
         $stored_proc_call = "CALL SelectContactsPerPage(?,?)";
         $query = $this->db->query($stored_proc_call, $select_data);
 
-        if ($query->num_rows() > 0) {
-            return $query->result_array();
-        } else {
-            return FALSE;
-        }
+        mysqli_next_result($this->db->conn_id);
+        return $query;
     }
-
 }

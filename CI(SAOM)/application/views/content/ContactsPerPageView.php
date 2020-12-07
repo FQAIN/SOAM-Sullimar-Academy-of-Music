@@ -57,32 +57,47 @@ a:link, a:visited{
         <div ><h1>All Event Details</h1></div>
         <div>
                 <p><a href="<?php echo base_url(); ?>index.php/Home/index/" class="back"><-Back to Home Menu</a></p>
-            <?php 
-//            $template = array(
-// 'table_open' => ' <table class="table table-striped table-dark">',
-// 'thead_open' => '<th style="font-weight:bold">',
-// 'thead_close' => '</thead>',
-// 'heading_row_start' => '<tr>',
-// 'heading_row_end' => '</tr>',
-// 'heading_cell_start' => '<th>',
-// 'heading_cell_end' => '</th>',
-// 'tbody_open' => '<tbody>',
-// 'tbody_close' => '</tbody>',
-// 'row_start' => '<tr>',
-// 'row_end' => '</tr>',
-// 'cell_start' => '<td>',
-// 'cell_end' => '</td>',
-// 'row_alt_start' => '<tr>',
-// 'row_alt_end' => '</tr>',
-// 'cell_alt_start' => '<td>',
-// 'cell_alt_end' => '</td>',
-// 'table_close' => '</table>'
-//);
-//$this->table->set_template($template);
             
-$this->table->set_heading('ID', 'Name', 'Description','Date','Price','Location','Image');
-            echo $this->table->generate($page);
-            ?>
+            <table>
+                            <tr>
+                                <td><strong>Name:</strong></td>
+                                <td><strong>Description:</strong></td>
+                                <td><strong>Date of Event:</strong></td>
+                                <td><strong>Price:</strong></td>
+                                <td><strong>Location:</strong></td>
+                                <td><strong>Image:</strong></td>
+                                <td><strong>Update:</strong></td>
+                                <td><strong>Delete:</strong></td>
+                            </tr>
+                            <?php
+                                if ($events->num_rows() > 0) 
+                                {
+                                    foreach ($events->result_array() as $event)
+                                    {
+                                        echo 
+                                        "<tr>
+                                            <td>".$event['name']."</td>
+                                            <td>".$event['description']."</td>
+                                            <td>".$event['dateOfEvent']."</td>
+                                            <td>".$event['price']."</td>
+                                            <td>".$event['location']."</td>
+                                            <td>".$event['image']."</td>
+                                            <td>
+                                                <form action=" . site_url('Controller/Method') . ">
+                                                    <input type='submit' value='Update'>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action=" . site_url('Home/deleteEvent') . " method='POST'>
+                                                    <input type='hidden' name='eventID' value=" . $event['eventID'] . "/>
+                                                    <input type='submit' value='Delete'>
+                                                </form>
+                                            </td>
+                                        </tr>";
+                                    }
+                                }
+                            ?>
+                        </table>
                 
         </div>
          <!--Render pagination links--> 

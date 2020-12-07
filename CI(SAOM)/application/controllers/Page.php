@@ -16,8 +16,8 @@ class Page extends CI_Controller {
 
     public function index() {
 
-        $data = array('content' => $this->load->view('content/ContactsPerPageView', null, true));
-
+        $data = array();
+        
         // Count all record of table "contact_info" in database.
         $totalRec = $this->SAOMBook->record_count();
 
@@ -35,13 +35,7 @@ class Page extends CI_Controller {
         $offset = !$page?100:$page;
         
         
-        $data['page'] = $this->SAOMBook->selectContactsPerPage($this->perPage, $offset);
-
-//             $view_data = array(
-//            'content' => $this->load->view('content/ContactsPerPageView', null, true)
-//        );
-//        $this->load->view('adminLayout', $view_data);
-        
+        $data['events'] = $this->SAOMBook->selectContactsPerPage($this->perPage, $offset);
            
         $this->load->view('content/ContactsPerPageView', $data);
     }

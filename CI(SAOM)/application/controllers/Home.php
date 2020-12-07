@@ -5,8 +5,8 @@ class Home extends CI_Controller {
     function __construct() {
         parent::__construct(); //Load required models etc into constructor
     }
-    
-     function AddEvent() {
+
+    function AddEvent() {
         $event_validation_rules = array(
             array('field' => 'name',
                 'label' => 'Name',
@@ -34,10 +34,6 @@ class Home extends CI_Controller {
                 'errors' => array('required' => 'You must provide an %s.'))
         );
 
-
-
-
-
         $this->form_validation->set_rules($event_validation_rules);
         if ($this->form_validation->run() == FALSE) {
             //Load the Main Menu view 
@@ -47,24 +43,31 @@ class Home extends CI_Controller {
             $this->load->model('SAOMBook');
             //Add all the details to master table in the database and if all the values are entered in properly it adds it to the other tables 
             //Calls the addEntry function in the Model AddressBook    
-          
-                $this->SAOMBook->addEntryEvent();
-        $view_data = array(
-            'content' => $this->load->view('content/home', null, TRUE),
-        );
 
-        $this->load->view('Layout', $view_data);
+            $this->SAOMBook->addEntryEvent();
             
+            redirect('Page/index');
         }
     }
 
     public function index() {
         //Load Main Page
         //$view_data - dynamic data to be passed into view for displaying
-        $view_data = array(
-            'content' => $this->load->view('content/home', null, true)
-        );
-        $this->load->view('layout', $view_data);
+
+        if ($this->session->userdata('loggedIn')) 
+        {
+            $view_data = array(
+                'content' => $this->load->view('content/home', null, true)
+            );
+            $this->load->view('adminLayout', $view_data);
+        } 
+        else 
+        {
+            $view_data = array(
+                'content' => $this->load->view('content/home', null, true)
+            );
+            $this->load->view('layout', $view_data);
+        }
     }
 
     public function viewBooks() {
@@ -228,6 +231,15 @@ class Home extends CI_Controller {
         $this->load->view('adminLayout', $view_data);
     }
 
+    public function deleteEvent() {
+        $eventID = $this->input->post('eventID');
+
+        $stored_proc_call = "CALL deleteEvent(?)";
+        $this->db->query($stored_proc_call, $eventID);
+
+        redirect('Page/index');
+    }
+
     public function processStudentTimetables() {
         $view_data = array(
             'content' => $this->load->view('content/processStudentTimetables', null, true)
@@ -269,14 +281,12 @@ class Home extends CI_Controller {
         );
         $this->load->view('adminLayout', $view_data);
     }
-    
-    
+
     function Logout() {
 
         unset($_SESSION['loggedIn']);
         $this->session->sess_destroy();
         redirect('Login/index');
- 
     }
 
 }

@@ -8,17 +8,22 @@
                 <div class="card-text">
                     <?php
                     echo form_open('Login/index/');
-                    if ($this->session->userdata('loggedIn')) {
+                    if ($this->session->userdata('loggedIn')) 
+                    {
 
                         echo '<p><a href="' . site_url("Home/Logout") . '">Logout</a></p>';
-                    } else {
-                        echo '<label>Email</label><br>
-        <input type="text" name="email" placeholder="Email" size="10" class="input_field"><br>
-        <label>Password</label><br>
-        <input type="password" name="password" placeholder="Password" class="input_field">
+                    } 
+                    else 
+                    {
+                        echo 
+                        '<label>Email</label><br>
+                            <input type="text" name="email" placeholder="Email" size="10" class="input_field"><br>
+                                
+                            <label>Password</label><br>
+                                <input type="password" name="password" placeholder="Password" class="input_field">
 
-       <p>   <a href="' . site_url("GG/AddEntry") . '">Register</a></p>
-         <input type="submit" name="submit" value="Login" alt="Login" id="submit_btn" >';
+                            <p><a href="' . site_url("GG/AddEntry") . '">Register</a></p>
+                            <input type="submit" name="submit" value="Login" alt="Login" id="submit_btn" >';
                     }
                     ?>
                 </div>
