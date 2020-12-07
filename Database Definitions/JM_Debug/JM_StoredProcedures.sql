@@ -1,16 +1,20 @@
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `viewEventDetails`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage`(IN `p_limit` INT, IN `p_start` INT)
     NO SQL
 BEGIN
-	SELECT * FROM events;
+SELECT eventID,name, description,dateOfEvent,price,location,image
+FROM saomevents
+ LIMIT p_limit, p_start;
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `viewAllStudentDetails`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidUser`(IN `p_email` VARCHAR(25), IN `p_password` VARCHAR(25))
     NO SQL
 BEGIN
-	SELECT * FROM student;
+SELECT password, email
+FROM member
+WHERE p_email = email AND p_password = password;
 END$$
 DELIMITER ;
 
@@ -18,7 +22,7 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addEvent`(IN `p_name` VARCHAR(45), IN `p_description` VARCHAR(45), IN `p_dateOfEvent` DATE, IN `p_price` DECIMAL(6,2), IN `p_location` VARCHAR(45), IN `p_image` VARCHAR(45))
     NO SQL
 BEGIN
-	INSERT INTO events
+	INSERT INTO saomevents
     (
     	name,
         description,
@@ -60,9 +64,34 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteEvent`(IN `p_eventID` INT)
+    NO SQL
+BEGIN
+	DELETE FROM saomevents
+    WHERE p_eventID = eventID;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `viewAllStudentDetails`()
+    NO SQL
+BEGIN
+	SELECT * FROM student;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `viewCourseDetails`()
     NO SQL
 BEGIN
 	SELECT * FROM courses;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `viewEventDetails`()
+    NO SQL
+BEGIN
+	SELECT * FROM events;
 END$$
 DELIMITER ;
