@@ -47,7 +47,7 @@
 
                                     <li><a href="#">Events</a>
                                         <ul class="sub-menu">
-                                            <li><a href="<?php echo site_url('Home/viewEventsAdmin'); ?>">View All Events</a>
+                                            <li><a href="<?php echo site_url('Page/index'); ?>">View All Events</a>
                                             <li><a href="<?php echo site_url('Home/BookEvents'); ?>">Book Events</a>
 
 
@@ -73,6 +73,7 @@
 
                                         </ul>
                                     </li>
+                                    <li><a href="<?php echo site_url('Home/logout'); ?>">Logout</a></li>
                                 </ul>
                             </nav>
                         </div>

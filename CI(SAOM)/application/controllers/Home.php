@@ -5,6 +5,58 @@ class Home extends CI_Controller {
     function __construct() {
         parent::__construct(); //Load required models etc into constructor
     }
+    
+     function AddEvent() {
+        $event_validation_rules = array(
+            array('field' => 'name',
+                'label' => 'Name',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+            array('field' => 'description',
+                'label' => 'Description',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+            array('field' => 'dateOfEvent',
+                'label' => 'Date Of Event',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'price',
+                'label' => 'Price',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'location',
+                'label' => 'Location',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'Image',
+                'label' => 'Image',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.'))
+        );
+
+
+
+
+
+        $this->form_validation->set_rules($event_validation_rules);
+        if ($this->form_validation->run() == FALSE) {
+            //Load the Main Menu view 
+            $this->load->view('content/AddEvent');
+        } else {
+            //Loads the Model of AddressBook from the models folder  
+            $this->load->model('SAOMBook');
+            //Add all the details to master table in the database and if all the values are entered in properly it adds it to the other tables 
+            //Calls the addEntry function in the Model AddressBook    
+          
+                $this->SAOMBook->addEntryEvent();
+        $view_data = array(
+            'content' => $this->load->view('content/home', null, TRUE),
+        );
+
+        $this->load->view('Layout', $view_data);
+            
+        }
+    }
 
     public function index() {
         //Load Main Page
@@ -171,7 +223,7 @@ class Home extends CI_Controller {
 
     public function viewEventsAdmin() {
         $view_data = array(
-            'content' => $this->load->view('content/viewEventsAdmin', null, true)
+            'content' => $this->load->view('content/ContactsPerPageView', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
@@ -216,6 +268,15 @@ class Home extends CI_Controller {
             'content' => $this->load->view('content/generateResultSheet', null, true)
         );
         $this->load->view('adminLayout', $view_data);
+    }
+    
+    
+    function Logout() {
+
+        unset($_SESSION['loggedIn']);
+        $this->session->sess_destroy();
+        redirect('Login/index');
+ 
     }
 
 }

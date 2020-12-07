@@ -219,7 +219,7 @@
             </tbody>
         </table>
     </div>
-    <div class="container">
+<!--    <div class="container">
         <div class="col-md-10 col-md-offset-1">
             <div class="wrapper">
                 <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-sm">Add New Event</button>
@@ -285,5 +285,5 @@
                 </div>
             </div>  
         </div>
-    </div>
+    </div>-->
 </section>
