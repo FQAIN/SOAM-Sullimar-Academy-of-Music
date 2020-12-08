@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-Class SAOMBook extends CI_Model {
+Class SAOMEvents extends CI_Model {
 
     public function record_count() {
         return $this->db->count_all("saomevents");
@@ -27,7 +27,7 @@ Class SAOMBook extends CI_Model {
         $this->db->query($stored_proc_call, $event_data);
     }
 
-    public function selectContactsPerPage($limit, $start) {
+    public function selectEventsPerPage($limit, $start) {
         //Set the Start and Limit – only retrieves rows between these limits
         $select_data['limit'] = $limit;
         $select_data['start'] = $start;

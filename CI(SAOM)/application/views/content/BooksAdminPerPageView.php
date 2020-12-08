@@ -37,9 +37,19 @@ h1 a {
   color: #fff;
 }   
 
-a:link, a:visited{
+p a:link, p a:visited{
+    text-decoration: none;
+     color: black;
+}
+
+button a:link, button a:visited{
     text-decoration: none;
      color: white;
+}
+
+
+p{
+    color: black;
 }
 
 .round {
@@ -54,43 +64,50 @@ a:link, a:visited{
     </head>
     <body>
           <form>  
-        <div ><h1>All Event Details</h1></div>
+        <div ><h1>All Book Details</h1></div>
         <div>
                 <p><a href="<?php echo base_url(); ?>index.php/Home/index/" class="back"><-Back to Home Menu</a></p>
             
-            <table>
-                            <tr>
-                                <td><strong>Name:</strong></td>
+            <table>  <tr>
+                                <td><strong>Book Name:</strong></td>
                                 <td><strong>Description:</strong></td>
-                                <td><strong>Date of Event:</strong></td>
+                                <td><strong>Author:</strong></td>
+                                <td><strong>Year Published:</strong></td>
                                 <td><strong>Price:</strong></td>
-                                <td><strong>Location:</strong></td>
+                                <td><strong>Category:</strong></td>
+                                <td><strong>ISBN:</strong></td>
+                                <td><strong>In Stock:</strong></td>
+                                <td><strong>Qty:</strong></td>
                                 <td><strong>Image:</strong></td>
                                 <td><strong>Update:</strong></td>
                                 <td><strong>Delete:</strong></td>
                             </tr>
                             <?php
-                                if ($events->num_rows() > 0) 
+                                if ($books->num_rows() > 0) 
                                 {
-                                    foreach ($events->result_array() as $event)
+                                    foreach ($books->result_array() as $book)
                                     {
                                         echo 
                                         "<tr>
-                                            <td>".$event['name']."</td>
-                                            <td>".$event['description']."</td>
-                                            <td>".$event['dateOfEvent']."</td>
-                                            <td>".$event['price']."</td>
-                                            <td>".$event['location']."</td>
-                                            <td>".$event['image']."</td>
+                                            <td>".$book['bookName']."</td>
+                                            <td>".$book['description']."</td>
+                                            <td>".$book['author']."</td>
+                                            <td>".$book['yearPublished']."</td>
+                                            <td>".$book['price']."</td>
+                                            <td>".$book['category']."</td>
+                                            <td>".$book['ISBN']."</td>
+                                            <td>".$book['inStock']."</td>
+                                            <td>".$book['qty']."</td>
+                                            <td>".$book['image']."</td>
                                             <td>
                                                 <form action=" . site_url('Controller/Method') . ">
-                                                    <input type='submit' value='Update'>
+                                                    <input type='submit' class='round' value='Update'>
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action=" . site_url('Home/deleteEvent') . " method='POST'>
-                                                    <input type='hidden' name='eventID' value=" . $event['eventID'] . "/>
-                                                    <input type='submit' value='Delete'>
+                                                <form action=" . site_url('Books/deleteBook') . " method='POST'>
+                                                    <input type='hidden' name='booksID' value=" . $book['booksID'] . "/>
+                                                    <input class='round' type='submit' value='Delete'>
                                                 </form>
                                             </td>
                                         </tr>";
@@ -104,7 +121,7 @@ a:link, a:visited{
 <?php echo "</br>" . $this->pagination->create_links(); ?>
 
           </form>
-        <button class="round"><a href="<?php echo site_url('Home/AddEvent'); ?>">Add An Event</a></button><br>
+        <button class="round"><a href="<?php echo site_url('Books/AddBook'); ?>">Add A Book</a></button><br>
         
     </body>
 </html>

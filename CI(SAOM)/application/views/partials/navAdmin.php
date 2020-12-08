@@ -39,7 +39,7 @@
                                     </li>
                                     <li><a href="#">Books</a>
                                         <ul class="sub-menu">
-                                            <li><a href="<?php echo site_url('Home/viewBooksAdmin'); ?>">View All Books</a>
+                                            <li><a href="<?php echo site_url('Books/index'); ?>">View All Books</a>
                                             <li><a href="<?php echo site_url('Home/viewBookOrders'); ?>">View All Book Orders</a>
 
                                         </ul>
@@ -47,7 +47,7 @@
 
                                     <li><a href="#">Events</a>
                                         <ul class="sub-menu">
-                                            <li><a href="<?php echo site_url('Page/index'); ?>">View All Events</a>
+                                            <li><a href="<?php echo site_url('Events/index'); ?>">View All Events</a>
                                             <li><a href="<?php echo site_url('Home/BookEvents'); ?>">Book Events</a>
 
 

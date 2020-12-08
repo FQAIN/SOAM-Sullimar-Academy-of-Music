@@ -243,40 +243,64 @@
 
 
             </style>
-    </head>
+            <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js">
+            </script>
+            <script type="text/javascript">
+                $(function () {
+                    $("#date").datepicker({dateFormat: 'yy'});
+                });
+            </script>
+        </head>
         <body>
             <div id="form">
                 <section id="survey-form">
                     <div class="form-gp">
                         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" >
-                            <h2>Add Event Details</h2>
-                            <p><a href="<?php echo base_url(); ?>index.php/Events/index/" class="back"><-Back to Event Listings</a></p>
+                            <h2>Add Book Details</h2>
+                            <p><a href="<?php echo base_url(); ?>index.php/Books/index/" class="back"><-Back to Book Listings</a></p>
 
-                            <p><strong>Name:</strong><br/>
-                                <input type="text" name="name" value="<?php echo set_value('name'); ?>" placeholder="Event Name" id="special"/>
-                                <?php echo form_error('name'); ?>
+                            <p><strong>Book Name:</strong><br/>
+                                <input type="text" name="bookName" value="<?php echo set_value('bookName'); ?>" placeholder="Book Name" id="special"/>
+                                <?php echo form_error('bookName'); ?>
 
                             <p><strong>Description:</strong><br/>
-                                <input type="text" name="description" value="<?php echo set_value('description'); ?>"  placeholder="Event Description" id="special"></p>
+                                <input type="text" name="description" value="<?php echo set_value('description'); ?>"  placeholder="Book Description" id="special"></p>
                             <?php echo form_error('description'); ?>
 
-                            <p><strong>Date of Event:</strong><br/>
-                                <input type="date" name="dateOfEvent" value="<?php echo set_value('dateOfEvent'); ?>"  placeholder="Event Date" id="special"></p>
-                            <?php echo form_error('dateOfEvent'); ?>
+                            <p><strong>Author:</strong><br/>
+                                <input type="text" name="author" value="<?php echo set_value('author'); ?>"  placeholder="Book Author" id="special"></p>
+                            <?php echo form_error('author'); ?>
+
+                            <p><strong>Year Published:</strong><br/>
+                                <input type="text" name="yearPublished" id="date" value="<?php echo set_value('yearPublished'); ?>"  placeholder="Year Published" id="special"></p>
+                            <?php echo form_error('yearPublished'); ?>
 
                             <p><strong>Price:</strong><br/>
-                                <input type="text" name="price" value="<?php echo set_value('price'); ?>"  placeholder="Event Price" id="special"></p>
+                                <input type="text" name="price" value="<?php echo set_value('price'); ?>"  placeholder="Book Price" id="special"></p>
                             <?php echo form_error('price'); ?>
 
-                            <p><strong>Location:</strong><br/>
-                                <input type="text" name="location" value="<?php echo set_value('location'); ?>"  placeholder="Event Location" id="special"></p>
-                            <?php echo form_error('location'); ?>
+                            <p><strong>Category:</strong><br/>
+                                <input type="text" name="category" value="<?php echo set_value('category'); ?>"  placeholder="Book Category" id="special"></p>
+                            <?php echo form_error('category'); ?>
+
+                            <p><strong>ISBN:</strong><br/>
+                                <input type="text" name="ISBN" value="<?php echo set_value('ISBN'); ?>"  placeholder="Book ISBN" id="special"></p>
+                            <?php echo form_error('ISBN'); ?>
+
+                            <p><strong>In Stock:</strong><br/>
+                                <input type="text" name="inStock" value="<?php echo set_value('inStock'); ?>"  placeholder="Book In Stock" id="special"></p>
+                            <?php echo form_error('inStock'); ?>
+
+                            <p><strong>Qty:</strong><br/>
+                                <input type="text" name="qty" value="<?php echo set_value('qty'); ?>"  placeholder="Book Qty" id="special"></p>
+                            <?php echo form_error('qty'); ?>
 
                             <p><strong>Image:</strong><br/>
-                                <input type="text" name="Image" value="<?php echo set_value('Image'); ?>"  placeholder="Event Image" id="special"></p>
-                                <?php echo form_error('Image'); ?>
+                                <input type="text" name="image" value="<?php echo set_value('image'); ?>"  placeholder="Book Image" id="special"></p>
+                                <?php echo form_error('image'); ?>
+
                             <br>
-                            <p><input type="submit" name="submit" value="Add Event"></p>
+                            <p><input type="submit" name="submit" value="Add Book"></p>
                         </form>
                     </div>
                 </section>
