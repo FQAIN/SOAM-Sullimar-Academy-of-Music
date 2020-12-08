@@ -1,1026 +1,839 @@
--- MySQL Workbench Forward Engineering
-
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema saom
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema saom
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `saom` DEFAULT CHARACTER SET utf8 ;
--- -----------------------------------------------------
--- Schema saom
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema saom
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `saom` DEFAULT CHARACTER SET utf8mb4 ;
-USE `saom` ;
-
--- -----------------------------------------------------
--- Table `saom`.`Books`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Books` (
-  `booksID` INT NOT NULL,
-  `bookName` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `author` VARCHAR(45) NULL,
-  `yearPublished` YEAR NULL,
-  `price` INT NULL,
-  `category` VARCHAR(45) NULL,
-  `ISBN` VARCHAR(45) NULL,
-  `inStock` TINYINT NULL,
-  `qty` INT NULL,
-  `image` VARCHAR(45) NULL,
-  PRIMARY KEY (`booksID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Student`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Student` (
-  `memberID` INT NOT NULL,
-  `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `dob` DATE NULL,
-  `phone` INT NULL,
-  `dateEnrollment` DATE NULL,
-  `fName` VARCHAR(45) NULL,
-  `lName` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
-  `image` VARCHAR(45) NULL,
-  PRIMARY KEY (`memberID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Staffs`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Staffs` (
-  `staffID` INT NOT NULL,
-  `fName` VARCHAR(45) NULL,
-  `lName` VARCHAR(45) NULL,
-  `role` VARCHAR(45) NULL,
-  `staffCourse` VARCHAR(45) NULL,
-  `dob` DATE NULL,
-  `address` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NULL,
-  `image` VARCHAR(45) NULL,
-  PRIMARY KEY (`staffID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Courses`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Courses` (
-  `coursesID` INT NOT NULL,
-  `courseName` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `level` VARCHAR(45) NULL,
-  `numberOfYears` INT NULL,
-  `GroupCategory` VARCHAR(45) NULL,
-  `image` VARCHAR(45) NULL,
-  `studentID` INT NOT NULL,
-  `staffID` INT NOT NULL,
-  PRIMARY KEY (`coursesID`),
-  INDEX `fk_Courses_Student_idx` (`studentID` ASC)    ,
-  INDEX `fk_Courses_Staffs1_idx` (`staffID` ASC)    ,
-  CONSTRAINT `fk_Courses_Student`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `saom`.`Student` (`memberID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Courses_Staffs1`
-    FOREIGN KEY (`staffID`)
-    REFERENCES `saom`.`Staffs` (`staffID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Exam Center`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Exam Center` (
-  `examCenterID` INT NOT NULL,
-  `Location` VARCHAR(45) NULL,
-  PRIMARY KEY (`examCenterID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Exams`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Exams` (
-  `examID` INT NOT NULL,
-  `examName` VARCHAR(45) NULL,
-  `dateOfExam` DATE NULL,
-  `price` DECIMAL(6,2) NULL,
-  `image` VARCHAR(45) NULL,
-  `examCategory` VARCHAR(45) NULL,
-  `examTime` TIME NULL,
-  `coursesID` INT NOT NULL,
-  `examCenterID` INT NOT NULL,
-  `staffID` INT NOT NULL,
-  PRIMARY KEY (`examID`),
-  INDEX `fk_Exams_Courses1_idx` (`coursesID` ASC)    ,
-  INDEX `fk_Exams_Exam Center1_idx` (`examCenterID` ASC)    ,
-  CONSTRAINT `fk_Exams_Courses1`
-    FOREIGN KEY (`coursesID`)
-    REFERENCES `saom`.`Courses` (`coursesID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Exams_Exam Center1`
-    FOREIGN KEY (`examCenterID`)
-    REFERENCES `saom`.`Exam Center` (`examCenterID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Book Orders`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Book Orders` (
-  `bookOrdersID` INT NOT NULL,
-  `expectedDate` DATE NULL,
-  `expectedTime` TIME NULL,
-  `dateOrderded` DATE NULL,
-  `timeOrdered` TIME NULL,
-  `qty` INT NULL,
-  `booksID` INT NOT NULL,
-  PRIMARY KEY (`bookOrdersID`),
-  INDEX `fk_Book Orders_Books1_idx` (`booksID` ASC)    ,
-  CONSTRAINT `fk_Book Orders_Books1`
-    FOREIGN KEY (`booksID`)
-    REFERENCES `saom`.`Books` (`booksID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Book Exams`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Book Exams` (
-  `bookExamID` INT NOT NULL,
-  `examID` INT NOT NULL,
-  PRIMARY KEY (`bookExamID`),
-  INDEX `fk_Book Exams_Exams1_idx` (`examID` ASC)    ,
-  CONSTRAINT `fk_Book Exams_Exams1`
-    FOREIGN KEY (`examID`)
-    REFERENCES `saom`.`Exams` (`examID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Events`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Events` (
-  `eventID` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `dateOfEvent` DATE NULL,
-  `price` DECIMAL(6,2) NULL,
-  `location` VARCHAR(45) NULL,
-  `image` VARCHAR(45) NULL,
-  PRIMARY KEY (`eventID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Book Events`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Book Events` (
-  `bookEventID` INT NOT NULL,
-  `fullPrice` DECIMAL NULL,
-  `qty` INT NULL,
-  `eventID` INT NOT NULL,
-  PRIMARY KEY (`bookEventID`),
-  INDEX `fk_Book Events_Events1_idx` (`eventID` ASC)    ,
-  CONSTRAINT `fk_Book Events_Events1`
-    FOREIGN KEY (`eventID`)
-    REFERENCES `saom`.`Events` (`eventID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Book Course`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Book Course` (
-  `bookCourseID` INT NOT NULL,
-  `coursesID` INT NOT NULL,
-  PRIMARY KEY (`bookCourseID`),
-  INDEX `fk_Book Course_Courses1_idx` (`coursesID` ASC)    ,
-  CONSTRAINT `fk_Book Course_Courses1`
-    FOREIGN KEY (`coursesID`)
-    REFERENCES `saom`.`Courses` (`coursesID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Lessons`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Lessons` (
-  `lessonID` INT NOT NULL,
-  `LessonName` VARCHAR(45) NULL,
-  `Location` VARCHAR(45) NULL,
-  `time` TIME NULL,
-  `Date` DATE NULL,
-  PRIMARY KEY (`lessonID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Book Lessons`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Book Lessons` (
-  `bookLessonsID` INT NOT NULL,
-  `BookTime` TIME NULL,
-  `lessonID` INT NOT NULL,
-  PRIMARY KEY (`bookLessonsID`),
-  INDEX `fk_Book Lessons_Lessons1_idx` (`lessonID` ASC)    ,
-  CONSTRAINT `fk_Book Lessons_Lessons1`
-    FOREIGN KEY (`lessonID`)
-    REFERENCES `saom`.`Lessons` (`lessonID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Process Exams`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Process Exams` (
-  `processExamsID` INT NOT NULL,
-  `examID` INT NOT NULL,
-  `staffID` INT NOT NULL,
-  PRIMARY KEY (`processExamsID`),
-  INDEX `fk_Process Exams_Exams1_idx` (`examID` ASC)    ,
-  INDEX `fk_Process Exams_Staffs1_idx` (`staffID` ASC)    ,
-  CONSTRAINT `fk_Process Exams_Exams1`
-    FOREIGN KEY (`examID`)
-    REFERENCES `saom`.`Exams` (`examID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Process Exams_Staffs1`
-    FOREIGN KEY (`staffID`)
-    REFERENCES `saom`.`Staffs` (`staffID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Private Tuition`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Private Tuition` (
-  `privateTuitionID` INT NOT NULL,
-  `Room` VARCHAR(45) NULL,
-  `studentID` INT NOT NULL,
-  `staffID` INT NOT NULL,
-  PRIMARY KEY (`privateTuitionID`),
-  INDEX `fk_Private Tuition_Student1_idx` (`studentID` ASC)    ,
-  INDEX `fk_Private Tuition_Staffs1_idx` (`staffID` ASC)    ,
-  CONSTRAINT `fk_Private Tuition_Student1`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `saom`.`Student` (`memberID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Private Tuition_Staffs1`
-    FOREIGN KEY (`staffID`)
-    REFERENCES `saom`.`Staffs` (`staffID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Process Student Timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Process Student Timetable` (
-  `processStudentTimetableID` INT NOT NULL,
-  `days` VARCHAR(45) NULL,
-  `dates` DATE NULL,
-  `timeSlots` TIME NULL,
-  `studentID` INT NOT NULL,
-  PRIMARY KEY (`processStudentTimetableID`),
-  INDEX `fk_Process Student Timetable_Student1_idx` (`studentID` ASC)    ,
-  CONSTRAINT `fk_Process Student Timetable_Student1`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `saom`.`Student` (`memberID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Process Teacher Timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Process Teacher Timetable` (
-  `processTeacherTimetableID` INT NOT NULL,
-  `days` VARCHAR(45) NULL,
-  `dates` DATE NULL,
-  `timeSlots` TIME NULL,
-  `staffID` INT NOT NULL,
-  PRIMARY KEY (`processTeacherTimetableID`),
-  INDEX `fk_Process Teacher Timetable_Staffs1_idx` (`staffID` ASC)    ,
-  CONSTRAINT `fk_Process Teacher Timetable_Staffs1`
-    FOREIGN KEY (`staffID`)
-    REFERENCES `saom`.`Staffs` (`staffID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`View Student Timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`View Student Timetable` (
-  `viewStudentTimetableID` INT NOT NULL,
-  `timetableLayout` VARCHAR(45) NULL,
-  `weeksToView` VARCHAR(45) NULL,
-  `studentID` INT NOT NULL,
-  PRIMARY KEY (`viewStudentTimetableID`),
-  INDEX `fk_View Student Timetable_Student1_idx` (`studentID` ASC)    ,
-  CONSTRAINT `fk_View Student Timetable_Student1`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `saom`.`Student` (`memberID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`View Teacher Timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`View Teacher Timetable` (
-  `viewTeacherTimetableID` INT NOT NULL,
-  `timetableLayout` VARCHAR(45) NULL,
-  `weeksToView` VARCHAR(45) NULL,
-  `staffID` INT NOT NULL,
-  PRIMARY KEY (`viewTeacherTimetableID`),
-  INDEX `fk_View Teacher Timetable_Staffs1_idx` (`staffID` ASC)    ,
-  CONSTRAINT `fk_View Teacher Timetable_Staffs1`
-    FOREIGN KEY (`staffID`)
-    REFERENCES `saom`.`Staffs` (`staffID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Generate Reports`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Generate Reports` (
-  `generateReportsID` INT NOT NULL,
-  `types` VARCHAR(45) NULL,
-  `month` DATE NULL,
-  `year` YEAR NULL,
-  PRIMARY KEY (`generateReportsID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Generate Result Sheet`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Generate Result Sheet` (
-  `generateResultSheetID` INT NOT NULL,
-  `Result` VARCHAR(45) NULL,
-  `studentID` INT NOT NULL,
-  `examID` INT NOT NULL,
-  PRIMARY KEY (`generateResultSheetID`),
-  INDEX `fk_Generate Result Sheet_Student1_idx` (`studentID` ASC)    ,
-  INDEX `fk_Generate Result Sheet_Exams1_idx` (`examID` ASC)    ,
-  CONSTRAINT `fk_Generate Result Sheet_Student1`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `saom`.`Student` (`memberID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Generate Result Sheet_Exams1`
-    FOREIGN KEY (`examID`)
-    REFERENCES `saom`.`Exams` (`examID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Member`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Member` (
-  `memberID` INT NOT NULL,
-  `email` VARCHAR(45) NULL,
-  `dob` DATE NULL,
-  `phone` INT NULL,
-  `fName` VARCHAR(45) NULL,
-  `lName` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
-  PRIMARY KEY (`memberID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Shopping cart`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Shopping cart` (
-  `shoppingCartID` INT NOT NULL,
-  `session_id` INT NULL,
-  `fullPrice` DECIMAL NULL,
-  `dateAdded` DATE NULL,
-  `imagePath` VARCHAR(45) NULL,
-  `bookEventID` INT NOT NULL,
-  `bookOrderID` INT NOT NULL,
-  `bookCourseID` INT NOT NULL,
-  `bookLessonID` INT NOT NULL,
-  `bookExamsID` INT NOT NULL,
-  `staffID` INT NOT NULL,
-  `memberID` INT NOT NULL,
-  `studentID` INT NOT NULL,
-  PRIMARY KEY (`shoppingCartID`),
-  INDEX `fk_Shopping cart_Book Events1_idx` (`bookEventID` ASC)    ,
-  INDEX `fk_Shopping cart_Book Orders1_idx` (`bookOrderID` ASC)    ,
-  INDEX `fk_Shopping cart_Book Course1_idx` (`bookCourseID` ASC)    ,
-  INDEX `fk_Shopping cart_Book Lessons1_idx` (`bookLessonID` ASC)    ,
-  INDEX `fk_Shopping cart_Book Exams1_idx` (`bookExamsID` ASC)    ,
-  INDEX `fk_Shopping cart_Staffs1_idx` (`staffID` ASC)    ,
-  INDEX `fk_Shopping cart_Member1_idx` (`memberID` ASC)    ,
-  INDEX `fk_Shopping cart_Student1_idx` (`studentID` ASC)    ,
-  CONSTRAINT `fk_Shopping cart_Book Events1`
-    FOREIGN KEY (`bookEventID`)
-    REFERENCES `saom`.`Book Events` (`bookEventID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Orders1`
-    FOREIGN KEY (`bookOrderID`)
-    REFERENCES `saom`.`Book Orders` (`bookOrdersID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Course1`
-    FOREIGN KEY (`bookCourseID`)
-    REFERENCES `saom`.`Book Course` (`bookCourseID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Lessons1`
-    FOREIGN KEY (`bookLessonID`)
-    REFERENCES `saom`.`Book Lessons` (`bookLessonsID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Exams1`
-    FOREIGN KEY (`bookExamsID`)
-    REFERENCES `saom`.`Book Exams` (`bookExamID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Staffs1`
-    FOREIGN KEY (`staffID`)
-    REFERENCES `saom`.`Staffs` (`staffID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Member1`
-    FOREIGN KEY (`memberID`)
-    REFERENCES `saom`.`Member` (`memberID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Student1`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `saom`.`Student` (`memberID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `saom`.`Purchase`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`Purchase` (
-  `purchaseID` INT NOT NULL,
-  `datePurchased` DATE NULL,
-  `shoppingCartID` INT NOT NULL,
-  PRIMARY KEY (`purchaseID`),
-  INDEX `fk_Purchase_Shopping cart1_idx` (`shoppingCartID` ASC)    ,
-  CONSTRAINT `fk_Purchase_Shopping cart1`
-    FOREIGN KEY (`shoppingCartID`)
-    REFERENCES `saom`.`Shopping cart` (`shoppingCartID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-USE `saom` ;
-
--- -----------------------------------------------------
--- Table `saom`.`book course`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`book course` (
-  `idBook Course` INT(11) NOT NULL,
-  PRIMARY KEY (`idBook Course`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`book events`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`book events` (
-  `idBook Events` INT(11) NOT NULL,
-  `fullPrice` DECIMAL(10,0) NULL DEFAULT NULL,
-  `qty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`idBook Events`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`book exams`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`book exams` (
-  `idBook Exams` INT(11) NOT NULL,
-  PRIMARY KEY (`idBook Exams`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`book lessons`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`book lessons` (
-  `idBook Lessons` INT(11) NOT NULL,
-  `Book Time` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idBook Lessons`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`book orders`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`book orders` (
-  `idBook Orders` INT(11) NOT NULL,
-  `expectedDate` DATE NULL DEFAULT NULL,
-  `expectedTime` VARCHAR(45) NULL DEFAULT NULL,
-  `dateOrderded` DATE NULL DEFAULT NULL,
-  `timeOrdered` VARCHAR(45) NULL DEFAULT NULL,
-  `qty` INT(11) NULL DEFAULT NULL,
-  `image` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idBook Orders`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`books`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`books` (
-  `idBooks` INT(11) NOT NULL,
-  `bookName` VARCHAR(45) NULL DEFAULT NULL,
-  `description` VARCHAR(45) NULL DEFAULT NULL,
-  `author` VARCHAR(45) NULL DEFAULT NULL,
-  `yearPublished` VARCHAR(45) NULL DEFAULT NULL,
-  `price` INT(11) NULL DEFAULT NULL,
-  `category` VARCHAR(45) NULL DEFAULT NULL,
-  `ISBN` VARCHAR(45) NULL DEFAULT NULL,
-  `inStock` TINYINT(4) NULL DEFAULT NULL,
-  `qty` INT(11) NULL DEFAULT NULL,
-  `image` VARCHAR(45) NULL DEFAULT NULL,
-  `Book Orders_idBook Orders` INT(11) NOT NULL,
-  PRIMARY KEY (`idBooks`),
-  INDEX `fk_Books_Book Orders1_idx` (`Book Orders_idBook Orders` ASC)    ,
-  CONSTRAINT `fk_Books_Book Orders1`
-    FOREIGN KEY (`Book Orders_idBook Orders`)
-    REFERENCES `saom`.`book orders` (`idBook Orders`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`process student timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`process student timetable` (
-  `idProcess Student Timetable` INT(11) NOT NULL,
-  `days` VARCHAR(45) NULL DEFAULT NULL,
-  `dates` DATE NULL DEFAULT NULL,
-  `time slots` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idProcess Student Timetable`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`shopping cart`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`shopping cart` (
-  `idShopping cart` INT(11) NOT NULL,
-  `session_id` INT(11) NULL DEFAULT NULL,
-  `Fullprice` DECIMAL(10,0) NULL DEFAULT NULL,
-  `Date added` DATE NULL DEFAULT NULL,
-  `image path` VARCHAR(45) NULL DEFAULT NULL,
-  `Book Events_idBook Events` INT(11) NOT NULL,
-  `Book Orders_idBook Orders` INT(11) NOT NULL,
-  `Book Course_idBook Course` INT(11) NOT NULL,
-  `Book Lessons_idBook Lessons` INT(11) NOT NULL,
-  `Book Exams_idBook Exams` INT(11) NOT NULL,
-  PRIMARY KEY (`idShopping cart`),
-  INDEX `fk_Shopping cart_Book Events1_idx` (`Book Events_idBook Events` ASC)    ,
-  INDEX `fk_Shopping cart_Book Orders1_idx` (`Book Orders_idBook Orders` ASC)    ,
-  INDEX `fk_Shopping cart_Book Course1_idx` (`Book Course_idBook Course` ASC)    ,
-  INDEX `fk_Shopping cart_Book Lessons1_idx` (`Book Lessons_idBook Lessons` ASC)    ,
-  INDEX `fk_Shopping cart_Book Exams1_idx` (`Book Exams_idBook Exams` ASC)    ,
-  CONSTRAINT `fk_Shopping cart_Book Course1`
-    FOREIGN KEY (`Book Course_idBook Course`)
-    REFERENCES `saom`.`book course` (`idBook Course`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Events1`
-    FOREIGN KEY (`Book Events_idBook Events`)
-    REFERENCES `saom`.`book events` (`idBook Events`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Exams1`
-    FOREIGN KEY (`Book Exams_idBook Exams`)
-    REFERENCES `saom`.`book exams` (`idBook Exams`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Lessons1`
-    FOREIGN KEY (`Book Lessons_idBook Lessons`)
-    REFERENCES `saom`.`book lessons` (`idBook Lessons`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Shopping cart_Book Orders1`
-    FOREIGN KEY (`Book Orders_idBook Orders`)
-    REFERENCES `saom`.`book orders` (`idBook Orders`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`student`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`student` (
-  `idMember` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NULL DEFAULT NULL,
-  `password` VARCHAR(45) NULL DEFAULT NULL,
-  `email` VARCHAR(45) NULL DEFAULT NULL,
-  `dob` DATE NULL DEFAULT NULL,
-  `phone` INT(11) NULL DEFAULT NULL,
-  `dateEnrollment` DATE NULL DEFAULT NULL,
-  `fName` VARCHAR(45) NULL DEFAULT NULL,
-  `lName` VARCHAR(45) NULL DEFAULT NULL,
-  `address` VARCHAR(45) NULL DEFAULT NULL,
-  `image` VARCHAR(45) NULL DEFAULT NULL,
-  `Shopping cart_idShopping cart` INT(11) NOT NULL,
-  `Process Student Timetable_idProcess Student Timetable` INT(11) NOT NULL,
-  PRIMARY KEY (`idMember`),
-  INDEX `fk_Student_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC)    ,
-  INDEX `fk_Student_Process Student Timetable1_idx` (`Process Student Timetable_idProcess Student Timetable` ASC)    ,
-  CONSTRAINT `fk_Student_Process Student Timetable1`
-    FOREIGN KEY (`Process Student Timetable_idProcess Student Timetable`)
-    REFERENCES `saom`.`process student timetable` (`idProcess Student Timetable`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Student_Shopping cart1`
-    FOREIGN KEY (`Shopping cart_idShopping cart`)
-    REFERENCES `saom`.`shopping cart` (`idShopping cart`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`courses`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`courses` (
-  `idCourses` INT(11) NOT NULL,
-  `courseName` VARCHAR(45) NULL DEFAULT NULL,
-  `description` VARCHAR(45) NULL DEFAULT NULL,
-  `level` VARCHAR(45) NULL DEFAULT NULL,
-  `numberOfYears` INT(11) NULL DEFAULT NULL,
-  `courseDirector` VARCHAR(45) NULL DEFAULT NULL,
-  `GroupCategory` VARCHAR(45) NULL DEFAULT NULL,
-  `image` VARCHAR(45) NULL DEFAULT NULL,
-  `Student_idMember` INT(11) NOT NULL,
-  `Book Course_idBook Course` INT(11) NOT NULL,
-  PRIMARY KEY (`idCourses`),
-  INDEX `fk_Courses_Student_idx` (`Student_idMember` ASC)    ,
-  INDEX `fk_Courses_Book Course1_idx` (`Book Course_idBook Course` ASC)    ,
-  CONSTRAINT `fk_Courses_Book Course1`
-    FOREIGN KEY (`Book Course_idBook Course`)
-    REFERENCES `saom`.`book course` (`idBook Course`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Courses_Student`
-    FOREIGN KEY (`Student_idMember`)
-    REFERENCES `saom`.`student` (`idMember`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`events`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`events` (
-  `idEvents` INT(11) NOT NULL,
-  `name` VARCHAR(45) NULL DEFAULT NULL,
-  `description` VARCHAR(45) NULL DEFAULT NULL,
-  `dateOfEvent` DATE NULL DEFAULT NULL,
-  `price` DECIMAL(6,2) NULL DEFAULT NULL,
-  `location` VARCHAR(45) NULL DEFAULT NULL,
-  `image` VARCHAR(45) NULL DEFAULT NULL,
-  `Book Events_idBook Events` INT(11) NOT NULL,
-  PRIMARY KEY (`idEvents`),
-  INDEX `fk_Events_Book Events1_idx` (`Book Events_idBook Events` ASC)    ,
-  CONSTRAINT `fk_Events_Book Events1`
-    FOREIGN KEY (`Book Events_idBook Events`)
-    REFERENCES `saom`.`book events` (`idBook Events`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`exam center`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`exam center` (
-  `idExam Center` INT(11) NOT NULL,
-  `Location` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idExam Center`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`exams`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`exams` (
-  `idExams` INT(11) NOT NULL,
-  `examName` VARCHAR(45) NULL DEFAULT NULL,
-  `dateOfExam` DATE NULL DEFAULT NULL,
-  `price` DECIMAL(6,2) NULL DEFAULT NULL,
-  `location` VARCHAR(45) NULL DEFAULT NULL,
-  `image` VARCHAR(45) NULL DEFAULT NULL,
-  `examCategory` VARCHAR(45) NULL DEFAULT NULL,
-  `Book Exams_idBook Exams` INT(11) NOT NULL,
-  `staffID` INT(11) NOT NULL,
-  PRIMARY KEY (`idExams`),
-  INDEX `fk_Exams_Book Exams1_idx` (`Book Exams_idBook Exams` ASC)    ,
-  CONSTRAINT `fk_Exams_Book Exams1`
-    FOREIGN KEY (`Book Exams_idBook Exams`)
-    REFERENCES `saom`.`book exams` (`idBook Exams`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`generate reports`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`generate reports` (
-  `idGenerate Reports` INT(11) NOT NULL,
-  `types` VARCHAR(45) NULL DEFAULT NULL,
-  `mounth` VARCHAR(45) NULL DEFAULT NULL,
-  `year` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idGenerate Reports`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`generate result sheet`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`generate result sheet` (
-  `idGenerate Result Sheet` INT(11) NOT NULL,
-  `Result` VARCHAR(45) NULL DEFAULT NULL,
-  `Student_idMember` INT(11) NOT NULL,
-  PRIMARY KEY (`idGenerate Result Sheet`),
-  INDEX `fk_Generate Result Sheet_Student1_idx` (`Student_idMember` ASC)    ,
-  CONSTRAINT `fk_Generate Result Sheet_Student1`
-    FOREIGN KEY (`Student_idMember`)
-    REFERENCES `saom`.`student` (`idMember`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`lessons`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`lessons` (
-  `idLessons` INT(11) NOT NULL,
-  `LessonName` VARCHAR(45) NULL DEFAULT NULL,
-  `Location` VARCHAR(45) NULL DEFAULT NULL,
-  `time` VARCHAR(45) NULL DEFAULT NULL,
-  `Date` DATE NULL DEFAULT NULL,
-  `Book Lessons_idBook Lessons` INT(11) NOT NULL,
-  PRIMARY KEY (`idLessons`),
-  INDEX `fk_Lessons_Book Lessons1_idx` (`Book Lessons_idBook Lessons` ASC)    ,
-  CONSTRAINT `fk_Lessons_Book Lessons1`
-    FOREIGN KEY (`Book Lessons_idBook Lessons`)
-    REFERENCES `saom`.`book lessons` (`idBook Lessons`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`member`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`member` (
-  `idMember` INT(11) NOT NULL,
-  `email` VARCHAR(45) NULL DEFAULT NULL,
-  `dob` DATE NULL DEFAULT NULL,
-  `phone` INT(11) NULL DEFAULT NULL,
-  `fName` VARCHAR(45) NULL DEFAULT NULL,
-  `lName` VARCHAR(45) NULL DEFAULT NULL,
-  `address` VARCHAR(45) NULL DEFAULT NULL,
-  `Shopping cart_idShopping cart` INT(11) NOT NULL,
-  PRIMARY KEY (`idMember`),
-  INDEX `fk_Member_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC)    ,
-  CONSTRAINT `fk_Member_Shopping cart1`
-    FOREIGN KEY (`Shopping cart_idShopping cart`)
-    REFERENCES `saom`.`shopping cart` (`idShopping cart`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`staffs`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`staffs` (
-  `idStaffs` INT(11) NOT NULL,
-  `fName` VARCHAR(45) NULL DEFAULT NULL,
-  `lName` VARCHAR(45) NULL DEFAULT NULL,
-  `role` VARCHAR(45) NULL DEFAULT NULL,
-  `staffCourse` VARCHAR(45) NULL DEFAULT NULL,
-  `dob` DATE NULL DEFAULT NULL,
-  `address` VARCHAR(45) NULL DEFAULT NULL,
-  `email` VARCHAR(45) NULL DEFAULT NULL,
-  `username` VARCHAR(45) NULL DEFAULT NULL,
-  `password` VARCHAR(45) NULL DEFAULT NULL,
-  `phone` VARCHAR(45) NULL DEFAULT NULL,
-  `image` VARCHAR(45) NULL DEFAULT NULL,
-  `Shopping cart_idShopping cart` INT(11) NOT NULL,
-  PRIMARY KEY (`idStaffs`),
-  INDEX `fk_Staffs_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC)    ,
-  CONSTRAINT `fk_Staffs_Shopping cart1`
-    FOREIGN KEY (`Shopping cart_idShopping cart`)
-    REFERENCES `saom`.`shopping cart` (`idShopping cart`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`private tuition`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`private tuition` (
-  `idPrivate Tuition` INT(11) NOT NULL,
-  `Room` VARCHAR(45) NULL DEFAULT NULL,
-  `Student_idMember` INT(11) NOT NULL,
-  `Staffs_idStaffs` INT(11) NOT NULL,
-  PRIMARY KEY (`idPrivate Tuition`),
-  INDEX `fk_Private Tuition_Student1_idx` (`Student_idMember` ASC)    ,
-  INDEX `fk_Private Tuition_Staffs1_idx` (`Staffs_idStaffs` ASC)    ,
-  CONSTRAINT `fk_Private Tuition_Staffs1`
-    FOREIGN KEY (`Staffs_idStaffs`)
-    REFERENCES `saom`.`staffs` (`idStaffs`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Private Tuition_Student1`
-    FOREIGN KEY (`Student_idMember`)
-    REFERENCES `saom`.`student` (`idMember`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`process exams`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`process exams` (
-  `idProcess Exams` INT(11) NOT NULL,
-  `time` VARCHAR(45) NULL DEFAULT NULL,
-  `date` DATE NULL DEFAULT NULL,
-  `Exam Center_idExam Center` INT(11) NOT NULL,
-  PRIMARY KEY (`idProcess Exams`),
-  INDEX `fk_Process Exams_Exam Center1_idx` (`Exam Center_idExam Center` ASC)    ,
-  CONSTRAINT `fk_Process Exams_Exam Center1`
-    FOREIGN KEY (`Exam Center_idExam Center`)
-    REFERENCES `saom`.`exam center` (`idExam Center`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`process teacher timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`process teacher timetable` (
-  `idProcess Teacher Timetable` INT(11) NOT NULL,
-  `days` VARCHAR(45) NULL DEFAULT NULL,
-  `dates` DATE NULL DEFAULT NULL,
-  `time Slots` VARCHAR(45) NULL DEFAULT NULL,
-  `Staffs_idStaffs` INT(11) NOT NULL,
-  PRIMARY KEY (`idProcess Teacher Timetable`),
-  INDEX `fk_Process Teacher Timetable_Staffs1_idx` (`Staffs_idStaffs` ASC)    ,
-  CONSTRAINT `fk_Process Teacher Timetable_Staffs1`
-    FOREIGN KEY (`Staffs_idStaffs`)
-    REFERENCES `saom`.`staffs` (`idStaffs`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`purchase`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`purchase` (
-  `idPurchase` INT(11) NOT NULL,
-  `datePurchased` DATE NULL DEFAULT NULL,
-  `Shopping cart_idShopping cart` INT(11) NOT NULL,
-  PRIMARY KEY (`idPurchase`),
-  INDEX `fk_Purchase_Shopping cart1_idx` (`Shopping cart_idShopping cart` ASC)    ,
-  CONSTRAINT `fk_Purchase_Shopping cart1`
-    FOREIGN KEY (`Shopping cart_idShopping cart`)
-    REFERENCES `saom`.`shopping cart` (`idShopping cart`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`view student timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`view student timetable` (
-  `idView Student Timetable` INT(11) NOT NULL,
-  `timetable Layout` VARCHAR(45) NULL DEFAULT NULL,
-  `weeks to view` VARCHAR(45) NULL DEFAULT NULL,
-  `Student_idMember` INT(11) NOT NULL,
-  PRIMARY KEY (`idView Student Timetable`),
-  INDEX `fk_View Student Timetable_Student1_idx` (`Student_idMember` ASC)    ,
-  CONSTRAINT `fk_View Student Timetable_Student1`
-    FOREIGN KEY (`Student_idMember`)
-    REFERENCES `saom`.`student` (`idMember`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `saom`.`view teacher timetable`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `saom`.`view teacher timetable` (
-  `idView Teacher Timetable` INT(11) NOT NULL,
-  `timetable layout` VARCHAR(45) NULL DEFAULT NULL,
-  `weeks to view` VARCHAR(45) NULL DEFAULT NULL,
-  `Staffs_idStaffs` INT(11) NOT NULL,
-  PRIMARY KEY (`idView Teacher Timetable`),
-  INDEX `fk_View Teacher Timetable_Staffs1_idx` (`Staffs_idStaffs` ASC)    ,
-  CONSTRAINT `fk_View Teacher Timetable_Staffs1`
-    FOREIGN KEY (`Staffs_idStaffs`)
-    REFERENCES `saom`.`staffs` (`idStaffs`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-ALTER TABLE exams
-ADD FOREIGN KEY (staffID) REFERENCES staffs(staffID);
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 08, 2020 at 06:48 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `saom`
+--
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addBook` (IN `p_bookName` VARCHAR(45), IN `p_description` VARCHAR(250), IN `p_author` VARCHAR(45), IN `p_yearPublished` YEAR, IN `p_price` DECIMAL, IN `p_category` VARCHAR(45), IN `p_ISBN` VARCHAR(45), IN `p_inStock` INT, IN `p_qty` INT, IN `p_image` VARCHAR(45))  NO SQL
+BEGIN
+	INSERT INTO books
+    (
+    	bookName,
+        description,
+        author,
+        yearPublished,
+        price,
+        category,
+        ISBN,
+        inStock,
+        qty,
+        image
+    )
+    VALUES
+    (
+    	p_bookName,
+        p_description,
+        p_author,
+        p_yearPublished,
+        p_price,
+        p_category,
+        p_ISBN,
+        p_inStock,
+        p_qty,
+        p_image
+    );
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addEvent` (IN `p_name` VARCHAR(45), IN `p_description` VARCHAR(45), IN `p_dateOfEvent` DATE, IN `p_price` DECIMAL(6,2), IN `p_location` VARCHAR(45), IN `p_image` VARCHAR(45))  NO SQL
+BEGIN
+	INSERT INTO saomevents
+    (
+    	name,
+        description,
+        dateOfEvent,
+        price,
+        location,
+        image
+    )
+    VALUES
+    (
+    	p_name,
+        p_description,
+        p_dateOfEvent,
+        p_price,
+        p_location,
+        p_image
+    );
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook` (IN `p_booksID` INT)  NO SQL
+BEGIN
+	DELETE FROM books
+    WHERE booksID  = p_booksID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteEvent` (IN `p_eventID` INT)  NO SQL
+BEGIN
+	DELETE FROM saomevents
+    WHERE p_eventID = eventID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectBookForUpdate` (IN `p_bookID` INT)  NO SQL
+BEGIN
+	SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image FROM books
+    WHERE booksID = p_bookID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage` (IN `p_limit` INT, IN `p_start` INT)  NO SQL
+BEGIN
+SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
+FROM books
+ LIMIT p_limit, p_start;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage` (IN `p_limit` INT, IN `p_start` INT)  NO SQL
+BEGIN
+SELECT eventID,name, description,dateOfEvent,price,location,image
+FROM saomevents
+ LIMIT p_limit, p_start;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedBook` (IN `p_booksID` INT, IN `p_bookName` VARCHAR(45), IN `p_description` VARCHAR(45), IN `p_author` VARCHAR(45), IN `p_yearPublished` YEAR(4), IN `p_price` INT, IN `p_category` VARCHAR(45), IN `p_ISBN` VARCHAR(45), IN `p_inStock` TINYINT(4), IN `p_qty` INT(11), IN `p_image` VARCHAR(45))  NO SQL
+BEGIN
+	UPDATE books
+    SET bookName = p_bookName,
+    description = p_description,
+    author = p_author,
+    yearPublished = p_yearPublished,
+    price = p_price,
+    category = p_category,
+    ISBN = p_ISBN,
+    inStock = p_inStock,
+    qty = p_qty,
+    image = p_image
+    WHERE booksID = p_booksID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudent` (IN `p_memberid` INT, IN `p_username` VARCHAR(45), IN `p_password` VARCHAR(45), IN `p_email` VARCHAR(45), IN `p_dob` DATE, IN `p_phone` INT, IN `p_dateEnrollment` DATE, IN `p_fName` VARCHAR(45), IN `p_lName` VARCHAR(45), IN `p_address` VARCHAR(45), IN `p_image` VARCHAR(45))  NO SQL
+BEGIN
+	UPDATE student
+    SET
+    username = p_username,
+    password = p_password,
+    email = p_email,
+    dob = p_dob,
+    phone = p_phone,
+    dateEnrollment = p_dateEnrollment,
+    fName = p_fName,
+    lName = p_lName,
+    address = p_address,
+    image = p_image
+    WHERE p_memberid = memberID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidUser` (IN `p_email` VARCHAR(25), IN `p_password` VARCHAR(25))  NO SQL
+BEGIN
+SELECT password, email
+FROM member
+WHERE p_email = email AND p_password = password;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `viewAllStudentDetails` ()  NO SQL
+BEGIN
+	SELECT * FROM student;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `viewCourseDetails` ()  NO SQL
+BEGIN
+	SELECT * FROM courses;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `viewEventDetails` ()  NO SQL
+BEGIN
+	SELECT * FROM events;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book course`
+--
+
+CREATE TABLE `book course` (
+  `bookCourseID` int(11) NOT NULL,
+  `coursesID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book events`
+--
+
+CREATE TABLE `book events` (
+  `bookEventID` int(11) NOT NULL,
+  `fullPrice` decimal(10,0) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `eventID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book exams`
+--
+
+CREATE TABLE `book exams` (
+  `bookExamID` int(11) NOT NULL,
+  `examID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book lessons`
+--
+
+CREATE TABLE `book lessons` (
+  `bookLessonsID` int(11) NOT NULL,
+  `BookTime` time DEFAULT NULL,
+  `lessonID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book orders`
+--
+
+CREATE TABLE `book orders` (
+  `bookOrdersID` int(11) NOT NULL,
+  `expectedDate` date DEFAULT NULL,
+  `expectedTime` time DEFAULT NULL,
+  `dateOrderded` date DEFAULT NULL,
+  `timeOrdered` time DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `booksID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `books`
+--
+
+CREATE TABLE `books` (
+  `booksID` int(11) NOT NULL,
+  `bookName` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `author` varchar(45) DEFAULT NULL,
+  `yearPublished` year(4) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `ISBN` varchar(45) DEFAULT NULL,
+  `inStock` tinyint(4) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`booksID`, `bookName`, `description`, `author`, `yearPublished`, `price`, `category`, `ISBN`, `inStock`, `qty`, `image`) VALUES
+(2, 'sdfdf', 'fyaz', 'sasa', 2019, 12, 'dsas', 'aasdas', 89, 7, 'erre'),
+(4, 'sdfdf', 'fyaz', 'sasa', 2019, 78, 'hgdgh', 'hgghg', 11, 11, 'sds'),
+(5, 'fg', 'fyaz', 'fdfddf', 2029, 23, 'hgdgh', 'aasdas', 11, 7, 'dssdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `coursesID` int(11) NOT NULL,
+  `courseName` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `level` varchar(45) DEFAULT NULL,
+  `numberOfYears` int(11) DEFAULT NULL,
+  `GroupCategory` varchar(45) DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL,
+  `studentID` int(11) NOT NULL,
+  `staffID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam center`
+--
+
+CREATE TABLE `exam center` (
+  `examCenterID` int(11) NOT NULL,
+  `Location` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exams`
+--
+
+CREATE TABLE `exams` (
+  `examID` int(11) NOT NULL,
+  `examName` varchar(45) DEFAULT NULL,
+  `dateOfExam` date DEFAULT NULL,
+  `price` decimal(6,2) DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL,
+  `examCategory` varchar(45) DEFAULT NULL,
+  `examTime` time DEFAULT NULL,
+  `coursesID` int(11) NOT NULL,
+  `examCenterID` int(11) NOT NULL,
+  `staffID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `generate reports`
+--
+
+CREATE TABLE `generate reports` (
+  `generateReportsID` int(11) NOT NULL,
+  `types` varchar(45) DEFAULT NULL,
+  `month` date DEFAULT NULL,
+  `year` year(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `generate result sheet`
+--
+
+CREATE TABLE `generate result sheet` (
+  `generateResultSheetID` int(11) NOT NULL,
+  `Result` varchar(45) DEFAULT NULL,
+  `studentID` int(11) NOT NULL,
+  `examID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lessons`
+--
+
+CREATE TABLE `lessons` (
+  `lessonID` int(11) NOT NULL,
+  `LessonName` varchar(45) DEFAULT NULL,
+  `Location` varchar(45) DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `Date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member`
+--
+
+CREATE TABLE `member` (
+  `memberID` int(11) NOT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `phone` int(11) DEFAULT NULL,
+  `fName` varchar(45) DEFAULT NULL,
+  `lName` varchar(45) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`memberID`, `email`, `dob`, `phone`, `fName`, `lName`, `address`, `password`) VALUES
+(1, 'fyaz@gmail.com', '2020-12-12', 83838338, 'Fyaz', 'Ikram', '25 dfshhf', 'fyaz');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `private tuition`
+--
+
+CREATE TABLE `private tuition` (
+  `privateTuitionID` int(11) NOT NULL,
+  `Room` varchar(45) DEFAULT NULL,
+  `studentID` int(11) NOT NULL,
+  `staffID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `process exams`
+--
+
+CREATE TABLE `process exams` (
+  `processExamsID` int(11) NOT NULL,
+  `examID` int(11) NOT NULL,
+  `staffID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `process student timetable`
+--
+
+CREATE TABLE `process student timetable` (
+  `processStudentTimetableID` int(11) NOT NULL,
+  `days` varchar(45) DEFAULT NULL,
+  `dates` date DEFAULT NULL,
+  `timeSlots` time DEFAULT NULL,
+  `studentID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `process teacher timetable`
+--
+
+CREATE TABLE `process teacher timetable` (
+  `processTeacherTimetableID` int(11) NOT NULL,
+  `days` varchar(45) DEFAULT NULL,
+  `dates` date DEFAULT NULL,
+  `timeSlots` time DEFAULT NULL,
+  `staffID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase`
+--
+
+CREATE TABLE `purchase` (
+  `purchaseID` int(11) NOT NULL,
+  `datePurchased` date DEFAULT NULL,
+  `shoppingCartID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saomevents`
+--
+
+CREATE TABLE `saomevents` (
+  `eventID` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `dateOfEvent` date DEFAULT NULL,
+  `price` decimal(6,2) DEFAULT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saomevents`
+--
+
+INSERT INTO `saomevents` (`eventID`, `name`, `description`, `dateOfEvent`, `price`, `location`, `image`) VALUES
+(10, 'dfdf', 'fyaz', '2020-12-17', '23.00', 'fdfd', 'yy'),
+(11, 'dfdf', 'fyaz', '2020-12-19', '23.00', 'fdfd', 'df'),
+(12, 'Fyaz', 'FYAZ', '2020-12-10', '23.00', 'fdfd', 'df'),
+(14, 'dfdf', 'sdsd', '2020-12-24', '12.00', 'Event 1 ', 'sfdsfd'),
+(16, 'asd', 'dsa', '2006-04-02', '26.00', 'tgymjh', 'ymhu,ji');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shopping cart`
+--
+
+CREATE TABLE `shopping cart` (
+  `shoppingCartID` int(11) NOT NULL,
+  `session_id` int(11) DEFAULT NULL,
+  `fullPrice` decimal(10,0) DEFAULT NULL,
+  `dateAdded` date DEFAULT NULL,
+  `imagePath` varchar(45) DEFAULT NULL,
+  `bookEventID` int(11) NOT NULL,
+  `bookOrderID` int(11) NOT NULL,
+  `bookCourseID` int(11) NOT NULL,
+  `bookLessonID` int(11) NOT NULL,
+  `bookExamsID` int(11) NOT NULL,
+  `staffID` int(11) NOT NULL,
+  `memberID` int(11) NOT NULL,
+  `studentID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staffs`
+--
+
+CREATE TABLE `staffs` (
+  `staffID` int(11) NOT NULL,
+  `fName` varchar(45) DEFAULT NULL,
+  `lName` varchar(45) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL,
+  `courseID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `memberID` int(11) NOT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `phone` int(11) DEFAULT NULL,
+  `dateEnrollment` date DEFAULT NULL,
+  `fName` varchar(45) DEFAULT NULL,
+  `lName` varchar(45) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `view student timetable`
+--
+
+CREATE TABLE `view student timetable` (
+  `viewStudentTimetableID` int(11) NOT NULL,
+  `timetableLayout` varchar(45) DEFAULT NULL,
+  `weeksToView` varchar(45) DEFAULT NULL,
+  `studentID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `view teacher timetable`
+--
+
+CREATE TABLE `view teacher timetable` (
+  `viewTeacherTimetableID` int(11) NOT NULL,
+  `timetableLayout` varchar(45) DEFAULT NULL,
+  `weeksToView` varchar(45) DEFAULT NULL,
+  `staffID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `book course`
+--
+ALTER TABLE `book course`
+  ADD PRIMARY KEY (`bookCourseID`),
+  ADD KEY `fk_Book Course_Courses1_idx` (`coursesID`);
+
+--
+-- Indexes for table `book events`
+--
+ALTER TABLE `book events`
+  ADD PRIMARY KEY (`bookEventID`),
+  ADD KEY `fk_Book Events_Events1_idx` (`eventID`);
+
+--
+-- Indexes for table `book exams`
+--
+ALTER TABLE `book exams`
+  ADD PRIMARY KEY (`bookExamID`),
+  ADD KEY `fk_Book Exams_Exams1_idx` (`examID`);
+
+--
+-- Indexes for table `book lessons`
+--
+ALTER TABLE `book lessons`
+  ADD PRIMARY KEY (`bookLessonsID`),
+  ADD KEY `fk_Book Lessons_Lessons1_idx` (`lessonID`);
+
+--
+-- Indexes for table `book orders`
+--
+ALTER TABLE `book orders`
+  ADD PRIMARY KEY (`bookOrdersID`),
+  ADD KEY `fk_Book Orders_Books1_idx` (`booksID`);
+
+--
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`booksID`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`coursesID`),
+  ADD KEY `fk_Courses_Student_idx` (`studentID`),
+  ADD KEY `fk_Courses_Staffs1_idx` (`staffID`);
+
+--
+-- Indexes for table `exam center`
+--
+ALTER TABLE `exam center`
+  ADD PRIMARY KEY (`examCenterID`);
+
+--
+-- Indexes for table `exams`
+--
+ALTER TABLE `exams`
+  ADD PRIMARY KEY (`examID`),
+  ADD KEY `fk_Exams_Courses1_idx` (`coursesID`),
+  ADD KEY `fk_Exams_Exam Center1_idx` (`examCenterID`),
+  ADD KEY `staffID` (`staffID`);
+
+--
+-- Indexes for table `generate reports`
+--
+ALTER TABLE `generate reports`
+  ADD PRIMARY KEY (`generateReportsID`);
+
+--
+-- Indexes for table `generate result sheet`
+--
+ALTER TABLE `generate result sheet`
+  ADD PRIMARY KEY (`generateResultSheetID`),
+  ADD KEY `fk_Generate Result Sheet_Student1_idx` (`studentID`),
+  ADD KEY `fk_Generate Result Sheet_Exams1_idx` (`examID`);
+
+--
+-- Indexes for table `lessons`
+--
+ALTER TABLE `lessons`
+  ADD PRIMARY KEY (`lessonID`);
+
+--
+-- Indexes for table `member`
+--
+ALTER TABLE `member`
+  ADD PRIMARY KEY (`memberID`);
+
+--
+-- Indexes for table `private tuition`
+--
+ALTER TABLE `private tuition`
+  ADD PRIMARY KEY (`privateTuitionID`),
+  ADD KEY `fk_Private Tuition_Student1_idx` (`studentID`),
+  ADD KEY `fk_Private Tuition_Staffs1_idx` (`staffID`);
+
+--
+-- Indexes for table `process exams`
+--
+ALTER TABLE `process exams`
+  ADD PRIMARY KEY (`processExamsID`),
+  ADD KEY `fk_Process Exams_Exams1_idx` (`examID`),
+  ADD KEY `fk_Process Exams_Staffs1_idx` (`staffID`);
+
+--
+-- Indexes for table `process student timetable`
+--
+ALTER TABLE `process student timetable`
+  ADD PRIMARY KEY (`processStudentTimetableID`),
+  ADD KEY `fk_Process Student Timetable_Student1_idx` (`studentID`);
+
+--
+-- Indexes for table `process teacher timetable`
+--
+ALTER TABLE `process teacher timetable`
+  ADD PRIMARY KEY (`processTeacherTimetableID`),
+  ADD KEY `fk_Process Teacher Timetable_Staffs1_idx` (`staffID`);
+
+--
+-- Indexes for table `purchase`
+--
+ALTER TABLE `purchase`
+  ADD PRIMARY KEY (`purchaseID`),
+  ADD KEY `fk_Purchase_Shopping cart1_idx` (`shoppingCartID`);
+
+--
+-- Indexes for table `saomevents`
+--
+ALTER TABLE `saomevents`
+  ADD PRIMARY KEY (`eventID`);
+
+--
+-- Indexes for table `shopping cart`
+--
+ALTER TABLE `shopping cart`
+  ADD PRIMARY KEY (`shoppingCartID`),
+  ADD KEY `fk_Shopping cart_Book Events1_idx` (`bookEventID`),
+  ADD KEY `fk_Shopping cart_Book Orders1_idx` (`bookOrderID`),
+  ADD KEY `fk_Shopping cart_Book Course1_idx` (`bookCourseID`),
+  ADD KEY `fk_Shopping cart_Book Lessons1_idx` (`bookLessonID`),
+  ADD KEY `fk_Shopping cart_Book Exams1_idx` (`bookExamsID`),
+  ADD KEY `fk_Shopping cart_Staffs1_idx` (`staffID`),
+  ADD KEY `fk_Shopping cart_Member1_idx` (`memberID`),
+  ADD KEY `fk_Shopping cart_Student1_idx` (`studentID`);
+
+--
+-- Indexes for table `staffs`
+--
+ALTER TABLE `staffs`
+  ADD PRIMARY KEY (`staffID`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`memberID`);
+
+--
+-- Indexes for table `view student timetable`
+--
+ALTER TABLE `view student timetable`
+  ADD PRIMARY KEY (`viewStudentTimetableID`),
+  ADD KEY `fk_View Student Timetable_Student1_idx` (`studentID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `book course`
+--
+ALTER TABLE `book course`
+  MODIFY `bookCourseID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `book events`
+--
+ALTER TABLE `book events`
+  MODIFY `bookEventID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `book exams`
+--
+ALTER TABLE `book exams`
+  MODIFY `bookExamID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `book lessons`
+--
+ALTER TABLE `book lessons`
+  MODIFY `bookLessonsID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `book orders`
+--
+ALTER TABLE `book orders`
+  MODIFY `bookOrdersID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `booksID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `coursesID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exam center`
+--
+ALTER TABLE `exam center`
+  MODIFY `examCenterID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exams`
+--
+ALTER TABLE `exams`
+  MODIFY `examID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lessons`
+--
+ALTER TABLE `lessons`
+  MODIFY `lessonID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `member`
+--
+ALTER TABLE `member`
+  MODIFY `memberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `private tuition`
+--
+ALTER TABLE `private tuition`
+  MODIFY `privateTuitionID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `process exams`
+--
+ALTER TABLE `process exams`
+  MODIFY `processExamsID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase`
+--
+ALTER TABLE `purchase`
+  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `saomevents`
+--
+ALTER TABLE `saomevents`
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `shopping cart`
+--
+ALTER TABLE `shopping cart`
+  MODIFY `shoppingCartID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `staffs`
+--
+ALTER TABLE `staffs`
+  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `memberID` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

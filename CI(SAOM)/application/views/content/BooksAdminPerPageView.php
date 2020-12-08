@@ -100,7 +100,8 @@ p{
                                             <td>".$book['qty']."</td>
                                             <td>".$book['image']."</td>
                                             <td>
-                                                <form action=" . site_url('Controller/Method') . ">
+                                                <form action=" . site_url('Books/updateBook') . " method='POST'>
+                                                    <input type='hidden' name='booksID' value=" . $book['booksID'] . "/>
                                                     <input type='submit' class='round' value='Update'>
                                                 </form>
                                             </td>

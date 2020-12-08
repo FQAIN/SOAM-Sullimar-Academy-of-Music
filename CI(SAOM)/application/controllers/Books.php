@@ -109,6 +109,77 @@ class Books extends CI_Controller {
         $this->load->view('content/BooksAdminPerPageView', $data);
     }
 
-}
+    public function updateBook() {
+        $data = array();
 
+        $this->load->model('SAOMBooks'); //Load model
+
+        $bookID = $this->input->post('booksID'); //Get ID of selected book
+
+        $data['book'] = $this->SAOMBooks->getBookForUpdate($bookID);
+
+        $this->load->view('content/updateBook', $data); //Load updateBook view + add in data
+    }
+
+    public function commitBookUpdate() {
+        $bookID = $this->input->post('booksID'); //Get ID of selected book 
+
+        $book_validation_rules = array(
+            array('field' => 'bookName',
+                'label' => 'Book Name',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+            array('field' => 'description',
+                'label' => 'Description',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+            array('field' => 'author',
+                'label' => 'Author',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'yearPublished',
+                'label' => 'Year Published',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'price',
+                'label' => 'Price',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'category',
+                'label' => 'Category',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'ISBN',
+                'label' => 'ISBN',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'inStock',
+                'label' => 'In Stock',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'qty',
+                'label' => 'qty',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'image',
+                'label' => 'image',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+        );
+
+        $this->form_validation->set_rules($book_validation_rules);
+        if ($this->form_validation->run() == FALSE) {
+            $data['book'] = $this->SAOMBooks->getBookForUpdate($bookID);
+
+            //Load the Main Menu view 
+            $this->load->view('content/updateBook', $data);
+        } else {
+            $this->load->model('SAOMBooks');
+
+            $this->SAOMBooks->updateSelectedBook($bookID);
+
+            redirect('Books/index');
+        }
+    }
+}
 ?>
