@@ -93,6 +93,63 @@ class Events extends CI_Controller {
         $this->load->view('content/EventsAdminPerPageView', $data);
     }
 
+ public function updateEvent() {
+        $data = array();
+
+        $this->load->model('SAOMEvents'); //Load model
+
+        $eventID = $this->input->post('eventID'); //Get ID of selected book
+
+        $data['event'] = $this->SAOMEvents->getEventForUpdate($eventID);
+
+        $this->load->view('content/updateEvent', $data); //Load updateBook view + add in data
+    }
+
+    public function commitEventUpdate() {
+        $eventID = $this->input->post('eventID'); //Get ID of selected book 
+
+       $event_validation_rules = array(
+            array('field' => 'name',
+                'label' => 'Name',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+            array('field' => 'description',
+                'label' => 'Description',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+            array('field' => 'dateOfEvent',
+                'label' => 'Date Of Event',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'price',
+                'label' => 'Price',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'location',
+                'label' => 'Location',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'Image',
+                'label' => 'Image',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.'))
+        );
+       
+        $this->form_validation->set_rules($event_validation_rules);
+        if ($this->form_validation->run() == FALSE) {
+            $data['event'] = $this->SAOMEvents->getEventForUpdate($eventID);
+
+            //Load the Main Menu view 
+            $this->load->view('content/updateEvent', $data);
+        } else {
+            $this->load->model('SAOMEvents');
+
+            $this->SAOMEvents->updateSelectedEvent($eventID);
+
+            redirect('Events/index');
+        }
+    }
+
 }
 
 ?>

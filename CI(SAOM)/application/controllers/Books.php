@@ -181,5 +181,7 @@ class Books extends CI_Controller {
             redirect('Books/index');
         }
     }
+
 }
+
 ?>

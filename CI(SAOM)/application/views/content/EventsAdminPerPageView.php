@@ -93,7 +93,8 @@ p{
                                             <td>".$event['location']."</td>
                                             <td>".$event['image']."</td>
                                             <td>
-                                                <form action=" . site_url('Controller/Method') . ">
+                                                <form action=" . site_url('Events/updateEvent') . " method='POST'>
+                                                     <input type='hidden' name='eventID' value=" . $event['eventID'] . "/>
                                                     <input type='submit' class='round' value='Update'>
                                                 </form>
                                             </td>
