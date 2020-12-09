@@ -9,6 +9,16 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage`(IN `p_limit` INT, IN `p_start` INT)
+    NO SQL
+BEGIN
+SELECT eventID,name, description,dateOfEvent,price,location,image
+FROM saomevents
+ LIMIT p_limit, p_start;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectStaffsPerPage`(IN `p_limit` INT, IN `p_start` INT)
     NO SQL
 BEGIN
@@ -26,6 +36,26 @@ SELECT 	staffID,
         courseID
 FROM staffs
  LIMIT p_limit, p_start;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidStudent`(IN `p_email` VARCHAR(45), IN `p_password` VARCHAR(45))
+    NO SQL
+BEGIN
+SELECT password, email
+FROM student
+WHERE p_email = email AND p_password = password;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidUser`(IN `p_email` VARCHAR(25), IN `p_password` VARCHAR(25))
+    NO SQL
+BEGIN
+SELECT password, email
+FROM staffs
+WHERE p_email = email AND p_password = password;
 END$$
 DELIMITER ;
 
@@ -59,36 +89,6 @@ BEGIN
         p_qty,
         p_image
     );
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage`(IN `p_limit` INT, IN `p_start` INT)
-    NO SQL
-BEGIN
-SELECT eventID,name, description,dateOfEvent,price,location,image
-FROM saomevents
- LIMIT p_limit, p_start;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidStudent`(IN `p_email` VARCHAR(45), IN `p_password` VARCHAR(45))
-    NO SQL
-BEGIN
-SELECT password, email
-FROM student
-WHERE p_email = email AND p_password = password;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidUser`(IN `p_email` VARCHAR(25), IN `p_password` VARCHAR(25))
-    NO SQL
-BEGIN
-SELECT password, email
-FROM staffs
-WHERE p_email = email AND p_password = password;
 END$$
 DELIMITER ;
 
@@ -299,6 +299,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `viewAllStudentDetails`()
     NO SQL
 BEGIN
 	SELECT * FROM student;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `viewBookDetails`()
+    NO SQL
+BEGIN
+	SELECT * FROM books;
 END$$
 DELIMITER ;
 
