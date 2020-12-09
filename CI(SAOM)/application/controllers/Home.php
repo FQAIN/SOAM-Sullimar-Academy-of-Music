@@ -24,16 +24,9 @@ class Home extends CI_Controller {
     }
 
     public function viewBooks() {
-        $this->load->model('SAOMBooks');
-        
-        $data = array();
-
-        $data['books'] = $this->SAOMBooks->getBooks();
-
         $view_data = array(
-            'content' => $this->load->view('content/viewBooks', $data, true)
+            'content' => $this->load->view('content/viewBooks', null, true)
         );
-        
         $this->load->view('layout', $view_data);
     }
 

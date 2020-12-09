@@ -82,39 +82,33 @@ p{
                                 <td><strong>Update:</strong></td>
                                 <td><strong>Delete:</strong></td>
                             </tr>
-                            <?php
-                                if ($books->num_rows() > 0) 
-                                {
-                                    foreach ($books->result_array() as $book)
-                                    {
-                                        echo 
-                                        "<tr>
-                                            <td>".$book['bookName']."</td>
-                                            <td>".$book['description']."</td>
-                                            <td>".$book['author']."</td>
-                                            <td>".$book['yearPublished']."</td>
-                                            <td>".$book['price']."</td>
-                                            <td>".$book['category']."</td>
-                                            <td>".$book['ISBN']."</td>
-                                            <td>".$book['inStock']."</td>
-                                            <td>".$book['qty']."</td>
-                                            <td>".$book['image']."</td>
-                                            <td>
-                                                <form action='" . site_url('Books/updateBook') . "' method='POST'>
-                                                    <input type='hidden' name='booksID' value=" . $book['booksID'] . "/>
-                                                    <input type='submit' class='round' value='Update'>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action=" . site_url('Books/deleteBook') . " method='POST'>
-                                                    <input type='hidden' name='booksID' value=" . $book['booksID'] . "/>
-                                                    <input class='round' type='submit' value='Delete'>
-                                                </form>
-                                            </td>
-                                        </tr>";
-                                    }
-                                }
-                            ?>
+                            <?php foreach($books->result_array() as $book): ?>
+                            <tr>
+                                <td><?php echo $book['bookName']; ?></td>
+                                <td><?php echo $book['description']; ?></td>
+                                <td><?php echo $book['author']; ?></td>
+                                <td><?php echo $book['yearPublished']; ?></td>
+                                <td><?php echo $book['price']; ?></td>
+                                <td><?php echo $book['category']; ?></td>
+                                <td><?php echo $book['ISBN']; ?></td>
+                                <td><?php echo $book['inStock']; ?></td>
+                                <td><?php echo $book['qty']; ?></td>
+                                <td><?php echo $book['image']; ?></td>
+                                
+                                <td>
+                                    <form action="<?php echo site_url('Books/updateBook'); ?>" method="POST">
+                                        <input type="hidden" name="booksID" value="<?php echo $book['booksID'] ?>">
+                                        <input type="submit" class="round" value="Update">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="<?php echo site_url('Books/deleteBook'); ?>" method="POST">
+                                        <input type="hidden" name="booksID" value="<?php echo $book['booksID'] ?>">
+                                        <input type="submit" class="round" value="Delete">
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
                         </table>  
         </div>
          <!--Render pagination links--> 

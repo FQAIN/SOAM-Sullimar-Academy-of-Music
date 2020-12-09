@@ -79,35 +79,28 @@ p{
                                 <td><strong>Update:</strong></td>
                                 <td><strong>Delete:</strong></td>
                             </tr>
-                            <?php
-                                if ($events->num_rows() > 0) 
-                                {
-                                    foreach ($events->result_array() as $event)
-                                    {
-                                        echo 
-                                        "<tr>
-                                            <td>".$event['name']."</td>
-                                            <td>".$event['description']."</td>
-                                            <td>".$event['dateOfEvent']."</td>
-                                            <td>".$event['price']."</td>
-                                            <td>".$event['location']."</td>
-                                            <td>".$event['image']."</td>
-                                            <td>
-                                                <form action=" . site_url('Events/updateEvent') . " method='POST'>
-                                                    <input type='hidden' name='eventID' value=" . $event['eventID'] . "/>
-                                                    <input type='submit' class='round' value='Update'>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action=" . site_url('Events/deleteEvent') . " method='POST'>
-                                                    <input type='hidden' name='eventID' value=" . $event['eventID'] . "/>
-                                                    <input class='round' type='submit' value='Delete'>
-                                                </form>
-                                            </td>
-                                        </tr>";
-                                    }
-                                }
-                            ?>
+                            <?php foreach($events->result_array() as $event): ?>
+                            <tr>
+                                <td><?php echo $event['name']; ?></td>
+                                <td><?php echo $event['description']; ?></td>
+                                <td><?php echo $event['dateOfEvent']; ?></td>
+                                <td><?php echo $event['price']; ?></td>
+                                <td><?php echo $event['location']; ?></td>
+                                <td><?php echo $event['image']; ?></td>
+                                <td>
+                                    <form action="<?php echo site_url('Events/updateEvent'); ?>" method="POST">
+                                        <input type="hidden" name="eventID" value="<?php echo $event['eventID'] ?>">
+                                        <input type="submit" class="round" value="Update">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="<?php echo site_url('Events/deleteEvent'); ?>" method="POST">
+                                        <input type="hidden" name="eventID" value="<?php echo $event['eventID'] ?>">
+                                        <input type="submit" class="round" value="Delete">
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
                         </table>
                 
         </div>
