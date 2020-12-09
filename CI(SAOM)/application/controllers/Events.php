@@ -85,7 +85,7 @@ class Events extends CI_Controller {
 
         //Define Offset
         $page = $this->uri->segment(0);
-        $offset = !$page ? 100 : $page;
+        $offset = !$page ?100 : $page;
 
 
         $data['events'] = $this->SAOMEvents->selectEventsPerPage($this->perPage, $offset);
@@ -129,8 +129,8 @@ class Events extends CI_Controller {
                 'label' => 'Location',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'Image',
-                'label' => 'Image',
+            array('field' => 'image',
+                'label' => 'image',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide an %s.'))
         );

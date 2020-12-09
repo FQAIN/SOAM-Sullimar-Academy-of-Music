@@ -6,19 +6,16 @@ class Home extends CI_Controller {
         parent::__construct(); //Load required models etc into constructor
     }
 
-       public function index() {
+    public function index() {
         //Load Main Page
         //$view_data - dynamic data to be passed into view for displaying
 
-        if ($this->session->userdata('loggedIn')) 
-        {
+        if ($this->session->userdata('loggedIn')) {
             $view_data = array(
                 'content' => $this->load->view('content/home', null, true)
             );
             $this->load->view('adminLayout', $view_data);
-        } 
-        else 
-        {
+        } else {
             $view_data = array(
                 'content' => $this->load->view('content/home', null, true)
             );
@@ -89,6 +86,13 @@ class Home extends CI_Controller {
         $this->load->view('layout', $view_data);
     }
 
+    public function loginStudent() {
+        $view_data = array(
+            'content' => $this->load->view('content/loginStudent', null, true)
+        );
+        $this->load->view('layout', $view_data);
+    }
+    
     public function profile() {
         $view_data = array(
             'content' => $this->load->view('content/profile', null, true)
@@ -115,6 +119,13 @@ class Home extends CI_Controller {
             'content' => $this->load->view('content/dashboard', null, true)
         );
         $this->load->view('adminLayout', $view_data);
+    }
+
+    public function dashboardStudent() {
+        $view_data = array(
+            'content' => $this->load->view('content/dashboardStudent', null, true)
+        );
+        $this->load->view('studentLayout', $view_data);
     }
 
     public function viewStudents() {
@@ -187,7 +198,7 @@ class Home extends CI_Controller {
         $this->load->view('adminLayout', $view_data);
     }
 
-      public function processStudentTimetables() {
+    public function processStudentTimetables() {
         $view_data = array(
             'content' => $this->load->view('content/processStudentTimetables', null, true)
         );
@@ -234,6 +245,14 @@ class Home extends CI_Controller {
         unset($_SESSION['loggedIn']);
         $this->session->sess_destroy();
         redirect('Login/index');
+    }
+
+    
+    function logoutStudent() {
+
+        unset($_SESSION['loggedIn']);
+        $this->session->sess_destroy();
+        redirect('LoginStudent/index');
     }
 
 }

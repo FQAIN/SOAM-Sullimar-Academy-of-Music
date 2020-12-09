@@ -71,6 +71,7 @@
     <p>Copyright &copy; 2020 SAOM
 
         - Design: <a rel="nofollow" href="#">Enigma Crackers</a>
+         <p class='active'><a href="<?php echo site_url('Home/login'); ?>">Login for Staff</a></p>
     </p>
     
 </div>

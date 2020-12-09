@@ -100,7 +100,7 @@ p{
                                             <td>".$book['qty']."</td>
                                             <td>".$book['image']."</td>
                                             <td>
-                                                <form action=" . site_url('Books/updateBook') . " method='POST'>
+                                                <form action='" . site_url('Books/updateBook') . "' method='POST'>
                                                     <input type='hidden' name='booksID' value=" . $book['booksID'] . "/>
                                                     <input type='submit' class='round' value='Update'>
                                                 </form>
@@ -115,8 +115,7 @@ p{
                                     }
                                 }
                             ?>
-                        </table>
-                
+                        </table>  
         </div>
          <!--Render pagination links--> 
 <?php echo "</br>" . $this->pagination->create_links(); ?>

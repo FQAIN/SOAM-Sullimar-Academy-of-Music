@@ -55,10 +55,10 @@ Class SAOMEvents extends CI_Model {
         return $query; //return result to Books/updateBook
     }
     
-    public function updateSelectedEvent($eventsID)
+    public function updateSelectedEvent($eventID)
     {
         $data = array(
-            'eventID' => $eventsID,
+            'eventID' => $eventID,
             'name' => $this->input->post('name'),
             'description' => $this->input->post('description'),
             'dateOfEvent' => $this->input->post('dateOfEvent'),

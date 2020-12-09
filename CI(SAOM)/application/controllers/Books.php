@@ -101,7 +101,7 @@ class Books extends CI_Controller {
 
         //Define Offset
         $page = $this->uri->segment(0);
-        $offset = !$page ? 100 : $page;
+        $offset = !$page ?100 : $page;
 
 
         $data['books'] = $this->SAOMBooks->selectBooksPerPage($this->perPage, $offset);

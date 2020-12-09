@@ -64,43 +64,53 @@ p{
     </head>
     <body>
           <form>  
-        <div ><h1>All Event Details</h1></div>
+        <div ><h1>All Staff Details</h1></div>
         <div>
                 <p><a href="<?php echo base_url(); ?>index.php/Home/index/" class="back"><-Back to Home Menu</a></p>
             
             <table>
                             <tr>
-                                <td><strong>Name:</strong></td>
-                                <td><strong>Description:</strong></td>
-                                <td><strong>Date of Event:</strong></td>
-                                <td><strong>Price:</strong></td>
-                                <td><strong>Location:</strong></td>
+                                <td><strong>First Name:</strong></td>
+                                <td><strong>Last Name:</strong></td>
+                                <td><strong>Role:</strong></td>
+                                <td><strong>Date of Birth:</strong></td>
+                                <td><strong>Address:</strong></td>
+                                <td><strong>Email:</strong></td>
+                                <td><strong>Username:</strong></td>
+                                <td><strong>Password:</strong></td>
+                                <td><strong>Phone:</strong></td>
                                 <td><strong>Image:</strong></td>
+                                <td><strong>Course ID:</strong></td>
                                 <td><strong>Update:</strong></td>
                                 <td><strong>Delete:</strong></td>
                             </tr>
                             <?php
-                                if ($events->num_rows() > 0) 
+                                if ($staffs->num_rows() > 0) 
                                 {
-                                    foreach ($events->result_array() as $event)
+                                    foreach ($staffs->result_array() as $staff)
                                     {
                                         echo 
-                                        "<tr>
-                                            <td>".$event['name']."</td>
-                                            <td>".$event['description']."</td>
-                                            <td>".$event['dateOfEvent']."</td>
-                                            <td>".$event['price']."</td>
-                                            <td>".$event['location']."</td>
-                                            <td>".$event['image']."</td>
+                                        "<tr>	
+                                            <td>".$staff['fName']."</td>
+                                            <td>".$staff['lName']."</td>
+                                            <td>".$staff['role']."</td>
+                                            <td>".$staff['dob']."</td>
+                                            <td>".$staff['address']."</td>
+                                            <td>".$staff['email']."</td>
+                                            <td>".$staff['username']."</td>
+                                            <td>".$staff['password']."</td>
+                                            <td>".$staff['phone']."</td>
+                                            <td>".$staff['image']."</td>
+                                            <td>".$staff['courseID']."</td>
                                             <td>
-                                                <form action=" . site_url('Events/updateEvent') . " method='POST'>
-                                                    <input type='hidden' name='eventID' value=" . $event['eventID'] . "/>
+                                                <form action=" . site_url('Staffs/updateStaff') . " method='POST'>
+                                                    <input type='hidden' name='staffID' value=" . $staff['staffID'] . "/>
                                                     <input type='submit' class='round' value='Update'>
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action=" . site_url('Events/deleteEvent') . " method='POST'>
-                                                    <input type='hidden' name='eventID' value=" . $event['eventID'] . "/>
+                                                <form action=" . site_url('Staffs/deleteStaff') . " method='POST'>
+                                                    <input type='hidden' name='staffID' value=" . $staff['staffID'] . "/>
                                                     <input class='round' type='submit' value='Delete'>
                                                 </form>
                                             </td>
@@ -115,7 +125,7 @@ p{
 <?php echo "</br>" . $this->pagination->create_links(); ?>
 
           </form>
-        <button class="round"><a href="<?php echo site_url('Events/AddEvent'); ?>">Add An Event</a></button><br>
+        <button class="round"><a href="<?php echo site_url('Staffs/AddStaff'); ?>">Add A Staff</a></button><br>
         
     </body>
 </html>
