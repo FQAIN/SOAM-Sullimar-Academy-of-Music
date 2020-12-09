@@ -9,16 +9,31 @@ class Home extends CI_Controller {
     public function index() {
         //Load Main Page
         //$view_data - dynamic data to be passed into view for displaying
-        $view_data = array(
-            'content' => $this->load->view('content/home', null, true)
-        );
-        $this->load->view('layout', $view_data);
+
+        if ($this->session->userdata('loggedIn')) {
+            $view_data = array(
+                'content' => $this->load->view('content/home', null, true)
+            );
+            $this->load->view('adminLayout', $view_data);
+        } else {
+            $view_data = array(
+                'content' => $this->load->view('content/home', null, true)
+            );
+            $this->load->view('layout', $view_data);
+        }
     }
 
     public function viewBooks() {
+       $this->load->model('SAOMBooks');
+        
+        $data = array();
+
+        $data['books'] = $this->SAOMBooks->getBooks();
+
         $view_data = array(
-            'content' => $this->load->view('content/viewBooks', null, true)
+            'content' => $this->load->view('content/viewBooks', $data, true)
         );
+        
         $this->load->view('layout', $view_data);
     }
 
@@ -37,10 +52,23 @@ class Home extends CI_Controller {
     }
 
     public function viewEvents() {
+        
+        $this->load->model('SAOMEvents');
+        
+        $data = array();
+
+        $data['events'] = $this->SAOMEvents->getEvents();
+
         $view_data = array(
-            'content' => $this->load->view('content/viewEvents', null, true)
+            'content' => $this->load->view('content/viewEvents', $data, true)
         );
+        
         $this->load->view('layout', $view_data);
+        
+//        $view_data = array(
+//            'content' => $this->load->view('content/viewEvents', null, true)
+//        );
+//        $this->load->view('layout', $view_data);
     }
 
     public function BookEvents() {
@@ -78,6 +106,13 @@ class Home extends CI_Controller {
         $this->load->view('layout', $view_data);
     }
 
+    public function loginStudent() {
+        $view_data = array(
+            'content' => $this->load->view('content/loginStudent', null, true)
+        );
+        $this->load->view('layout', $view_data);
+    }
+    
     public function profile() {
         $view_data = array(
             'content' => $this->load->view('content/profile', null, true)
@@ -104,6 +139,13 @@ class Home extends CI_Controller {
             'content' => $this->load->view('content/dashboard', null, true)
         );
         $this->load->view('adminLayout', $view_data);
+    }
+
+    public function dashboardStudent() {
+        $view_data = array(
+            'content' => $this->load->view('content/dashboardStudent', null, true)
+        );
+        $this->load->view('studentLayout', $view_data);
     }
 
     public function viewStudents() {
@@ -157,7 +199,7 @@ class Home extends CI_Controller {
 
     public function viewBooksAdmin() {
         $view_data = array(
-            'content' => $this->load->view('content/viewBooksAdmin', null, true)
+            'content' => $this->load->view('content/BooksAdminPerPageView', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
@@ -171,7 +213,7 @@ class Home extends CI_Controller {
 
     public function viewEventsAdmin() {
         $view_data = array(
-            'content' => $this->load->view('content/viewEventsAdmin', null, true)
+            'content' => $this->load->view('content/EventsAdminPerPageView', null, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
@@ -216,6 +258,21 @@ class Home extends CI_Controller {
             'content' => $this->load->view('content/generateResultSheet', null, true)
         );
         $this->load->view('adminLayout', $view_data);
+    }
+
+    function Logout() {
+
+        unset($_SESSION['loggedIn']);
+        $this->session->sess_destroy();
+        redirect('Login/index');
+    }
+
+    
+    function logoutStudent() {
+
+        unset($_SESSION['loggedIn']);
+        $this->session->sess_destroy();
+        redirect('LoginStudent/index');
     }
 
 }
