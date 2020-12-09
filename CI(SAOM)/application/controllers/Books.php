@@ -4,9 +4,7 @@ class Books extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-
-
-
+        
         //load model 
         $this->load->model('SAOMBooks');
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2020 at 06:48 PM
+-- Generation Time: Dec 09, 2020 at 04:21 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -77,6 +77,38 @@ BEGIN
     );
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addStaff` (IN `p_fName` VARCHAR(45), IN `p_lName` VARCHAR(45), IN `p_role` VARCHAR(45), IN `p_dob` DATE, IN `p_address` VARCHAR(45), IN `p_email` VARCHAR(45), IN `p_username` VARCHAR(45), IN `p_password` VARCHAR(45), IN `p_phone` INT, IN `p_image` VARCHAR(45), IN `p_courseID` INT)  NO SQL
+BEGIN
+	INSERT INTO staffs
+    (
+    	fName,
+        lName,
+        role,
+        dob,
+        address,
+        email,
+        username,
+        password,
+        phone,
+        image,
+        courseID
+    )
+    VALUES
+    (
+    	p_fName,
+        p_lName,
+        p_role,
+        p_dob,
+        p_address,
+        p_email,
+        p_username,
+        p_password,
+        p_phone,
+        p_image,
+        p_courseID
+    );
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook` (IN `p_booksID` INT)  NO SQL
 BEGIN
 	DELETE FROM books
@@ -89,6 +121,12 @@ BEGIN
     WHERE p_eventID = eventID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteStaff` (IN `p_staffID` INT)  NO SQL
+BEGIN
+	DELETE FROM staffs
+    WHERE p_staffID = staffID;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectBookForUpdate` (IN `p_bookID` INT)  NO SQL
 BEGIN
 	SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image FROM books
@@ -99,13 +137,57 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage` (IN `p_limit` I
 BEGIN
 SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
 FROM books
- LIMIT p_limit, p_start;
+ LIMIT  p_limit,p_start;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage` (IN `p_limit` INT, IN `p_start` INT)  NO SQL
 BEGIN
 SELECT eventID,name, description,dateOfEvent,price,location,image
 FROM saomevents
+ LIMIT p_limit, p_start;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectEventForUpdate` (IN `p_eventID` INT)  NO SQL
+BEGIN
+	SELECT eventID,name,description,dateOfEvent,price,location,image
+    FROM saomevents
+    WHERE eventID = p_eventID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStaffForUpdate` (IN `p_staffID` INT)  NO SQL
+BEGIN
+	SELECT 
+        staffID,
+        fName,
+        lName,
+        role,
+        dob,
+        address,
+        email,
+        username,
+        password,
+        phone,
+        image,
+        courseID
+    FROM staffs
+    WHERE staffID = p_staffID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectStaffsPerPage` (IN `p_limit` INT, IN `p_start` INT)  NO SQL
+BEGIN
+SELECT 	staffID,
+		fName,
+        lName,
+        role,
+        dob,
+        address,
+        email,
+        username,
+        password,
+        phone,
+        image,
+        courseID
+FROM staffs
  LIMIT p_limit, p_start;
 END$$
 
@@ -125,6 +207,35 @@ BEGIN
     WHERE booksID = p_booksID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedEvent` (IN `p_eventID` INT, IN `p_name` VARCHAR(45), IN `p_description` VARCHAR(250), IN `p_dateOfEvent` DATE, IN `p_price` DECIMAL(6,2), IN `p_location` VARCHAR(45), IN `p_image` VARCHAR(45))  NO SQL
+BEGIN
+	UPDATE saomevents
+    SET name = p_name,
+    description = p_description,
+    dateOfEvent = p_dateOfEvent,
+    price = p_price,
+    location = p_location,
+    image = p_image
+    WHERE eventID = p_eventID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedStaff` (IN `p_staffID` INT, IN `p_fName` VARCHAR(45), IN `p_lName` VARCHAR(45), IN `p_role` VARCHAR(45), IN `p_dob` DATE, IN `p_address` VARCHAR(250), IN `p_email` VARCHAR(45), IN `p_username` VARCHAR(45), IN `p_password` VARCHAR(45), IN `p_phone` INT, IN `p_image` VARCHAR(45), IN `p_courseID` INT)  NO SQL
+BEGIN
+	UPDATE staffs
+    SET fName = p_fName,
+    lName = p_lName,
+    role = p_role,
+    dob = p_dob,
+    address = p_address,
+    email = p_email,
+    username = p_username,
+    password = p_password,
+    phone = p_phone,
+    image = p_image,
+    courseID = p_courseID
+    WHERE staffID = p_staffID;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudent` (IN `p_memberid` INT, IN `p_username` VARCHAR(45), IN `p_password` VARCHAR(45), IN `p_email` VARCHAR(45), IN `p_dob` DATE, IN `p_phone` INT, IN `p_dateEnrollment` DATE, IN `p_fName` VARCHAR(45), IN `p_lName` VARCHAR(45), IN `p_address` VARCHAR(45), IN `p_image` VARCHAR(45))  NO SQL
 BEGIN
 	UPDATE student
@@ -142,10 +253,17 @@ BEGIN
     WHERE p_memberid = memberID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidStudent` (IN `p_email` VARCHAR(45), IN `p_password` VARCHAR(45))  NO SQL
+BEGIN
+SELECT password, email
+FROM student
+WHERE p_email = email AND p_password = password;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidUser` (IN `p_email` VARCHAR(25), IN `p_password` VARCHAR(25))  NO SQL
 BEGIN
 SELECT password, email
-FROM member
+FROM staffs
 WHERE p_email = email AND p_password = password;
 END$$
 
@@ -161,7 +279,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `viewEventDetails` ()  NO SQL
 BEGIN
-	SELECT * FROM events;
+	SELECT * FROM saomevents;
 END$$
 
 DELIMITER ;
@@ -254,9 +372,8 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`booksID`, `bookName`, `description`, `author`, `yearPublished`, `price`, `category`, `ISBN`, `inStock`, `qty`, `image`) VALUES
-(2, 'sdfdf', 'fyaz', 'sasa', 2019, 12, 'dsas', 'aasdas', 89, 7, 'erre'),
-(4, 'sdfdf', 'fyaz', 'sasa', 2019, 78, 'hgdgh', 'hgghg', 11, 11, 'sds'),
-(5, 'fg', 'fyaz', 'fdfddf', 2029, 23, 'hgdgh', 'aasdas', 11, 7, 'dssdf');
+(8, 'book1', 'kjhv', 'kjlhbv', 2000, 20, 'ljhb', 'ljhb', 1, 1, 'khjb'),
+(9, 'book2', 'kjhv ', 'kjhvbb', 2002, 30, 'lkhjb', 'lkjhb', 30, 30, ';kljhb');
 
 -- --------------------------------------------------------
 
@@ -456,11 +573,11 @@ CREATE TABLE `saomevents` (
 --
 
 INSERT INTO `saomevents` (`eventID`, `name`, `description`, `dateOfEvent`, `price`, `location`, `image`) VALUES
-(10, 'dfdf', 'fyaz', '2020-12-17', '23.00', 'fdfd', 'yy'),
-(11, 'dfdf', 'fyaz', '2020-12-19', '23.00', 'fdfd', 'df'),
+(11, 'aaaaaaaaaaaaaaaa', 'fyaz', '2020-12-19', '23.00', 'fdfd', 'df'),
 (12, 'Fyaz', 'FYAZ', '2020-12-10', '23.00', 'fdfd', 'df'),
 (14, 'dfdf', 'sdsd', '2020-12-24', '12.00', 'Event 1 ', 'sfdsfd'),
-(16, 'asd', 'dsa', '2006-04-02', '26.00', 'tgymjh', 'ymhu,ji');
+(16, 'asd', 'dsa', '2006-04-02', '26.00', 'tgymjh', 'ymhu,ji'),
+(17, 'New Event', 'New Event Description', '2053-06-13', '50.00', 'New Event Location', 'New Event Image');
 
 -- --------------------------------------------------------
 
@@ -504,6 +621,13 @@ CREATE TABLE `staffs` (
   `image` varchar(45) DEFAULT NULL,
   `courseID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `staffs`
+--
+
+INSERT INTO `staffs` (`staffID`, `fName`, `lName`, `role`, `dob`, `address`, `email`, `username`, `password`, `phone`, `image`, `courseID`) VALUES
+(1, 'joe', 'M', 'Staff', '0000-00-00', 'Add1', 'joe@email.com', 'jm', 'password', '0', 'null', 0);
 
 -- --------------------------------------------------------
 
@@ -759,7 +883,7 @@ ALTER TABLE `book orders`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `booksID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `booksID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `courses`
@@ -813,7 +937,7 @@ ALTER TABLE `purchase`
 -- AUTO_INCREMENT for table `saomevents`
 --
 ALTER TABLE `saomevents`
-  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `shopping cart`
@@ -825,7 +949,7 @@ ALTER TABLE `shopping cart`
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `student`

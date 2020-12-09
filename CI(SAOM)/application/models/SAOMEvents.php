@@ -11,6 +11,13 @@ Class SAOMEvents extends CI_Model {
     public function record_count() {
         return $this->db->count_all("saomevents");
     }
+    
+    public function getEvents()
+    {
+        $stored_proc_call = "CALL viewEventDetails()";
+        $query = $this->db->query($stored_proc_call);
+        return $query;
+    }
 
     function addEntryEvent() {
 

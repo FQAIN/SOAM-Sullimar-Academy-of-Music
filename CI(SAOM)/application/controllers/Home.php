@@ -45,10 +45,23 @@ class Home extends CI_Controller {
     }
 
     public function viewEvents() {
+        
+        $this->load->model('SAOMEvents');
+        
+        $data = array();
+
+        $data['events'] = $this->SAOMEvents->getEvents();
+
         $view_data = array(
-            'content' => $this->load->view('content/viewEvents', null, true)
+            'content' => $this->load->view('content/viewEvents', $data, true)
         );
+        
         $this->load->view('layout', $view_data);
+        
+//        $view_data = array(
+//            'content' => $this->load->view('content/viewEvents', null, true)
+//        );
+//        $this->load->view('layout', $view_data);
     }
 
     public function BookEvents() {
