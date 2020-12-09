@@ -11,6 +11,13 @@ Class SAOMBooks extends CI_Model {
     public function record_count() {
         return $this->db->count_all("books");
     }
+    
+      public function getBooks()
+    {
+        $stored_proc_call = "CALL viewBookDetails()";
+        $query = $this->db->query($stored_proc_call);
+        return $query;
+    }
 
     function addEntryBook() {
 
