@@ -288,6 +288,7 @@
                             ?>
                             <br>
                             <p><input type="submit" name="submit" value="Update Event"></p>
+                            <br>
                         </form>
                     </div>
                 </section>

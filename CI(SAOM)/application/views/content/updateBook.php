@@ -300,6 +300,7 @@
                             ?>
                             <br>
                             <p><input type="submit" name="submit" value="Update Book"></p>
+                            <br>
                         </form>
                     </div>
                 </section>

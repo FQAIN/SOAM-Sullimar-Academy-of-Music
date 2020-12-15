@@ -297,6 +297,7 @@
                             <?php echo form_error('courseID'); ?>
                             <br>
                             <p><input type="submit" name="submit" value="Add Staff"></p>
+                            <br>
                         </form>
                     </div>
                 </section>

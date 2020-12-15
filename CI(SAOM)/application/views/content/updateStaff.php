@@ -297,12 +297,12 @@
                                             
                                             <p><strong>Course ID:</strong><br/>
                                             <input type='text' name='courseID' value='" . $item['courseID'] . "' id='special'></p>
-                                        
                                         ";
                             }
                             ?>
                             <br>
                             <p><input type="submit" name="submit" value="Update Staff"></p>
+                            <br>
                         </form>
                     </div>
                 </section>

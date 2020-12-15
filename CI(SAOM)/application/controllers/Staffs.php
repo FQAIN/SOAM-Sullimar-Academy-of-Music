@@ -66,7 +66,14 @@ class Staffs extends CI_Controller {
         $this->form_validation->set_rules($staff_validation_rules);
         if ($this->form_validation->run() == FALSE) {
             //Load the Main Menu view 
-            $this->load->view('content/AddStaff');
+            
+             $data = array();
+            
+               $view_data = array(
+            'content' => $this->load->view('content/AddStaff', $data, true)
+        );
+        
+        $this->load->view('adminLayout', $view_data);
         } else {
             //Loads the Model of AddressBook from the models folder  
             $this->load->model('SAOMStaffs');
@@ -110,8 +117,12 @@ class Staffs extends CI_Controller {
 
 
         $data['staffs'] = $this->SAOMStaffs->selectStaffsPerPage($this->perPage, $offset);
-
-        $this->load->view('content/StaffsAdminPerPageView', $data);
+        
+            $view_data = array(
+            'content' => $this->load->view('content/StaffsAdminPerPageView', $data, true)
+        );
+        
+        $this->load->view('adminLayout', $view_data);
     }
 
     public function updateStaff() {
@@ -122,8 +133,12 @@ class Staffs extends CI_Controller {
         $staffID = $this->input->post('staffID'); //Get ID of selected book
 
         $data['staff'] = $this->SAOMStaffs->getStaffForUpdate($staffID);
+        
+          $view_data = array(
+            'content' => $this->load->view('content/updateStaff', $data, true)
+        );
 
-        $this->load->view('content/updateStaff', $data); //Load updateBook view + add in data
+        $this->load->view('adminLayout', $view_data);
     }
 
     public function commitStaffUpdate() {
