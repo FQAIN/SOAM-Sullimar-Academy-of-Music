@@ -104,6 +104,8 @@
         </div>
     </div>
     <div class="card " style="padding: 20px;">  
+         <button class="btn" ng-click="updateMe()">Add Item to Teachers Area</button>
+         <br><br>
         <div class="card-header">
             My Profile
         </div>
