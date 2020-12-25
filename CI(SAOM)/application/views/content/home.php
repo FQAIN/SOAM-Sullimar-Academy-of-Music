@@ -14,7 +14,7 @@
                 <div class="thumb">
                     <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 1</h4>
+                        <h4>How to write about music</h4>
                         <span>76 listings</span>
                     </div>
                     <div class="plus-button">
@@ -24,9 +24,9 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
+                    <img src="<?php echo $img_url . "71x5LVuEMnL.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 2</h4>
+                        <h4>Padagogy of the opressed</h4>
                         <span>18 listings</span>
                     </div>
                     <div class="plus-button">
@@ -36,9 +36,9 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
+                    <img src="<?php echo $img_url . "9780367592622.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 3</h4>
+                        <h4>Educational change in Music</h4>
                         <span>55 listings</span>
                     </div>
                     <div class="plus-button">
@@ -48,9 +48,9 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
+                    <img src="<?php echo $img_url . "1661175.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 4</h4>
+                        <h4>Defining music therapy</h4>
                         <span>66 listings</span>
                     </div>
                     <div class="plus-button">
@@ -60,9 +60,9 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
+                    <img src="<?php echo $img_url . "9780199328093.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 5</h4>
+                        <h4>Teaching general music</h4>
                         <span>82 listings</span>
                     </div>
                     <div class="plus-button">
@@ -72,9 +72,9 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
+                    <img src="<?php echo $img_url . "9781138249219.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 6</h4>
+                        <h4>Musical Creativity</h4>
                         <span>76 listings</span>
                     </div>
                     <div class="plus-button">
@@ -84,9 +84,9 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
+                    <img src="<?php echo $img_url . "9781409434146.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 7</h4>
+                        <h4>How Music Helps</h4>
                         <span>36 listings</span>
                     </div>
                     <div class="plus-button">
@@ -96,9 +96,9 @@
             </div>
             <div class="item popular-item">
                 <div class="thumb">
-                    <img src="<?php echo $img_url . "9781628920437.jpg" ?>" alt="">
+                    <img src="<?php echo $img_url . "81uBUt-MOQL._AC_UL320_SR214,320_.jpg" ?>" alt="">
                     <div class="text-content">
-                        <h4>Book 8</h4>
+                        <h4>Music and Mind in Life</h4>
                         <span>48 listings</span>
                     </div>
                     <div class="plus-button">
@@ -123,7 +123,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
-                        <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="">
+                        <img src="<?php echo $img_url . "Stendhal-2021.jpg" ?>" alt="" width="100%" height="250px">
                         <div class="overlay-content">
                             <ul>
                                 <li><i class="fa fa-star"></i></li>
@@ -139,9 +139,11 @@
                         </div>
                     </div>
                     <div class="down-content">
-                        <h4>Event 1</h4>
+                        <h4>The Festival</h4>
                         <span>Category One</span>
-                        <p>Vestibulum id est eu felis vulputate hendrerit. Suspendisse dapibus turpis in dui pulvinar imperdiet. Nunc consectetur.</p>
+                        <p>Description: A traditional hip hop event<br>
+                            Price: 12.09<br>
+                            Location: Dublin</p>
                         <div class="row">
                             <div class="col-md-6 first-button">
                                 <div class="text-button">
@@ -160,7 +162,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
-                        <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="">
+                        <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="" width="100%" height="250px">
                         <div class="overlay-content">
                             <ul>
                                 <li><i class="fa fa-star"></i></li>
@@ -176,9 +178,11 @@
                         </div>
                     </div>
                     <div class="down-content">
-                        <h4>Event 2</h4>
+                        <h4>Raidtown Myths</h4>
                         <span>Category Two</span>
-                        <p>Mauris sit amet quam congue, pulvinar urna et, congue diam. Suspendisse eu lorem massa. Integer sit amet posuere.</p>
+                        <p>Description: Folklores and Light Bass Music<br>
+                            Price: 34.21<br>
+                            Location: Cork</p>
                         <div class="row">
                             <div class="col-md-6 first-button">
                                 <div class="text-button">
@@ -197,7 +201,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
-                        <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="">
+                        <img src="<?php echo $img_url . "download.jpg" ?>" alt="" width="100%" height="250px">
                         <div class="overlay-content">
                             <ul>
                                 <li><i class="fa fa-star"></i></li>
@@ -213,9 +217,11 @@
                         </div>
                     </div>
                     <div class="down-content">
-                        <h4>Event 3</h4>
+                        <h4>Bomb Squad</h4>
                         <span>Category Three</span>
-                        <p>Praesent iaculis gravida elementum. Proin fermentum neque facilisis semper pharetra. Sed vestibulum vehicula tincidunt.</p>
+                        <p>Description: Latest Rap and Pop Music<br>
+                            Price: 89.21<br>
+                            Location: Limerick</p>
                         <div class="row">
                             <div class="col-md-6 first-button">
                                 <div class="text-button">
@@ -244,7 +250,7 @@
         </div>
     </div>
     <video autoplay="" loop="" muted>
-        <source src="assets/House Music 2019 - Instrumental winners - Bishop's Stortford College.mp4" type="video/mp4" />
+        <source src="../../assets/Auditioning at the Royal College of Music.mp4" type="video/mp4" />
     </video>
 </section>
 <section class="our-services" id="services">
@@ -256,7 +262,7 @@
                         <div class="col-md-5 col-md-offset-1">
                             <div class="left-content">
                                 <h4>About Us</h4>
-                                <p>Aenean hendrerit metus leo, quis viverra purus condimentum nec. Pellentesque a sem semper, lobortis mauris non, varius urna. Quisque sodales purus eu tellus fringilla.<br><br>Mauris sit amet quam congue, pulvinar urna et, congue diam. Suspendisse eu lorem massa. Integer sit amet posuere tellus, id efficitur leo. In hac habitasse platea dictumst.</p>
+                                <p>The Sullimar Academy of Music is situated on the Dublin Road in Limerick.  SAOM was established in 1980 as a small school of music with 2 teachers and over 30 pupils.<br><br>Over the past 40 years, the school has grown significantly and has expanded the range of instruments taught at the school as well as now offering courses for Leaving Cert and diploma/degree level programs. An extension is currently in progress to increase the number of teaching rooms for the next academic year.</p>
                                 <div class="blue-button">
                                     <a href="#">Discover More</a>
                                 </div>
@@ -267,15 +273,15 @@
                                 <ul class="accordion">
                                     <li>
                                         <a>Services</a>
-                                        <p>Nulla eget aliquet dui, vitae tincidunt nulla. Sed sagittis odio vitae auctor volutpat. In semper ex neque, ut hendrerit mauris rutrum eget. Integer consectetur neque eu enim dictum porta. Sed et risus ac sapien congue mattis.</p>
+                                        <p>Sullimar Academy of Music is an educational organization that caters to students with a passion for music</p>
                                     </li>
                                     <li>
                                         <a>History</a>
-                                        <p>Integer vel augue arcu. Fusce ac turpis cursus, malesuada nulla quis, lobortis dui. Etiam blandit, erat efficitur rhoncus pellentesque, ligula turpis tempor dolor.</p>
+                                        <p>Music can serve as an evocative, instructive primary document, and we too seldom use it in history courses. The skillful melding of music and history in the classroom enables students to immerse themselves and imagine themselves within the periods under discussion. Music can also function as a valuable historical tool that illustrates and delineates changes in culture and thinking.</p>
                                     </li>
                                     <li>
                                         <a>Our Mission</a>
-                                        <p>Nullam nibh lacus, rhoncus sit amet feugiat vel, porttitor sit amet nibh. Pellentesque feugiat justo nec enim pretium, sed faucibus lacus aliquam. Sed ac interdum mauris.</p>
+                                        <p>Our school promotes a safe, orderly, caring, and supportive environment. Each student's self-esteem is fostered by positive relationships with students and staff. We strive to have our parents, teachers, and community members actively involved on our students' learning.</p>
                                     </li>
                                 </ul> 
                             </div>
@@ -342,13 +348,13 @@
                                         <div class="content">                                          
                                             <div class="section-heading">
                                                 <span>More About Us</span>
-                                                <h2>Venue Company</h2>
+                                                <h2>Sullimar Academy of Music</h2>
                                             </div>
-                                            <p>Etiam viverra nibh at lorem hendrerit porta non nec ligula. Donec hendrerit porttitor pretium. Suspendisse fermentum nec risus eu bibendum.</p>
+                                            <p>The Sullimar Academy of Music is situated on the Dublin Road in Limerick. </p>
                                             <ul>
-                                                <li><span>Phone:</span><a href="#">010-050-0550</a></li>
-                                                <li><span>Email:</span><a href="#">hi@company.co</a></li>
-                                                <li><span>Address:</span><a href="#">company.co</a></li>
+                                                <li><span>Phone:<br></span><br><a href="#">087 352 1161</a></li>
+                                                <li><span>Email:</span><a href="#">soam@gmail.com</a></li>
+                                                <li><span>Address:</span><br><a href="#">25 The Crescent Kilteragh</a></li>
                                             </ul>
                                         </div>
                                     </div>

@@ -30,7 +30,7 @@
                                 </ul>
                             </li>
 
-                            <li><a href="#">Courses/Lessons</a>
+                            <li><a href="#">Courses/Tuitions</a>
                                 <ul class="sub-menu">
                                     <li><a href="<?php echo site_url('Home/viewCoursesAdmin'); ?>">View Courses</a>
                                     <li><a href="<?php echo site_url('Home/applyForCourses'); ?>">Apply for Courses</a>
