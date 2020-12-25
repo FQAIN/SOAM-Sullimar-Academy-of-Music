@@ -60,7 +60,7 @@
                             <label>Password</label><br>
                                 <input type="password" name="password" placeholder="Password" class="input_field">
 
-                            <p><a href="' . site_url("GG/AddEntry") . '">Register</a></p>
+                            <p><a href="' . site_url("Students/AddStudent") . '">Register</a></p>
                             <input type="submit" name="submit" value="Login" alt="Login" id="submit_btn" >';
                     }
                     ?>

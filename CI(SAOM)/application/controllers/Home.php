@@ -38,8 +38,15 @@ class Home extends CI_Controller {
     }
 
     public function viewExam() {
+        
+        $this->load->model('SAOMExams');
+        
+        $data = array();
+
+        $data['exams'] = $this->SAOMExams->getExams();
+        
         $view_data = array(
-            'content' => $this->load->view('content/viewExam', null, true)
+            'content' => $this->load->view('content/viewExam', $data, true)
         );
         $this->load->view('layout', $view_data);
     }
