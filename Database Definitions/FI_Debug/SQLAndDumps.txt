@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2020 at 02:01 AM
+-- Generation Time: Dec 26, 2020 at 04:27 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -121,20 +121,46 @@ CREATE TABLE `courses` (
   `coursesID` int(11) NOT NULL,
   `courseName` varchar(45) DEFAULT NULL,
   `description` varchar(45) DEFAULT NULL,
-  `level` varchar(45) DEFAULT NULL,
+  `levels` varchar(45) DEFAULT NULL,
   `numberOfYears` int(11) DEFAULT NULL,
-  `GroupCategory` varchar(45) DEFAULT NULL,
+  `groupCategory` varchar(45) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
-  `studentID` int(11) NOT NULL,
-  `staffID` int(11) NOT NULL
+  `staffID` int(11) NOT NULL,
+  `price` decimal(6,2) DEFAULT NULL,
+  `coursetimetableID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`coursesID`, `courseName`, `description`, `level`, `numberOfYears`, `GroupCategory`, `image`, `studentID`, `staffID`) VALUES
-(1, 'Vioiln', 'The Experts Class', 'Level 7 ', 3, 'Instruments', 'c/saom/images', 1, 1);
+INSERT INTO `courses` (`coursesID`, `courseName`, `description`, `levels`, `numberOfYears`, `groupCategory`, `image`, `staffID`, `price`, `coursetimetableID`) VALUES
+(1, 'Vioiln', 'The Experts Class', 'Level 7 ', 3, 'Instruments', 'violin.jpg', 1, '3000.00', 1),
+(3, 'Piano', 'For Advanced Students', 'Level 5', 2, 'Instruments', 'piano.jpg', 3, '3500.00', 1),
+(5, 'Guitar', 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', 'guitar.jpg', 5, '3700.00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coursetimetable`
+--
+
+CREATE TABLE `coursetimetable` (
+  `courseTimetableID` int(11) NOT NULL,
+  `day` varchar(45) DEFAULT NULL,
+  `dates` date DEFAULT NULL,
+  `timeslots` varchar(45) DEFAULT NULL,
+  `moduleName` varchar(45) DEFAULT NULL,
+  `courseID` int(11) DEFAULT NULL,
+  `staffID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `coursetimetable`
+--
+
+INSERT INTO `coursetimetable` (`courseTimetableID`, `day`, `dates`, `timeslots`, `moduleName`, `courseID`, `staffID`) VALUES
+(1, 'Monday', '2020-12-12', '11:10-12:10', 'Violin Structures', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -435,15 +461,17 @@ CREATE TABLE `student` (
   `lName` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
-  `result` varchar(45) DEFAULT NULL
+  `result` varchar(45) DEFAULT NULL,
+  `courseID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`) VALUES
-(10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', '12', 'N/A');
+INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`, `courseID`) VALUES
+(10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', 'N/A', 1),
+(11, 'pierce123', 'pierce', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1);
 
 --
 -- Indexes for dumped tables
@@ -495,8 +523,16 @@ ALTER TABLE `books`
 --
 ALTER TABLE `courses`
   ADD PRIMARY KEY (`coursesID`),
-  ADD KEY `fk_Courses_Student_idx` (`studentID`),
-  ADD KEY `fk_Courses_Staffs1_idx` (`staffID`);
+  ADD KEY `fk_Courses_Staffs1_idx` (`staffID`),
+  ADD KEY `FK_coursetimetableID` (`coursetimetableID`);
+
+--
+-- Indexes for table `coursetimetable`
+--
+ALTER TABLE `coursetimetable`
+  ADD PRIMARY KEY (`courseTimetableID`),
+  ADD KEY `courseID` (`courseID`),
+  ADD KEY `staffID` (`staffID`);
 
 --
 -- Indexes for table `exam center`
@@ -606,7 +642,8 @@ ALTER TABLE `staffs`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`studentID`);
+  ADD PRIMARY KEY (`studentID`),
+  ADD KEY `courseID` (`courseID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -652,7 +689,13 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `coursesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `coursesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `coursetimetable`
+--
+ALTER TABLE `coursetimetable`
+  MODIFY `courseTimetableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `exam center`
@@ -664,7 +707,7 @@ ALTER TABLE `exam center`
 -- AUTO_INCREMENT for table `exams`
 --
 ALTER TABLE `exams`
-  MODIFY `examID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `examID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `instruments`
@@ -730,11 +773,24 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `courses`
+--
+ALTER TABLE `courses`
+  ADD CONSTRAINT `FK_coursetimetableID` FOREIGN KEY (`coursetimetableID`) REFERENCES `coursetimetable` (`courseTimetableID`);
+
+--
+-- Constraints for table `coursetimetable`
+--
+ALTER TABLE `coursetimetable`
+  ADD CONSTRAINT `coursetimetable_ibfk_1` FOREIGN KEY (`courseID`) REFERENCES `courses` (`coursesID`),
+  ADD CONSTRAINT `coursetimetable_ibfk_2` FOREIGN KEY (`staffID`) REFERENCES `staffs` (`staffID`);
 
 --
 -- Constraints for table `instrumentsmaintenance`
@@ -756,6 +812,12 @@ ALTER TABLE `privatetuition`
 ALTER TABLE `processexams`
   ADD CONSTRAINT `processexams_ibfk_1` FOREIGN KEY (`examID`) REFERENCES `exams` (`examID`),
   ADD CONSTRAINT `processexams_ibfk_2` FOREIGN KEY (`staffID`) REFERENCES `staffs` (`staffID`);
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `courseID` FOREIGN KEY (`courseID`) REFERENCES `courses` (`coursesID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

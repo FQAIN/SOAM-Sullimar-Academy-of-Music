@@ -277,6 +277,7 @@
                                 <?php echo form_error('Image'); ?>
                             <br>
                             <p><input type="submit" name="submit" value="Add Event"></p>
+                            <br>
                         </form>
                     </div>
                 </section>

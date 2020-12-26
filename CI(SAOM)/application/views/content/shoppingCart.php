@@ -2,7 +2,7 @@
 <section class="" id="">
     <div class="container">
         <div class="py-5 text-center">
-            <h2>Checkout For Your Books/Events and Exams</h2>
+            <h2>Checkout For Your Books/Events/Courses and Exams</h2>
             <p class="lead">Below is a list of items added to your cart by you and this checkout is to purchase the items in your cart</p>
         </div>
         <div class="row">

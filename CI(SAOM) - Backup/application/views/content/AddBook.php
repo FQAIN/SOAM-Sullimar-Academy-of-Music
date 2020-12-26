@@ -301,6 +301,7 @@
 
                             <br>
                             <p><input type="submit" name="submit" value="Add Book"></p>
+                            <br>
                         </form>
                     </div>
                 </section>

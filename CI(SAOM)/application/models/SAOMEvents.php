@@ -53,15 +53,14 @@ Class SAOMEvents extends CI_Model {
         return $query;
     }
     
-      public function getEventForUpdate($eventID)
-    {
+      public function getEventForUpdate($eventID) {
         $stored_proc_call = "CALL selectEventForUpdate(?)"; //setup procedure
-        
+
         $query = $this->db->query($stored_proc_call, $eventID); //run procedure - store in array
-        
+
         return $query; //return result to Books/updateBook
     }
-    
+
     public function updateSelectedEvent($eventID)
     {
         $data = array(

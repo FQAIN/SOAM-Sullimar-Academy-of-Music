@@ -24,8 +24,8 @@ class Home extends CI_Controller {
     }
 
     public function viewBooks() {
-       $this->load->model('SAOMBooks');
-        
+        $this->load->model('SAOMBooks');
+
         $data = array();
 
         $data['books'] = $this->SAOMBooks->getBooks();
@@ -33,22 +33,50 @@ class Home extends CI_Controller {
         $view_data = array(
             'content' => $this->load->view('content/viewBooks', $data, true)
         );
-        
+
         $this->load->view('layout', $view_data);
     }
 
+    public function viewBooksS() {
+        $this->load->model('SAOMBooks');
+
+        $data = array();
+
+        $data['books'] = $this->SAOMBooks->getBooks();
+
+        $view_data = array(
+            'content' => $this->load->view('content/viewBooks', $data, true)
+        );
+
+        $this->load->view('studentLayout', $view_data);
+    }
+
     public function viewExam() {
-        
+
         $this->load->model('SAOMExams');
-        
+
         $data = array();
 
         $data['exams'] = $this->SAOMExams->getExams();
-        
+
         $view_data = array(
             'content' => $this->load->view('content/viewExam', $data, true)
         );
         $this->load->view('layout', $view_data);
+    }
+
+    public function viewExamS() {
+
+        $this->load->model('SAOMExams');
+
+        $data = array();
+
+        $data['exams'] = $this->SAOMExams->getExams();
+
+        $view_data = array(
+            'content' => $this->load->view('content/viewExam', $data, true)
+        );
+        $this->load->view('studentLayout', $view_data);
     }
 
     public function bookExams() {
@@ -59,9 +87,9 @@ class Home extends CI_Controller {
     }
 
     public function viewEvents() {
-        
+
         $this->load->model('SAOMEvents');
-        
+
         $data = array();
 
         $data['events'] = $this->SAOMEvents->getEvents();
@@ -69,9 +97,29 @@ class Home extends CI_Controller {
         $view_data = array(
             'content' => $this->load->view('content/viewEvents', $data, true)
         );
-        
+
         $this->load->view('layout', $view_data);
-        
+
+//        $view_data = array(
+//            'content' => $this->load->view('content/viewEvents', null, true)
+//        );
+//        $this->load->view('layout', $view_data);
+    }
+
+    public function viewEventsS() {
+
+        $this->load->model('SAOMEvents');
+
+        $data = array();
+
+        $data['events'] = $this->SAOMEvents->getEvents();
+
+        $view_data = array(
+            'content' => $this->load->view('content/viewEvents', $data, true)
+        );
+
+        $this->load->view('studentLayout', $view_data);
+
 //        $view_data = array(
 //            'content' => $this->load->view('content/viewEvents', null, true)
 //        );
@@ -86,10 +134,29 @@ class Home extends CI_Controller {
     }
 
     public function viewCourses() {
+        $this->load->model('SAOMCourses');
+
+        $data = array();
+
+        $data['courses'] = $this->SAOMCourses->getCourses();
+
         $view_data = array(
-            'content' => $this->load->view('content/viewCourses', null, true)
+            'content' => $this->load->view('content/viewCourses', $data, true)
         );
         $this->load->view('layout', $view_data);
+    }
+
+    public function viewCoursesS() {
+        $this->load->model('SAOMCourses');
+
+        $data = array();
+
+        $data['courses'] = $this->SAOMCourses->getCourses();
+
+        $view_data = array(
+            'content' => $this->load->view('content/viewCourses', $data, true)
+        );
+        $this->load->view('studentLayout', $view_data);
     }
 
     public function bookLesson() {
@@ -119,7 +186,7 @@ class Home extends CI_Controller {
         );
         $this->load->view('layout', $view_data);
     }
-    
+
     public function profile() {
         $view_data = array(
             'content' => $this->load->view('content/profile', null, true)
@@ -274,7 +341,6 @@ class Home extends CI_Controller {
         redirect('Login/index');
     }
 
-    
     function logoutStudent() {
 
         unset($_SESSION['loggedIn']);

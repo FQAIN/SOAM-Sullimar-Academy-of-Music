@@ -294,8 +294,11 @@
 
                             <p><strong>Result:</strong><br/>
                                 <input type="text" name="result" value="<?php echo set_value('result'); ?>"  placeholder="Result" id="special"></p>
-                                <?php echo form_error('result'); ?>
+                            <?php echo form_error('result'); ?>
 
+                            <p><strong>Course ID:</strong><br/>
+                                <input type="text" name="courseID" value="<?php echo set_value('courseID'); ?>"  placeholder="Course ID" id="special"></p>
+                                <?php echo form_error('courseID'); ?>
                             <br>
                             <p><input type="submit" name="submit" value="Register"></p>
                             <br>

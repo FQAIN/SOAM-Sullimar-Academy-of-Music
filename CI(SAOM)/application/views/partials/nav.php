@@ -22,7 +22,6 @@
                                 <li><a href="#">Exams</a>
                                     <ul class="sub-menu">
                                         <li><a href="<?php echo site_url('Home/viewExam'); ?>">View All Exams</a>
-                                        <li><a href="<?php echo site_url('Home/bookExams'); ?>">Book Exam</a>
                                         </li>
 
                                     </ul>
@@ -30,7 +29,6 @@
                                 <li><a href="#">Events</a>
                                     <ul class="sub-menu">
                                         <li><a href="<?php echo site_url('Home/viewEvents'); ?>">View All Events</a>
-                                        <li><a href="<?php echo site_url('Home/BookEvents'); ?>">Book Events</a>
 
 
                                     </ul>
@@ -38,8 +36,6 @@
                                 <li><a href="#">Courses</a>
                                     <ul class="sub-menu">
                                         <li><a href="<?php echo site_url('Home/viewCourses'); ?>">View All Courses</a>
-                                        <li><a href="<?php echo site_url('Home/bookCourse'); ?>">Apply for Course</a>
-
                                     </ul>
                                 </li>
 

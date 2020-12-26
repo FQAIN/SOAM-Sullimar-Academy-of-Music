@@ -11,44 +11,37 @@
                     <nav id="primary-nav" class="dropdown cf">
                         <ul class="dropdown menu">
 
-                            <li class='active'><a href="<?php echo site_url('Home/dashboardStudent'); ?>">Dashboard</a></li>
+                            <li class='active'><a href="<?php echo site_url('Home/dashboardStudent'); ?>">Menu</a></li>
 
                             <li><a href="#">Exams</a>
                                 <ul class="sub-menu">
-                                    <li><a href="<?php echo site_url('Home/viewExamsAdmin'); ?>">View Exams</a>
-                                    <li><a href="<?php echo site_url('Home/bookExams'); ?>">Book Exam</a>
+                                    <li><a href="<?php echo site_url('Home/viewExamS'); ?>">View Exams</a>
 
 
                                 </ul>
                             </li>
 
-                            <li><a href="#">Courses</a>
+                            <li><a href="#">Course</a>
                                 <ul class="sub-menu">
-                                    <li><a href="<?php echo site_url('Home/viewCoursesAdmin'); ?>">View Courses</a>
-                                    <li><a href="<?php echo site_url('Home/applyForCourses'); ?>">Apply for Courses</a>
+                                    <li><a href="<?php echo site_url('Home/viewCoursesS'); ?>">View Courses</a>
                                 </ul>
                             </li>
-                            <li><a href="#">Books</a>
+                            <li><a href="#">Book</a>
                                 <ul class="sub-menu">
-                                    <li><a href="<?php echo site_url('Books/index'); ?>">View All Books</a>
-                                    <li><a href="<?php echo site_url('Home/viewBookOrders'); ?>">Order Book</a>
-
-                                </ul>
-                            </li>
-
-                            <li><a href="#">Events</a>
-                                <ul class="sub-menu">
-                                    <li><a href="<?php echo site_url('Home/viewEvents'); ?>">View All Events</a>
-                                    <li><a href="<?php echo site_url('Home/BookEvents'); ?>">Book Events</a>
-
+                                    <li><a href="<?php echo site_url('Home/viewBooksS'); ?>">View All Books</a>
 
                                 </ul>
                             </li>
 
-                            <li><a href="#">Timetables</a>
+                            <li><a href="#">Event</a>
                                 <ul class="sub-menu">
-                                    <li><a href="<?php echo site_url('Home/viewStudentTimetables'); ?>">View Student Timetables</a>
-                                    <li><a href="<?php echo site_url('Home/viewTeachersTimetables'); ?>">View Teacher Timetables</a>
+                                    <li><a href="<?php echo site_url('Home/viewEventsS'); ?>">View All Events</a>
+                                </ul>
+                            </li>
+
+                            <li><a href="#">Timetable</a>
+                                <ul class="sub-menu">
+                                    <li><a href="<?php echo site_url('Home/viewStudentTimetablesS'); ?>">View Student Timetables</a>
                                 </ul>
                             </li>
                             <li><a href="<?php echo site_url('Home/logoutStudent'); ?>">Logout</a></li>

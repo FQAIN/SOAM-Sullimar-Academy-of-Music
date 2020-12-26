@@ -46,7 +46,7 @@
                 <?php echo "</br>" . $this->pagination->create_links(); ?>
                 <div class="container">
                     <div class="vertical-center">
-                        <button type="button" class="btn btn-light"><a href="<?php echo site_url('Pexams/AddPexam'); ?>">Add A Pexam</a></button><br>
+                        <button type="button" class="btn btn-light"><a href="<?php echo site_url('Pexams/AddPexam'); ?>">Process An External Exam</a></button><br>
                     </div>
                 </div>        
         </form>

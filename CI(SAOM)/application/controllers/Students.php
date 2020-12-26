@@ -68,6 +68,10 @@ class Students extends CI_Controller {
             array('field' => 'result',
                 'label' => 'Result',
                 'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'courseID',
+                'label' => 'Course ID',
+                'rules' => 'required',
                 'errors' => array('required' => 'You must provide an %s.'))
         );
 
@@ -185,6 +189,10 @@ class Students extends CI_Controller {
                 'errors' => array('required' => 'You must provide an %s.')),
             array('field' => 'result',
                 'label' => 'Result',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide an %s.')),
+            array('field' => 'courseID',
+                'label' => 'Course ID',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide an %s.'))
         );

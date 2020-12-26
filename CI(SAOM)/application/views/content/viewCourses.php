@@ -1,6 +1,6 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
 <section class="featured-places" id="blog" style="background-color: white">
-    <div class="container">
+    <div class="container"> <!--Card Container Start-->
         <div class="row">
             <div class="col-md-12">
                 <div class="section-heading">
@@ -9,162 +9,40 @@
                 </div>
             </div> 
         </div> 
-        <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
-                    </div>
-                    <div class="down-content">
-                        <h4>Course 1</h4>
-                        <span>Category One</span>
-                        <p>Vestibulum id est eu felis vulputate hendrerit. Suspendisse dapibus turpis in dui pulvinar imperdiet. Nunc consectetur.</p>
-                        <div class="row">
-                            <div class="col-md-6 first-button">
-                                <div class="text-button">
-                                    <a href="#">Add to favorites</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-button">
-                                    <a href="#">Add to Cart</a>
-                                </div>
-                            </div>
+        <div class="row"> <!--Row Start-->
+
+            <?php foreach ($courses->result_array() as $course): ?>
+                <div class="col-md-4 col-sm-6 col-xs-12"> <!--Card Begin-->
+                    <div class="featured-item">
+                        <div class="thumb">
+                            <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
-                    </div>
-                    <div class="down-content">
-                        <h4>Course 2</h4>
-                        <span>Category Two</span>
-                        <p>Mauris sit amet quam congue, pulvinar urna et, congue diam. Suspendisse eu lorem massa. Integer sit amet posuere.</p>
-                        <div class="row">
-                            <div class="col-md-6 first-button">
-                                <div class="text-button">
-                                    <a href="#">Add to favorites</a>
+                        <div class="down-content">
+                            <h4><?php echo $course['courseName']; ?></h4>
+                            <span><?php echo $course['groupCategory']; ?></span>
+                            Description: <?php echo $course['description']; ?><br>
+                            Price: <?php echo $course['price']; ?><br>
+                            Level: <?php echo $course['levels']; ?><br>
+                            Number Of Years: <?php echo $course['numberOfYears']; ?><br>
+                            
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6 first-button">
+                                    <div class="text-button">
+                                        <a href="#">Add to favorites</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-button">
-                                    <a href="#">Add to Cart</a>
+                                <div class="col-md-6">
+                                    <div class="text-button">
+                                        <a href="#">Add to Cart</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
-                    </div>
-                    <div class="down-content">
-                        <h4>Course 3</h4>
-                        <span>Category Three</span>
-                        <p>Praesent iaculis gravida elementum. Proin fermentum neque facilisis semper pharetra. Sed vestibulum vehicula tincidunt.</p>
-                        <div class="row">
-                            <div class="col-md-6 first-button">
-                                <div class="text-button">
-                                    <a href="#">Add to favorites</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-button">
-                                    <a href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="section-heading">
-            </div>
-        </div> 
-    </div> 
-    <div class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="featured-item">
-                <div class="thumb">
-                    <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
-                </div>
-                <div class="down-content">
-                    <h4>Course 4</h4>
-                    <span>Category One</span>
-                    <p>Vestibulum id est eu felis vulputate hendrerit. Suspendisse dapibus turpis in dui pulvinar imperdiet. Nunc consectetur.</p>
-                    <div class="row">
-                        <div class="col-md-6 first-button">
-                            <div class="text-button">
-                                <a href="#">Add to favorites</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-button">
-                                <a href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="featured-item">
-                <div class="thumb">
-                    <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
-                </div>
-                <div class="down-content">
-                    <h4>Course 5</h4>
-                    <span>Category Two</span>
-                    <p>Mauris sit amet quam congue, pulvinar urna et, congue diam. Suspendisse eu lorem massa. Integer sit amet posuere.</p>
-                    <div class="row">
-                        <div class="col-md-6 first-button">
-                            <div class="text-button">
-                                <a href="#">Add to favorites</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-button">
-                                <a href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="featured-item">
-                <div class="thumb">
-                    <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
-                </div>
-                <div class="down-content">
-                    <h4>Course 6</h4>
-                    <span>Category Three</span>
-                    <p>Praesent iaculis gravida elementum. Proin fermentum neque facilisis semper pharetra. Sed vestibulum vehicula tincidunt.</p>
-                    <div class="row">
-                        <div class="col-md-6 first-button">
-                            <div class="text-button">
-                                <a href="#">Add to favorites</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-button">
-                                <a href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                </div> <!--Card End-->
+            <?php endforeach; ?>
+
+        </div> <!--Row End-->
+    </div> <!--Card Container End-->
 </section>

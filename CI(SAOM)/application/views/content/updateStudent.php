@@ -297,6 +297,9 @@
                                                 
                                             <p><strong>Result:</strong><br/>
                                             <input type='text' name='result' value='" . $student['result'] . "' id='special'></p>
+                                                
+                                             <p><strong>Course ID:</strong><br/>
+                                            <input type='text' name='courseID' value='" . $student['courseID'] . "' id='special'></p>
                                         ";
                             }
                             ?>

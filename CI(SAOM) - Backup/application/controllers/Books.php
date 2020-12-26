@@ -4,7 +4,7 @@ class Books extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
+
         //load model 
         $this->load->model('SAOMBooks');
 
@@ -59,7 +59,13 @@ class Books extends CI_Controller {
         $this->form_validation->set_rules($book_validation_rules);
         if ($this->form_validation->run() == FALSE) {
             //Load the Main Menu view 
-            $this->load->view('content/AddBook');
+            $data = array();
+
+            $view_data = array(
+                'content' => $this->load->view('content/AddBook', $data, true)
+            );
+
+            $this->load->view('adminLayout', $view_data);
         } else {
             //Loads the Model of AddressBook from the models folder  
             $this->load->model('SAOMBooks');
@@ -99,12 +105,16 @@ class Books extends CI_Controller {
 
         //Define Offset
         $page = $this->uri->segment(0);
-        $offset = !$page ?100 : $page;
+        $offset = !$page ? 100 : $page;
 
 
         $data['books'] = $this->SAOMBooks->selectBooksPerPage($this->perPage, $offset);
 
-        $this->load->view('content/BooksAdminPerPageView', $data);
+        $view_data = array(
+            'content' => $this->load->view('content/BooksAdminPerPageView', $data, true)
+        );
+
+        $this->load->view('adminLayout', $view_data);
     }
 
     public function updateBook() {
@@ -116,7 +126,11 @@ class Books extends CI_Controller {
 
         $data['book'] = $this->SAOMBooks->getBookForUpdate($bookID);
 
-        $this->load->view('content/updateBook', $data); //Load updateBook view + add in data
+        $view_data = array(
+            'content' => $this->load->view('content/updateBook', $data, true)
+        );
+
+        $this->load->view('adminLayout', $view_data);
     }
 
     public function commitBookUpdate() {

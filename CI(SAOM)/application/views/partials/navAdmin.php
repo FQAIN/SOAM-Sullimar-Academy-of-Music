@@ -23,7 +23,6 @@
                             <li><a href="#">Exams</a>
                                 <ul class="sub-menu">
                                     <li><a href="<?php echo site_url('Exams/index'); ?>">View Exams</a>
-                                    <li><a href="<?php echo site_url('Home/bookExams'); ?>">Book Exam</a>
                                     <li><a href="<?php echo site_url('Pexams/index'); ?>">Process External Exams</a>    
 
 
@@ -32,9 +31,8 @@
 
                             <li><a href="#">Courses/Tuitions</a>
                                 <ul class="sub-menu">
-                                    <li><a href="<?php echo site_url('Home/viewCoursesAdmin'); ?>">View Courses</a>
-                                    <li><a href="<?php echo site_url('Home/applyForCourses'); ?>">Apply for Courses</a>
-                                    <li><a href="<?php echo site_url('Privatetuitions/index'); ?>">Private Tuitions</a>
+                                    <li><a href="<?php echo site_url('Courses/index'); ?>">View Courses</a>
+                                    <li><a href="<?php echo site_url('Privatetuitions/index'); ?>">View Private Tuitions</a>
                                 </ul>
                             </li>
                             <li><a href="#">Books</a>
@@ -48,9 +46,6 @@
                             <li><a href="#">Events</a>
                                 <ul class="sub-menu">
                                     <li><a href="<?php echo site_url('Events/index'); ?>">View All Events</a>
-                                    <li><a href="<?php echo site_url('Home/BookEvents'); ?>">Book Events</a>
-
-
                                 </ul>
                             </li>
 
@@ -68,7 +63,6 @@
                             <li><a href="#">Reports/Requests</a>
                                 <ul class="sub-menu">
                                     <li><a href="<?php echo site_url('Home/generateReports'); ?>">Generate Reports</a>
-                                    <li><a href="<?php echo site_url('Home/generateResultSheet'); ?>">Generate Result Sheet</a>
                                     <li><a href="<?php echo site_url('Maintenances/index'); ?>">Instrument Maintenance</a>
                                 </ul>
                             </li>

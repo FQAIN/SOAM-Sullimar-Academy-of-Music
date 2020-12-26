@@ -45,7 +45,13 @@ class Events extends CI_Controller {
         $this->form_validation->set_rules($event_validation_rules);
         if ($this->form_validation->run() == FALSE) {
             //Load the Main Menu view 
-            $this->load->view('content/AddEvent');
+            $data = array();
+
+            $view_data = array(
+                'content' => $this->load->view('content/AddEvent', $data, true)
+            );
+
+            $this->load->view('adminLayout', $view_data);
         } else {
             //Loads the Model of AddressBook from the models folder  
             $this->load->model('SAOMEvents');
@@ -85,15 +91,20 @@ class Events extends CI_Controller {
 
         //Define Offset
         $page = $this->uri->segment(0);
-        $offset = !$page ?100 : $page;
+        $offset = !$page ? 100 : $page;
 
 
         $data['events'] = $this->SAOMEvents->selectEventsPerPage($this->perPage, $offset);
 
-        $this->load->view('content/EventsAdminPerPageView', $data);
+
+        $view_data = array(
+            'content' => $this->load->view('content/EventsAdminPerPageView', $data, true)
+        );
+
+        $this->load->view('adminLayout', $view_data);
     }
 
- public function updateEvent() {
+    public function updateEvent() {
         $data = array();
 
         $this->load->model('SAOMEvents'); //Load model
@@ -102,13 +113,17 @@ class Events extends CI_Controller {
 
         $data['event'] = $this->SAOMEvents->getEventForUpdate($eventID);
 
-        $this->load->view('content/updateEvent', $data); //Load updateBook view + add in data
+        $view_data = array(
+            'content' => $this->load->view('content/updateEvent', $data, true)
+        );
+
+        $this->load->view('adminLayout', $view_data);
     }
 
     public function commitEventUpdate() {
         $eventID = $this->input->post('eventID'); //Get ID of selected book 
 
-       $event_validation_rules = array(
+        $event_validation_rules = array(
             array('field' => 'name',
                 'label' => 'Name',
                 'rules' => 'required',
@@ -134,7 +149,7 @@ class Events extends CI_Controller {
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide an %s.'))
         );
-       
+
         $this->form_validation->set_rules($event_validation_rules);
         if ($this->form_validation->run() == FALSE) {
             $data['event'] = $this->SAOMEvents->getEventForUpdate($eventID);
