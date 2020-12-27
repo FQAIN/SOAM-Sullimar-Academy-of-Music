@@ -51,10 +51,9 @@
 
                             <li><a href="#">Timetables</a>
                                 <ul class="sub-menu">
-                                    <li><a href="<?php echo site_url('Home/processStudentTimetables'); ?>">Process Student Timetables</a>
-                                    <li><a href="<?php echo site_url('Home/processTeachersTimetables'); ?>">Process Teacher Timetables</a>
-                                    <li><a href="<?php echo site_url('Home/viewStudentTimetables'); ?>">View Student Timetables</a>
-                                    <li><a href="<?php echo site_url('Home/viewTeachersTimetables'); ?>">View Teacher Timetables</a>
+                                    <li><a href="<?php echo site_url('Home/processStudentTimetables'); ?>">Process Course Timetables</a>
+                                    <li><a href="<?php echo site_url('Home/viewStudentTimetables'); ?>">View Course Timetables</a>
+                                    <li><a href="<?php echo site_url('Home/viewTeachersTimetables'); ?>">View Course Timetables for Staff</a>
 
 
                                 </ul>

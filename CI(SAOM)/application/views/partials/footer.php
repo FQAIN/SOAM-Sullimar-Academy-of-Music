@@ -71,6 +71,7 @@ $img_url = base_url() . "assets/img/";
 </p>
 
 </div>
+<script>(function(w, d) { w.CollectId = "5fe8ced5a8d22055e4275929"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.async=true; s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
 <script src="<?php echo $js_base . "vendor/jquery-1.11.2.min.js" ?>"></script>
