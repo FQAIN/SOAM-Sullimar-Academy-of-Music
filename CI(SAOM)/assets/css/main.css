@@ -366,7 +366,7 @@ section.banner {
 
 .banner {
     /*background-image: url(../img/microphone-2130806_1920.jpg);*/
-/*    background-image: url(../img/guitar-756326_1920.jpg);*/
+    /*    background-image: url(../img/guitar-756326_1920.jpg);*/
     background-image: url(../img/_29A2811.jpg);
     width: 100%;
     height: 100%;
@@ -380,33 +380,33 @@ section.banner {
 }
 
 .student-profile .card {
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 .student-profile .card .card-header .profile_img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin: 10px auto;
-  border: 10px solid #ccc;
-  border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 10px auto;
+    border: 10px solid #ccc;
+    border-radius: 50%;
 }
 
 .student-profile .card h3 {
-  font-size: 20px;
-  font-weight: 700;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .student-profile .card p {
-  font-size: 16px;
-  color: #000;
+    font-size: 16px;
+    color: #000;
 }
 
 .student-profile .table th,
 .student-profile .table td {
-  font-size: 14px;
-  padding: 5px 10px;
-  color: #000;
+    font-size: 14px;
+    padding: 5px 10px;
+    color: #000;
 }
 
 .banner .banner-caption .line-dec {
@@ -1294,4 +1294,45 @@ footer .contact-info ul li a {
         margin-top: 60px;
     }
 
+}
+
+
+.wesaom{
+    text-align: center;
+}
+
+.imgRow {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.columnImg {
+    flex: 25%;
+    max-width: 33.3%;
+    padding: 0 4px;
+}
+
+.columnImg img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    filter: grayscale(1) brightness(0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+
+.columnImg img:hover {
+    filter: grayscale(0);
+}
+
+@media screen and (max-width: 700px) {
+    .columnImg {
+        flex: 100%;
+        max-width: 100%;
+    }
+    .columnImg img {
+        filter: grayscale(0) brightness(1);
+    }
 }

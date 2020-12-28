@@ -11,7 +11,6 @@
                 <table class="table table-striped table-dark">
                     <thead>
                         <tr>
-
                             <td><strong>Username:</strong></td>
                             <td><strong>Password:</strong></td>
                             <td><strong>Email:</strong></td>

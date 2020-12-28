@@ -240,6 +240,31 @@
         </div>
     </div>
 </section>
+
+<section>
+    <h1 class="wesaom">We Are SAOM</h1>
+    <div class="imgRow">
+        <div class="columnImg">
+            <img src="<?php echo $img_url . "Royal_College_of_Music_-_April_2007 (1).jpg" ?>" alt="">
+            <img src="<?php echo $img_url . "man-5431169_1920.jpg" ?>" alt="">
+
+
+
+        </div>
+        <div class="columnImg">
+            <img src="<?php echo $img_url . "69f0a22b4506d78782bf1475f6f5ff9c.png" ?>" alt=""> 
+            <img src="<?php echo $img_url . "shutterstock_442098151-1024x614.jpg" ?>" alt=""> 
+
+
+        </div>
+        <div class="columnImg">
+            <img src="<?php echo $img_url . "RCMS-2017-5282.jpg" ?>" alt=""> 
+            <img src="<?php echo $img_url . "piano-4798138_1920.jpg" ?>" alt=""> 
+
+
+        </div>
+    </div>
+</section>
 <section id="video-container">
     <div class="video-overlay"></div>
     <div class="video-content">
@@ -294,78 +319,78 @@
 </section>
 <section class="contact" id="contact">
     <form action="mailto:fyazikram@gmail.com" method="POST">
-    <div id="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.3906854187785!2d-8.638198684640777!3d52.63485427983608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485b5b79ff40c8a5%3A0x22ca49f2cc3abfcd!2s25%20The%20Crescent%2C%20Kilteragh%2C%20Dooradoyle%2C%20Co.%20Limerick%2C%20V94%20FDN8!5e0!3m2!1sen!2sie!4v1605648532060!5m2!1sen!2sie"  width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
-    <div class="container">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="wrapper">
-                <div class="section-heading">
-                    <span>Contact Us</span>
-                    <h2>Please Contact Us To Get In Touch With Us</h2>
-                </div>
-                <button id="modBtn" class="modal-btn">Talk to us</button>
-            </div>  
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <div class="close fa fa-close"></div>
-                    <div class="row">
-                        <div class="col-md-8"> 
-                            <div class="left-content">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="section-heading">
-                                            <span>Talk To Us</span>
-                                            <h2>Let's have a discussion</h2>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <fieldset>
-                                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <fieldset>
-                                            <button type="submit" id="form-submit" class="btn">Send Message</button>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="right-content">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="content">                                          
+        <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.3906854187785!2d-8.638198684640777!3d52.63485427983608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485b5b79ff40c8a5%3A0x22ca49f2cc3abfcd!2s25%20The%20Crescent%2C%20Kilteragh%2C%20Dooradoyle%2C%20Co.%20Limerick%2C%20V94%20FDN8!5e0!3m2!1sen!2sie!4v1605648532060!5m2!1sen!2sie"  width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+        <div class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="wrapper">
+                    <div class="section-heading">
+                        <span>Contact Us</span>
+                        <h2>Please Contact Us To Get In Touch With Us</h2>
+                    </div>
+                    <button id="modBtn" class="modal-btn">Talk to us</button>
+                </div>  
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <div class="close fa fa-close"></div>
+                        <div class="row">
+                            <div class="col-md-8"> 
+                                <div class="left-content">
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="section-heading">
-                                                <span>More About Us</span>
-                                                <h2>Sullimar Academy of Music</h2>
+                                                <span>Talk To Us</span>
+                                                <h2>Let's have a discussion</h2>
                                             </div>
-                                            <p>The Sullimar Academy of Music is situated on the Dublin Road in Limerick. </p>
-                                            <ul>
-                                                <li><span>Phone:<br></span><br><a href="#">087 352 1161</a></li>
-                                                <li><span>Email:</span><a href="#">soam@gmail.com</a></li>
-                                                <li><span>Address:</span><br><a href="#">25 The Crescent Kilteragh</a></li>
-                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <fieldset>
+                                                <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <fieldset>
+                                                <button type="submit" id="form-submit" class="btn">Send Message</button>
+                                            </fieldset>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>      
+                            <div class="col-md-4">
+                                <div class="right-content">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="content">                                          
+                                                <div class="section-heading">
+                                                    <span>More About Us</span>
+                                                    <h2>Sullimar Academy of Music</h2>
+                                                </div>
+                                                <p>The Sullimar Academy of Music is situated on the Dublin Road in Limerick. </p>
+                                                <ul>
+                                                    <li><span>Phone:<br></span><br><a href="#">087 352 1161</a></li>
+                                                    <li><span>Email:</span><a href="#">soam@gmail.com</a></li>
+                                                    <li><span>Address:</span><br><a href="#">25 The Crescent Kilteragh</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>      
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
 </section>
