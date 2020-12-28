@@ -839,4 +839,26 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `viewStudentDetails`()
 BEGIN
 	SELECT * FROM student;
 END$$
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTimetable`(IN `p_day` VARCHAR(45), IN `p_dates` DATE, IN `p_timeslots` VARCHAR(250), IN `p_moduleName` VARCHAR(45), IN `p_courseID` INT, IN `p_staffID` INT)
+    NO SQL
+BEGIN
+	INSERT INTO coursetimetable(
+    	day,
+        dates,
+        timeslots,
+        moduleName,
+        courseID,
+        staffID
+        )
+    VALUES(
+    	p_day,
+        p_dates,
+        p_timeslots,
+        p_moduleName,
+        p_courseID,
+        p_staffID
+    );
+END$$
 DELIMITER ;
