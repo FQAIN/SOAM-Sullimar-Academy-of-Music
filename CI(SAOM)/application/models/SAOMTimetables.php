@@ -33,10 +33,16 @@ Class SAOMTimetables extends CI_Model {
         $this->db->query($stored_proc_call, $timetable_data);
     }
 
-    
-    function search($key){
-        $this->db->like('courseID',$key);
+    function search($key) {
+        $this->db->like('courseID', $key);
         $query = $this->db->get('coursetimetable');
         return $query->result();
     }
+
+    function ssearch($key) {
+        $this->db->like('staffID', $key);
+        $query = $this->db->get('coursetimetable');
+        return $query->result();
+    }
+
 }

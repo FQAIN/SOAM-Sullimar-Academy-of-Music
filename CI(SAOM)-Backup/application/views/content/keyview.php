@@ -7,7 +7,7 @@
         <form>  
             <section class="" id="">
                 <h2 class="text-center">All Timetable Details</h2>
-                <p class="text-center"><a href="<?php echo base_url(); ?>index.php/Home/viewStudentTimetables/" class="back"><-Back to Timetable Menu</a></p>
+                <p class="text-center"><a href="<?php echo base_url(); ?>index.php/Home/viewStudentTimetablesS/" class="back"><-Back to Timetable Menu</a></p>
                 <div class="table-responsive mx-auto" style="width: 100%; padding: 40px;">
                     <table class="table table-striped table-dark">
                         <thead>
@@ -27,7 +27,7 @@
                                     <td><?php echo $result->dates; ?></td>
                                     <td><?php echo $result->timeslots; ?></td>
                                     <td><?php echo $result->moduleName; ?></td>
-<!--                                    <td><?php echo $result->courseID; ?></td>
+    <!--                                    <td><?php echo $result->courseID; ?></td>
                                     <td><?php echo $result->staffID; ?></td>-->
                                 </tr>
                             <?php } ?>

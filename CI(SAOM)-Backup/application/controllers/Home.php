@@ -313,6 +313,13 @@ class Home extends CI_Controller {
         $this->load->view('adminLayout', $view_data);
     }
 
+    public function viewStudentTimetablesS() {
+        $view_data = array(
+            'content' => $this->load->view('content/viewStudentTimetablesS', null, true)
+        );
+        $this->load->view('studentLayout', $view_data);
+    }
+
     public function viewTeachersTimetables() {
         $view_data = array(
             'content' => $this->load->view('content/viewTeachersTimetables', null, true)

@@ -250,7 +250,7 @@
                     <div class="form-gp">
                         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" >
                             <h2>Add Timetable Details</h2>
-                            <p><a href="<?php echo base_url(); ?>index.php/Timetables/index/" class="back"><-Back to Timetable Listings</a></p>
+                            <p><a href="<?php echo base_url(); ?>index.php/Home/index/" class="back"><-Back to Timetable Listings</a></p>
 
                             <p><strong>Day:</strong><br/>
                                 <input type="text" name="day" value="<?php echo set_value('day'); ?>" placeholder="Day" id="special"/>
