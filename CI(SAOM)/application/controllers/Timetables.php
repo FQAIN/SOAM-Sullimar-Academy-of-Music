@@ -60,6 +60,17 @@ class Timetables extends CI_Controller {
             redirect('Home/dashboard');
         }
     }
+    
+    function skeyword(){
+        $datas = array();
+        $key = $this->input->post('courseID');
+        $data['results'] = $this->SAOMTimetables->search($key);
+         $view_data = array(
+                'content' => $this->load->view('content/skeyview', $data, true)
+            );
+
+        $this->load->view('adminLayout',$view_data);
+    }
 
 }
 
