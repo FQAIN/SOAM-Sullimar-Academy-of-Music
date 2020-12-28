@@ -252,14 +252,14 @@
 
         </div>
         <div class="columnImg">
-            <img src="<?php echo $img_url . "69f0a22b4506d78782bf1475f6f5ff9c.png" ?>" alt=""> 
+            <img src="<?php echo $img_url . "vinyl-3557749_1920.jpg" ?>" alt=""> 
             <img src="<?php echo $img_url . "shutterstock_442098151-1024x614.jpg" ?>" alt=""> 
 
 
         </div>
         <div class="columnImg">
             <img src="<?php echo $img_url . "RCMS-2017-5282.jpg" ?>" alt=""> 
-            <img src="<?php echo $img_url . "piano-4798138_1920.jpg" ?>" alt=""> 
+            <img src="<?php echo $img_url . "guitar-944262_1920.jpg" ?>" alt=""> 
 
 
         </div>
