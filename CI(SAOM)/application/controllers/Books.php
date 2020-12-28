@@ -5,7 +5,7 @@ class Books extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        //load model 
+        //load model
         $this->load->model('SAOMBooks');
 
         //per page limit
@@ -14,51 +14,91 @@ class Books extends CI_Controller {
 
     function AddBook() {
         $book_validation_rules = array(
-            array('field' => 'bookName',
+            array(
+                'field' => 'bookName',
                 'label' => 'Book Name',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'description',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'description',
                 'label' => 'Description',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'author',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'author',
                 'label' => 'Author',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'yearPublished',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'yearPublished',
                 'label' => 'Year Published',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'price',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'price',
                 'label' => 'Price',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'category',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'category',
                 'label' => 'Category',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'ISBN',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'ISBN',
                 'label' => 'ISBN',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'inStock',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'inStock',
                 'label' => 'In Stock',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'qty',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'qty',
                 'label' => 'qty',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'image',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'image',
                 'label' => 'image',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            )
         );
 
         $this->form_validation->set_rules($book_validation_rules);
-        if ($this->form_validation->run() == FALSE) {
-            //Load the Main Menu view 
+        if ($this->form_validation->run() == false) {
+            //Load the Main Menu view
             $data = array();
 
             $view_data = array(
@@ -67,11 +107,10 @@ class Books extends CI_Controller {
 
             $this->load->view('adminLayout', $view_data);
         } else {
-            //Loads the Model of AddressBook from the models folder  
+            //Loads the Model of AddressBook from the models folder
             $this->load->model('SAOMBooks');
-            //Add all the details to master table in the database and if all the values are entered in properly it adds it to the other tables 
-            //Calls the addEntry function in the Model AddressBook    
-
+            //Add all the details to master table in the database and if all the values are entered in properly it adds it to the other tables
+            //Calls the addEntry function in the Model AddressBook
             $this->SAOMBooks->addEntryBook();
 
             redirect('Books/index');
@@ -107,7 +146,6 @@ class Books extends CI_Controller {
         $page = $this->uri->segment(0);
         $offset = !$page ? 100 : $page;
 
-
         $data['books'] = $this->SAOMBooks->selectBooksPerPage($this->perPage, $offset);
 
         $view_data = array(
@@ -121,9 +159,7 @@ class Books extends CI_Controller {
         $data = array();
 
         $this->load->model('SAOMBooks'); //Load model
-
         $bookID = $this->input->post('booksID'); //Get ID of selected book
-
         $data['book'] = $this->SAOMBooks->getBookForUpdate($bookID);
 
         $view_data = array(
@@ -134,56 +170,95 @@ class Books extends CI_Controller {
     }
 
     public function commitBookUpdate() {
-        $bookID = $this->input->post('booksID'); //Get ID of selected book 
-
+        $bookID = $this->input->post('booksID'); //Get ID of selected book
         $book_validation_rules = array(
-            array('field' => 'bookName',
+            array(
+                'field' => 'bookName',
                 'label' => 'Book Name',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'description',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'description',
                 'label' => 'Description',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'author',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'author',
                 'label' => 'Author',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'yearPublished',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'yearPublished',
                 'label' => 'Year Published',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'price',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'price',
                 'label' => 'Price',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'category',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'category',
                 'label' => 'Category',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'ISBN',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'ISBN',
                 'label' => 'ISBN',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'inStock',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'inStock',
                 'label' => 'In Stock',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'qty',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'qty',
                 'label' => 'qty',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'image',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'image',
                 'label' => 'image',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            )
         );
 
         $this->form_validation->set_rules($book_validation_rules);
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == false) {
             $data['book'] = $this->SAOMBooks->getBookForUpdate($bookID);
 
-            //Load the Main Menu view 
+            //Load the Main Menu view
             $this->load->view('content/updateBook', $data);
         } else {
             $this->load->model('SAOMBooks');

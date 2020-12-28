@@ -3,7 +3,6 @@
         <title>Add an Course</title>
         <style>
             @import url(https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,531;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,531;1,600;1,700;1,800;1,900&display=swap);
-
             html {
                 font-family: Jost, sans-serif;
                 color: #5756a2;
@@ -238,10 +237,6 @@
                         max-width: 46.875rem;
                     }
                 }
-
-
-
-
             </style>
         </head>
         <body>
@@ -251,38 +246,37 @@
                         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" >
                             <h2>Add Course Details</h2>
                             <p><a href="<?php echo base_url(); ?>index.php/Courses/index/" class="back"><-Back to Course Listings</a></p>
-
                             <p><strong>Course Name:</strong><br/>
                                 <input type="text" name="courseName" value="<?php echo set_value('courseName'); ?>" placeholder="Course Name" id="special"/>
                                 <?php echo form_error('courseName'); ?>
-
                             <p><strong>Description:</strong><br/>
-                                <input type="text" name="description" value="<?php echo set_value('description'); ?>"  placeholder="Course Description" id="special"></p>
+                                <input type="text" name="description" value="<?php echo set_value('description'); ?>"  placeholder="Course Description" id="special">
+                            </p>
                             <?php echo form_error('description'); ?>
-
                             <p><strong>Level:</strong><br/>
-                                <input type="text" name="levels" value="<?php echo set_value('levels'); ?>"  placeholder="Level" id="special"></p>
+                                <input type="text" name="levels" value="<?php echo set_value('levels'); ?>"  placeholder="Level" id="special">
+                            </p>
                             <?php echo form_error('levels'); ?>
-
                             <p><strong>Number of Years:</strong><br/>
-                                <input type="text" name="numberOfYears" value="<?php echo set_value('numberOfYears'); ?>"  placeholder="Number of Years" id="special"></p>
+                                <input type="text" name="numberOfYears" value="<?php echo set_value('numberOfYears'); ?>"  placeholder="Number of Years" id="special">
+                            </p>
                             <?php echo form_error('numberOfYears'); ?>
-
                             <p><strong>Group Category:</strong><br/>
-                                <input type="text" name="groupCategory" value="<?php echo set_value('groupCategory'); ?>"  placeholder="Group Category" id="special"></p>
+                                <input type="text" name="groupCategory" value="<?php echo set_value('groupCategory'); ?>"  placeholder="Group Category" id="special">
+                            </p>
                             <?php echo form_error('groupCategory'); ?>
-
                             <p><strong>Image:</strong><br/>
-                                <input type="text" name="image" value="<?php echo set_value('image'); ?>"  placeholder="Course Image" id="special"></p>
+                                <input type="text" name="image" value="<?php echo set_value('image'); ?>"  placeholder="Course Image" id="special">
+                            </p>
                             <?php echo form_error('image'); ?>
-
                             <p><strong>Staff ID:</strong><br/>
-                                <input type="text" name="staffID" value="<?php echo set_value('staffID'); ?>"  placeholder="Staff ID" id="special"></p>
+                                <input type="text" name="staffID" value="<?php echo set_value('staffID'); ?>"  placeholder="Staff ID" id="special">
+                            </p>
                             <?php echo form_error('staffID'); ?>
-
                             <p><strong>Price:</strong><br/>
-                                <input type="text" name="price" value="<?php echo set_value('price'); ?>"  placeholder="Price" id="special"></p>
-                                <?php echo form_error('price'); ?>
+                                <input type="text" name="price" value="<?php echo set_value('price'); ?>"  placeholder="Price" id="special">
+                            </p>
+                            <?php echo form_error('price'); ?>
                             <br>
                             <p><input type="submit" name="submit" value="Add Course"></p>
                             <br>

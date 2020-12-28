@@ -293,6 +293,7 @@
     </div>
 </section>
 <section class="contact" id="contact">
+    <form action="mailto:fyazikram@gmail.com" method="POST">
     <div id="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.3906854187785!2d-8.638198684640777!3d52.63485427983608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485b5b79ff40c8a5%3A0x22ca49f2cc3abfcd!2s25%20The%20Crescent%2C%20Kilteragh%2C%20Dooradoyle%2C%20Co.%20Limerick%2C%20V94%20FDN8!5e0!3m2!1sen!2sie!4v1605648532060!5m2!1sen!2sie"  width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
     </div>
@@ -366,4 +367,5 @@
             </div>
         </div>
     </div>
+    </form>
 </section>

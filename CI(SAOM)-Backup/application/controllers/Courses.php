@@ -13,38 +13,70 @@ class Courses extends CI_Controller {
 
     function AddCourse() {
         $course_validation_rules = array(
-            array('field' => 'courseName',
+            array(
+                'field' => 'courseName',
                 'label' => 'Course Name',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'description',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'description',
                 'label' => 'Description',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'levels',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'levels',
                 'label' => 'Level',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'numberOfYears',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'numberOfYears',
                 'label' => 'Number of Years',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'groupCategory',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'groupCategory',
                 'label' => 'Group Category',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'image',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'image',
                 'label' => 'Image',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'staffID',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'staffID',
                 'label' => 'Staff ID',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'price',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'price',
                 'label' => 'Price',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.'))
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            )
         );
 
         $this->form_validation->set_rules($course_validation_rules);
@@ -129,38 +161,70 @@ class Courses extends CI_Controller {
         $coursesID = $this->input->post('coursesID'); //Get ID of selected book 
 
         $course_validation_rules = array(
-            array('field' => 'courseName',
+            array(
+                'field' => 'courseName',
                 'label' => 'Name',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'description',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'description',
                 'label' => 'Description',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'levels',
+                'errors' => array(
+                    'required' => 'You must provide a %s.'
+                )
+            ),
+            array(
+                'field' => 'levels',
                 'label' => 'Level',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'numberOfYears',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'numberOfYears',
                 'label' => 'Number of Years',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'groupCategory',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'groupCategory',
                 'label' => 'Group Category',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'image',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'image',
                 'label' => 'Image',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'staffID',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'staffID',
                 'label' => 'Staff ID',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.')),
-            array('field' => 'price',
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            ),
+            array(
+                'field' => 'price',
                 'label' => 'Price',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide an %s.'))
+                'errors' => array(
+                    'required' => 'You must provide an %s.'
+                )
+            )
         );
 
 

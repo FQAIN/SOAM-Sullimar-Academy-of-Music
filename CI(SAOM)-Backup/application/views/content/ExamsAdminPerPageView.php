@@ -4,9 +4,7 @@
         <title>My Address Book</title>
 
         </head>
-        <body>
-               <form>  
-            
+        <body>            
                 <h2 class="text-center">All Exam Details</h2>
                 <p class="text-center"><a href="<?php echo base_url(); ?>index.php/Home/index/" class="back"><-Back to Home Menu</a></p>
                 <div class="table-responsive mx-auto" style="width: 100%; padding: 40px;">
@@ -70,8 +68,5 @@
                           <button type="button" class="btn btn-light"><a href="<?php echo site_url('Exams/AddExam'); ?>">Add An Exam</a></button><br>
                     </div>
                 </div>    
-        </form>
-       
-
     </body>
 </html>

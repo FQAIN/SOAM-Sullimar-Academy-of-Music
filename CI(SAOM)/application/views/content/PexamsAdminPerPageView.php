@@ -4,7 +4,6 @@
         <title>My Address Book</title>
     </head>
     <body>
-        <form>  
             <section class="" id="">
                 <h2 class="text-center">All Processed External Exam Details</h2>
                 <p class="text-center"><a href="<?php echo base_url(); ?>index.php/Home/index/" class="back"><-Back to Home Menu</a></p>
@@ -49,6 +48,5 @@
                         <button type="button" class="btn btn-light"><a href="<?php echo site_url('Pexams/AddPexam'); ?>">Process An External Exam</a></button><br>
                     </div>
                 </div>        
-        </form>
     </body>
 </html>

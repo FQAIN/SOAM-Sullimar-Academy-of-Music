@@ -3,8 +3,7 @@
     <head>
         <title>My Address Book</title>
     </head>
-    <body>
-        <form>  
+    <body> 
             <section class="" id="">
                 <h2 class="text-center">All Event Details</h2>
                 <p class="text-center"><a href="<?php echo base_url(); ?>index.php/Home/index/" class="back"><-Back to Home Menu</a></p>
@@ -55,6 +54,5 @@
                         <button type="button" class="btn btn-light"><a href="<?php echo site_url('Events/AddEvent'); ?>">Add An Event</a></button><br>
                     </div>
                 </div>        
-        </form>
     </body>
 </html>

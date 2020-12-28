@@ -238,10 +238,6 @@
                         max-width: 46.875rem;
                     }
                 }
-
-
-
-
             </style>
         </head>
         <body>

@@ -10,7 +10,7 @@
                 <label class="col-md-3 control-label">Course ID</label>
                 <div class="col-md-9">
                     <form action="<?php echo site_url('Timetables/keyword'); ?>" method="POST">
-                        <input type="text" name="courseID">
+                        <input type="text" name="courseID" required="">
                         <input type="submit" name="submit" value="Search">
                     </form>
                 </div>
