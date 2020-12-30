@@ -1,4 +1,8 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
+<?php
+$this->load->helper('url');
+$base_url = base_url();
+?>
 <html>
     <head>
         <title>My Address Book</title>
@@ -29,7 +33,8 @@
                                     <td><?php echo $event['dateOfEvent']; ?></td>
                                     <td><?php echo $event['price']; ?></td>
                                     <td><?php echo $event['location']; ?></td>
-                                    <td><?php echo $event['image']; ?></td>
+                                    <td><img src="<?php echo $img_url . $event['image'] ?>" alt="" width="70px"/></td>
+                                    <!--<td><?php echo $event['image']; ?></td>-->
                                     <td>
                                         <form action="<?php echo site_url('Events/updateEvent'); ?>" method="POST">
                                             <input type="hidden" name="eventID" value="<?php echo $event['eventID'] ?>">

@@ -1,4 +1,8 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
+<?php
+$this->load->helper('url');
+$base_url = base_url();
+?>
 <html>
     <head>
         <title>My Address Book</title>
@@ -38,8 +42,8 @@
                                 <td><?php echo $student['fName']; ?></td>
                                 <td><?php echo $student['lName']; ?></td>
                                 <td><?php echo $student['address']; ?></td>
-                                <td><?php echo $student['image']; ?></td>
-                                <td><?php echo $student['result']; ?></td>
+                                <td><img src="<?php echo $img_url . $student['image'] ?>" alt="" width="70px"/></td>
+                                    <td><?php echo $student['result']; ?></td>
                                 <td>
                                     <form action="<?php echo site_url('Students/updateStudent'); ?>" method='POST'>
                                         <input type='hidden' name='studentID' value="<?php echo $student['studentID'] ?>"/>

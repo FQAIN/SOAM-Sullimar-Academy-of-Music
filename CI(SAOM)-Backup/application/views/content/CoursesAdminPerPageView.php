@@ -1,4 +1,8 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
+<?php
+$this->load->helper('url');
+$base_url = base_url();
+?>
 <html>
     <head>
         <title>My Address Book</title>
@@ -31,7 +35,7 @@
                                     <td><?php echo $course['levels']; ?></td>
                                     <td><?php echo $course['numberOfYears']; ?></td>
                                     <td><?php echo $course['groupCategory']; ?></td>
-                                    <td><?php echo $course['image']; ?></td>
+                                    <td><img src="<?php echo $img_url . $course['image'] ?>" alt="" width="70px"/></td>
                                     <td><?php echo $course['staffID']; ?></td>
                                     <td><?php echo $course['price']; ?></td>
                                     <td>

@@ -1,4 +1,8 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
+<?php
+$this->load->helper('url');
+$base_url = base_url();
+?>
 <section class="featured-places" id="blog" style="background-color: white">
     <div class="container"> <!--Card Container Start-->
         <div class="row">
@@ -15,7 +19,7 @@
                 <div class="col-md-4 col-sm-6 col-xs-12"> <!--Card Begin-->
                     <div class="featured-item">
                         <div class="thumb">
-                            <img src="<?php echo $img_url . "leaving-cert-music3a-1.jpg" ?>" alt="">
+                            <img src="<?php echo $img_url . $course['image'] ?>" alt="" width="100%" height="250px"/>
                         </div>
                         <div class="down-content">
                             <h4><?php echo $course['courseName']; ?></h4>
@@ -24,7 +28,7 @@
                             Price: <?php echo $course['price']; ?><br>
                             Level: <?php echo $course['levels']; ?><br>
                             Number Of Years: <?php echo $course['numberOfYears']; ?><br>
-                            
+
                             </p>
                             <div class="row">
                                 <div class="col-md-6 first-button">
