@@ -12,6 +12,7 @@ $img_url = base_url() . "assets/img/";
                         <img src="<?php echo $img_url . "Screenshot 2020-11-17 184447.png"; ?>" alt="Venue Logo" width="100%" height="100px">
                     </div>
                     <p>The Sullimar Academy of Music is situated on the Dublin Road in Limerick. SAOM was established in 1980 as a small school of music with 2 teachers and over 30 pupils.</p>
+                    <p>View Our Live TV by clicking here: <a href="<?php echo site_url('Home/liveTV'); ?>"><i class="fa fa-youtube-play"></i></a></p>
                     <ul class="social-icons">
                         <li>
                             <a href="#"><i class="fa fa-facebook"></i></a>

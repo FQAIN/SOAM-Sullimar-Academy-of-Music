@@ -54,9 +54,10 @@ $base_url = base_url();
                             </div>
                         </div>
                     </div>
+                    <br><br><br><br>
                 </div> <!--Card End-->
             <?php endforeach; ?>
 
         </div> <!--Row End-->
     </div> <!--Card Container End-->
-</section>
+</section>  

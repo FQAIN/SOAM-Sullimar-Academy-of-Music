@@ -56,6 +56,7 @@ $base_url = base_url();
                             </div>
                         </div>
                     </div>
+                     <br><br><br><br>
                 </div> <!--Card End-->
             <?php endforeach; ?>
 

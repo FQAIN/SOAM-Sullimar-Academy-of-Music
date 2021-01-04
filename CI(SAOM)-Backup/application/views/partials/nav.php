@@ -44,6 +44,7 @@
                                 <li class='active'><a href="<?php echo site_url('Home/loginStudent'); ?>">Login/Register</a></li>
 
 <!--                                    <li><a href="<?php echo site_url('Home/shoppingCart'); ?>"><i class="fa fa-shopping-cart"></i></a></li>-->
+                                    <!--<li><a href="<?php echo site_url('Home/liveTV'); ?>"><i class="fa fa-youtube-play"></i></a></li>-->
 <!--                                     <li><a href="<?php echo site_url('Home/profile'); ?>"><i class="fa fa-user"></i></a></li>-->
                             </ul>
                         </nav>

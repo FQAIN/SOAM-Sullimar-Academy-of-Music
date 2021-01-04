@@ -35,6 +35,7 @@ Class SAOMTimetables extends CI_Model {
 
     function search($key) {
         $this->db->like('courseID', $key);
+        $this->db->order_by('day', 'ASC');
         $query = $this->db->get('coursetimetable');
         return $query->result();
     }
