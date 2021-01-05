@@ -94,4 +94,15 @@ Class SAOMExams extends CI_Model {
         $this->db->query($stored_proc_call, $data);
     }
 
+    function getSpecificExam($examID) {
+        $stored_proc_call = "CALL getSpecificExam(?)";
+        $query = $this->db->query($stored_proc_call, $examID);
+        $rows = $query->row();
+
+        //Prepares next result set from a previous call to mysqli_multi_query() 
+        mysqli_next_result($this->db->conn_id);
+        //Returns the stored procedure query as a row
+        return $rows;
+    }
+
 }

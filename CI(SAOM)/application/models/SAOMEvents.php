@@ -11,9 +11,8 @@ Class SAOMEvents extends CI_Model {
     public function record_count() {
         return $this->db->count_all("saomevents");
     }
-    
-    public function getEvents()
-    {
+
+    public function getEvents() {
         $stored_proc_call = "CALL viewEventDetails()";
         $query = $this->db->query($stored_proc_call);
         return $query;
@@ -24,17 +23,17 @@ Class SAOMEvents extends CI_Model {
 
         //Inserts address details from form into associative array with keys same name as database fields
         $event_data['name'] = $this->input->post('name');
-        
+
         $event_data['description'] = $this->input->post('description');
-        
+
         $event_data['dateOfEvent'] = $this->input->post('dateOfEvent');
-        
+
         $event_data['price'] = $this->input->post('price');
-        
+
         $event_data['location'] = $this->input->post('location');
-        
+
         $event_data['Image'] = $this->input->post('Image');
-        
+
         //Calls the stored procedure to add a address details to the address table
         $stored_proc_call = "CALL AddEvent(?, ?, ?, ?, ?, ?)";
         $this->db->query($stored_proc_call, $event_data);
@@ -52,8 +51,8 @@ Class SAOMEvents extends CI_Model {
         mysqli_next_result($this->db->conn_id);
         return $query;
     }
-    
-      public function getEventForUpdate($eventID) {
+
+    public function getEventForUpdate($eventID) {
         $stored_proc_call = "CALL selectEventForUpdate(?)"; //setup procedure
 
         $query = $this->db->query($stored_proc_call, $eventID); //run procedure - store in array
@@ -61,8 +60,7 @@ Class SAOMEvents extends CI_Model {
         return $query; //return result to Books/updateBook
     }
 
-    public function updateSelectedEvent($eventID)
-    {
+    public function updateSelectedEvent($eventID) {
         $data = array(
             'eventID' => $eventID,
             'name' => $this->input->post('name'),
@@ -72,9 +70,21 @@ Class SAOMEvents extends CI_Model {
             'location' => $this->input->post('location'),
             'image' => $this->input->post('image')
         );
-        
+
         $stored_proc_call = "CALL updateSelectedEvent(?,?,?,?,?,?,?)";
-        
+
         $this->db->query($stored_proc_call, $data);
     }
+
+    function getSpecificEvent($eventID) {
+        $stored_proc_call = "CALL getSpecificEvent(?)";
+        $query = $this->db->query($stored_proc_call, $eventID);
+        $rows = $query->row();
+
+        //Prepares next result set from a previous call to mysqli_multi_query() 
+        mysqli_next_result($this->db->conn_id);
+        //Returns the stored procedure query as a row
+        return $rows;
+    }
+
 }

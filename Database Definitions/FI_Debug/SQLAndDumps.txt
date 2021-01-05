@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2020 at 04:27 PM
+-- Generation Time: Jan 05, 2021 at 02:29 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -18,8 +18,6 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `book course`
@@ -107,9 +105,10 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`booksID`, `bookName`, `description`, `author`, `yearPublished`, `price`, `category`, `ISBN`, `inStock`, `qty`, `image`) VALUES
-(1, 'The Meaning of Mariah Carey', ' is a memoir', 'Mariah Carey', 2020, 30, 'Music', '9781250164681', 12, 30, 'mc.jpg'),
-(2, 'The Rest Is Noise', 'nonfiction book', 'Alex Ross', 2007, 12, 'Music criticism', ' 9781433207938', 12, 23, 'restnoice.jpg'),
-(11, 'How Music Works', 'non-fiction', 'David Byrne', 2012, 67, 'Biography', '1936365537', 54, 86, 'musicworks.jpg');
+(1, 'The Meaning of Mariah Carey', ' is a memoir', 'Mariah Carey', 2020, 30, 'Music', '9781250164681', 12, 30, '9780367592622.jpg'),
+(2, 'The Rest Is Noise', 'nonfiction book', 'Alex Ross', 2007, 12, 'Music criticism', ' 9781433207938', 12, 23, '9781409434146.jpg'),
+(11, 'How Music Works', 'non-fiction', 'David Byrne', 2012, 67, 'Biography', '1936365537', 54, 86, '9781628920437.jpg'),
+(12, 'Music Therapy', 'A book for Therapy as a Cure for Music', 'Micheal J.Silverman', 2004, 29, 'Therapy', 'GG6767DSHJ', 78, 23, '9780198735366.jpg');
 
 -- --------------------------------------------------------
 
@@ -135,9 +134,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`coursesID`, `courseName`, `description`, `levels`, `numberOfYears`, `groupCategory`, `image`, `staffID`, `price`, `coursetimetableID`) VALUES
-(1, 'Vioiln', 'The Experts Class', 'Level 7 ', 3, 'Instruments', 'violin.jpg', 1, '3000.00', 1),
-(3, 'Piano', 'For Advanced Students', 'Level 5', 2, 'Instruments', 'piano.jpg', 3, '3500.00', 1),
-(5, 'Guitar', 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', 'guitar.jpg', 5, '3700.00', 1);
+(1, 'Vioiln', 'The Experts Class', 'Level 7 ', 3, 'Instruments', 'va.jpg', 1, '3000.00', 1),
+(3, 'Piano', 'For Advanced Students', 'Level 5', 2, 'Instruments', 'pb.jpg', 3, '3500.00', 1),
+(5, 'Guitar', 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', 'ga.jpg', 5, '3700.00', 1);
 
 -- --------------------------------------------------------
 
@@ -160,7 +159,10 @@ CREATE TABLE `coursetimetable` (
 --
 
 INSERT INTO `coursetimetable` (`courseTimetableID`, `day`, `dates`, `timeslots`, `moduleName`, `courseID`, `staffID`) VALUES
-(1, 'Monday', '2020-12-12', '11:10-12:10', 'Violin Structures', 1, 3);
+(1, 'Monday', '2020-12-12', '11:10-12:10', 'Violin Structures', 1, 3),
+(4, 'Tuesday', '2021-01-08', '13:00-15:00', 'Guitars Advanced', 1, 3),
+(5, 'Monday', '2020-12-08', '15:00-17:00', 'Piano Advanced', 3, 4),
+(6, 'Monday', '2021-01-10', '13:00-15:00', 'Guitars Advanced', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -205,7 +207,7 @@ CREATE TABLE `exams` (
 --
 
 INSERT INTO `exams` (`examID`, `examName`, `dateOfExam`, `price`, `image`, `examCategory`, `examTime`, `coursesID`, `examCenterID`, `staffID`, `examDescription`) VALUES
-(23, 'Violin Advanced', '2020-12-29', '12.09', 'va.jog', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam'),
+(23, 'Violin Advanced', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam'),
 (24, 'Piano Beginners ', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam'),
 (25, 'Guitar Amateur', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam');
 
@@ -272,7 +274,7 @@ CREATE TABLE `instrumentsmaintenance` (
 --
 
 INSERT INTO `instrumentsmaintenance` (`maintenanceID`, `instrumentID`, `note`) VALUES
-(1, 1, 'Strings are broken');
+(1, 1, 'Strings are broken alot');
 
 -- --------------------------------------------------------
 
@@ -352,7 +354,7 @@ CREATE TABLE `processexams` (
 --
 
 INSERT INTO `processexams` (`pexamID`, `examID`, `staffID`) VALUES
-(3, 23, 3);
+(3, 24, 3);
 
 -- --------------------------------------------------------
 
@@ -387,31 +389,46 @@ CREATE TABLE `saomevents` (
 --
 
 INSERT INTO `saomevents` (`eventID`, `name`, `description`, `dateOfEvent`, `price`, `location`, `image`) VALUES
-(20, 'The Festival', 'A traditional hip hop event', '2020-12-29', '12.09', 'Dublin', 'tf.jpg'),
-(21, 'Raidtown Myths', 'Folklores and Light Bass Music', '2021-01-02', '34.21', 'Cork', 'rm.jog'),
-(22, 'Bomb Squad', 'Latest Rap and Pop Music', '2021-02-07', '89.21', 'Limerick', 'bs.jpg');
+(20, 'The Festival', 'A traditional hip hop event', '2020-12-29', '12.09', 'Dublin', 'Stendhal-2021.jpg'),
+(21, 'Raidtown Myths', 'Folklores and Light Bass Music', '2021-01-02', '34.21', 'Cork', 'audience-868074_1920.jpg'),
+(22, 'Bomb Squad', 'Latest Rap and Pop Music', '2021-02-07', '89.21', 'Limerick', 'download.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shopping cart`
+-- Table structure for table `shopping_cart`
 --
 
-CREATE TABLE `shopping cart` (
-  `shoppingCartID` int(11) NOT NULL,
-  `session_id` int(11) DEFAULT NULL,
-  `fullPrice` decimal(10,0) DEFAULT NULL,
-  `dateAdded` date DEFAULT NULL,
-  `imagePath` varchar(45) DEFAULT NULL,
-  `bookEventID` int(11) NOT NULL,
-  `bookOrderID` int(11) NOT NULL,
-  `bookCourseID` int(11) NOT NULL,
-  `bookLessonID` int(11) NOT NULL,
-  `bookExamsID` int(11) NOT NULL,
-  `staffID` int(11) NOT NULL,
-  `memberID` int(11) NOT NULL,
-  `studentID` int(11) NOT NULL
+CREATE TABLE `shopping_cart` (
+  `id` int(11) NOT NULL,
+  `session_id` varchar(250) NOT NULL,
+  `examID` int(11) DEFAULT NULL,
+  `eventID` int(11) DEFAULT NULL,
+  `booksID` int(11) DEFAULT NULL,
+  `product_name` varchar(250) NOT NULL,
+  `product_desc` varchar(254) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(5,2) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `image_path` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shopping_cart`
+--
+
+INSERT INTO `shopping_cart` (`id`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`) VALUES
+(1, '847gnkn3srk3tjavl817ej0nr2vt3jd7', NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 1, '30.00', '2021-01-05 13:05:06', '9780367592622.jpg'),
+(2, '847gnkn3srk3tjavl817ej0nr2vt3jd7', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 1, '12.00', '2021-01-05 13:08:10', '9781409434146.jpg'),
+(3, '7djv5qfort6i90875geisfvn936fnffo', NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 10, '30.00', '2021-01-05 13:42:24', '9780367592622.jpg'),
+(4, 'vaflvksqdc7mells0b99tr87gpi90dgc', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-05 13:55:31', 'va.jpg'),
+(5, 'vaflvksqdc7mells0b99tr87gpi90dgc', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-05 13:55:54', 'va.jpg'),
+(6, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-05 13:58:54', 'va.jpg'),
+(7, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-05 13:59:01', '9781409434146.jpg'),
+(8, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-05 14:00:18', '9781409434146.jpg'),
+(9, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-05 14:00:23', '9781409434146.jpg'),
+(10, '1uh51vdo7d72l1e2l09cc6e23fc2ofqm', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 3, '12.09', '2021-01-05 14:23:01', 'va.jpg'),
+(11, 'c77hufo3ntuuse6kusr1b0df2ig66qe7', NULL, 20, NULL, 'The Festival', 'A traditional hip hop event', 80, '12.09', '2021-01-05 14:24:15', 'Stendhal-2021.jpg');
 
 -- --------------------------------------------------------
 
@@ -619,18 +636,10 @@ ALTER TABLE `saomevents`
   ADD PRIMARY KEY (`eventID`);
 
 --
--- Indexes for table `shopping cart`
+-- Indexes for table `shopping_cart`
 --
-ALTER TABLE `shopping cart`
-  ADD PRIMARY KEY (`shoppingCartID`),
-  ADD KEY `fk_Shopping cart_Book Events1_idx` (`bookEventID`),
-  ADD KEY `fk_Shopping cart_Book Orders1_idx` (`bookOrderID`),
-  ADD KEY `fk_Shopping cart_Book Course1_idx` (`bookCourseID`),
-  ADD KEY `fk_Shopping cart_Book Lessons1_idx` (`bookLessonID`),
-  ADD KEY `fk_Shopping cart_Book Exams1_idx` (`bookExamsID`),
-  ADD KEY `fk_Shopping cart_Staffs1_idx` (`staffID`),
-  ADD KEY `fk_Shopping cart_Member1_idx` (`memberID`),
-  ADD KEY `fk_Shopping cart_Student1_idx` (`studentID`);
+ALTER TABLE `shopping_cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `staffs`
@@ -683,7 +692,7 @@ ALTER TABLE `book orders`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `booksID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `booksID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `courses`
@@ -695,7 +704,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `coursetimetable`
 --
 ALTER TABLE `coursetimetable`
-  MODIFY `courseTimetableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `courseTimetableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `exam center`
@@ -719,7 +728,7 @@ ALTER TABLE `instruments`
 -- AUTO_INCREMENT for table `instrumentsmaintenance`
 --
 ALTER TABLE `instrumentsmaintenance`
-  MODIFY `maintenanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `maintenanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `lessons`
@@ -755,13 +764,13 @@ ALTER TABLE `purchase`
 -- AUTO_INCREMENT for table `saomevents`
 --
 ALTER TABLE `saomevents`
-  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `shopping cart`
+-- AUTO_INCREMENT for table `shopping_cart`
 --
-ALTER TABLE `shopping cart`
-  MODIFY `shoppingCartID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `shopping_cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -819,6 +828,11 @@ ALTER TABLE `processexams`
 ALTER TABLE `student`
   ADD CONSTRAINT `courseID` FOREIGN KEY (`courseID`) REFERENCES `courses` (`coursesID`);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

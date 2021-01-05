@@ -17,6 +17,54 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPexam`(IN `p_examID` INT, IN `p_staffID` INT)
+    NO SQL
+BEGIN
+	INSERT INTO processexams
+    (
+    	examID,
+        staffID
+        
+    )
+    VALUES
+    (
+    	p_examID,
+        p_staffID
+    );
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCart`(
+	IN p_session_id VARCHAR(250),
+	IN p_examID	INT,
+	IN p_eventID	INT,
+	IN p_booksID	INT,
+	IN p_product_name	VARCHAR(250),
+	IN p_product_desc	VARCHAR(254),
+	IN p_quantity	INT,
+	IN p_price	decimal(5,2),
+	IN p_date_added	datetime,
+	IN p_image_path	VARCHAR(225)
+)
+BEGIN
+INSERT INTO shopping_cart(session_id,examID,eventID,booksID,product_name,product_desc,quantity,price,date_added,image_path)
+VALUES(p_session_id,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,p_price,p_date_added,p_image_path);
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage`(IN `p_limit` INT, IN `p_start` INT)
+    NO SQL
+BEGIN
+SELECT eventID,name, description,dateOfEvent,price,location,image
+FROM saomevents
+ LIMIT p_limit, p_start;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPrivatetuition`(IN `p_room` VARCHAR(45), IN `p_studentID` INT, IN `p_staffID` INT, IN `p_note` VARCHAR(250), IN `p_courseID` INT)
     NO SQL
 BEGIN
@@ -41,20 +89,12 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPexam`(IN `p_examID` INT, IN `p_staffID` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage`(IN `p_limit` INT, IN `p_start` INT)
     NO SQL
 BEGIN
-	INSERT INTO processexams
-    (
-    	examID,
-        staffID
-        
-    )
-    VALUES
-    (
-    	p_examID,
-        p_staffID
-    );
+SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
+FROM books
+ LIMIT  p_limit,p_start;
 END$$
 DELIMITER ;
 
@@ -65,26 +105,6 @@ BEGIN
 SELECT coursesID,courseName,description,levels,numberOfYears,groupCategory,image,staffID,price
 FROM courses
  LIMIT p_limit, p_start;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage`(IN `p_limit` INT, IN `p_start` INT)
-    NO SQL
-BEGIN
-SELECT eventID,name, description,dateOfEvent,price,location,image
-FROM saomevents
- LIMIT p_limit, p_start;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage`(IN `p_limit` INT, IN `p_start` INT)
-    NO SQL
-BEGIN
-SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
-FROM books
- LIMIT  p_limit,p_start;
 END$$
 DELIMITER ;
 
@@ -368,6 +388,29 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTimetable`(IN `p_day` VARCHAR(45), IN `p_dates` DATE, IN `p_timeslots` VARCHAR(250), IN `p_moduleName` VARCHAR(45), IN `p_courseID` INT, IN `p_staffID` INT)
+    NO SQL
+BEGIN
+	INSERT INTO coursetimetable(
+    	day,
+        dates,
+        timeslots,
+        moduleName,
+        courseID,
+        staffID
+        )
+    VALUES(
+    	p_day,
+        p_dates,
+        p_timeslots,
+        p_moduleName,
+        p_courseID,
+        p_staffID
+    );
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook`(IN `p_booksID` INT)
     NO SQL
 BEGIN
@@ -445,6 +488,61 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteStudent`(IN `p_studentId` INT
 BEGIN
 	DELETE FROM student
     WHERE studentID  = p_studentId;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificBook`(IN `p_booksID` INT)
+BEGIN
+SELECT 	
+booksID,
+bookName,
+description,
+author,
+yearPublished,
+price,
+category,
+ISBN,
+inStock,
+qty,
+image FROM books
+WHERE booksID = p_booksID;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificEvent`(IN `p_eventID` INT)
+BEGIN
+SELECT 	
+eventID,
+name,
+description,
+dateOfEvent,
+price,
+location,
+image
+FROM saomevents
+WHERE eventID = p_eventID;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificExam`(IN `p_examID` INT)
+BEGIN
+SELECT 	
+examID,
+examName,
+dateOfExam,
+price,
+image,
+examCategory,
+examTime,
+coursesID,
+examCenterID,
+staffID,
+examDescription
+FROM exams
+WHERE examID = p_examID;
 END$$
 DELIMITER ;
 
@@ -838,27 +936,5 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `viewStudentDetails`()
     NO SQL
 BEGIN
 	SELECT * FROM student;
-END$$
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addTimetable`(IN `p_day` VARCHAR(45), IN `p_dates` DATE, IN `p_timeslots` VARCHAR(250), IN `p_moduleName` VARCHAR(45), IN `p_courseID` INT, IN `p_staffID` INT)
-    NO SQL
-BEGIN
-	INSERT INTO coursetimetable(
-    	day,
-        dates,
-        timeslots,
-        moduleName,
-        courseID,
-        staffID
-        )
-    VALUES(
-    	p_day,
-        p_dates,
-        p_timeslots,
-        p_moduleName,
-        p_courseID,
-        p_staffID
-    );
 END$$
 DELIMITER ;

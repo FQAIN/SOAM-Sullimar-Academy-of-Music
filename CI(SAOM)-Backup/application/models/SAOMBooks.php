@@ -89,4 +89,15 @@ Class SAOMBooks extends CI_Model {
         
         $this->db->query($stored_proc_call, $data);
     }
+    
+    function getSpecificBook($booksID) {
+        $stored_proc_call = "CALL getSpecificBook(?)";
+        $query = $this->db->query($stored_proc_call, $booksID);
+        $rows = $query->row();
+
+        //Prepares next result set from a previous call to mysqli_multi_query() 
+        mysqli_next_result($this->db->conn_id);
+        //Returns the stored procedure query as a row
+        return $rows;
+    }
 }

@@ -19,7 +19,7 @@ $base_url = base_url();
                 <div class="col-md-4 col-sm-6 col-xs-12"> <!--Card Begin-->
                     <div class="featured-item">
                         <div class="thumb">
-                             <img src="<?php echo $img_url . $exam['image'] ?>" alt="" width="100%" height="250px"/>
+                            <img src="<?php echo $img_url . $exam['image'] ?>" alt="" width="100%" height="250px"/>
 
                             <div class="date-content">
                                 <h6><?php echo date("d", strtotime($exam['dateOfExam'])); ?></h6>
@@ -33,23 +33,25 @@ $base_url = base_url();
                             Price: <?php echo $exam['price']; ?><br>
                             Time: <?php echo $exam['examTime']; ?></p>
                             <div class="row">
-                                <div class="col-md-6 first-button">
+                                <div class="col-md-10 first-button">
                                     <div class="text-button">
-                                        <a href="#">Add to favorites</a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-button">
-                                        <a href="#">Add to Cart</a>
+                                        <form action="<?php echo site_url('ShoppingCart/AddExamToCart/' . $exam['examID']); ?>" method="POST">
+                                            <input type="number" class="form-control" id="exampleInputEmail1" name="quantity" aria-describedby="emailHelp" placeholder="Enter Qty">
+                                            </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="submit" value="Add to Cart">
+                                                <br><br><br>
+                                                </form>
+
+                                            </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                     <br><br><br><br>
-                </div> <!--Card End-->
-            <?php endforeach; ?>
+                            <br><br><br><br>
+                        </div> <!--Card End-->
+                    <?php endforeach; ?>
 
-        </div> <!--Row End-->
-    </div> <!--Card Container End-->
-</section>
+                </div> <!--Row End-->
+            </div> <!--Card Container End-->
+            </section>
