@@ -204,6 +204,13 @@ class Home extends CI_Controller {
 
     public function shoppingCart() {
         $view_data = array(
+            'content' => $this->load->view('content/view_cart', null, true)
+        );
+        $this->load->view('layout', $view_data);
+    }
+    
+    public function confirmCart() {
+        $view_data = array(
             'content' => $this->load->view('content/shoppingCart', null, true)
         );
         $this->load->view('layout', $view_data);

@@ -39,7 +39,9 @@
                                     </ul>
                                 </li>
 
-
+                                <li>
+                                    <a href="<?php echo site_url('Home/shoppingCart'); ?>">Shopping Cart</a>
+                                </li>
 
                                 <li class='active'><a href="<?php echo site_url('Home/loginStudent'); ?>">Login/Register</a></li>
 

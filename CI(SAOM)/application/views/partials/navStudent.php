@@ -44,6 +44,11 @@
                                     <li><a href="<?php echo site_url('Home/viewStudentTimetablesS'); ?>">View Student Timetables</a>
                                 </ul>
                             </li>
+                            
+                            <li>
+                                <a href="<?php echo site_url('Home/shoppingCart'); ?>">Shopping Cart</a>
+                            </li>
+                            
                             <li><a href="<?php echo site_url('Home/logoutStudent'); ?>">Logout</a></li>
                         </ul>
                     </nav>

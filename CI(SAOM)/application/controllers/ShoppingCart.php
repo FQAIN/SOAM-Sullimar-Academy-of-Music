@@ -27,10 +27,15 @@ class ShoppingCart extends CI_Controller {
         if (!$this->SAOMShoppingCart->AddToCart($data)) {
             echo 'Error';
         } else {
-            $data['display'] = '';
+            $data = array();
+            
+            $sessionID = $this->session->session_id;
+            $data['items'] = $this->SAOMShoppingCart->getCartItems($sessionID);
+            
             $view_data = array(
                 'content' => $this->load->view('content/view_cart', $data, TRUE)
             );
+            
             //Adds the partial view from the layout view
             $this->load->view('layout', $view_data);
         }

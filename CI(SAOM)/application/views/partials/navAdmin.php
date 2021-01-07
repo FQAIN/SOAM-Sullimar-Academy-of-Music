@@ -64,7 +64,8 @@
                                     <li><a href="<?php echo site_url('Home/generateReports'); ?>">Generate Reports</a>
                                     <li><a href="<?php echo site_url('Maintenances/index'); ?>">Instrument Maintenance</a>
                                 </ul>
-                            </li>
+                            </li> 
+                            
                             <li><a href="<?php echo site_url('Home/logout'); ?>">Logout</a></li>
                         </ul>
                     </nav>
