@@ -13,7 +13,7 @@ class ShoppingCartStudent extends CI_Controller {
     function addBookToCart($booksID) {
         $book = $this->SAOMBooks->getSpecificBook($booksID);
 
-        $data['session_id'] = $this->session->session_id;
+        $data['email'] = $this->session->userdata('email');
         $data['examID'] = null;
         $data['eventID'] = null;
         $data['booksID'] = $booksID;
@@ -29,8 +29,8 @@ class ShoppingCartStudent extends CI_Controller {
         } else {
             $data = array();
 
-            $sessionID = $this->session->session_id;
-            $data['items'] = $this->SAOMShoppingCart->getCartItems($sessionID);
+            $email = $this->session->userdata('email');
+            $data['items'] = $this->SAOMShoppingCart->getCartItems($email);
 
             $view_data = array(
                 'content' => $this->load->view('content/view_cart', $data, TRUE)
@@ -95,5 +95,20 @@ class ShoppingCartStudent extends CI_Controller {
             $this->load->view('studentLayout', $view_data);
         }
     }
+    
+    public function deleteItem() {
+        $delete['booksID'] = $this->input->post('booksID');
+        $delete['userID'] = $this->input->post('userID');
 
+        $this->SAOMShoppingCart->deleteCartItem($delete);
+        
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($delete['userID']);
+        
+        $view_data = array(
+                'content' => $this->load->view('content/view_cart', $data, TRUE)
+            );
+        
+        //Adds the partial view from the studentLayout view
+        $this->load->view('studentLayout', $view_data);
+    }
 }

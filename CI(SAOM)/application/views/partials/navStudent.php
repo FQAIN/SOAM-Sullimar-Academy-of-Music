@@ -44,6 +44,9 @@
                                     <li><a href="<?php echo site_url('Home/viewStudentTimetablesS'); ?>">View Student Timetables</a>
                                 </ul>
                             </li>
+                            
+                            <li><a href="<?php echo site_url('Home/shoppingCartS'); ?>"><i class="fa fa-shopping-cart"></i></a></li>
+                            
                             <li><a href="<?php echo site_url('Home/logoutStudent'); ?>">Logout</a></li>
                         </ul>
                     </nav>

@@ -9,8 +9,6 @@ class Home extends CI_Controller {
 
     public function index() {
         //Load Main Page
-        //$view_data - dynamic data to be passed into view for displaying
-        $this->session->sess_destroy();
         if ($this->session->userdata('loggedIn')) {
             $view_data = array(
                 'content' => $this->load->view('content/home', null, true)
@@ -204,14 +202,27 @@ class Home extends CI_Controller {
 
     public function shoppingCart() {
 
+        //Non registered users use their unique session ID to view their added items in the cart DB
         $data = array();
-        $sessionID = $this->session->session_id;
-        $data['items'] = $this->SAOMShoppingCart->getCartItems($sessionID);
+        $session_id = $_SESSION;
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($session_id);
 
         $view_data = array(
-            'content' => $this->load->view('content/view_cart', null, true)
+            'content' => $this->load->view('content/view_cart', $data, true)
         );
         $this->load->view('layout', $view_data);
+    }
+    
+    public function shoppingCartS() {
+
+        $data = array();
+        $email = $this->session->userdata('email');
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($email);
+
+        $view_data = array(
+            'content' => $this->load->view('content/view_cart', $data, true)
+        );
+        $this->load->view('studentLayout', $view_data);
     }
 
     public function register() {

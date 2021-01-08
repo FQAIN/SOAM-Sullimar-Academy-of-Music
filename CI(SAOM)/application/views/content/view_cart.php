@@ -35,8 +35,15 @@ $base_url = base_url();
                                 <td><?php echo $item['price']; ?></td>
                                 <td><img src="<?php echo $img_url . $item['image_path'] ?>" alt="" width="140px"/></td>
                                 <td>
-                                    <form action="<?php echo site_url('Books/deleteBook'); ?>" method="POST">
-                                        <input type="hidden" name="booksID" value="<?php echo $item['id'] ?>">
+                                    <?php if(!strpos($this->session->userdata('email'), '@')) : ?>
+                                        <form action="<?php echo site_url('ShoppingCart/deleteItem'); ?>" method="POST">
+                                            
+                                    <?php elseif(strpos($this->session->userdata('email'), '@')) : ?>
+                                        <form action="<?php echo site_url('ShoppingCartStudent/deleteItem'); ?>" method="POST">
+                                            
+                                    <?php endif; ?>
+                                        <input type="hidden" name="booksID" value="<?php echo $item['booksID'] ?>">
+                                        <input type="hidden" name="userID" value="<?php echo $item['email']?>">
                                         <input type="submit" class="btn btn-light" value="Delete">
                                     </form>
                                 </td>

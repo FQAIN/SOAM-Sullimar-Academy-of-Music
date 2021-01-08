@@ -19,8 +19,14 @@ class LoginStudent extends CI_Controller {
 
         if($this->input->post('submit')) {
 
-            if($this->Student->validStudent()) {
-                $this->session->set_userdata('loggedIn', true);
+            $validated = $this->Student->validStudent();
+            
+            if($validated['loggedIn']) {
+                $logIn = array(
+                    'email' => $validated['email'],
+                    'loggedIn' => $validated['loggedIn']
+                );
+                $this->session->set_userdata($logIn);
                 redirect('Home/dashboardStudent');
             }
         }

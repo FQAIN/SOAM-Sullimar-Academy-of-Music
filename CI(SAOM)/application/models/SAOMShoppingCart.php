@@ -13,17 +13,20 @@ class SAOMShoppingCart extends CI_Model {
         }
     }
 
-    function getCartItems($sessionID) {
-        //Set the Start and Limit – only retrieves rows between these limits
-//        $select_data['limit'] = $limit;
-//        $select_data['start'] = $start;
-        $select_data['sessionID'] = $sessionID;
+    function getCartItems($session_id) {
+        
+//        $select_data['email'] = $session_id;
 
         $stored_proc_call = "CALL SelectCartPerPage(?)";
-        $query = $this->db->query($stored_proc_call, $select_data);
+        $query = $this->db->query($stored_proc_call, $session_id);
 
         mysqli_next_result($this->db->conn_id);
         return $query;
     }
-
+    
+    function deleteCartItem($delete)
+    {
+        $stored_proc_call = "CALL deleteItem(?,?)";
+        $this->db->query($stored_proc_call, $delete); 
+    }
 }

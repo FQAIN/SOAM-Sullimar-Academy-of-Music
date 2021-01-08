@@ -10,10 +10,12 @@ class ShoppingCart extends CI_Controller {
         $this->load->model('SAOMShoppingCart');
     }
 
+    //Non LoggedIn Users
     function addBookToCart($booksID) {
         $book = $this->SAOMBooks->getSpecificBook($booksID);
 
-        $data['session_id'] = $this->session->session_id;
+        //User their session ID as email field - keeps the entry unique
+        $data['email'] = $_SESSION;
         $data['examID'] = null;
         $data['eventID'] = null;
         $data['booksID'] = $booksID;
@@ -29,14 +31,15 @@ class ShoppingCart extends CI_Controller {
         } else {
             $data = array();
 
-            $sessionID = $this->session->session_id;
-            $data['items'] = $this->SAOMShoppingCart->getCartItems($sessionID);
+            //Use non registered users unique session ID to view their items added to cart
+            $session_id = $_SESSION;
+            $data['items'] = $this->SAOMShoppingCart->getCartItems($session_id);
 
             $view_data = array(
                 'content' => $this->load->view('content/view_cart', $data, TRUE)
             );
 
-            //Adds the partial view from the layout view
+            //Adds the partial view from the studentLayout view
             $this->load->view('layout', $view_data);
         }
     }
@@ -94,6 +97,22 @@ class ShoppingCart extends CI_Controller {
             //Adds the partial view from the layout view
             $this->load->view('layout', $view_data);
         }
+    }
+    
+    public function deleteItem() {
+        $delete['booksID'] = $this->input->post('booksID');
+        $delete['userID'] = $this->input->post('userID');
+
+        $this->SAOMShoppingCart->deleteCartItem($delete);
+        
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($delete['userID']);
+        
+        $view_data = array(
+                'content' => $this->load->view('content/view_cart', $data, TRUE)
+            );
+        
+        //Adds the partial view from the studentLayout view
+        $this->load->view('studentLayout', $view_data);
     }
 
 }
