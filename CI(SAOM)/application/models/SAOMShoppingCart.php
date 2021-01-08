@@ -25,4 +25,5 @@ class SAOMShoppingCart extends CI_Model {
         mysqli_next_result($this->db->conn_id);
         return $query;
     }
+
 }

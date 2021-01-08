@@ -4,12 +4,13 @@ class Home extends CI_Controller {
 
     function __construct() {
         parent::__construct(); //Load required models etc into constructor
+        $this->load->model('SAOMShoppingCart');
     }
 
     public function index() {
         //Load Main Page
         //$view_data - dynamic data to be passed into view for displaying
-
+        $this->session->sess_destroy();
         if ($this->session->userdata('loggedIn')) {
             $view_data = array(
                 'content' => $this->load->view('content/home', null, true)
@@ -45,7 +46,7 @@ class Home extends CI_Controller {
         $data['books'] = $this->SAOMBooks->getBooks();
 
         $view_data = array(
-            'content' => $this->load->view('content/viewBooks', $data, true)
+            'content' => $this->load->view('content/viewBooksS', $data, true)
         );
 
         $this->load->view('studentLayout', $view_data);
@@ -133,14 +134,13 @@ class Home extends CI_Controller {
         $this->load->view('layout', $view_data);
     }
 
-    
-     public function liveTV() {
+    public function liveTV() {
         $view_data = array(
             'content' => $this->load->view('content/liveTV', null, true)
         );
         $this->load->view('layout', $view_data);
     }
-    
+
     public function viewCourses() {
         $this->load->model('SAOMCourses');
 
@@ -203,15 +203,13 @@ class Home extends CI_Controller {
     }
 
     public function shoppingCart() {
+
+        $data = array();
+        $sessionID = $this->session->session_id;
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($sessionID);
+
         $view_data = array(
             'content' => $this->load->view('content/view_cart', null, true)
-        );
-        $this->load->view('layout', $view_data);
-    }
-    
-    public function confirmCart() {
-        $view_data = array(
-            'content' => $this->load->view('content/shoppingCart', null, true)
         );
         $this->load->view('layout', $view_data);
     }

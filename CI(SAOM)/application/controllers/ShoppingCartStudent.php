@@ -1,6 +1,6 @@
 <?php
 
-class ShoppingCart extends CI_Controller {
+class ShoppingCartStudent extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -36,8 +36,8 @@ class ShoppingCart extends CI_Controller {
                 'content' => $this->load->view('content/view_cart', $data, TRUE)
             );
 
-            //Adds the partial view from the layout view
-            $this->load->view('layout', $view_data);
+            //Adds the partial view from the studentLayout view
+            $this->load->view('studentLayout', $view_data);
         }
     }
 
@@ -64,8 +64,8 @@ class ShoppingCart extends CI_Controller {
             $view_data = array(
                 'content' => $this->load->view('content/view_cart', $data, TRUE)
             );
-            //Adds the partial view from the layout view
-            $this->load->view('layout', $view_data);
+            //Adds the partial view from the studentLayout view
+            $this->load->view('studentLayout', $view_data);
         }
     }
 
@@ -91,8 +91,8 @@ class ShoppingCart extends CI_Controller {
             $view_data = array(
                 'content' => $this->load->view('content/view_cart', $data, TRUE)
             );
-            //Adds the partial view from the layout view
-            $this->load->view('layout', $view_data);
+            //Adds the partial view from the studentLayout view
+            $this->load->view('studentLayout', $view_data);
         }
     }
 
