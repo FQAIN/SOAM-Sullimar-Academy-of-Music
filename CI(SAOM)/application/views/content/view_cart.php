@@ -42,7 +42,13 @@ $base_url = base_url();
                                         <form action="<?php echo site_url('ShoppingCartStudent/deleteItem'); ?>" method="POST">
                                             
                                     <?php endif; ?>
+                                    <?php if(!$item['examID'] == NULL) : ?>
+                                        <input type="hidden" name="booksID" value="<?php echo $item['examID'] ?>">    
+                                    <?php elseif(!$item['eventID'] == NULL) : ?>
+                                        <input type="hidden" name="booksID" value="<?php echo $item['eventID'] ?>">
+                                    <?php elseif(!$item['booksID'] == NULL) : ?>
                                         <input type="hidden" name="booksID" value="<?php echo $item['booksID'] ?>">
+                                    <?php endif; ?>
                                         <input type="hidden" name="userID" value="<?php echo $item['email']?>">
                                         <input type="submit" class="btn btn-light" value="Delete">
                                     </form>

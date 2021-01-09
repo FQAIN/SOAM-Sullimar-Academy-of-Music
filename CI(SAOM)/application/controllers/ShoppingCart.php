@@ -101,6 +101,20 @@ class ShoppingCart extends CI_Controller {
     }
     
     public function deleteItem() {
+        if(!$this->input->post('booksID') == NULL)
+        {
+            $delete['booksID'] = $this->input->post('booksID');
+        }
+        else if($this->input->post('examID'))
+        {
+            $delete['examID'] = $this->input->post('examID');
+        }
+        else if($this->input->post('eventID'))
+        {
+            $delete['eventID'] = $this->input->post('eventID');
+        }
+        
+        
         $delete['booksID'] = $this->input->post('booksID');
         $delete['userID'] = $this->input->post('userID');
 
@@ -115,37 +129,4 @@ class ShoppingCart extends CI_Controller {
         //Adds the partial view from the studentLayout view
         $this->load->view('layout', $view_data);
     }
-    
-    public function deleteExamC() {
-        $delete['examID'] = $this->input->post('examID');
-        $delete['userID'] = $this->input->post('userID');
-
-        $this->SAOMShoppingCart->deleteCartExam($delete);
-        
-        $data['items'] = $this->SAOMShoppingCart->getCartItems($delete['userID']);
-        
-        $view_data = array(
-                'content' => $this->load->view('content/view_cart', $data, TRUE)
-            );
-        
-        //Adds the partial view from the studentLayout view
-        $this->load->view('layout', $view_data);
-    }
-    
-        public function deleteEventC() {
-        $delete['eventID'] = $this->input->post('eventID');
-        $delete['userID'] = $this->input->post('userID');
-
-        $this->SAOMShoppingCart->deleteCartEvent($delete);
-
-        $data['items'] = $this->SAOMShoppingCart->getCartItems($delete['userID']);
-
-        $view_data = array(
-            'content' => $this->load->view('content/view_cart', $data, TRUE)
-        );
-
-        //Adds the partial view from the studentLayout view
-        $this->load->view('layout', $view_data);
-    }
-
 }
