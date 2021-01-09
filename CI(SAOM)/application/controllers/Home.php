@@ -138,13 +138,6 @@ class Home extends CI_Controller {
         );
         $this->load->view('layout', $view_data);
     }
-    
-       public function purchases() {
-        $view_data = array(
-            'content' => $this->load->view('content/purchases', null, true)
-        );
-        $this->load->view('layout', $view_data);
-    }
 
     public function viewCourses() {
         $this->load->model('SAOMCourses');
@@ -228,6 +221,38 @@ class Home extends CI_Controller {
 
         $view_data = array(
             'content' => $this->load->view('content/view_cart', $data, true)
+        );
+        $this->load->view('studentLayout', $view_data);
+    }
+    
+    public function purchases() {
+        $data = array();
+        
+        $session_id = $_SESSION;
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($session_id);
+        
+        $view_data = array(
+            'content' => $this->load->view('content/purchases', null, true)
+        );
+        $this->load->view('layout', $view_data);
+    }
+    
+    public function purchasesS() {
+        $this->load->model('SAOMStudents');
+        $this->load->model('SAOMShoppingCart');
+        
+        $data = array();
+        
+        $email = $this->input->post('userID');
+        
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($email);
+//        $orderInfo['cart'] = $data['items'];
+        
+        $data['user'] = $this->SAOMStudents->getStudentForPurchase($email);
+//        $orderInfo['user'] = $data['userDetails'];
+        
+        $view_data = array(
+            'content' => $this->load->view('content/purchasesS', $data, true)
         );
         $this->load->view('studentLayout', $view_data);
     }

@@ -2,6 +2,7 @@
 <?php
 $this->load->helper('url');
 $base_url = base_url();
+$gTotal = 0;
 ?>
 <section class="featured-places" id="blog" style="background-color: white">
     <div class="container"> <!--Card Container Start-->
@@ -54,16 +55,20 @@ $base_url = base_url();
                                         </form>
                                 </td>
                             </tr>
+                            <?php $gTotal += number_format($item['total'],2); ?>
                         <?php endforeach; ?>
                         
                     </tbody>
-                        <td class="text-left"><h3><strong>Total: $9.999.99</strong></h3></td>
+                    <td class="text-left"><h3><strong><?php echo "Total: €".number_format(($gTotal / 1.23), 2); ?></strong></h3><p> Ex. VAT</p></td>
                 </table>
                 <hr class="mb-4">
                 <table>
                     <tbody>
-                         <tr>
-                            <button class="btn" type="submit">Continue to checkout</button>
+                        <tr>
+                            <form action="<?php echo site_url('Home/purchasesS'); ?>" method="POST">
+                                <input type="hidden" name="userID" value="<?php echo $item['email']; ?>">
+                                <input type="submit" class="btn" value="Continue To Checkout">
+                            </form>
                         </tr>
                     </tbody>
                 </table>
