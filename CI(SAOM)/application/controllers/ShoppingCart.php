@@ -46,8 +46,8 @@ class ShoppingCart extends CI_Controller {
 
     function AddExamToCart($examID) {
         $exam = $this->SAOMExams->getSpecificExam($examID);
-
-        $data['session_id'] = $this->session->session_id;
+        
+        $data['email'] = $_SESSION;
         $data['examID'] = $examID;
         $data['eventID'] = null;
         $data['booksID'] = null;
@@ -61,7 +61,7 @@ class ShoppingCart extends CI_Controller {
         if (!$this->SAOMShoppingCart->AddToCart($data)) {
             echo 'Error';
         } else {
-            $sessionID = $this->session->session_id;
+            $sessionID = $_SESSION;
             $data['items'] = $this->SAOMShoppingCart->getCartItems($sessionID);
 
             $view_data = array(
@@ -75,7 +75,7 @@ class ShoppingCart extends CI_Controller {
     function AddEventToCart($eventID) {
         $event = $this->SAOMEvents->getSpecificEvent($eventID);
 
-        $data['session_id'] = $this->session->session_id;
+        $data['session_id'] = $_SESSION;
         $data['examID'] = null;
         $data['eventID'] = $eventID;
         $data['booksID'] = null;
@@ -89,8 +89,9 @@ class ShoppingCart extends CI_Controller {
         if (!$this->SAOMShoppingCart->AddToCart($data)) {
             echo 'Error';
         } else {
-            $sessionID = $this->session->session_id;
+            $sessionID = $_SESSION;
             $data['items'] = $this->SAOMShoppingCart->getCartItems($sessionID);
+
             $view_data = array(
                 'content' => $this->load->view('content/view_cart', $data, TRUE)
             );
@@ -112,7 +113,39 @@ class ShoppingCart extends CI_Controller {
             );
         
         //Adds the partial view from the studentLayout view
-        $this->load->view('studentLayout', $view_data);
+        $this->load->view('layout', $view_data);
+    }
+    
+    public function deleteExamC() {
+        $delete['examID'] = $this->input->post('examID');
+        $delete['userID'] = $this->input->post('userID');
+
+        $this->SAOMShoppingCart->deleteCartExam($delete);
+        
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($delete['userID']);
+        
+        $view_data = array(
+                'content' => $this->load->view('content/view_cart', $data, TRUE)
+            );
+        
+        //Adds the partial view from the studentLayout view
+        $this->load->view('layout', $view_data);
+    }
+    
+        public function deleteEventC() {
+        $delete['eventID'] = $this->input->post('eventID');
+        $delete['userID'] = $this->input->post('userID');
+
+        $this->SAOMShoppingCart->deleteCartEvent($delete);
+
+        $data['items'] = $this->SAOMShoppingCart->getCartItems($delete['userID']);
+
+        $view_data = array(
+            'content' => $this->load->view('content/view_cart', $data, TRUE)
+        );
+
+        //Adds the partial view from the studentLayout view
+        $this->load->view('layout', $view_data);
     }
 
 }

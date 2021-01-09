@@ -14,7 +14,7 @@ class SAOMShoppingCart extends CI_Model {
     }
 
     function getCartItems($session_id) {
-        
+
 //        $select_data['email'] = $session_id;
 
         $stored_proc_call = "CALL SelectCartPerPage(?)";
@@ -23,10 +23,20 @@ class SAOMShoppingCart extends CI_Model {
         mysqli_next_result($this->db->conn_id);
         return $query;
     }
-    
-    function deleteCartItem($delete)
-    {
+
+    function deleteCartItem($delete) {
         $stored_proc_call = "CALL deleteItem(?,?)";
-        $this->db->query($stored_proc_call, $delete); 
+        $this->db->query($stored_proc_call, $delete);
     }
+
+    function deleteCartExam($delete) {
+        $stored_proc_call = "CALL deleteExamC(?,?)";
+        $this->db->query($stored_proc_call, $delete);
+    }
+
+    function deleteCartEvent($delete) {
+        $stored_proc_call = "CALL deleteEventC(?,?)";
+        $this->db->query($stored_proc_call, $delete);
+    }
+
 }

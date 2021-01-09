@@ -73,7 +73,7 @@ class Home extends CI_Controller {
         $data['exams'] = $this->SAOMExams->getExams();
 
         $view_data = array(
-            'content' => $this->load->view('content/viewExam', $data, true)
+            'content' => $this->load->view('content/viewExamS', $data, true)
         );
         $this->load->view('studentLayout', $view_data);
     }
@@ -114,7 +114,7 @@ class Home extends CI_Controller {
         $data['events'] = $this->SAOMEvents->getEvents();
 
         $view_data = array(
-            'content' => $this->load->view('content/viewEvents', $data, true)
+            'content' => $this->load->view('content/viewEventsS', $data, true)
         );
 
         $this->load->view('studentLayout', $view_data);
