@@ -138,6 +138,13 @@ class Home extends CI_Controller {
         );
         $this->load->view('layout', $view_data);
     }
+    
+       public function purchases() {
+        $view_data = array(
+            'content' => $this->load->view('content/purchases', null, true)
+        );
+        $this->load->view('layout', $view_data);
+    }
 
     public function viewCourses() {
         $this->load->model('SAOMCourses');
