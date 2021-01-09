@@ -1,18 +1,37 @@
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddMaintenance`(IN `p_instrumentID` INT, IN `p_note` VARCHAR(250))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPexam`(IN `p_examID` INT, IN `p_staffID` INT)
     NO SQL
 BEGIN
-	INSERT INTO instrumentsmaintenance
+	INSERT INTO processexams
     (
-    	instrumentID,
-        note
+    	examID,
+        staffID
         
     )
     VALUES
     (
-    	p_instrumentID,
-        p_note
+    	p_examID,
+        p_staffID
     );
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage`(IN `p_limit` INT, IN `p_start` INT)
+    NO SQL
+BEGIN
+SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
+FROM books
+ LIMIT  p_limit,p_start;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCart`(IN `p_email` VARCHAR(250), IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))
+BEGIN
+INSERT INTO shopping_cart(email,examID,eventID,booksID,product_name,product_desc,quantity,price,date_added,image_path)
+VALUES(p_email,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,p_price,p_date_added,p_image_path);
+
 END$$
 DELIMITER ;
 
@@ -41,39 +60,20 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCart`(IN `p_email` VARCHAR(250), IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))
-BEGIN
-INSERT INTO shopping_cart(email,examID,eventID,booksID,product_name,product_desc,quantity,price,date_added,image_path)
-VALUES(p_email,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,p_price,p_date_added,p_image_path);
-
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPexam`(IN `p_examID` INT, IN `p_staffID` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddMaintenance`(IN `p_instrumentID` INT, IN `p_note` VARCHAR(250))
     NO SQL
 BEGIN
-	INSERT INTO processexams
+	INSERT INTO instrumentsmaintenance
     (
-    	examID,
-        staffID
+    	instrumentID,
+        note
         
     )
     VALUES
     (
-    	p_examID,
-        p_staffID
+    	p_instrumentID,
+        p_note
     );
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage`(IN `p_limit` INT, IN `p_start` INT)
-    NO SQL
-BEGIN
-SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
-FROM books
- LIMIT  p_limit,p_start;
 END$$
 DELIMITER ;
 
@@ -448,11 +448,29 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteEventC`(IN `p_eventID` INT, IN `p_userID` VARCHAR(250))
+    NO SQL
+BEGIN
+	DELETE FROM shopping_cart
+    WHERE eventID = p_eventID AND email = p_userID;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteExam`(IN `p_examID` INT)
     NO SQL
 BEGIN
 	DELETE FROM exams
     WHERE examID  = p_examID;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteExamC`(IN `p_examID` INT, IN `p_userID` VARCHAR(250))
+    NO SQL
+BEGIN
+	DELETE FROM shopping_cart
+    WHERE examID = p_examID AND email = p_userID;
 END$$
 DELIMITER ;
 
