@@ -35,26 +35,36 @@ $base_url = base_url();
                                 <td><?php echo $item['price']; ?></td>
                                 <td><img src="<?php echo $img_url . $item['image_path'] ?>" alt="" width="140px"/></td>
                                 <td>
-                                    <?php if(!strpos($this->session->userdata('email'), '@')) : ?>
+                                    <?php if (!strpos($this->session->userdata('email'), '@')) : ?>
                                         <form action="<?php echo site_url('ShoppingCart/deleteItem'); ?>" method="POST">
-                                            
-                                    <?php elseif(strpos($this->session->userdata('email'), '@')) : ?>
-                                        <form action="<?php echo site_url('ShoppingCartStudent/deleteItem'); ?>" method="POST">
-                                            
-                                    <?php endif; ?>
-                                    <?php if(!$item['examID'] == NULL) : ?>
-                                        <input type="hidden" name="booksID" value="<?php echo $item['examID'] ?>">    
-                                    <?php elseif(!$item['eventID'] == NULL) : ?>
-                                        <input type="hidden" name="booksID" value="<?php echo $item['eventID'] ?>">
-                                    <?php elseif(!$item['booksID'] == NULL) : ?>
-                                        <input type="hidden" name="booksID" value="<?php echo $item['booksID'] ?>">
-                                    <?php endif; ?>
-                                        <input type="hidden" name="userID" value="<?php echo $item['email']?>">
-                                        <input type="submit" class="btn btn-light" value="Delete">
-                                    </form>
+
+                                        <?php elseif (strpos($this->session->userdata('email'), '@')) : ?>
+                                            <form action="<?php echo site_url('ShoppingCartStudent/deleteItem'); ?>" method="POST">
+
+                                            <?php endif; ?>
+                                            <?php if (!$item['examID'] == NULL) : ?>
+                                                <input type="hidden" name="booksID" value="<?php echo $item['examID'] ?>">    
+                                            <?php elseif (!$item['eventID'] == NULL) : ?>
+                                                <input type="hidden" name="booksID" value="<?php echo $item['eventID'] ?>">
+                                            <?php elseif (!$item['booksID'] == NULL) : ?>
+                                                <input type="hidden" name="booksID" value="<?php echo $item['booksID'] ?>">
+                                            <?php endif; ?>
+                                            <input type="hidden" name="userID" value="<?php echo $item['email'] ?>">
+                                            <input type="submit" class="btn btn-light" value="Delete">
+                                        </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                        
+                    </tbody>
+                        <td class="text-left"><h3><strong>Total: $9.999.99</strong></h3></td>
+                </table>
+                <hr class="mb-4">
+                <table>
+                    <tbody>
+                         <tr>
+                            <button class="btn" type="submit">Continue to checkout</button>
+                        </tr>
                     </tbody>
                 </table>
             </div>
