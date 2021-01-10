@@ -226,18 +226,6 @@ class Home extends CI_Controller {
     }
     
     public function purchases() {
-        $data = array();
-        
-        $session_id = $_SESSION;
-        $data['items'] = $this->SAOMShoppingCart->getCartItems($session_id);
-        
-        $view_data = array(
-            'content' => $this->load->view('content/purchases', null, true)
-        );
-        $this->load->view('layout', $view_data);
-    }
-    
-    public function purchasesS() {
         $this->load->model('SAOMStudents');
         $this->load->model('SAOMShoppingCart');
         
@@ -246,15 +234,21 @@ class Home extends CI_Controller {
         $email = $this->input->post('userID');
         
         $data['items'] = $this->SAOMShoppingCart->getCartItems($email);
-//        $orderInfo['cart'] = $data['items'];
         
         $data['user'] = $this->SAOMStudents->getStudentForPurchase($email);
-//        $orderInfo['user'] = $data['userDetails'];
         
         $view_data = array(
-            'content' => $this->load->view('content/purchasesS', $data, true)
+            'content' => $this->load->view('content/purchases', $data, true)
         );
-        $this->load->view('studentLayout', $view_data);
+        
+        if (!strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('layout', $view_data);
+        }
+        else if(strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('studentLayout', $view_data);
+        }
     }
 
     public function register() {

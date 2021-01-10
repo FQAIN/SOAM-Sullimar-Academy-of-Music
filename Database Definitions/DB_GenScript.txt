@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2021 at 06:28 PM
+-- Generation Time: Jan 10, 2021 at 06:37 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -282,6 +282,14 @@ VALUES(p_email,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quan
        p_price,p_date_added,p_image_path,(p_quantity * p_price));
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCartNS` (IN `p_sessionid` INT, IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))  BEGIN
+INSERT INTO shopping_cart(
+    session_id,examID,eventID,booksID,product_name,product_desc,quantity,
+    price,date_added,image_path,total)
+VALUES(p_sessionid,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,
+       p_price,p_date_added,p_image_path,(p_quantity * p_price));
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook` (IN `p_booksID` INT)  NO SQL
 BEGIN
 	DELETE FROM books
@@ -405,12 +413,23 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPage` (IN `p_email` VARCHAR(250))  NO SQL
 BEGIN
 SELECT
-id, email, examID,
+shopping_cart.id, student.email, shopping_cart.examID,
+shopping_cart.eventID, shopping_cart.booksID, shopping_cart.product_name,
+shopping_cart.product_desc, shopping_cart.quantity, shopping_cart.price,
+shopping_cart.date_added, shopping_cart.image_path, shopping_cart.total
+FROM student
+INNER JOIN shopping_cart ON student.email = shopping_cart.email;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPageNS` (IN `p_sessionid` INT)  NO SQL
+BEGIN
+SELECT
+id, session_id, examID,
 eventID, booksID, product_name,
 product_desc, quantity, price,
 date_added, image_path, total
 FROM shopping_cart
-WHERE email = p_email;
+WHERE session_id = p_sessionid;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage` (IN `p_limit` INT, IN `p_start` INT)  NO SQL
@@ -576,22 +595,12 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForPurchase` (IN `p_email` VARCHAR(250))  NO SQL
 BEGIN
   SELECT
-studentID,
-username,
-password,
-email,
-dob,
-phone,
-dateEnrollment,
-fName,
-lName,
-address,
-image,
-result,
-courseID
+	studentID, username, password, email,
+	dob, phone, dateEnrollment, fName,
+	lName, address, image, result, courseID
   FROM student
   WHERE email = p_email;
-  END$$
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForUpdate` (IN `p_studentID` INT)  NO SQL
 BEGIN
@@ -1205,6 +1214,7 @@ INSERT INTO `saomevents` (`eventID`, `name`, `description`, `dateOfEvent`, `pric
 CREATE TABLE `shopping_cart` (
   `id` int(11) NOT NULL,
   `email` varchar(250) DEFAULT NULL,
+  `session_id` int(11) DEFAULT NULL,
   `examID` int(11) DEFAULT NULL,
   `eventID` int(11) DEFAULT NULL,
   `booksID` int(11) DEFAULT NULL,
@@ -1221,9 +1231,15 @@ CREATE TABLE `shopping_cart` (
 -- Dumping data for table `shopping_cart`
 --
 
-INSERT INTO `shopping_cart` (`id`, `email`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
-(137, 'email@email.com', NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 1, '30.00', '2021-01-09 16:28:58', '9780367592622.jpg', 30.00),
-(139, 'email@email.com', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 4, '12.00', '2021-01-09 16:38:37', '9781409434146.jpg', 48.00);
+INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
+(147, 'email@email.com', NULL, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-10 15:50:20', '9781409434146.jpg', 24.00),
+(148, 'email@email.com', NULL, NULL, NULL, 11, 'How Music Works', 'non-fiction', 6, '67.00', '2021-01-10 16:38:44', '9781628920437.jpg', 402.00),
+(152, NULL, 1610296028, NULL, NULL, 12, 'Music Therapy', 'A book for Therapy as a Cure for Music', 12, '29.00', '2021-01-10 17:27:17', '9780198735366.jpg', 348.00),
+(153, NULL, 1610296279, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 12, '30.00', '2021-01-10 17:31:27', '9780367592622.jpg', 360.00),
+(154, NULL, 1610296485, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 12, '12.00', '2021-01-10 17:34:52', '9781409434146.jpg', 144.00),
+(155, NULL, 1610296866, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 22, '12.00', '2021-01-10 17:41:26', '9781409434146.jpg', 264.00),
+(156, NULL, 1610297258, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 33, '12.00', '2021-01-10 17:47:45', '9781409434146.jpg', 396.00),
+(157, NULL, 1610297684, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 22, '12.00', '2021-01-10 17:54:49', '9781409434146.jpg', 264.00);
 
 -- --------------------------------------------------------
 
@@ -1265,7 +1281,7 @@ CREATE TABLE `student` (
   `studentID` int(11) NOT NULL,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
   `dob` date DEFAULT NULL,
   `phone` int(11) DEFAULT NULL,
   `dateEnrollment` date DEFAULT NULL,
@@ -1436,7 +1452,8 @@ ALTER TABLE `saomevents`
 -- Indexes for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_scEmail_sEmail` (`email`);
 
 --
 -- Indexes for table `staffs`
@@ -1448,8 +1465,9 @@ ALTER TABLE `staffs`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`studentID`),
-  ADD KEY `courseID` (`courseID`);
+  ADD PRIMARY KEY (`studentID`,`email`),
+  ADD KEY `courseID` (`courseID`),
+  ADD KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1567,7 +1585,7 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -1618,6 +1636,12 @@ ALTER TABLE `privatetuition`
 ALTER TABLE `processexams`
   ADD CONSTRAINT `processexams_ibfk_1` FOREIGN KEY (`examID`) REFERENCES `exams` (`examID`),
   ADD CONSTRAINT `processexams_ibfk_2` FOREIGN KEY (`staffID`) REFERENCES `staffs` (`staffID`);
+
+--
+-- Constraints for table `shopping_cart`
+--
+ALTER TABLE `shopping_cart`
+  ADD CONSTRAINT `fk_scEmail_sEmail` FOREIGN KEY (`email`) REFERENCES `student` (`email`);
 
 --
 -- Constraints for table `student`

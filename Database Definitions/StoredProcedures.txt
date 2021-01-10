@@ -70,6 +70,17 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCartNS`(IN `p_sessionid` INT, IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))
+BEGIN
+INSERT INTO shopping_cart(
+    session_id,examID,eventID,booksID,product_name,product_desc,quantity,
+    price,date_added,image_path,total)
+VALUES(p_sessionid,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,
+       p_price,p_date_added,p_image_path,(p_quantity * p_price));
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage`(IN `p_limit` INT, IN `p_start` INT)
     NO SQL
 BEGIN
@@ -84,12 +95,26 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPage`(IN `p_email` VAR
     NO SQL
 BEGIN
 SELECT
-id, email, examID,
+shopping_cart.id, student.email, shopping_cart.examID,
+shopping_cart.eventID, shopping_cart.booksID, shopping_cart.product_name,
+shopping_cart.product_desc, shopping_cart.quantity, shopping_cart.price,
+shopping_cart.date_added, shopping_cart.image_path, shopping_cart.total
+FROM student
+INNER JOIN shopping_cart ON student.email = shopping_cart.email;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPageNS`(IN `p_sessionid` INT)
+    NO SQL
+BEGIN
+SELECT
+id, session_id, examID,
 eventID, booksID, product_name,
 product_desc, quantity, price,
 date_added, image_path, total
 FROM shopping_cart
-WHERE email = p_email;
+WHERE session_id = p_sessionid;
 END$$
 DELIMITER ;
 
@@ -690,29 +715,6 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForPurchase`(IN `p_email` VARCHAR(250))
-    NO SQL
-BEGIN
-  SELECT
-studentID,
-username,
-password,
-email,
-dob,
-phone,
-dateEnrollment,
-fName,
-lName,
-address,
-image,
-result,
-courseID
-  FROM student
-  WHERE email = p_email;
-  END$$
-DELIMITER ;
-
-DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForUpdate`(IN `p_studentID` INT)
     NO SQL
 BEGIN
@@ -974,5 +976,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `viewStudentDetails`()
     NO SQL
 BEGIN
 	SELECT * FROM student;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForPurchase`(IN `p_email` VARCHAR(250))
+    NO SQL
+BEGIN
+  SELECT
+	studentID, username, password, email,
+	dob, phone, dateEnrollment, fName,
+	lName, address, image, result, courseID
+  FROM student
+  WHERE email = p_email;
 END$$
 DELIMITER ;

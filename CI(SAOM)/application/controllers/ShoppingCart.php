@@ -11,7 +11,7 @@ class ShoppingCart extends CI_Controller {
     }
 
     //Non LoggedIn Users
-    function addBookToCart($booksID) {
+    function addBookToCartNS($booksID) {
         $book = $this->SAOMBooks->getSpecificBook($booksID);
 
         //User their session ID as email field - keeps the entry unique
@@ -26,7 +26,7 @@ class ShoppingCart extends CI_Controller {
         $data['date_added'] = date('Y-m-d H:i:s');
         $data['image_path'] = $book->image;
 
-        if (!$this->SAOMShoppingCart->AddToCart($data)) {
+        if (!$this->SAOMShoppingCart->AddToCartNS($data)) {
             echo 'Error';
         } else {
             $data = array();
