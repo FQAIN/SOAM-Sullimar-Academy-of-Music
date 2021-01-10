@@ -1,4 +1,8 @@
-
+<?php $img_url = base_url() . "assets/img/"; ?>
+<?php
+$this->load->helper('url');
+$base_url = base_url();
+?>
 <!DOCTYPE html>
 <html>
   
@@ -36,7 +40,7 @@
                         <br>
                         <br>
                         <br>
-                            <img src="Customer-Thank-You-Note-1.png" alt="MacPaw"> 
+                         <img src="<?php echo $img_url . "Customer-Thank-You-Note-1.png" ?>" alt="">
                             <br><br><br><br><br><br>
                           <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 24px; color: #000000; line-height: 29px;">Thanks for Ordering!</div>
                         </td>
