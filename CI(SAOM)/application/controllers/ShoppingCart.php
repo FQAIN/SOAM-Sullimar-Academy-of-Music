@@ -44,7 +44,7 @@ class ShoppingCart extends CI_Controller {
         }
     }
 
-    function AddExamToCart($examID) {
+    function AddExamToCartNS($examID) {
         $exam = $this->SAOMExams->getSpecificExam($examID);
         
         $data['email'] = $_SESSION;
@@ -58,7 +58,7 @@ class ShoppingCart extends CI_Controller {
         $data['date_added'] = date('Y-m-d H:i:s');
         $data['image_path'] = $exam->image;
 
-        if (!$this->SAOMShoppingCart->AddToCart($data)) {
+        if (!$this->SAOMShoppingCart->AddToCartNS($data)) {
             echo 'Error';
         } else {
             $sessionID = $_SESSION;
@@ -72,7 +72,7 @@ class ShoppingCart extends CI_Controller {
         }
     }
 
-    function AddEventToCart($eventID) {
+    function AddEventToCartNS($eventID) {
         $event = $this->SAOMEvents->getSpecificEvent($eventID);
 
         $data['session_id'] = $_SESSION;
@@ -86,7 +86,7 @@ class ShoppingCart extends CI_Controller {
         $data['date_added'] = date('Y-m-d H:i:s');
         $data['image_path'] = $event->image;
 
-        if (!$this->SAOMShoppingCart->AddToCart($data)) {
+        if (!$this->SAOMShoppingCart->AddToCartNS($data)) {
             echo 'Error';
         } else {
             $sessionID = $_SESSION;
@@ -101,7 +101,7 @@ class ShoppingCart extends CI_Controller {
     }
     
     public function deleteItem() {
-        if(!$this->input->post('booksID') == NULL)
+        if($this->input->post('booksID'))
         {
             $delete['booksID'] = $this->input->post('booksID');
         }
@@ -114,8 +114,6 @@ class ShoppingCart extends CI_Controller {
             $delete['eventID'] = $this->input->post('eventID');
         }
         
-        
-        $delete['booksID'] = $this->input->post('booksID');
         $delete['userID'] = $this->input->post('userID');
 
         $this->SAOMShoppingCart->deleteCartItem($delete);
