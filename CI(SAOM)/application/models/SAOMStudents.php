@@ -35,17 +35,10 @@ Class SAOMStudents extends CI_Model {
     
     public function getStudentForPurchase($email) {
         $stored_proc_call = "CALL selectStudentForPurchase(?)"; //setup procedure
-
-        $query = $this->db->query($stored_proc_call, $email); //run procedure - store in array
         
-        if( $query->num_rows() == 1 )
-        {
-            return $query->row_array();
-        }
-        else
-        {
-            return FALSE; //return result to Books/updateBook
-        }
+        $query = $this->db->query($stored_proc_call, trim($email)); //run procedure - store in array
+
+        return $query;
     }
 
     function addEntryStudent() {
