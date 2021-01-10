@@ -250,6 +250,22 @@ class Home extends CI_Controller {
             $this->load->view('studentLayout', $view_data);
         }
     }
+    
+    function confirmation()
+    {
+        $view_data = array(
+            'content' => $this->load->view('content/confirmation', null, true)
+        );
+        
+        if (!strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('layout', $view_data);
+        }
+        else if(strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('studentLayout', $view_data);
+        }
+    }
 
     public function register() {
         $view_data = array(

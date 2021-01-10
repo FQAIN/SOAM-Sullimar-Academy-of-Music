@@ -44,7 +44,7 @@ endforeach;
                 <?php if($user->result_array() != false) : ?>
                 <?php foreach($user->result_array() as $u) : ?>
                 <!--Registered User Confirmation Form-->
-                <form class="needs-validation" novalidate action="<?php echo site_url('ShoppingCartStudent/confirmOrder'); ?>" method="POST">
+                <form class="needs-validation" novalidate action="<?php echo site_url('Home/confirmation'); ?>" method="POST">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <!--IF Statement [populate if email contains @ - leave blank if NULL]-->
@@ -83,12 +83,12 @@ endforeach;
                    
                    
                     <hr class="mb-4">
-                    <button class="btn" type="submit">Confirm Order</button>
+                        <input type="submit" class="btn" value="Confirm Order">
                 </form>
                 <?php endforeach; ?>
                 <?php else : ?>
                 <!--Non Registered User Confirmation Form-->
-                    <form class="needs-validation" novalidate action="<?php echo site_url('ShoppingCartStudent/confirmOrder'); ?>" method="POST">
+                    <form class="needs-validation" novalidate action="<?php echo site_url('Home/confirmation'); ?>" method="POST">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <!--IF Statement [populate if email contains @ - leave blank if NULL]-->
@@ -127,7 +127,7 @@ endforeach;
                    
                    
                         <hr class="mb-4">
-                        <button class="btn" type="submit">Confirm Order</button>
+                            <input type="submit" class="btn" value="Confirm Order">
                     </form>
                 <?php endif; ?>
             </div>
