@@ -35,7 +35,11 @@ $base_url = base_url();
                             <div class="row">
                                 <div class="col-md-10 first-button">
                                     <div class="text-button">
-                                        <form action="<?php echo site_url('ShoppingCart/AddExamToCart/' . $exam['examID']); ?>" method="POST">
+                                        <?php if (!strpos($this->session->userdata('email'), '@')) : ?>
+                                        <form action="<?php echo site_url('ShoppingCart/AddExamToCartNS/' . $exam['examID']); ?>" method="POST">
+                                        <?php elseif (strpos($this->session->userdata('email'), '@')) : ?>
+                                            <form action="<?php echo site_url('ShoppingCart/AddExamToCart/' . $exam['examID']); ?>" method="POST">
+                                        <?php endif; ?>
                                             <input type="number" class="form-control" id="exampleInputEmail1" name="quantity" aria-describedby="emailHelp" placeholder="Enter Qty">
                                             </div>
                                             </div>

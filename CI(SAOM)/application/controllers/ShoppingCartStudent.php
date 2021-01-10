@@ -104,7 +104,7 @@ class ShoppingCartStudent extends CI_Controller {
     }
 
     public function deleteItem() {
-        if(!$this->input->post('booksID') == NULL)
+        if($this->input->post('booksID'))
         {
             $delete['booksID'] = $this->input->post('booksID');
         }
@@ -117,8 +117,6 @@ class ShoppingCartStudent extends CI_Controller {
             $delete['eventID'] = $this->input->post('eventID');
         }
         
-        
-        $delete['booksID'] = $this->input->post('booksID');
         $delete['userID'] = $this->input->post('userID');
 
         $this->SAOMShoppingCart->deleteCartItem($delete);

@@ -41,25 +41,26 @@ $gTotal = 0;
 
                                         <?php elseif (strpos($this->session->userdata('email'), '@')) : ?>
                                             <form action="<?php echo site_url('ShoppingCartStudent/deleteItem'); ?>" method="POST">
-
-                                            <?php endif; ?>
-                                            <?php if (!$item['examID'] == NULL) : ?>
-                                                <input type="hidden" name="booksID" value="<?php echo $item['examID'] ?>">    
-                                            <?php elseif (!$item['eventID'] == NULL) : ?>
-                                                <input type="hidden" name="booksID" value="<?php echo $item['eventID'] ?>">
-                                            <?php elseif (!$item['booksID'] == NULL) : ?>
-                                                <input type="hidden" name="booksID" value="<?php echo $item['booksID'] ?>">
-                                            <?php endif; ?>
-                                            <input type="hidden" name="userID" value="
-                                                <?php 
-                                                if (!strpos($this->session->userdata('email'), '@'))
-                                                {
-                                                    echo $item['session_id'];
-                                                }
-                                                elseif (strpos($this->session->userdata('email'), '@'))
-                                                {
-                                                    echo $item['email'];
-                                                } ?>">
+                                        <?php endif; ?>
+                                                
+                                        <?php if (!$item['examID'] == NULL) : ?>
+                                            <input type="hidden" name="examID" value="<?php echo $item['examID']; ?>">    
+                                        <?php elseif (!$item['eventID'] == NULL) : ?>
+                                            <input type="hidden" name="eventID" value="<?php echo $item['eventID']; ?>">
+                                        <?php elseif (!$item['booksID'] == NULL) : ?>
+                                            <input type="hidden" name="booksID" value="<?php echo $item['booksID']; ?>">
+                                        <?php endif; ?>
+                                        <input type="hidden" name="userID" value="
+                                        <?php 
+                                            if (!strpos($this->session->userdata('email'), '@'))
+                                            {
+                                                echo $item['session_id'];
+                                            }
+                                            elseif (strpos($this->session->userdata('email'), '@'))
+                                            {
+                                                echo $item['email'];
+                                            } 
+                                        ?>">
                                             <input type="submit" class="btn btn-light" value="Delete">
                                         </form>
                                 </td>

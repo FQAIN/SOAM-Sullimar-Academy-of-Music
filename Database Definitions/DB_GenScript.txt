@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2021 at 07:34 PM
+-- Generation Time: Jan 10, 2021 at 09:18 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -317,7 +317,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteItem` (IN `p_input` INT, IN `p_userID` VARCHAR(250))  NO SQL
 BEGIN
 	DELETE FROM shopping_cart
-    WHERE booksID = p_input OR eventID = p_input OR examID = p_input 
+    WHERE booksID = p_input OR eventID = p_input OR examID = p_input OR image_path = p_input
     AND email = p_userID;
 END$$
 
@@ -1227,30 +1227,6 @@ CREATE TABLE `shopping_cart` (
   `total` double(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `shopping_cart`
---
-
-INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
-(147, 'email@email.com', NULL, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-10 15:50:20', '9781409434146.jpg', 24.00),
-(148, 'email@email.com', NULL, NULL, NULL, 11, 'How Music Works', 'non-fiction', 6, '67.00', '2021-01-10 16:38:44', '9781628920437.jpg', 402.00),
-(152, NULL, 1610296028, NULL, NULL, 12, 'Music Therapy', 'A book for Therapy as a Cure for Music', 12, '29.00', '2021-01-10 17:27:17', '9780198735366.jpg', 348.00),
-(153, NULL, 1610296279, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 12, '30.00', '2021-01-10 17:31:27', '9780367592622.jpg', 360.00),
-(154, NULL, 1610296485, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 12, '12.00', '2021-01-10 17:34:52', '9781409434146.jpg', 144.00),
-(155, NULL, 1610296866, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 22, '12.00', '2021-01-10 17:41:26', '9781409434146.jpg', 264.00),
-(156, NULL, 1610297258, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 33, '12.00', '2021-01-10 17:47:45', '9781409434146.jpg', 396.00),
-(157, NULL, 1610297684, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 22, '12.00', '2021-01-10 17:54:49', '9781409434146.jpg', 264.00),
-(158, NULL, 1610302166, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 2, '30.00', '2021-01-10 19:09:32', '9780367592622.jpg', 60.00),
-(159, NULL, 1610302166, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 4, '12.00', '2021-01-10 19:09:36', '9781409434146.jpg', 48.00),
-(160, NULL, 1610302166, NULL, NULL, 11, 'How Music Works', 'non-fiction', 6, '67.00', '2021-01-10 19:09:41', '9781628920437.jpg', 402.00),
-(161, NULL, 1610302166, NULL, NULL, 12, 'Music Therapy', 'A book for Therapy as a Cure for Music', 8, '29.00', '2021-01-10 19:09:46', '9780198735366.jpg', 232.00),
-(162, NULL, 1610303276, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 2, '30.00', '2021-01-10 19:28:02', '9780367592622.jpg', 60.00),
-(163, NULL, 1610303276, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 4, '12.00', '2021-01-10 19:28:06', '9781409434146.jpg', 48.00),
-(164, NULL, 1610303276, NULL, NULL, 11, 'How Music Works', 'non-fiction', 6, '67.00', '2021-01-10 19:28:11', '9781628920437.jpg', 402.00),
-(165, NULL, 1610303276, NULL, NULL, 12, 'Music Therapy', 'A book for Therapy as a Cure for Music', 8, '29.00', '2021-01-10 19:28:15', '9780198735366.jpg', 232.00),
-(166, NULL, 1610303532, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 2, '30.00', '2021-01-10 19:32:19', '9780367592622.jpg', 60.00),
-(167, NULL, 1610303532, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 4, '12.00', '2021-01-10 19:32:24', '9781409434146.jpg', 48.00);
-
 -- --------------------------------------------------------
 
 --
@@ -1595,7 +1571,7 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
 -- AUTO_INCREMENT for table `staffs`
