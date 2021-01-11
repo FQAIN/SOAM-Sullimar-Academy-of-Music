@@ -98,11 +98,6 @@ class Home extends CI_Controller {
         );
 
         $this->load->view('layout', $view_data);
-
-//        $view_data = array(
-//            'content' => $this->load->view('content/viewEvents', null, true)
-//        );
-//        $this->load->view('layout', $view_data);
     }
 
     public function viewEventsS() {
@@ -118,11 +113,6 @@ class Home extends CI_Controller {
         );
 
         $this->load->view('studentLayout', $view_data);
-
-//        $view_data = array(
-//            'content' => $this->load->view('content/viewEvents', null, true)
-//        );
-//        $this->load->view('layout', $view_data);
     }
 
     public function BookEvents() {
@@ -173,10 +163,26 @@ class Home extends CI_Controller {
     }
 
     public function bookCourse() {
+        $this->load->model('SAOMCourses');
+        
+        $data = array();
+        
+        $courseID = $this->input->post('coursesID');
+        
+        $data['courseDetails'] = $this->SAOMCourses->getSelectedCourse($courseID);
+        
         $view_data = array(
-            'content' => $this->load->view('content/bookCourse', null, true)
+            'content' => $this->load->view('content/bookCourse', $data, true)
         );
-        $this->load->view('layout', $view_data);
+        
+        if (!strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('layout', $view_data);
+        }
+        else if(strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('studentLayout', $view_data);
+        }
     }
 
     public function login() {

@@ -52,8 +52,7 @@ $base_url = base_url();
                                             <div class="col-md-4">
                                                 <input type="submit" value="Add to Cart">
                                                 <br><br><br>
-                                                </form>
-
+                                        </form>
                                             </div>
                                     </div>
                                 </div>

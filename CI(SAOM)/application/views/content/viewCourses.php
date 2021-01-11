@@ -36,9 +36,13 @@ $base_url = base_url();
                                         <a href="#">Add to favorites</a>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-6">
                                     <div class="text-button">
-                                        <a href="#">Add to Cart</a>
+                                        <form action="<?php echo site_url('Home/bookCourse/'); ?>" method="POST">
+                                            <input type="hidden" id="<?php echo $course['coursesID']; ?>">
+                                            <input type="submit" value="Apply">
+                                        </form>
                                     </div>
                                 </div>
                             </div>

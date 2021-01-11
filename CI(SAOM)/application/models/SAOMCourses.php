@@ -17,6 +17,15 @@ Class SAOMCourses extends CI_Model {
         $query = $this->db->query($stored_proc_call);
         return $query;
     }
+    
+    public function getSelectedCourse($courseID)
+    {
+        $stored_proc_call = "CALL getSelectedCourse(?)";
+        
+        $query = $this->db->query($stored_proc_call, $courseID);
+        
+        return $query;
+    }
 
     function addEntryCourse() {
 

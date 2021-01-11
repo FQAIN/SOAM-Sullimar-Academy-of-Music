@@ -9,12 +9,15 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Course Name</label>
                     <div class="col-md-9">
-                        <select name="element1" id="element1" class="form-control" type="text">
+<!--                        <select name="element1" id="element1" class="form-control" type="text">
                             <option value="item1">Item 1</option>
                             <option value="item2">Item 2</option>
                             <option value="item3">Item 3</option>
                         </select>
-                        <span class="help-block">Select an option</span>
+                        <span class="help-block">Select an option</span>-->
+                        <?php foreach($courseDetails->result_array() as $cd) : ?>
+                        <?php echo "<p>". $cd['courseName'] ."</p>"; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="form-group">
