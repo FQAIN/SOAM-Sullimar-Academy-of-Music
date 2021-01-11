@@ -102,6 +102,14 @@ class Exams extends CI_Controller {
             array('field' => 'examCenterID',
                 'label' => 'examCenterID',
                 'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+              array('field' => 'Seasons',
+                'label' => 'Seasons',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+             array('field' => 'studentID',
+                'label' => 'studentID',
+                'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.'))
         );
 
@@ -186,6 +194,14 @@ class Exams extends CI_Controller {
                 'label' => 'examDescription',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide an %s.')),
+               array('field' => 'Seasons',
+                'label' => 'Seasons',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+             array('field' => 'studentID',
+                'label' => 'studentID',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.'))
         );
 
         $this->form_validation->set_rules($exam_validation_rules);

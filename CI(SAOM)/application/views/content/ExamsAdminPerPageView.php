@@ -27,6 +27,8 @@ $base_url = base_url();
                         <td><strong>staff ID:</strong></td>
 
                         <td><strong>exam Description:</strong></td>
+                         <td><strong>Seasons:</strong></td>
+                          <td><strong>studentID:</strong></td>
                         <td><strong>Update:</strong></td>
                         <td><strong>Delete:</strong></td>
                     </tr>
@@ -47,6 +49,10 @@ $base_url = base_url();
                             <td><?php echo $exam['staffID']; ?></td>
 
                             <td><?php echo $exam['examDescription']; ?></td>
+                            <td><?php echo $exam['Seasons']; ?></td>
+                            <td><?php echo $exam['studentID']; ?></td>
+                              
+                            
                             <td>
                                 <form action="<?php echo site_url('Exams/updateExam'); ?>" method="POST">
                                     <input type="hidden" name="examID" value="<?php echo $exam['examID'] ?>">

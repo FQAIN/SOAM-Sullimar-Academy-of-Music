@@ -298,7 +298,7 @@
                             <br>
                             <p><input type="submit" name="submit" value="Add Staff"></p>
                             <br>
-                        </form><!---->
+                        </form>
                     </div>
                 </section>
             </div>

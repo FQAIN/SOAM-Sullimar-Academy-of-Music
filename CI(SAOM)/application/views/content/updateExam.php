@@ -299,6 +299,12 @@
                                                 
                                              <p><strong>Exam Description:</strong><br/>
                                             <input type='text' name='examDescription' value='" . $exam['examDescription'] . "' id='special'></p>
+                                               
+                                            <p><strong>Seasons:</strong><br/>
+                                            <input type='text' name='Seasons' value='" . $exam['Seasons'] . "' id='special'></p>
+                                                
+                                            <p><strong>studentID:</strong><br/>
+                                            <input type='text' name='studentID' value='" . $exam['studentID'] . "' id='special'></p>
                                         ";
                             }
                             ?>
