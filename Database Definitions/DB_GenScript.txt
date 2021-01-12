@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2021 at 04:47 PM
+-- Generation Time: Jan 12, 2021 at 09:14 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -106,7 +106,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam` (IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE(6,2), IN `p_image` VARCHAR(45), IN `p_examTime` TIME, IN `p_courseID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_examCategory` VARCHAR(45), IN `p_examDescription` VARCHAR(45), IN `p_Session` VARCHAR(45), IN `p_student` INT(45))  NO SQL
 BEGIN
 	INSERT INTO exams(
-    
+
     	examName,
         dateOfExam,
         price,
@@ -115,15 +115,15 @@ BEGIN
         coursesID,
         examCenterID,
         staffID,
-       
+
         examCategory,
         examDescription,
         Seasons,
 		studentID
-    
+
     )
     VALUES(
-    
+
     	p_examName,
         p_dateOfExam,
         p_price,
@@ -132,12 +132,12 @@ BEGIN
         p_courseID,
         p_examCenterID,
         p_staffID,
-      
+
        p_examCategory,
         p_examDescription,
         p_Session,
         p_student
-        
+
     );
  END$$
 
@@ -224,7 +224,7 @@ BEGIN
     );
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addStudent` (IN `p_userName` VARCHAR(25), IN `p_password` VARCHAR(25), IN `p_email` VARCHAR(25), IN `p_dob` DATE, IN `p_phone` VARCHAR(25), IN `p_fName` VARCHAR(25), IN `p_lName` VARCHAR(25), IN `p_address` VARCHAR(25), IN `p_image` VARCHAR(50), IN `p_result` VARCHAR(45), IN `p_courseID` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addStudent` (IN `p_userName` VARCHAR(25), IN `p_password` VARCHAR(25), IN `p_email` VARCHAR(25), IN `p_dob` DATE, IN `p_phone` VARCHAR(25), IN `p_dateEnrollment` DATE, IN `p_fName` VARCHAR(25), IN `p_lName` VARCHAR(25), IN `p_address` VARCHAR(25), IN `p_image` VARCHAR(50), IN `p_result` VARCHAR(45), IN `p_courseID` INT)  NO SQL
 BEGIN
 	INSERT INTO student
     (
@@ -248,7 +248,7 @@ BEGIN
        p_email,
       p_dob,
        p_phone,
-       NOW(),
+       p_dateEnrollment,
         p_fName,
        p_lName,
        p_address,
@@ -278,10 +278,20 @@ BEGIN
     );
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCart` (IN `p_session_id` VARCHAR(250), IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))  BEGIN
-INSERT INTO shopping_cart(session_id,examID,eventID,booksID,product_name,product_desc,quantity,price,date_added,image_path)
-VALUES(p_session_id,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,p_price,p_date_added,p_image_path);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCart` (IN `p_email` VARCHAR(250), IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))  BEGIN
+INSERT INTO shopping_cart(
+    email,examID,eventID,booksID,product_name,product_desc,quantity,
+    price,date_added,image_path,total)
+VALUES(p_email,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,
+       p_price,p_date_added,p_image_path,(p_quantity * p_price));
+END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCartNS` (IN `p_sessionid` INT, IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))  BEGIN
+INSERT INTO shopping_cart(
+    session_id,examID,eventID,booksID,product_name,product_desc,quantity,
+    price,date_added,image_path,total)
+VALUES(p_sessionid,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,
+       p_price,p_date_added,p_image_path,(p_quantity * p_price));
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `commitCourseApplication` (IN `p_courseName` VARCHAR(255), IN `p_coursesID` INT, IN `p_description` VARCHAR(255), IN `p_levels` VARCHAR(255), IN `p_numberOfYears` INT, IN `p_category` VARCHAR(255), IN `p_price` DECIMAL(5,2), IN `p_fullName` VARCHAR(255), IN `p_email` VARCHAR(255), IN `p_address` VARCHAR(255), IN `p_phoneNumber` INT(10), IN `p_dateOfBirth` DATE, IN `p_additionalInfo` VARCHAR(255))  NO SQL
@@ -294,7 +304,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook` (IN `p_booksID` INT)  NO SQL
 BEGIN
 	DELETE FROM books
-    WHERE booksID  = p_booksID;
+    WHERE p_booksID = booksID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteCourse` (IN `p_coursesID` INT)  NO SQL
@@ -313,6 +323,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteExam` (IN `p_examID` INT)  NO
 BEGIN
 	DELETE FROM exams
     WHERE examID  = p_examID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteItem` (IN `p_input` INT, IN `p_userID` VARCHAR(250))  NO SQL
+BEGIN
+	DELETE FROM shopping_cart
+    WHERE booksID = p_input OR eventID = p_input OR examID = p_input OR image_path = p_input
+    AND email = p_userID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMaintenance` (IN `p_maintenanceID` INT)  NO SQL
@@ -393,9 +410,7 @@ examTime,
 coursesID,
 examCenterID,
 staffID,
-examDescription,
-Seasons,
-studentID
+examDescription
 FROM exams
 WHERE examID = p_examID;
 END$$
@@ -411,6 +426,28 @@ BEGIN
 SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
 FROM books
  LIMIT  p_limit,p_start;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPage` (IN `p_email` VARCHAR(250))  NO SQL
+BEGIN
+SELECT
+shopping_cart.id, student.email, shopping_cart.examID,
+shopping_cart.eventID, shopping_cart.booksID, shopping_cart.product_name,
+shopping_cart.product_desc, shopping_cart.quantity, shopping_cart.price,
+shopping_cart.date_added, shopping_cart.image_path, shopping_cart.total
+FROM student
+INNER JOIN shopping_cart ON student.email = shopping_cart.email;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPageNS` (IN `p_sessionid` INT)  NO SQL
+BEGIN
+SELECT
+id, session_id, examID,
+eventID, booksID, product_name,
+product_desc, quantity, price,
+date_added, image_path, total
+FROM shopping_cart
+WHERE session_id = p_sessionid;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage` (IN `p_limit` INT, IN `p_start` INT)  NO SQL
@@ -576,6 +613,16 @@ FROM staffs
  LIMIT p_limit, p_start;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForPurchase` (IN `p_email` VARCHAR(250))  NO SQL
+BEGIN
+  SELECT
+	studentID, username, password, email,
+	dob, phone, dateEnrollment, fName,
+	lName, address, image, result, courseID
+  FROM student
+  WHERE email = p_email;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForUpdate` (IN `p_studentID` INT)  NO SQL
 BEGIN
   SELECT
@@ -632,8 +679,8 @@ BEGIN
     examDescription = p_examDescription,
     Seasons = p_session,
     studentID = p_studentID
-  
-  
+
+
     WHERE p_examID = examID;
 END$$
 
@@ -679,7 +726,7 @@ BEGIN
     WHERE eventID = p_eventID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedExam` (IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(25), IN `p_examCategory` VARCHAR(25), IN `p_examTime` INT, IN `p_coursesID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_ExamModule` VARCHAR(25), IN `p_examDescription` VARCHAR(26), IN `p_session` VARCHAR(26), IN `p_studentId` VARCHAR(26))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedExam` (IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(25), IN `p_examCategory` VARCHAR(25), IN `p_examTime` INT, IN `p_coursesID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_ExamModule` VARCHAR(25), IN `p_examDescription` VARCHAR(26))  NO SQL
 BEGIN
 	UPDATE exams
     SET 
@@ -693,9 +740,7 @@ BEGIN
     examCenterID = p_examCenterID,
     staffID = p_staffID,
     ExamModule = p_ExamModule,
-    examDescription = p_examDescription,
-    Seasons = p_session,
-	studentID = p_studentId
+    examDescription = p_examDescription
     WHERE examID = p_examID;
 END$$
 
@@ -764,7 +809,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidStudent` (IN `p_email` VARCHAR(45), IN `p_password` VARCHAR(45))  NO SQL
 BEGIN
-SELECT password, email
+SELECT password, email, studentID
 FROM student
 WHERE p_email = email AND p_password = password;
 END$$
@@ -932,7 +977,8 @@ INSERT INTO `courseapplications` (`courseApplicationID`, `courseName`, `courseID
 (1, 'Vioiln', 1, 'The Experts Class', 'Level 7 ', 3, 'Instruments', '300.00', 'test name', 'test@email.com', 'testy address', '2021-01-01', '1112233', 'test additional info'),
 (2, 'Guitar', 5, 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', '370.00', 'test name 2', 'test@email2.com', 'test address 2', '2019-06-06', '2147483647', 'test additional info 2'),
 (3, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '350.00', 'aefdc', 'edfd@aefc.com', 'svr', '2021-01-30', '2147483647', 'sdrtbsetr'),
-(4, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '350.00', 'Joe Moloney', 'joe@email.com', 'address line 1', '2021-01-07', '834445555', 'some additional info');
+(4, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '350.00', 'Joe Moloney', 'joe@email.com', 'address line 1', '2021-01-07', '834445555', 'some additional info'),
+(0, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '999.99', 'aerg', 'areg@email.com', 'ikunjbdsrvf', '1994-09-06', '654', 'jkhbaesrvv');
 
 -- --------------------------------------------------------
 
@@ -958,9 +1004,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`coursesID`, `courseName`, `description`, `levels`, `numberOfYears`, `groupCategory`, `image`, `staffID`, `price`, `coursetimetableID`) VALUES
-(1, 'Vioiln', 'The Experts Class', 'Level 7 ', 3, 'Instruments', 'va.jpg', 1, '300.00', 1),
-(3, 'Piano', 'For Advanced Students', 'Level 5', 2, 'Instruments', 'pb.jpg', 3, '350.00', 1),
-(5, 'Guitar', 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', 'ga.jpg', 5, '370.00', 1);
+(1, 'Vioiln', 'The Experts Class', 'Level 7 ', 3, 'Instruments', 'va.jpg', 1, '3000.00', 1),
+(3, 'Piano', 'For Advanced Students', 'Level 5', 2, 'Instruments', 'pb.jpg', 3, '3500.00', 1),
+(5, 'Guitar', 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', 'ga.jpg', 5, '3700.00', 1);
 
 -- --------------------------------------------------------
 
@@ -1228,7 +1274,8 @@ INSERT INTO `saomevents` (`eventID`, `name`, `description`, `dateOfEvent`, `pric
 
 CREATE TABLE `shopping_cart` (
   `id` int(11) NOT NULL,
-  `session_id` varchar(250) NOT NULL,
+  `email` varchar(250) DEFAULT NULL,
+  `session_id` int(11) DEFAULT NULL,
   `examID` int(11) DEFAULT NULL,
   `eventID` int(11) DEFAULT NULL,
   `booksID` int(11) DEFAULT NULL,
@@ -1237,25 +1284,21 @@ CREATE TABLE `shopping_cart` (
   `quantity` int(11) NOT NULL,
   `price` decimal(5,2) NOT NULL,
   `date_added` datetime NOT NULL,
-  `image_path` varchar(225) NOT NULL
+  `image_path` varchar(225) NOT NULL,
+  `total` double(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `shopping_cart`
 --
 
-INSERT INTO `shopping_cart` (`id`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`) VALUES
-(1, '847gnkn3srk3tjavl817ej0nr2vt3jd7', NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 1, '30.00', '2021-01-05 13:05:06', '9780367592622.jpg'),
-(2, '847gnkn3srk3tjavl817ej0nr2vt3jd7', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 1, '12.00', '2021-01-05 13:08:10', '9781409434146.jpg'),
-(3, '7djv5qfort6i90875geisfvn936fnffo', NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 10, '30.00', '2021-01-05 13:42:24', '9780367592622.jpg'),
-(4, 'vaflvksqdc7mells0b99tr87gpi90dgc', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-05 13:55:31', 'va.jpg'),
-(5, 'vaflvksqdc7mells0b99tr87gpi90dgc', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-05 13:55:54', 'va.jpg'),
-(6, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-05 13:58:54', 'va.jpg'),
-(7, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-05 13:59:01', '9781409434146.jpg'),
-(8, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-05 14:00:18', '9781409434146.jpg'),
-(9, 'u4uvul94f9fp4331jqlqvbo6i4idsktp', NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-05 14:00:23', '9781409434146.jpg'),
-(10, '1uh51vdo7d72l1e2l09cc6e23fc2ofqm', 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 3, '12.09', '2021-01-05 14:23:01', 'va.jpg'),
-(11, 'c77hufo3ntuuse6kusr1b0df2ig66qe7', NULL, 20, NULL, 'The Festival', 'A traditional hip hop event', 80, '12.09', '2021-01-05 14:24:15', 'Stendhal-2021.jpg');
+INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
+(210, NULL, 1610479652, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-12 21:06:48', '9781409434146.jpg', 24.00),
+(211, NULL, 1610479652, 24, NULL, NULL, 'Piano Beginners ', 'Piano Beginners  Exam', 2, '34.00', '2021-01-12 21:06:51', 'pb.jpg', 68.00),
+(212, NULL, 1610479652, NULL, 22, NULL, 'Bomb Squad', 'Latest Rap and Pop Music', 2, '89.21', '2021-01-12 21:06:54', 'download.jpg', 178.42),
+(216, 'email@email.com', NULL, 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-12 21:07:43', 'va.jpg', 24.18),
+(217, 'email@email.com', NULL, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-12 21:07:46', '9781409434146.jpg', 24.00),
+(218, 'email@email.com', NULL, NULL, 22, NULL, 'Bomb Squad', 'Latest Rap and Pop Music', 2, '89.21', '2021-01-12 21:07:50', 'download.jpg', 178.42);
 
 -- --------------------------------------------------------
 
@@ -1283,9 +1326,9 @@ CREATE TABLE `staffs` (
 --
 
 INSERT INTO `staffs` (`staffID`, `fName`, `lName`, `role`, `dob`, `address`, `email`, `username`, `password`, `phone`, `image`, `courseID`) VALUES
-(3, 'Joe', 'Moloney', 'Examiner', '1997-12-07', '12 Abbeyville Adare', 'joe@email.com', 'joe123', '123', '877961289', 'joe.jpg', 1),
 (4, 'Fyaz', 'Ikram', 'Teacher', '2000-12-08', '25 The Crescent Kilteragh', 'fyazikram834@gmail.com', 'fyaz123', 'fyaz123', '894389623', 'fyaz.jpg', 1),
-(5, 'Pierce', 'Griffin', 'Administrator', '1998-01-08', 'The Oakelieywood 10th Avenues', 'pierce@gmail.com', 'pierce123', 'pierce123', '877961289', 'pierce.jpg', 1);
+(5, 'Pierce', 'Griffin', 'Administrator', '1998-01-08', 'The Oakelieywood 10th Avenues', 'pierce@gmail.com', 'pierce123', 'pierce123', '877961289', 'pierce.jpg', 1),
+(6, 'Joe', 'Moloney', 'Seven', '1994-09-06', 'seven', 'semail@semail.com', 'Joe', '123', '2147483647', 'NA', 1);
 
 -- --------------------------------------------------------
 
@@ -1297,7 +1340,7 @@ CREATE TABLE `student` (
   `studentID` int(11) NOT NULL,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
   `dob` date DEFAULT NULL,
   `phone` int(11) DEFAULT NULL,
   `dateEnrollment` date DEFAULT NULL,
@@ -1306,17 +1349,18 @@ CREATE TABLE `student` (
   `address` varchar(45) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
   `result` varchar(45) DEFAULT NULL,
-  `courseID` int(11) DEFAULT NULL
+  `courseID` int(11) DEFAULT NULL,
+  `session_id` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`, `courseID`) VALUES
-(10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', 'N/A', 1),
-(11, 'pierce123', 'pierce', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1),
-(12, 'JM', '123', 'email@email.com', '1994-09-06', 834513457, '2021-01-12', 'Joe', 'Moloney', 'Killalane', 'fyaz.jpg', 'N/A', 5);
+INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`, `courseID`, `session_id`) VALUES
+(10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', 'N/A', 1, NULL),
+(11, 'pierce123', 'pierce', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1, NULL),
+(12, 'Joe', '123', 'email@email.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', '7', 'sure', 'NA', 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1364,12 +1408,6 @@ ALTER TABLE `books`
   ADD PRIMARY KEY (`booksID`);
 
 --
--- Indexes for table `courseapplications`
---
-ALTER TABLE `courseapplications`
-  ADD PRIMARY KEY (`courseApplicationID`);
-
---
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
@@ -1398,8 +1436,7 @@ ALTER TABLE `exams`
   ADD PRIMARY KEY (`examID`),
   ADD KEY `fk_Exams_Courses1_idx` (`coursesID`),
   ADD KEY `fk_Exams_Exam Center1_idx` (`examCenterID`),
-  ADD KEY `staffID` (`staffID`),
-  ADD KEY `FK_studentID` (`studentID`);
+  ADD KEY `staffID` (`staffID`);
 
 --
 -- Indexes for table `generate reports`
@@ -1474,7 +1511,8 @@ ALTER TABLE `saomevents`
 -- Indexes for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_scEmail_sEmail` (`email`);
 
 --
 -- Indexes for table `staffs`
@@ -1486,8 +1524,9 @@ ALTER TABLE `staffs`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`studentID`),
-  ADD KEY `courseID` (`courseID`);
+  ADD PRIMARY KEY (`studentID`,`email`),
+  ADD KEY `courseID` (`courseID`),
+  ADD KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1528,12 +1567,6 @@ ALTER TABLE `book orders`
 --
 ALTER TABLE `books`
   MODIFY `booksID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `courseapplications`
---
-ALTER TABLE `courseapplications`
-  MODIFY `courseApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `courses`
@@ -1611,13 +1644,13 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 
 --
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -1643,12 +1676,6 @@ ALTER TABLE `coursetimetable`
   ADD CONSTRAINT `coursetimetable_ibfk_2` FOREIGN KEY (`staffID`) REFERENCES `staffs` (`staffID`);
 
 --
--- Constraints for table `exams`
---
-ALTER TABLE `exams`
-  ADD CONSTRAINT `FK_studentID` FOREIGN KEY (`studentID`) REFERENCES `student` (`studentID`);
-
---
 -- Constraints for table `instrumentsmaintenance`
 --
 ALTER TABLE `instrumentsmaintenance`
@@ -1668,6 +1695,12 @@ ALTER TABLE `privatetuition`
 ALTER TABLE `processexams`
   ADD CONSTRAINT `processexams_ibfk_1` FOREIGN KEY (`examID`) REFERENCES `exams` (`examID`),
   ADD CONSTRAINT `processexams_ibfk_2` FOREIGN KEY (`staffID`) REFERENCES `staffs` (`staffID`);
+
+--
+-- Constraints for table `shopping_cart`
+--
+ALTER TABLE `shopping_cart`
+  ADD CONSTRAINT `fk_scEmail_sEmail` FOREIGN KEY (`email`) REFERENCES `student` (`email`);
 
 --
 -- Constraints for table `student`
