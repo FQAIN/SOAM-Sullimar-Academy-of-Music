@@ -31,16 +31,12 @@ $base_url = base_url();
 
                             </p>
                             <div class="row">
-                                <div class="col-md-6 first-button">
-                                    <div class="text-button">
-                                        <a href="#">Add to favorites</a>
-                                    </div>
-                                </div>
+
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="text-button">
                                         <form action="<?php echo site_url('Home/bookCourse/'  . $course['coursesID']); ?>" method="POST">
-                                            <input type="submit" value="Apply">
+                                            <button type="button" class="btn btn-light"><input type="submit" value="Apply For Course" style="border: none;"></button><br>
                                         </form>
                                     </div>
                                 </div>

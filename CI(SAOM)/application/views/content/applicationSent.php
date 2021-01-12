@@ -40,24 +40,24 @@ $base_url = base_url();
                         <br>
                         <br>
                         <br>
-                         <img src="<?php echo $img_url . "Customer-Thank-You-Note-1.png" ?>" alt="">
+                         <img src="<?php echo $img_url . "application-form.jpg" ?>" alt="">
                             <br><br><br><br><br><br>
-                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 24px; color: #000000; line-height: 29px;">Thanks for Ordering!</div>
+                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 24px; color: #000000; line-height: 29px;">Thanks for Applying!</div>
                         </td>
                       </tr>
                       <tr>
                         <td style="padding: 18px 39px 23px;">
-                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; color: #333333; line-height: 24px;">We at SAOM truly appreciate your purchases, and we’re so grateful for the trust you’ve placed in us. We sincerely hope you are satisfied with your purchase.</div>
+                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; color: #333333; line-height: 24px;">We are truly delighted that you have chosen SAOM as a career step towards the future and can't wait to see you on campus in few weeks time.</div>
                         </td>
                       </tr>
                       <tr>
                         <td style="padding: 0 39px;">
-                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; color: #333333; line-height: 24px;"> Hope you are happy with your purchase! Thank you for being a valued SAOM customer!</div>
+                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; color: #333333; line-height: 24px;"> Your application form is being processed and we will get back to you as soon as possible to notify you by email if you were a successful or not!</div>
                         </td>
                       </tr>
                       <tr>
                         <td style="padding: 18px 39px 0;">
-                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; color: #333333; line-height: 24px;">We're happy to assit you!</div>
+                          <div style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; color: #333333; line-height: 24px;">Thanks for choosing SAOM!</div>
                         </td>
                       </tr>
                       <tr>

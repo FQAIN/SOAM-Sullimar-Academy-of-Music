@@ -1,6 +1,14 @@
 <?php $img_url = base_url() . "assets/img/"; ?>
 <section class="" id="">
     <div class="container-fluid">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <h1 class=""><strong>Book an Course</strong></h1>
     </div>
     <div class="panel-body">
