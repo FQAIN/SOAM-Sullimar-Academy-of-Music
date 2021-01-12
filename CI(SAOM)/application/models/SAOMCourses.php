@@ -91,4 +91,8 @@ Class SAOMCourses extends CI_Model {
         $this->db->query($stored_proc_call, $data);
     }
 
+    function commitCourseApplication($application) {
+        $stored_proc_call = "CALL commitCourseApplication(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $this->db->query($stored_proc_call, $application);
+    }
 }

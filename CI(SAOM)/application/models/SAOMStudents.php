@@ -54,8 +54,6 @@ Class SAOMStudents extends CI_Model {
 
         $student_data['phone'] = $this->input->post('phone');
 
-        $student_data['dateEnrollment'] = $this->input->post('dateEnrollment');
-
         $student_data['fName'] = $this->input->post('fName');
 
         $student_data['lName'] = $this->input->post('lName');
@@ -71,7 +69,7 @@ Class SAOMStudents extends CI_Model {
         $student_data['courseID'] = $this->input->post('courseID');
 
 
-        $stored_proc_call = "CALL addStudent(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+        $stored_proc_call = "CALL addStudent(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $this->db->query($stored_proc_call, $student_data);
     }
 

@@ -39,8 +39,7 @@ $base_url = base_url();
                                 
                                 <div class="col-md-6">
                                     <div class="text-button">
-                                        <form action="<?php echo site_url('Home/bookCourse/'); ?>" method="POST">
-                                            <input type="hidden" id="<?php echo $course['coursesID']; ?>">
+                                        <form action="<?php echo site_url('Home/bookCourse/'  . $course['coursesID']); ?>" method="POST">
                                             <input type="submit" value="Apply">
                                         </form>
                                     </div>

@@ -18,7 +18,10 @@ Class Student extends CI_Model {
             );
             return $loggedIn;
         } else {
-            return (false);
+            $loggedIn = array(
+                'loggedIn' => false
+            );
+            return $loggedIn;
         }
     }
 

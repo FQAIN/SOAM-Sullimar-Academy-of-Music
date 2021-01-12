@@ -162,14 +162,14 @@ class Home extends CI_Controller {
         $this->load->view('layout', $view_data);
     }
 
-    public function bookCourse() {
+    public function bookCourse($coursesID) {
         $this->load->model('SAOMCourses');
         
         $data = array();
         
-        $courseID = $this->input->post('coursesID');
+        echo $coursesID;
         
-        $data['courseDetails'] = $this->SAOMCourses->getSelectedCourse($courseID);
+        $data['courseDetails'] = $this->SAOMCourses->getSelectedCourse($coursesID);
         
         $view_data = array(
             'content' => $this->load->view('content/bookCourse', $data, true)

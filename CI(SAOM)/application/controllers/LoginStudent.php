@@ -17,8 +17,8 @@ class LoginStudent extends CI_Controller {
          $this->load->view('Layout', $view_data);
         $this->load->model('Student');
 
-        if($this->input->post('submit')) {
-
+        if($this->input->post('submit')) 
+        {
             $validated = $this->Student->validStudent();
             
             if($validated['loggedIn']) {

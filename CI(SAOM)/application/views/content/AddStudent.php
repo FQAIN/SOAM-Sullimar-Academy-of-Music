@@ -260,10 +260,6 @@
                                 <input type="text" name="lName" value="<?php echo set_value('lName'); ?>"  placeholder="Last Name" id="special"></p>
                             <?php echo form_error('lName'); ?>
 
-                            <p><strong>Date of Enrollment:</strong><br/>
-                                <input type="date" name="dateEnrollment" value="<?php echo set_value('dateEnrollment'); ?>"  placeholder="Date of Enrollment" id="special"></p>
-                            <?php echo form_error('dateEnrollment'); ?>
-
                             <p><strong>Date of Birth:</strong><br/>
                                 <input type="date" name="dob" value="<?php echo set_value('dob'); ?>"  placeholder="Date of Birth" id="special"></p>
                             <?php echo form_error('dob'); ?>

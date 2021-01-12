@@ -35,6 +35,46 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage`(IN `p_limit` INT, IN `p_start` INT)
+    NO SQL
+BEGIN
+SELECT eventID,name, description,dateOfEvent,price,location,image
+FROM saomevents
+ LIMIT p_limit, p_start;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCart`(
+	IN p_session_id VARCHAR(250),
+	IN p_examID	INT,
+	IN p_eventID	INT,
+	IN p_booksID	INT,
+	IN p_product_name	VARCHAR(250),
+	IN p_product_desc	VARCHAR(254),
+	IN p_quantity	INT,
+	IN p_price	decimal(5,2),
+	IN p_date_added	datetime,
+	IN p_image_path	VARCHAR(225)
+)
+BEGIN
+INSERT INTO shopping_cart(session_id,examID,eventID,booksID,product_name,product_desc,quantity,price,date_added,image_path)
+VALUES(p_session_id,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,p_price,p_date_added,p_image_path);
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage`(IN `p_limit` INT, IN `p_start` INT)
+    NO SQL
+BEGIN
+SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
+FROM books
+ LIMIT  p_limit,p_start;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPrivatetuition`(IN `p_room` VARCHAR(45), IN `p_studentID` INT, IN `p_staffID` INT, IN `p_note` VARCHAR(250), IN `p_courseID` INT)
     NO SQL
 BEGIN
@@ -55,76 +95,6 @@ BEGIN
         p_note,
         p_courseID
     );
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCart`(IN `p_email` VARCHAR(250), IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))
-BEGIN
-INSERT INTO shopping_cart(
-    email,examID,eventID,booksID,product_name,product_desc,quantity,
-    price,date_added,image_path,total)
-VALUES(p_email,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,
-       p_price,p_date_added,p_image_path,(p_quantity * p_price));
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectBooksPerPage`(IN `p_limit` INT, IN `p_start` INT)
-    NO SQL
-BEGIN
-SELECT booksID, bookName, description, author, yearPublished, price, category, ISBN, inStock, qty, image 
-FROM books
- LIMIT  p_limit,p_start;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddtoCartNS`(IN `p_sessionid` INT, IN `p_examID` INT, IN `p_eventID` INT, IN `p_booksID` INT, IN `p_product_name` VARCHAR(250), IN `p_product_desc` VARCHAR(254), IN `p_quantity` INT, IN `p_price` DECIMAL(5,2), IN `p_date_added` DATETIME, IN `p_image_path` VARCHAR(225))
-BEGIN
-INSERT INTO shopping_cart(
-    session_id,examID,eventID,booksID,product_name,product_desc,quantity,
-    price,date_added,image_path,total)
-VALUES(p_sessionid,p_examID,p_eventID,p_booksID,p_product_name,p_product_desc,p_quantity,
-       p_price,p_date_added,p_image_path,(p_quantity * p_price));
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPage`(IN `p_email` VARCHAR(250))
-    NO SQL
-BEGIN
-SELECT
-shopping_cart.id, student.email, shopping_cart.examID,
-shopping_cart.eventID, shopping_cart.booksID, shopping_cart.product_name,
-shopping_cart.product_desc, shopping_cart.quantity, shopping_cart.price,
-shopping_cart.date_added, shopping_cart.image_path, shopping_cart.total
-FROM student
-INNER JOIN shopping_cart ON student.email = shopping_cart.email;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCartPerPageNS`(IN `p_sessionid` INT)
-    NO SQL
-BEGIN
-SELECT
-id, session_id, examID,
-eventID, booksID, product_name,
-product_desc, quantity, price,
-date_added, image_path, total
-FROM shopping_cart
-WHERE session_id = p_sessionid;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectContactsPerPage`(IN `p_limit` INT, IN `p_start` INT)
-    NO SQL
-BEGIN
-SELECT eventID,name, description,dateOfEvent,price,location,image
-FROM saomevents
- LIMIT p_limit, p_start;
 END$$
 DELIMITER ;
 
@@ -205,7 +175,7 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidStudent`(IN `p_email` VARCHAR(45), IN `p_password` VARCHAR(45))
     NO SQL
 BEGIN
-SELECT password, email, studentID
+SELECT password, email
 FROM student
 WHERE p_email = email AND p_password = password;
 END$$
@@ -309,7 +279,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam`(IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE(6,2), IN `p_image` VARCHAR(45), IN `p_examTime` TIME, IN `p_courseID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_examCategory` VARCHAR(45), IN `p_examDescription` VARCHAR(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam`(IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE(6,2), IN `p_image` VARCHAR(45), IN `p_examTime` TIME, IN `p_courseID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_examCategory` VARCHAR(45), IN `p_examDescription` VARCHAR(45), IN `p_Session` VARCHAR(45), IN `p_student` INT(45))
     NO SQL
 BEGIN
 	INSERT INTO exams(
@@ -324,7 +294,9 @@ BEGIN
         staffID,
        
         examCategory,
-        examDescription
+        examDescription,
+        Seasons,
+		studentID
     
     )
     VALUES(
@@ -339,7 +311,9 @@ BEGIN
         p_staffID,
       
        p_examCategory,
-        p_examDescription
+        p_examDescription,
+        p_Session,
+        p_student
         
     );
  END$$
@@ -381,7 +355,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addStudent`(IN `p_userName` VARCHAR(25), IN `p_password` VARCHAR(25), IN `p_email` VARCHAR(25), IN `p_dob` DATE, IN `p_phone` VARCHAR(25), IN `p_dateEnrollment` DATE, IN `p_fName` VARCHAR(25), IN `p_lName` VARCHAR(25), IN `p_address` VARCHAR(25), IN `p_image` VARCHAR(50), IN `p_result` VARCHAR(45), IN `p_courseID` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addStudent`(IN `p_userName` VARCHAR(25), IN `p_password` VARCHAR(25), IN `p_email` VARCHAR(25), IN `p_dob` DATE, IN `p_phone` VARCHAR(25), IN `p_fName` VARCHAR(25), IN `p_lName` VARCHAR(25), IN `p_address` VARCHAR(25), IN `p_image` VARCHAR(50), IN `p_result` VARCHAR(45), IN `p_courseID` INT)
     NO SQL
 BEGIN
 	INSERT INTO student
@@ -406,7 +380,7 @@ BEGIN
        p_email,
       p_dob,
        p_phone,
-       p_dateEnrollment,
+       NOW(),
         p_fName,
        p_lName,
        p_address,
@@ -441,11 +415,21 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `commitCourseApplication`(IN `p_courseName` VARCHAR(255), IN `p_coursesID` INT, IN `p_description` VARCHAR(255), IN `p_levels` VARCHAR(255), IN `p_numberOfYears` INT, IN `p_category` VARCHAR(255), IN `p_price` DECIMAL(5,2), IN `p_fullName` VARCHAR(255), IN `p_email` VARCHAR(255), IN `p_address` VARCHAR(255), IN `p_phoneNumber` INT(10), IN `p_dateOfBirth` DATE, IN `p_additionalInfo` VARCHAR(255))
+    NO SQL
+BEGIN
+	INSERT INTO courseapplications(
+    courseName, courseID, description, levels, numberOfYears, category, price, fullName, email, address, phoneNumber, dateOfBirth, additionalInfo)
+    VALUES(p_courseName, p_coursesID, p_description, p_levels, p_numberOfYears, p_category, p_price, p_fullName, p_email, p_address, p_phoneNumber, p_dateOfBirth, p_additionalInfo);
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook`(IN `p_booksID` INT)
     NO SQL
 BEGIN
 	DELETE FROM books
-    WHERE p_booksID = booksID;
+    WHERE booksID  = p_booksID;
 END$$
 DELIMITER ;
 
@@ -522,6 +506,16 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedCourse`(IN `p_id` INT)
+    NO SQL
+BEGIN
+	SELECT coursesID, courseName, description, levels, numberOfYears, groupCategory, image, price
+    FROM courses
+    WHERE coursesID = p_id;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificBook`(IN `p_booksID` INT)
 BEGIN
 SELECT 	
@@ -570,7 +564,9 @@ examTime,
 coursesID,
 examCenterID,
 staffID,
-examDescription
+examDescription,
+Seasons,
+studentID
 FROM exams
 WHERE examID = p_examID;
 END$$
@@ -620,8 +616,9 @@ BEGIN
         coursesID,
         examCenterID,
         staffID,
-       
-        examDescription
+        examDescription,
+        Seasons,
+        studentID
  FROM exams
  WHERE examID = p_examID;
  END$$
@@ -641,6 +638,8 @@ examTime,
 coursesID,
 examCenterID,
 staffID,
+Seasons,
+studentID,
 
 examDescription
 FROM exams
@@ -705,19 +704,6 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForPurchase`(IN `p_email` VARCHAR(250))
-    NO SQL
-BEGIN
-  SELECT
-	studentID, username, password, email,
-	dob, phone, dateEnrollment, fName,
-	lName, address, image, result, courseID
-  FROM student
-  WHERE email = p_email;
-END$$
-DELIMITER ;
-
-DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectStudentForUpdate`(IN `p_studentID` INT)
     NO SQL
 BEGIN
@@ -764,7 +750,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExam`(IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(100), IN `p_examCategoryID` VARCHAR(45), IN `p_examTime` TIME, IN `p_coursesID` INT, IN `p_examCenterID` VARCHAR(45), IN `p_staffID` INT, IN `p_examDescription` VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExam`(IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(100), IN `p_examCategoryID` VARCHAR(45), IN `p_examTime` TIME, IN `p_coursesID` INT, IN `p_examCenterID` VARCHAR(45), IN `p_staffID` INT, IN `p_examDescription` VARCHAR(100), IN `p_session` VARCHAR(62), IN `p_studentID` INT)
     NO SQL
 BEGIN
 	UPDATE exams
@@ -778,8 +764,11 @@ BEGIN
     coursesID = p_coursesID,
     examCenterID = p_examCenterID,
     staffID = p_staffID,
+    examDescription = p_examDescription,
+    Seasons = p_session,
+    studentID = p_studentID
   
-    examDescription = p_examDescription
+  
     WHERE p_examID = examID;
 END$$
 DELIMITER ;
@@ -836,7 +825,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedExam`(IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(25), IN `p_examCategory` VARCHAR(25), IN `p_examTime` INT, IN `p_coursesID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_ExamModule` VARCHAR(25), IN `p_examDescription` VARCHAR(26))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedExam`(IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(25), IN `p_examCategory` VARCHAR(25), IN `p_examTime` INT, IN `p_coursesID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_ExamModule` VARCHAR(25), IN `p_examDescription` VARCHAR(26), IN `p_session` VARCHAR(26), IN `p_studentId` VARCHAR(26))
     NO SQL
 BEGIN
 	UPDATE exams
@@ -851,7 +840,9 @@ BEGIN
     examCenterID = p_examCenterID,
     staffID = p_staffID,
     ExamModule = p_ExamModule,
-    examDescription = p_examDescription
+    examDescription = p_examDescription,
+    Seasons = p_session,
+	studentID = p_studentId
     WHERE examID = p_examID;
 END$$
 DELIMITER ;
@@ -979,15 +970,5 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `viewStudentDetails`()
     NO SQL
 BEGIN
 	SELECT * FROM student;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteItem`(IN `p_input` INT, IN `p_userID` VARCHAR(250))
-    NO SQL
-BEGIN
-	DELETE FROM shopping_cart
-    WHERE booksID = p_input OR eventID = p_input OR examID = p_input OR image_path = p_input
-    AND email = p_userID;
 END$$
 DELIMITER ;
