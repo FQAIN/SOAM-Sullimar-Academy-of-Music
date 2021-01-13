@@ -103,11 +103,11 @@ class Exams extends CI_Controller {
                 'label' => 'examCenterID',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.')),
-              array('field' => 'Seasons',
+            array('field' => 'Seasons',
                 'label' => 'Seasons',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.')),
-             array('field' => 'studentID',
+            array('field' => 'studentID',
                 'label' => 'studentID',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.'))
@@ -194,11 +194,11 @@ class Exams extends CI_Controller {
                 'label' => 'examDescription',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide an %s.')),
-               array('field' => 'Seasons',
+            array('field' => 'Seasons',
                 'label' => 'Seasons',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.')),
-             array('field' => 'studentID',
+            array('field' => 'studentID',
                 'label' => 'studentID',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.'))
@@ -219,20 +219,20 @@ class Exams extends CI_Controller {
             redirect('Exams/index');
         }
     }
-    
-    function applyForExam()
-    {
+
+    function applyForExam() {
         $this->load->model('SAOMExams'); //Load model
-        
+
         $application = array();
-        
+
         $application['examName'] = $this->input->post('examName');
         $application['examID'] = $this->input->post('examID');
-        $application['description'] = $this->input->post('description');
-        $application['levels'] = $this->input->post('levels');
-        $application['examYear'] = $this->input->post('examYear');
-        $application['category'] = $this->input->post('category');
+        $application['examDescription'] = $this->input->post('examDescription');
+        $application['dateOfExam'] = $this->input->post('dateOfExam');
+        $application['examCategory'] = $this->input->post('examCategory');
+        $application['examTime'] = $this->input->post('examTime');
         $application['price'] = $this->input->post('price');
+        $application['Seasons'] = $this->input->post('Seasons');
         $application['fullName'] = $this->input->post('fullName');
         $application['email'] = $this->input->post('email');
         $application['address'] = $this->input->post('address');
@@ -240,21 +240,17 @@ class Exams extends CI_Controller {
         $application['dateOfBirth'] = $this->input->post('dateOfBirth');
         $application['additionalInfo'] = $this->input->post('additionalInfo');
 
-        $this->SAOMExam->commitExamApplication($application);
+        $this->SAOMExams->commitExamApplication($application);
 
         $view_data = array(
             'content' => $this->load->view('content/applicationSent', $application, true)
         );
 
-        if (!strpos($this->session->userdata('email'), '@'))
-        {
+        if (!strpos($this->session->userdata('email'), '@')) {
             $this->load->view('layout', $view_data);
-        }
-        else if(strpos($this->session->userdata('email'), '@'))
-        {
+        } else if (strpos($this->session->userdata('email'), '@')) {
             $this->load->view('studentLayout', $view_data);
         }
     }
-    
 
 }
