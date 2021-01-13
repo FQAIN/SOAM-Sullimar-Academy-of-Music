@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2021 at 07:45 PM
+-- Generation Time: Jan 13, 2021 at 09:20 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -301,11 +301,40 @@ BEGIN
     VALUES(p_courseName, p_coursesID, p_description, p_levels, p_numberOfYears, p_category, p_price, p_fullName, p_email, p_address, p_phoneNumber, p_dateOfBirth, p_additionalInfo);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `commitExamApplication` (IN `p_examApplicationID` INT, IN `p_examName` INT, IN `p_examID` INT, IN `p_desription` INT, IN `p_level` INT, IN `p_examYear` INT, IN `p_category` INT, IN `p_price` INT, IN `p_fullName` INT, IN `p_email` INT, IN `p_address` INT, IN `p_dateOfBirth` INT, IN `p_phoneNumber` INT, IN `p_additonalinfo` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `commitExamApplication` (IN `p_examName` VARCHAR(250), IN `p_examID` INT, IN `p_examDescription` VARCHAR(250), IN `p_dateOfExam` DATE, IN `p_examCategory` VARCHAR(250), IN `p_examTime` TIME, IN `p_price` DECIMAL(5,2), IN `p_Seasons` VARCHAR(250), IN `p_fullName` VARCHAR(250), IN `p_email` VARCHAR(250), IN `p_address` VARCHAR(250), IN `p_dateOfBirth` DATE, IN `p_phoneNumber` VARCHAR(250), IN `p_additionalinfo` VARCHAR(250))  NO SQL
 BEGIN
 	INSERT INTO examapplications(
-    examapplicationsID, examName, examID, description, levels, examYear, category, price, email, address, phoneNumber, additionalInfo)
-    VALUES(p_examApplicationID,p_examName,p_examID,p_desription,p_level,p_examYear,p_category,p_price,p_fullName,p_email,p_address,p_dateOfBirth,p_phoneNumber,p_additonalinfo);
+        examName,
+        examID,
+        examDescription,
+        dateOfExam,
+        examCategory,
+        examTime,
+        price,
+        Seasons,
+        fullName,
+        email,
+        address,
+        dateOfBirth,
+        phoneNumber,
+        additionalinfo
+    )
+    VALUES(
+        p_examName,
+        p_examID,
+        p_examDescription,
+        p_dateOfExam,
+        p_examCategory,
+        p_examTime,
+        p_price,
+        p_Seasons,
+        p_fullName,
+        p_email,
+        p_address,
+        p_dateOfBirth,
+        p_phoneNumber,
+        p_additionalinfo
+    );
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook` (IN `p_booksID` INT)  NO SQL
@@ -1058,17 +1087,18 @@ CREATE TABLE `examapplications` (
   `examApplicationID` int(11) NOT NULL,
   `examName` varchar(45) DEFAULT NULL,
   `examID` int(11) DEFAULT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  `levels` varchar(45) DEFAULT NULL,
-  `examYear` int(11) DEFAULT NULL,
-  `category` varchar(45) DEFAULT NULL,
-  `price` decimal(5,2) DEFAULT NULL,
+  `examDescription` varchar(45) DEFAULT NULL,
+  `dateOfExam` date DEFAULT NULL,
+  `examCategory` varchar(45) DEFAULT NULL,
+  `examTime` time DEFAULT NULL,
   `fullName` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
-  `phoenNumber` varchar(11) DEFAULT NULL,
-  `additionalinfo` varchar(255) DEFAULT NULL
+  `phoneNumber` varchar(11) DEFAULT NULL,
+  `additionalinfo` varchar(255) DEFAULT NULL,
+  `price` decimal(5,2) DEFAULT NULL,
+  `Seasons` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1622,6 +1652,12 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `coursetimetable`
   MODIFY `courseTimetableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `examapplications`
+--
+ALTER TABLE `examapplications`
+  MODIFY `examApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `exam center`
