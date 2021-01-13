@@ -111,5 +111,22 @@ Class SAOMExams extends CI_Model {
         //Returns the stored procedure query as a row
         return $rows;
     }
+    
+    
+      public function getSelectedExam($examID)
+    {
+        $stored_proc_call = "CALL getSelectedExam(?)";
+        
+        $query = $this->db->query($stored_proc_call, $examID);
+        
+        return $query;
+    }
+    
+    
+        function commitExamApplication($application) {
+        $stored_proc_call = "CALL commitExamApplication(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $this->db->query($stored_proc_call, $application);
+    }
+    
 
 }

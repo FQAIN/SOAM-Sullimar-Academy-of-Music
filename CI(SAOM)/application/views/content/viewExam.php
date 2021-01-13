@@ -33,21 +33,13 @@ $base_url = base_url();
                             Price: <?php echo $exam['price']; ?><br>
                             Time: <?php echo $exam['examTime']; ?></p>
                             <div class="row">
-                                <div class="col-md-10 first-button">
-                                    <div class="text-button">
-                                        <?php if (!strpos($this->session->userdata('email'), '@')) : ?>
-                                        <form action="<?php echo site_url('ShoppingCart/AddExamToCartNS/' . $exam['examID']); ?>" method="POST">
-                                        <?php elseif (strpos($this->session->userdata('email'), '@')) : ?>
-                                            <form action="<?php echo site_url('ShoppingCart/AddExamToCart/' . $exam['examID']); ?>" method="POST">
-                                        <?php endif; ?>
-                                            <input type="number" class="form-control" id="exampleInputEmail1" name="quantity" aria-describedby="emailHelp" placeholder="Enter Qty">
-                                            </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="submit" value="Add to Cart">
-                                                <br><br><br>
-                                                </form>
-
+                                
+                                            <div class="col-md-12">
+                                               <div class="text-button">
+                                        <form action="<?php echo site_url('Home/bookExam/'  . $exam['examID']); ?>" method="POST">
+                                            <button type="button" class="btn btn-light"><input type="submit" value="Apply For Course" style="border: none;"></button><br>
+                                        </form>
+                                    </div>
                                             </div>
                                     </div>
                                 </div>

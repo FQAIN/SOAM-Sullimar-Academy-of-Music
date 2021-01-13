@@ -219,5 +219,42 @@ class Exams extends CI_Controller {
             redirect('Exams/index');
         }
     }
+    
+    function applyForExam()
+    {
+        $this->load->model('SAOMExams'); //Load model
+        
+        $application = array();
+        
+        $application['examName'] = $this->input->post('examName');
+        $application['examID'] = $this->input->post('examID');
+        $application['description'] = $this->input->post('description');
+        $application['levels'] = $this->input->post('levels');
+        $application['examYear'] = $this->input->post('examYear');
+        $application['category'] = $this->input->post('category');
+        $application['price'] = $this->input->post('price');
+        $application['fullName'] = $this->input->post('fullName');
+        $application['email'] = $this->input->post('email');
+        $application['address'] = $this->input->post('address');
+        $application['phoneNumber'] = $this->input->post('phoneNumber');
+        $application['dateOfBirth'] = $this->input->post('dateOfBirth');
+        $application['additionalInfo'] = $this->input->post('additionalInfo');
+
+        $this->SAOMExam->commitExamApplication($application);
+
+        $view_data = array(
+            'content' => $this->load->view('content/applicationSent', $application, true)
+        );
+
+        if (!strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('layout', $view_data);
+        }
+        else if(strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('studentLayout', $view_data);
+        }
+    }
+    
 
 }
