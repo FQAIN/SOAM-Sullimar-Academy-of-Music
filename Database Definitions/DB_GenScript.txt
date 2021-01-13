@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2021 at 09:14 PM
+-- Generation Time: Jan 13, 2021 at 07:45 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -301,6 +301,13 @@ BEGIN
     VALUES(p_courseName, p_coursesID, p_description, p_levels, p_numberOfYears, p_category, p_price, p_fullName, p_email, p_address, p_phoneNumber, p_dateOfBirth, p_additionalInfo);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `commitExamApplication` (IN `p_examApplicationID` INT, IN `p_examName` INT, IN `p_examID` INT, IN `p_desription` INT, IN `p_level` INT, IN `p_examYear` INT, IN `p_category` INT, IN `p_price` INT, IN `p_fullName` INT, IN `p_email` INT, IN `p_address` INT, IN `p_dateOfBirth` INT, IN `p_phoneNumber` INT, IN `p_additonalinfo` INT)  NO SQL
+BEGIN
+	INSERT INTO examapplications(
+    examapplicationsID, examName, examID, description, levels, examYear, category, price, email, address, phoneNumber, additionalInfo)
+    VALUES(p_examApplicationID,p_examName,p_examID,p_desription,p_level,p_examYear,p_category,p_price,p_fullName,p_email,p_address,p_dateOfBirth,p_phoneNumber,p_additonalinfo);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook` (IN `p_booksID` INT)  NO SQL
 BEGIN
 	DELETE FROM books
@@ -367,6 +374,13 @@ BEGIN
 	SELECT coursesID, courseName, description, levels, numberOfYears, groupCategory, image, price
     FROM courses
     WHERE coursesID = p_id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedExam` (IN `p_id` INT)  NO SQL
+BEGIN
+	SELECT examID, examName, dateOfExam, price, image, examCategory, examTime,coursesID,examCenterID,staffID,examDescription,Seasons,studentID
+    FROM exams
+    WHERE examID = p_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificBook` (IN `p_booksID` INT)  BEGIN
@@ -1037,6 +1051,29 @@ INSERT INTO `coursetimetable` (`courseTimetableID`, `day`, `dates`, `timeslots`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `examapplications`
+--
+
+CREATE TABLE `examapplications` (
+  `examApplicationID` int(11) NOT NULL,
+  `examName` varchar(45) DEFAULT NULL,
+  `examID` int(11) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `levels` varchar(45) DEFAULT NULL,
+  `examYear` int(11) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `price` decimal(5,2) DEFAULT NULL,
+  `fullName` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `dateOfBirth` date DEFAULT NULL,
+  `phoenNumber` varchar(11) DEFAULT NULL,
+  `additionalinfo` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `exam center`
 --
 
@@ -1422,6 +1459,12 @@ ALTER TABLE `coursetimetable`
   ADD PRIMARY KEY (`courseTimetableID`),
   ADD KEY `courseID` (`courseID`),
   ADD KEY `staffID` (`staffID`);
+
+--
+-- Indexes for table `examapplications`
+--
+ALTER TABLE `examapplications`
+  ADD PRIMARY KEY (`examApplicationID`);
 
 --
 -- Indexes for table `exam center`
