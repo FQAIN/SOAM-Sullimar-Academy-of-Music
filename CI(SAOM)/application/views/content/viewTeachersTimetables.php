@@ -10,8 +10,8 @@
                 <label class="col-md-3 control-label">Staff ID</label>
                 <div class="col-md-9">
                     <form action="<?php echo site_url('Timetables/sskeyword'); ?>" method="POST">
-                        <input type="text" name="staffID" required="">
-                        <input type="submit" name="submit" value="Search">
+                        <input type="text" name="staffID" required="" style="border-radius: 5px">
+                        <button type="button" class="btn btn-light"><input type="submit" name="submit" value="Search" style="border: none;"></button>
                     </form>
                 </div>
             </div>
