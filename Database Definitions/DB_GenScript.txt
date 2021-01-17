@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2021 at 09:20 PM
+-- Generation Time: Jan 17, 2021 at 09:25 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -297,8 +297,8 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `commitCourseApplication` (IN `p_courseName` VARCHAR(255), IN `p_coursesID` INT, IN `p_description` VARCHAR(255), IN `p_levels` VARCHAR(255), IN `p_numberOfYears` INT, IN `p_category` VARCHAR(255), IN `p_price` DECIMAL(5,2), IN `p_fullName` VARCHAR(255), IN `p_email` VARCHAR(255), IN `p_address` VARCHAR(255), IN `p_phoneNumber` INT(10), IN `p_dateOfBirth` DATE, IN `p_additionalInfo` VARCHAR(255))  NO SQL
 BEGIN
 	INSERT INTO courseapplications(
-    courseName, courseID, description, levels, numberOfYears, category, price, fullName, email, address, phoneNumber, dateOfBirth, additionalInfo)
-    VALUES(p_courseName, p_coursesID, p_description, p_levels, p_numberOfYears, p_category, p_price, p_fullName, p_email, p_address, p_phoneNumber, p_dateOfBirth, p_additionalInfo);
+    courseName, courseID, description, levels, numberOfYears, category, price, fullName, email, address, phoneNumber, dateOfBirth, additionalInfo,year_added)
+    VALUES(p_courseName, p_coursesID, p_description, p_levels, p_numberOfYears, p_category, p_price, p_fullName, p_email, p_address, p_phoneNumber, p_dateOfBirth, p_additionalInfo,now());
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `commitExamApplication` (IN `p_examName` VARCHAR(250), IN `p_examID` INT, IN `p_examDescription` VARCHAR(250), IN `p_dateOfExam` DATE, IN `p_examCategory` VARCHAR(250), IN `p_examTime` TIME, IN `p_price` DECIMAL(5,2), IN `p_Seasons` VARCHAR(250), IN `p_fullName` VARCHAR(250), IN `p_email` VARCHAR(250), IN `p_address` VARCHAR(250), IN `p_dateOfBirth` DATE, IN `p_phoneNumber` VARCHAR(250), IN `p_additionalinfo` VARCHAR(250))  NO SQL
@@ -1009,19 +1009,23 @@ CREATE TABLE `courseapplications` (
   `address` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
   `phoneNumber` varchar(11) COLLATE utf8_bin DEFAULT NULL,
-  `additionalInfo` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `additionalInfo` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `year_added` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `courseapplications`
 --
 
-INSERT INTO `courseapplications` (`courseApplicationID`, `courseName`, `courseID`, `description`, `levels`, `numberOfYears`, `category`, `price`, `fullName`, `email`, `address`, `dateOfBirth`, `phoneNumber`, `additionalInfo`) VALUES
-(1, 'Vioiln', 1, 'The Experts Class', 'Level 7 ', 3, 'Instruments', '300.00', 'test name', 'test@email.com', 'testy address', '2021-01-01', '1112233', 'test additional info'),
-(2, 'Guitar', 5, 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', '370.00', 'test name 2', 'test@email2.com', 'test address 2', '2019-06-06', '2147483647', 'test additional info 2'),
-(3, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '350.00', 'aefdc', 'edfd@aefc.com', 'svr', '2021-01-30', '2147483647', 'sdrtbsetr'),
-(4, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '350.00', 'Joe Moloney', 'joe@email.com', 'address line 1', '2021-01-07', '834445555', 'some additional info'),
-(0, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '999.99', 'aerg', 'areg@email.com', 'ikunjbdsrvf', '1994-09-06', '654', 'jkhbaesrvv');
+INSERT INTO `courseapplications` (`courseApplicationID`, `courseName`, `courseID`, `description`, `levels`, `numberOfYears`, `category`, `price`, `fullName`, `email`, `address`, `dateOfBirth`, `phoneNumber`, `additionalInfo`, `year_added`) VALUES
+(1, 'Vioiln', 1, 'The Experts Class', 'Level 7 ', 3, 'Instruments', '300.00', 'test name', 'test@email.com', 'testy address', '2021-01-01', '1112233', 'test additional info', NULL),
+(2, 'Guitar', 5, 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', '370.00', 'test name 2', 'test@email2.com', 'test address 2', '2019-06-06', '2147483647', 'test additional info 2', NULL),
+(3, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '350.00', 'aefdc', 'edfd@aefc.com', 'svr', '2021-01-30', '2147483647', 'sdrtbsetr', NULL),
+(4, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '350.00', 'Joe Moloney', 'joe@email.com', 'address line 1', '2021-01-07', '834445555', 'some additional info', NULL),
+(0, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '999.99', 'aerg', 'areg@email.com', 'ikunjbdsrvf', '1994-09-06', '654', 'jkhbaesrvv', NULL),
+(0, 'Vioiln', 1, 'The Experts Class', 'Level 7 ', 3, 'Instruments', '999.99', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '2021-02-05', '894389623', '', NULL),
+(0, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Instruments', '999.99', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '2021-01-29', '894389623', 'GG', 2021),
+(0, 'Guitar', 5, 'Beginner Starter for Guitar', 'Level 8', 4, 'Instruments', '999.99', 'Stephen Barry', 'stephen@cco.ie', '12 Abbeyville Adare', '1996-06-05', '877065221', 'Stephen is a very smart lad', 2021);
 
 -- --------------------------------------------------------
 
@@ -1146,10 +1150,9 @@ CREATE TABLE `exams` (
 --
 
 INSERT INTO `exams` (`examID`, `examName`, `dateOfExam`, `price`, `image`, `examCategory`, `examTime`, `coursesID`, `examCenterID`, `staffID`, `examDescription`, `Seasons`, `studentID`) VALUES
-(23, 'Violin Advanced', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam', '12', 10),
-(24, 'Piano Beginners ', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam', NULL, NULL),
-(25, 'Guitar Amateur', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam', NULL, NULL),
-(36, '12', '0012-12-12', '12.00', '12', '12', '12:12:00', 12, 12, 12, '12', '12', 10);
+(23, 'Violin Advanced', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam', 'Winter', 10),
+(24, 'Piano Beginners ', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam', 'Summer', 11),
+(25, 'Guitar Amateur', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam', 'Summer', 11);
 
 -- --------------------------------------------------------
 
@@ -1360,12 +1363,7 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
-(210, NULL, 1610479652, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-12 21:06:48', '9781409434146.jpg', 24.00),
-(211, NULL, 1610479652, 24, NULL, NULL, 'Piano Beginners ', 'Piano Beginners  Exam', 2, '34.00', '2021-01-12 21:06:51', 'pb.jpg', 68.00),
-(212, NULL, 1610479652, NULL, 22, NULL, 'Bomb Squad', 'Latest Rap and Pop Music', 2, '89.21', '2021-01-12 21:06:54', 'download.jpg', 178.42),
-(216, 'email@email.com', NULL, 23, NULL, NULL, 'Violin Advanced', 'Advanced Violin Exam', 2, '12.09', '2021-01-12 21:07:43', 'va.jpg', 24.18),
-(217, 'email@email.com', NULL, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-12 21:07:46', '9781409434146.jpg', 24.00),
-(218, 'email@email.com', NULL, NULL, 22, NULL, 'Bomb Squad', 'Latest Rap and Pop Music', 2, '89.21', '2021-01-12 21:07:50', 'download.jpg', 178.42);
+(231, NULL, 1610912007, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 1, '30.00', '2021-01-17 20:33:32', '9780367592622.jpg', 30.00);
 
 -- --------------------------------------------------------
 
@@ -1395,7 +1393,7 @@ CREATE TABLE `staffs` (
 INSERT INTO `staffs` (`staffID`, `fName`, `lName`, `role`, `dob`, `address`, `email`, `username`, `password`, `phone`, `image`, `courseID`) VALUES
 (4, 'Fyaz', 'Ikram', 'Teacher', '2000-12-08', '25 The Crescent Kilteragh', 'fyazikram834@gmail.com', 'fyaz123', 'fyaz123', '894389623', 'fyaz.jpg', 1),
 (5, 'Pierce', 'Griffin', 'Administrator', '1998-01-08', 'The Oakelieywood 10th Avenues', 'pierce@gmail.com', 'pierce123', 'pierce123', '877961289', 'pierce.jpg', 1),
-(6, 'Joe', 'Moloney', 'Seven', '1994-09-06', 'seven', 'semail@semail.com', 'Joe', '123', '2147483647', 'NA', 1);
+(6, 'Joe', 'Moloney', 'Administrator', '1994-09-06', 'Toluse The Green ', 'joe@gmail.com', 'Joe', '123', '2147483647', 'fyaz.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -1427,7 +1425,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`, `courseID`, `session_id`) VALUES
 (10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', 'N/A', 1, NULL),
 (11, 'pierce123', 'pierce', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1, NULL),
-(12, 'Joe', '123', 'email@email.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', '7', 'sure', 'NA', 1, NULL);
+(12, 'Joe', '123', 'email@email.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', 'Evergreen 16th Street', 'fyaz.jpg', 'N/A', 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1723,13 +1721,13 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student`
