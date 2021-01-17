@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2021 at 09:25 PM
+-- Generation Time: Jan 17, 2021 at 11:16 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -317,7 +317,8 @@ BEGIN
         address,
         dateOfBirth,
         phoneNumber,
-        additionalinfo
+        additionalinfo,
+        year_added
     )
     VALUES(
         p_examName,
@@ -333,7 +334,8 @@ BEGIN
         p_address,
         p_dateOfBirth,
         p_phoneNumber,
-        p_additionalinfo
+        p_additionalinfo,
+        now()
     );
 END$$
 
@@ -1102,8 +1104,16 @@ CREATE TABLE `examapplications` (
   `phoneNumber` varchar(11) DEFAULT NULL,
   `additionalinfo` varchar(255) DEFAULT NULL,
   `price` decimal(5,2) DEFAULT NULL,
-  `Seasons` varchar(45) DEFAULT NULL
+  `Seasons` varchar(45) DEFAULT NULL,
+  `year_added` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `examapplications`
+--
+
+INSERT INTO `examapplications` (`examApplicationID`, `examName`, `examID`, `examDescription`, `dateOfExam`, `examCategory`, `examTime`, `fullName`, `email`, `address`, `dateOfBirth`, `phoneNumber`, `additionalinfo`, `price`, `Seasons`, `year_added`) VALUES
+(9, 'Piano Beginners ', 24, 'Piano Beginners  Exam', '2020-12-27', 'Hard Instrument', '12:12:12', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '0000-00-00', '2021-01-28', 'ff', '34.00', 'Summer', 2021);
 
 -- --------------------------------------------------------
 
@@ -1655,7 +1665,7 @@ ALTER TABLE `coursetimetable`
 -- AUTO_INCREMENT for table `examapplications`
 --
 ALTER TABLE `examapplications`
-  MODIFY `examApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `examApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `exam center`
