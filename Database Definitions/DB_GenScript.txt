@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2021 at 11:16 PM
+-- Generation Time: Jan 20, 2021 at 09:31 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -1373,7 +1373,7 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
-(231, NULL, 1610912007, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 1, '30.00', '2021-01-17 20:33:32', '9780367592622.jpg', 30.00);
+(237, NULL, 1610975093, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 1, '12.00', '2021-01-18 15:28:04', '9781409434146.jpg', 12.00);
 
 -- --------------------------------------------------------
 
@@ -1436,6 +1436,20 @@ INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `pho
 (10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', 'N/A', 1, NULL),
 (11, 'pierce123', 'pierce', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1, NULL),
 (12, 'Joe', '123', 'email@email.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', 'Evergreen 16th Street', 'fyaz.jpg', 'N/A', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teachersarea`
+--
+
+CREATE TABLE `teachersarea` (
+  `teachersAreaID` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -1610,6 +1624,12 @@ ALTER TABLE `student`
   ADD KEY `email` (`email`);
 
 --
+-- Indexes for table `teachersarea`
+--
+ALTER TABLE `teachersarea`
+  ADD PRIMARY KEY (`teachersAreaID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1731,7 +1751,7 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -1744,6 +1764,12 @@ ALTER TABLE `staffs`
 --
 ALTER TABLE `student`
   MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `teachersarea`
+--
+ALTER TABLE `teachersarea`
+  MODIFY `teachersAreaID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

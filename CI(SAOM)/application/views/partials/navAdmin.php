@@ -11,7 +11,7 @@
                     <nav id="primary-nav" class="dropdown cf">
                         <ul class="dropdown menu">
 
-                            <li class='active'><a href="<?php echo site_url('Home/dashboard'); ?>">Dashboard</a></li>
+                            <li class='active'><a href="<?php echo site_url('TeachersArea/index'); ?>">Dashboard</a></li>
                             <li><a href="#">Members</a>
                                 <ul class="sub-menu">
                                     <li><a href="<?php echo site_url('Students/index'); ?>">View Students</a>
