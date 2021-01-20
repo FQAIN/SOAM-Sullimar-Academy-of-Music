@@ -252,19 +252,19 @@
                             <h2>Add Teachers Item Details</h2>
                             <p><a href="<?php echo base_url(); ?>index.php/TeachersArea/index/" class="back"><-Back to dashboard</a></p>
 
-                            <p><strong>title :</strong><br/>
+                            <p><strong>Title :</strong><br/>
                                 <input type="text" name="title" value="<?php echo set_value('title'); ?>" placeholder="title" id="special"/>
-                                <?php echo form_error('fName'); ?>
+                                <?php echo form_error('title'); ?>
 
-                            <p><strong>Last Name:</strong><br/>
+                            <p><strong>Description:</strong><br/>
                                 <input type="text" name="description" value="<?php echo set_value('description'); ?>"  placeholder="description" id="special"></p>
-                            <?php echo form_error('lName'); ?>
+                            <?php echo form_error('description'); ?>
 
-                            <p><strong>Role:</strong><br/>
+                            <p><strong>Image:</strong><br/>
                                 <input type="text" name="image" value="<?php echo set_value('image'); ?>"  placeholder="image" id="special"></p>
                             <?php echo form_error('image'); ?>
 
-                            <p><strong>category :</strong><br/>
+                            <p><strong>Category :</strong><br/>
                                 <input type="category" name="category" value="<?php echo set_value('category'); ?>"  placeholder="category" id="special"></p>
                             <?php echo form_error('category'); ?>
 

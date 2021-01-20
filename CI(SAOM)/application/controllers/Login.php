@@ -21,7 +21,7 @@ class Login extends CI_Controller {
 
             if($this->User->validUser()) {
                 $this->session->set_userdata('loggedIn', true);
-                redirect('Home/dashboard');
+                redirect('TeachersArea/index');
             }
         }
     }

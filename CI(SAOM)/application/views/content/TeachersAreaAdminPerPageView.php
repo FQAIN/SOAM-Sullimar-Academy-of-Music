@@ -11,36 +11,40 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="mb-0 mt-4">
-                        <i class="fa fa-newspaper-o"></i> My Courses</div>
+                        <i class="fa fa-newspaper-o"></i> My Dashboard</div>
                     <hr class="mt-2">
-                    <div class="card-columns">
-                        <div class="card mb-3">
-                            <a href="#">
-                                <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" class="card-img-top img-fluid w-100" alt="">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="card-title mb-1"> <strong>Course 1</strong></h6>
-                                <p class="card-text small">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                                </p>
-                                <button class="btn" ng-click="updateMe()">Remove Item</button>
-                                <button class="btn" ng-click="updateMe()">Update Item</button>
+                
+                        <div class="card-columns">
+                            <div class="card mb-3">
+                                    <?php foreach ($teachersAreas->result_array() as $teachersArea): ?>
+                                <a href="#">
+                                    <img src="<?php echo $img_url . $teachersArea['image'] ?>" alt="" class="card-img-top img-fluid w-100" width="100%" height="250px"/>
+                                </a>
+                                <div class="card-body">                                
+
+                                    <p><strong><?php echo $teachersArea['title']; ?></strong><br>
+                                        </p>
+                                    <h5 class="card-title mb-1"><?php echo $teachersArea['description']; ?></h5>
+                                    <p><?php echo $teachersArea['category']; ?></p>
+                                    <form action="<?php echo site_url('TeachersArea/updateTeachersArea'); ?>" method='POST'>
+                                        <input type='hidden' name='teachersAreaID' value="<?php echo $teachersArea['teachersAreaID'] ?>"/>
+                                        <input type='submit' class='btn btn-light' value='Update Item'>
+                                    </form>
+
+                                    <form action="<?php echo site_url('TeachersArea/deleteTeachersArea'); ?>" method='POST'>
+                                        <input type='hidden' name='teachersAreaID' value="<?php echo $teachersArea['teachersAreaID'] ?> "/>
+                                        <input class='btn btn-light' type='submit' value='Delete Item'>
+                                    </form>
+                                </div>
+                                <hr class="my-0">
+                                                <?php endforeach; ?>
                             </div>
-                            <hr class="my-0">
-                        </div>
-                        <div class="card mb-3">
-                            <a href="#">
-                                <img src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" class="card-img-top img-fluid w-100" alt="">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="card-title mb-1"> <strong>Course 2</strong></h6>
-                                <p class="card-text small">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                                </p>
-                                <button class="btn" ng-click="updateMe()">Remove Item</button>
-                                <button class="btn" ng-click="updateMe()">Update Item</button>
-                            </div>
-                            <hr class="my-0">
-                        </div>
-                    </div>
+                       </div>
+                        <br>
+    
+                    <br>
+                    <button type="button" class="btn btn-light"><a href="<?php echo site_url('TeachersArea/addTeachersArea'); ?>">Add Item to Teachers Area</a></button><br>
+
                 </div>
                 <div class="col-lg-4">
                     <div class="card mb-3">
@@ -103,15 +107,5 @@
             </div>
         </div>
     </div>
-    <div class="card " style="padding: 20px;">  
-        <button type="button" class="btn btn-light"><a href="<?php echo site_url('TeachersArea/AddTeachersArea'); ?>">Add Item to Teachers Area</a></button><br>
-        <br><br>
-        <div class="card-header">
-            My Profile
-        </div>
-        <div class="card-body" >
-            <h5 class="card-title">About Me</h5>
-            <p class="card-text">It is a long established fact that a reader will be distracted by the readable cont</p>
-        </div>
-    </div>
+
 </section>
