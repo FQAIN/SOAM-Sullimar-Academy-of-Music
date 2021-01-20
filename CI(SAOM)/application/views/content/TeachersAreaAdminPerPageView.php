@@ -53,49 +53,41 @@
                         <div class="list-group list-group-flush small">
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media">
-                                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                    <img class="d-flex mr-3 rounded-circle" src="<?php echo $img_url . "audience-868074_1920.jpg" ?>" alt="" width="40%" height="100px">
                                     <div class="media-body">
                                         <strong>Fyaz Ikram</strong>posted a new subject regarding pianno to
                                         <strong>SAOM</strong>.
                                         <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-                                        <button class="btn" ng-click="updateMe()">Remove Item</button>
-                                        <button class="btn" ng-click="updateMe()">Update Item</button>
                                     </div>
                                 </div>
                             </a>
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media">
-                                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                    <img class="d-flex mr-3 rounded-circle" src="<?php echo $img_url . "92923-640x360-alexandra-palace-gig-640.jpg" ?>" alt="" width="40%" height="100px">
                                     <div class="media-body">
                                         <strong>Fyaz Ikram</strong>posted a new subject regarding pianno to
                                         <strong>SAOM</strong>.
                                         <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-                                        <button class="btn" ng-click="updateMe()">Remove Item</button>
-                                        <button class="btn" ng-click="updateMe()">Update Item</button>
                                     </div>
                                 </div>
                             </a>
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media">
-                                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                    <img class="d-flex mr-3 rounded-circle" src="<?php echo $img_url . "piano-3505109_1920.jpg" ?>" alt="" width="40%" height="100px">
                                     <div class="media-body">
                                         <strong>Fyaz Ikram</strong>posted a new subject regarding pianno to
                                         <strong>SAOM</strong>.
                                         <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-                                        <button class="btn" ng-click="updateMe()">Remove Item</button>
-                                        <button class="btn" ng-click="updateMe()">Update Item</button>
                                     </div>
                                 </div>
                             </a>
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media">
-                                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                    <img class="d-flex mr-3 rounded-circle" src="<?php echo $img_url . "imageedit_1_5311555432.png" ?>" alt="" width="40%" height="100px">
                                     <div class="media-body">
                                         <strong>Fyaz Ikram</strong>posted a new subject regarding pianno to
                                         <strong>SAOM</strong>.
                                         <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-                                        <button class="btn" ng-click="updateMe()">Remove Item</button>
-                                        <button class="btn" ng-click="updateMe()">Update Item</button>
                                     </div>
                                 </div>
                             </a>
