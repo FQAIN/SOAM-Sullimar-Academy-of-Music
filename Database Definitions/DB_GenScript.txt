@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2021 at 09:31 PM
+-- Generation Time: Jan 20, 2021 at 10:03 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -258,6 +258,25 @@ BEGIN
     );
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTeachersArea` (IN `p_title` VARCHAR(255), IN `p_description` VARCHAR(255), IN `p_image` VARCHAR(255), IN `p_category` VARCHAR(255))  NO SQL
+BEGIN
+    INSERT INTO teachersarea
+    (
+        title,
+        description,
+        image,
+        category
+
+    )
+    VALUES
+    (
+        p_title,
+        p_description,
+        p_image,
+        p_category
+    );
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addTimetable` (IN `p_day` VARCHAR(45), IN `p_dates` DATE, IN `p_timeslots` VARCHAR(250), IN `p_moduleName` VARCHAR(45), IN `p_courseID` INT, IN `p_staffID` INT)  NO SQL
 BEGIN
 	INSERT INTO coursetimetable(
@@ -398,6 +417,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteStudent` (IN `p_studentId` IN
 BEGIN
 	DELETE FROM student
     WHERE studentID  = p_studentId;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteTeachersArea` (IN `p_teachersAreaID` INT)  NO SQL
+BEGIN
+    DELETE FROM teachersarea
+    WHERE p_teachersAreaID = teachersAreaID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedCourse` (IN `p_id` INT)  NO SQL
@@ -708,6 +733,25 @@ FROM student
  LIMIT p_limit, p_start;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectTeachersAreaForUpdate` (IN `p_teachersAreaID` INT)  NO SQL
+BEGIN
+    SELECT 
+    teachersAreaID,
+    title,
+    description,
+    image,
+    category
+    FROM teachersarea
+    WHERE teachersAreaID = p_teachersAreaID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectTeachersAreaPerPage` (IN `p_limit` INT, IN `p_start` INT)  NO SQL
+BEGIN
+SELECT teachersAreaID,    title,    description,    image,    category
+FROM teachersarea
+ LIMIT  p_limit,p_start;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExam` (IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(100), IN `p_examCategoryID` VARCHAR(45), IN `p_examTime` TIME, IN `p_coursesID` INT, IN `p_examCenterID` VARCHAR(45), IN `p_staffID` INT, IN `p_examDescription` VARCHAR(100), IN `p_session` VARCHAR(62), IN `p_studentID` INT)  NO SQL
 BEGIN
 	UPDATE exams
@@ -831,6 +875,17 @@ BEGIN
     image = p_image,
     courseID = p_courseID
     WHERE staffID = p_staffID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedTeachersArea` (IN `p_teachersAreaID` INT, IN `p_title` VARCHAR(255), IN `p_description` VARCHAR(255), IN `p_image` VARCHAR(255), IN `p_category` VARCHAR(255))  NO SQL
+BEGIN
+    UPDATE teachersarea
+    SET 
+    title = p_title,
+    description = p_description,
+    image = p_image,
+    category = p_category
+    WHERE teachersAreaID = p_teachersAreaID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudent` (IN `p_studentID` INT, IN `p_fName` VARCHAR(45), IN `p_lName` VARCHAR(45), IN `p_dateEnrollment` DATE, IN `p_dob` DATE, IN `p_address` VARCHAR(255), IN `p_email` VARCHAR(45), IN `p_username` VARCHAR(45), IN `p_password` VARCHAR(45), IN `p_phone` INT, IN `p_image` VARCHAR(45), IN `p_result` VARCHAR(45), IN `p_courseID` INT)  NO SQL
@@ -1452,6 +1507,13 @@ CREATE TABLE `teachersarea` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `teachersarea`
+--
+
+INSERT INTO `teachersarea` (`teachersAreaID`, `title`, `description`, `image`, `category`) VALUES
+(1, '2. I got work in the Ennis Fleadh 2016 and 2017.', 'Pierce', '12', '12');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -1769,7 +1831,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `teachersarea`
 --
 ALTER TABLE `teachersarea`
-  MODIFY `teachersAreaID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `teachersAreaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
