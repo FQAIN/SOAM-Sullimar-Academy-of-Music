@@ -48,4 +48,37 @@
         </div>
 
     </div>
+        <div class="panel-body">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Maintenance request list</label>
+                <div class="col-md-9">
+                    <form action="<?php echo site_url('GenerateReports/sssskeyword'); ?>" method="POST">
+                        <input type="text" name="maintenanceID" required="" style="border-radius: 5px" placeholder="Enter MaintenanceID to Search">
+                        <button type="button" class="btn btn-light"><input type="submit" name="submit" value="Search" style="border: none;"></button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+     </div>
+    
+           <div class="panel-body">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-3 control-label">private tuition request list</label>
+                <div class="col-md-9">
+                    <form action="<?php echo site_url('GenerateReports/ssssskeyword'); ?>" method="POST">
+                        <input type="text" name="privatetuitionID" required="" style="border-radius: 5px" placeholder="Enter privatetuitionID to Search">
+                        <button type="button" class="btn btn-light"><input type="submit" name="submit" value="Search" style="border: none;"></button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+     </div>
+    
+    
 </section>

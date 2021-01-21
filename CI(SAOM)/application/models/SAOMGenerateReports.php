@@ -36,5 +36,19 @@ Class SAOMGenerateReports extends CI_Model {
         $query = $this->db->get('purchase');
         return $query->result();
     }
+    
+       function ssssearch($key) {
+        $this->db->like('maintenanceID', $key);
+        $this->db->order_by('note', 'ASC');
+        $query = $this->db->get('instrumentsmaintenance');
+        return $query->result();
+    }
+        
+        function sssssearch($key) {
+        $this->db->like('privatetuitionID', $key);
+        $this->db->order_by('note', 'ASC');
+        $query = $this->db->get('privatetuition');
+        return $query->result();
+    }
 
 }

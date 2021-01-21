@@ -37,6 +37,26 @@ class GenerateReports extends CI_Controller {
 
         $this->load->view('adminLayout', $view_data);
     }
+    
+        function sssskeyword() {
+        $key = $this->input->post('maintenanceID');
+        $data['results'] = $this->SAOMGenerateReports->ssssearch($key);
+        $view_data = array(
+            'content' => $this->load->view('content/ggggkeyview', $data, true)
+        );
+
+        $this->load->view('adminLayout', $view_data);
+    }
+    
+            function ssssskeyword() {
+        $key = $this->input->post('privatetuitionID');
+        $data['results'] = $this->SAOMGenerateReports->sssssearch($key);
+        $view_data = array(
+            'content' => $this->load->view('content/gggggkeyview', $data, true)
+        );
+
+        $this->load->view('adminLayout', $view_data);
+    }
 
 }
 
