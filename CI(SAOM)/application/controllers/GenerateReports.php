@@ -28,6 +28,16 @@ class GenerateReports extends CI_Controller {
         $this->load->view('adminLayout', $view_data);
     }
 
+    function ssskeyword() {
+        $key = $this->input->post('year_added');
+        $data['results'] = $this->SAOMGenerateReports->sssearch($key);
+        $view_data = array(
+            'content' => $this->load->view('content/gggkeyview', $data, true)
+        );
+
+        $this->load->view('adminLayout', $view_data);
+    }
+
 }
 
 ?>

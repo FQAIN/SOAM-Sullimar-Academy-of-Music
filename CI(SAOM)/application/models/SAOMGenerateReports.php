@@ -11,11 +11,10 @@ Class SAOMGenerateReports extends CI_Model {
     public function record_count() {
         return $this->db->count_all("courseapplications");
     }
-    
-     public function record_counts() {
+
+    public function record_counts() {
         return $this->db->count_all("examapplications");
     }
-    
 
     function search($key) {
         $this->db->like('year_added', $key);
@@ -24,10 +23,18 @@ Class SAOMGenerateReports extends CI_Model {
         return $query->result();
     }
 
-        function ssearch($key) {
+    function ssearch($key) {
         $this->db->like('year_added', $key);
         $this->db->order_by('examName', 'ASC');
         $query = $this->db->get('examapplications');
         return $query->result();
     }
+
+    function sssearch($key) {
+        $this->db->like('year_added', $key);
+        $this->db->order_by('datePurchased', 'ASC');
+        $query = $this->db->get('purchase');
+        return $query->result();
+    }
+
 }
