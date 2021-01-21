@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2021 at 05:43 PM
+-- Generation Time: Jan 21, 2021 at 11:04 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -143,16 +143,18 @@ BEGIN
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AddMaintenance` (IN `p_instrumentID` INT, IN `p_note` VARCHAR(250))  NO SQL
 BEGIN
-	INSERT INTO instrumentsmaintenance
+    INSERT INTO instrumentsmaintenance
     (
-    	instrumentID,
-        note
-        
+        instrumentID,
+        note,
+        year_added
+
     )
     VALUES
     (
-    	p_instrumentID,
-        p_note
+        p_instrumentID,
+        p_note,
+        now()
     );
 END$$
 
@@ -356,20 +358,6 @@ BEGIN
         p_additionalinfo,
         now()
     );
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `confirmDeleteFromCart` (IN `p_email` VARCHAR(255), IN `p_session_id` VARCHAR(255))  NO SQL
-BEGIN
-DELETE FROM shopping_cart
-WHERE email = p_email OR session_id = p_session_id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `confirmPurchase` (IN `p_fName` VARCHAR(255), IN `p_lName` VARCHAR(255), IN `p_address` VARCHAR(255), IN `p_email` VARCHAR(255), IN `p_session_id` VARCHAR(255), IN `p_total` DOUBLE(8,2))  NO SQL
-BEGIN
-INSERT INTO purchase(
-datePurchased,fName,lName,address,email,session_id,total)
-
-VALUES(now(),p_fName,p_lName,p_address,p_email,p_session_id,p_total);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBook` (IN `p_booksID` INT)  NO SQL
@@ -1288,15 +1276,17 @@ INSERT INTO `instruments` (`instrumentID`, `instrumentName`, `instrumentDescript
 CREATE TABLE `instrumentsmaintenance` (
   `maintenanceID` int(11) NOT NULL,
   `instrumentID` int(11) DEFAULT NULL,
-  `note` varchar(45) DEFAULT NULL
+  `note` varchar(45) DEFAULT NULL,
+  `year_added` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `instrumentsmaintenance`
 --
 
-INSERT INTO `instrumentsmaintenance` (`maintenanceID`, `instrumentID`, `note`) VALUES
-(1, 1, 'Strings are broken alot');
+INSERT INTO `instrumentsmaintenance` (`maintenanceID`, `instrumentID`, `note`, `year_added`) VALUES
+(1, 1, 'Strings are broken alot', NULL),
+(4, 1, '', 2021);
 
 -- --------------------------------------------------------
 
@@ -1387,29 +1377,8 @@ INSERT INTO `processexams` (`pexamID`, `examID`, `staffID`) VALUES
 CREATE TABLE `purchase` (
   `purchaseID` int(11) NOT NULL,
   `datePurchased` date DEFAULT NULL,
-  `fName` varchar(255) NOT NULL,
-  `lName` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `session_id` varchar(255) DEFAULT NULL,
-  `total` double(7,2) NOT NULL
+  `shoppingCartID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `purchase`
---
-
-INSERT INTO `purchase` (`purchaseID`, `datePurchased`, `fName`, `lName`, `address`, `email`, `session_id`, `total`) VALUES
-(2, '2021-01-21', 'Joe', 'Moloney', 'Evergreen 16th Street', 'email@email.com', 'dmd20oudp3a8rb44krfr9v5rlcrhvde5', 3641.26),
-(3, '2021-01-21', 'test fName', 'test lName', 'test address', 'test@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 530.52),
-(4, '2021-01-21', 'sbgdf', 'sbgfd', 'adfrvv', 'bfgd@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 530.52),
-(5, '2021-01-21', 'iku', 'uik', 'utik', 'kui@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 205.26),
-(6, '2021-01-21', 'eyteyey', 'eyeyeyey', 'dgdgdgdgdgdggd', 'eyeyey@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 73.80),
-(7, '2021-01-21', 'gggggggggggggggg', 'ggggggggggggggggg', 'fffffffffffffffffffffffffffffff', 'ggggggggggggggggg@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 60.00),
-(8, '2021-01-21', 'Joe', 'Moloney', 'Evergreen 16th Street', 'email@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 802.89),
-(9, '2021-01-21', 'Joe', 'Moloney', 'Evergreen 16th Street', 'email@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 802.89),
-(10, '2021-01-21', 'Joe', 'Moloney', 'Evergreen 16th Street', 'email@email.com', 'k2jccdv404lvnd25n880dvll6niqa0tj', 802.89),
-(11, '2021-01-21', 'fdsgsh', 'dsergser', 'sdzfrtbvaderv', 'zdtfbzdrtbt@email.com', 'f1uuqrsagrto59v6aeplvovt22bbeu5q', 2634.17);
 
 -- --------------------------------------------------------
 
@@ -1463,11 +1432,8 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
-(247, NULL, 1611245936, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 2, '30.00', '2021-01-21 17:19:01', '9780367592622.jpg', 60.00),
-(249, NULL, 1611247118, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 88, '30.00', '2021-01-21 17:38:45', '9780367592622.jpg', 2640.00),
-(250, NULL, 1611247118, NULL, NULL, 11, 'How Music Works', 'non-fiction', 99, '67.00', '2021-01-21 17:38:49', '9781628920437.jpg', 6633.00),
-(251, NULL, 1611247118, NULL, 20, NULL, 'The Festival', 'A traditional hip hop event', 66, '12.09', '2021-01-21 17:38:55', 'Stendhal-2021.jpg', 797.94),
-(252, NULL, 1611247118, NULL, 21, NULL, 'Raidtown Myths', 'Folklores and Light Bass Music', 77, '34.21', '2021-01-21 17:38:57', 'audience-868074_1920.jpg', 2634.17);
+(241, NULL, 1611248111, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 1, '12.00', '2021-01-21 17:55:57', '9781409434146.jpg', 12.00),
+(242, NULL, 1611248111, NULL, NULL, 11, 'How Music Works', 'non-fiction', 1, '67.00', '2021-01-21 17:56:16', '9781628920437.jpg', 67.00);
 
 -- --------------------------------------------------------
 
@@ -1550,8 +1516,8 @@ CREATE TABLE `teachersarea` (
 --
 
 INSERT INTO `teachersarea` (`teachersAreaID`, `title`, `description`, `image`, `category`) VALUES
-(2, 'sbgdfr', 'sbadft', 'joe.jpg', 'bfdgsa'),
-(3, 'adftbg', 'adbfgsg', 'fyaz.jpg', 'ikbjhusdrvf');
+(2, '2. I got work in the Ennis Fleadh 2016 and 2017.', 'adam', 'pierce.jpg', '12'),
+(3, '2. I got work in the Ennis Fleadh 2016 and 2017.', 'Pierce', 'fyaz.jpg', '12');
 
 --
 -- Indexes for dumped tables
@@ -1695,7 +1661,8 @@ ALTER TABLE `processexams`
 -- Indexes for table `purchase`
 --
 ALTER TABLE `purchase`
-  ADD PRIMARY KEY (`purchaseID`);
+  ADD PRIMARY KEY (`purchaseID`),
+  ADD KEY `fk_Purchase_Shopping cart1_idx` (`shoppingCartID`);
 
 --
 -- Indexes for table `saomevents`
@@ -1810,7 +1777,7 @@ ALTER TABLE `instruments`
 -- AUTO_INCREMENT for table `instrumentsmaintenance`
 --
 ALTER TABLE `instrumentsmaintenance`
-  MODIFY `maintenanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `maintenanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lessons`
@@ -1840,7 +1807,7 @@ ALTER TABLE `processexams`
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `saomevents`
@@ -1852,7 +1819,7 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `staffs`
