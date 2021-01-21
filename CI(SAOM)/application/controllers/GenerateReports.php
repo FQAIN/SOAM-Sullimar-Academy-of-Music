@@ -39,7 +39,7 @@ class GenerateReports extends CI_Controller {
     }
     
         function sssskeyword() {
-        $key = $this->input->post('maintenanceID');
+        $key = $this->input->post('year_added');
         $data['results'] = $this->SAOMGenerateReports->ssssearch($key);
         $view_data = array(
             'content' => $this->load->view('content/ggggkeyview', $data, true)
@@ -49,7 +49,7 @@ class GenerateReports extends CI_Controller {
     }
     
             function ssssskeyword() {
-        $key = $this->input->post('privatetuitionID');
+        $key = $this->input->post('year_added');
         $data['results'] = $this->SAOMGenerateReports->sssssearch($key);
         $view_data = array(
             'content' => $this->load->view('content/gggggkeyview', $data, true)

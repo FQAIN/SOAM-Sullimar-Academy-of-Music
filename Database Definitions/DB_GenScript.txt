@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2021 at 11:04 PM
+-- Generation Time: Jan 21, 2021 at 11:26 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -181,7 +181,8 @@ BEGIN
         studentID,
         staffID,
         note,
-        courseID
+        courseID,
+        year_added
 
     )
     VALUES
@@ -190,7 +191,8 @@ BEGIN
         p_studentID,
         p_staffID,
         p_note,
-        p_courseID
+        p_courseID,
+        now()
     );
 END$$
 
@@ -1285,8 +1287,8 @@ CREATE TABLE `instrumentsmaintenance` (
 --
 
 INSERT INTO `instrumentsmaintenance` (`maintenanceID`, `instrumentID`, `note`, `year_added`) VALUES
-(1, 1, 'Strings are broken alot', NULL),
-(4, 1, '', 2021);
+(5, 1, 'Fyaz is Currently in Third Year of ISD', 2021),
+(6, 1, 'hghgh', 2020);
 
 -- --------------------------------------------------------
 
@@ -1338,16 +1340,17 @@ CREATE TABLE `privatetuition` (
   `studentID` int(11) DEFAULT NULL,
   `staffID` int(11) DEFAULT NULL,
   `note` varchar(45) DEFAULT NULL,
-  `courseID` int(11) DEFAULT NULL
+  `courseID` int(11) DEFAULT NULL,
+  `year_added` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `privatetuition`
 --
 
-INSERT INTO `privatetuition` (`privatetuitionID`, `room`, `studentID`, `staffID`, `note`, `courseID`) VALUES
-(1, '1A19', 10, 3, 'i will be 10 minutes late', 1),
-(4, '1A11', 10, 3, 'I will be 5 minutes early', 1);
+INSERT INTO `privatetuition` (`privatetuitionID`, `room`, `studentID`, `staffID`, `note`, `courseID`, `year_added`) VALUES
+(6, 'dff', 10, 4, 'erer', 1, 2021),
+(7, 'ewrrwe', 10, 6, 'ffew', 1, 2021);
 
 -- --------------------------------------------------------
 
@@ -1777,7 +1780,7 @@ ALTER TABLE `instruments`
 -- AUTO_INCREMENT for table `instrumentsmaintenance`
 --
 ALTER TABLE `instrumentsmaintenance`
-  MODIFY `maintenanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `maintenanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `lessons`
@@ -1795,7 +1798,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `privatetuition`
 --
 ALTER TABLE `privatetuition`
-  MODIFY `privatetuitionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `privatetuitionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `processexams`

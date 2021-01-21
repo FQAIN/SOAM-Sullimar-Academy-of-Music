@@ -6,7 +6,7 @@
     <body>
         <form>  
             <section class="" id="">
-                <h2 class="text-center">All Reports for Sales on Books and Events</h2>
+                <h2 class="text-center">All Reports for Private Tuitions</h2>
                 <p class="text-center"><a href="<?php echo base_url(); ?>index.php/Home/generateReports/" class="back"><-Back to Generate Report Menu</a></p>
                 <div class="table-responsive mx-auto" style="width: 100%; padding: 40px;">
                     <table class="table table-striped table-dark">
