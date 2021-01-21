@@ -127,4 +127,35 @@ class ShoppingCart extends CI_Controller {
         //Adds the partial view from the studentLayout view
         $this->load->view('layout', $view_data);
     }
+    
+    function confirmPurchase() {
+        $data['fName'] = $this->input->post('fName');
+        $data['lName'] = $this->input->post('lName');
+        $data['address'] = $this->input->post('address');
+        $data['email'] = $this->input->post('email');
+        $data['session_id'] = $this->session->session_id;
+        $data['total'] = $this->input->post('total');
+        
+        $cdfc['email'] = $this->input->post('email');
+        $cdfc['session_id'] = $this->session->session_id;
+        
+        $this->SAOMShoppingCart->confirmPurchase($data);
+        
+        $this->SAOMShoppingCart->confirmDeleteFromCart($cdfc);
+        
+        $this->session->sess_destroy();
+        
+        $view_data = array(
+            'content' => $this->load->view('content/home', null, TRUE)
+        );
+        
+        if (!strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('layout', $view_data);
+        }
+        else if(strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('studentLayout', $view_data);
+        }
+    }
 }

@@ -45,4 +45,14 @@ class SAOMShoppingCart extends CI_Model {
         $stored_proc_call = "CALL deleteItem(?,?)";
         $this->db->query($stored_proc_call, $delete);
     }
+    
+    function confirmPurchase($data) {
+        $stored_proc_call = "CALL confirmPurchase(?,?,?,?,?,?)";
+        $this->db->query($stored_proc_call, $data);
+    }
+    
+    function confirmDeleteFromCart($cdfc) {
+        $stored_proc_call = "CALL confirmDeleteFromCart(?,?)";
+        $this->db->query($stored_proc_call, $cdfc);
+    }
 }
