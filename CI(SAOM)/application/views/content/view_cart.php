@@ -69,7 +69,7 @@ $gTotal = 0;
                         <?php endforeach; ?>
                         
                     </tbody>
-                    <td class="text-left"><h3><strong><?php echo "Total: €".number_format(($gTotal / 1.23), 2); ?></strong></h3><p> Ex. VAT</p></td>
+                    <td class="text-left"><h3><strong><?php echo "Total: €".number_format(($gTotal), 2); ?></strong></h3><p> Ex. VAT</p></td>
                 </table>
                 <hr class="mb-4">
                 <table>
