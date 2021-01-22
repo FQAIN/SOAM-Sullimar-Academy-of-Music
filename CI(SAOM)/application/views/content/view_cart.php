@@ -66,7 +66,7 @@ $gTotal = 0;
                                 </td>
                             </tr>
                             <?php $gTotal += number_format($item['total'], 2); ?>
-                        <?php endforeach; ?>
+                        <?php endforeach;?>
                         
                     </tbody>
                     <td class="text-left"><h3><strong><?php echo "Total: €".number_format(($gTotal), 2); ?></strong></h3><p> Ex. VAT</p></td>

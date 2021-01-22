@@ -124,7 +124,7 @@ Class SAOMExams extends CI_Model {
     
     
         function commitExamApplication($application) {
-        $stored_proc_call = "CALL commitExamApplication(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $stored_proc_call = "CALL commitExamApplication(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $this->db->query($stored_proc_call, $application);
     }
     

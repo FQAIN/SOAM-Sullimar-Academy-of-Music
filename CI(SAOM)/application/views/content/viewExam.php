@@ -8,8 +8,8 @@ $base_url = base_url();
         <div class="row">
             <div class="col-md-12">
                 <div class="section-heading">
-                    <span>All Events</span>
-                    <h2>view all our latest events here</h2>
+                    <span>All Exams</span>
+                    <h2>view all our latest exams here</h2>
                 </div>
             </div> 
         </div> 
@@ -37,7 +37,7 @@ $base_url = base_url();
                                             <div class="col-md-12">
                                                <div class="text-button">
                                         <form action="<?php echo site_url('Home/bookExam/'  . $exam['examID']); ?>" method="POST">
-                                            <button type="button" class="btn btn-light"><input type="submit" value="Apply For Course" style="border: none;"></button><br>
+                                            <button type="button" class="btn btn-light"><input type="submit" value="Apply For Exam" style="border: none;"></button><br>
                                         </form>
                                     </div>
                                             </div>
