@@ -106,10 +106,6 @@ class Exams extends CI_Controller {
             array('field' => 'Seasons',
                 'label' => 'Seasons',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'studentID',
-                'label' => 'studentID',
-                'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.'))
         );
 
@@ -196,10 +192,6 @@ class Exams extends CI_Controller {
                 'errors' => array('required' => 'You must provide an %s.')),
             array('field' => 'Seasons',
                 'label' => 'Seasons',
-                'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.')),
-            array('field' => 'studentID',
-                'label' => 'studentID',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.'))
         );

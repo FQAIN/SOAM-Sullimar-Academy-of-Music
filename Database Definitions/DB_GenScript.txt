@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2021 at 01:18 AM
+-- Generation Time: Jan 22, 2021 at 08:22 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -103,7 +103,7 @@ BEGIN
     );
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam` (IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE(6,2), IN `p_image` VARCHAR(45), IN `p_examTime` TIME, IN `p_courseID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_examCategory` VARCHAR(45), IN `p_examDescription` VARCHAR(45), IN `p_Session` VARCHAR(45), IN `p_student` INT(45))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam` (IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE(6,2), IN `p_image` VARCHAR(45), IN `p_examTime` TIME, IN `p_courseID` INT, IN `p_examCenterID` INT, IN `p_staffID` INT, IN `p_examCategory` VARCHAR(45), IN `p_examDescription` VARCHAR(45), IN `p_Session` VARCHAR(45))  NO SQL
 BEGIN
 	INSERT INTO exams(
 
@@ -114,12 +114,11 @@ BEGIN
         examTime,
         coursesID,
         examCenterID,
-        staffID,
+   	    staffID,
 
         examCategory,
         examDescription,
-        Seasons,
-		studentID
+        Seasons
 
     )
     VALUES(
@@ -135,8 +134,7 @@ BEGIN
 
        p_examCategory,
         p_examDescription,
-        p_Session,
-        p_student
+        p_Session
 
     );
  END$$
@@ -452,7 +450,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedExam` (IN `p_id` INT)  NO SQL
 BEGIN
-	SELECT examID, examName, dateOfExam, price, image, examCategory, examTime,coursesID,examCenterID,staffID,examDescription,Seasons,studentID
+	SELECT examID, examName, dateOfExam, price, image, examCategory, examTime,coursesID,examCenterID,staffID,examDescription,Seasons
     FROM exams
     WHERE examID = p_id;
 END$$
@@ -497,7 +495,7 @@ examCategory,
 examTime,
 coursesID,
 examCenterID,
-staffID,
+
 examDescription
 FROM exams
 WHERE examID = p_examID;
@@ -580,8 +578,7 @@ BEGIN
         examCenterID,
         staffID,
         examDescription,
-        Seasons,
-        studentID
+        Seasons
  FROM exams
  WHERE examID = p_examID;
  END$$
@@ -599,7 +596,7 @@ coursesID,
 examCenterID,
 staffID,
 Seasons,
-studentID,
+
 
 examDescription
 FROM exams
@@ -770,7 +767,7 @@ FROM teachersarea
  LIMIT  p_limit,p_start;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExam` (IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(100), IN `p_examCategoryID` VARCHAR(45), IN `p_examTime` TIME, IN `p_coursesID` INT, IN `p_examCenterID` VARCHAR(45), IN `p_staffID` INT, IN `p_examDescription` VARCHAR(100), IN `p_session` VARCHAR(62), IN `p_studentID` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExam` (IN `p_examID` INT, IN `p_examName` VARCHAR(25), IN `p_dateOfExam` DATE, IN `p_price` DOUBLE, IN `p_image` VARCHAR(100), IN `p_examCategoryID` VARCHAR(45), IN `p_examTime` TIME, IN `p_coursesID` INT, IN `p_examCenterID` VARCHAR(45), IN `p_staffID` INT, IN `p_examDescription` VARCHAR(100), IN `p_session` VARCHAR(62))  NO SQL
 BEGIN
 	UPDATE exams
     SET
@@ -782,10 +779,10 @@ BEGIN
     examTime = p_examTime,
     coursesID = p_coursesID,
     examCenterID = p_examCenterID,
-    staffID = p_staffID,
+	staffID = p_staffID,
     examDescription = p_examDescription,
-    Seasons = p_session,
-    studentID = p_studentID
+    Seasons = p_session
+    
 
 
     WHERE p_examID = examID;
@@ -845,7 +842,7 @@ BEGIN
     examTime = p_examTime,
     coursesID = p_coursesID,
     examCenterID = p_examCenterID,
-    staffID = p_staffID,
+            staffID = p_staffID,
     ExamModule = p_ExamModule,
     examDescription = p_examDescription
     WHERE examID = p_examID;
@@ -1224,18 +1221,18 @@ CREATE TABLE `exams` (
   `examCenterID` int(11) NOT NULL,
   `staffID` int(11) NOT NULL,
   `examDescription` varchar(255) DEFAULT NULL,
-  `Seasons` varchar(255) DEFAULT NULL,
-  `studentID` int(255) DEFAULT NULL
+  `Seasons` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `exams`
 --
 
-INSERT INTO `exams` (`examID`, `examName`, `dateOfExam`, `price`, `image`, `examCategory`, `examTime`, `coursesID`, `examCenterID`, `staffID`, `examDescription`, `Seasons`, `studentID`) VALUES
-(23, 'Violin Advanced', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam', 'Winter', 10),
-(24, 'Piano Beginners ', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam', 'Summer', 11),
-(25, 'Guitar Amateur', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam', 'Summer', 11);
+INSERT INTO `exams` (`examID`, `examName`, `dateOfExam`, `price`, `image`, `examCategory`, `examTime`, `coursesID`, `examCenterID`, `staffID`, `examDescription`, `Seasons`) VALUES
+(23, 'Violin Advanced', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam', 'Winter'),
+(24, 'Piano Beginners ', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam', 'Summer'),
+(25, 'Guitar Amateur', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam', 'Summer'),
+(37, '12', '1212-12-12', '12.00', '12', '12', '12:12:00', 12, 12, 12, '12', '12');
 
 -- --------------------------------------------------------
 
@@ -1810,7 +1807,7 @@ ALTER TABLE `exam center`
 -- AUTO_INCREMENT for table `exams`
 --
 ALTER TABLE `exams`
-  MODIFY `examID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `examID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `instruments`

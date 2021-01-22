@@ -303,8 +303,7 @@
                                             <p><strong>Seasons:</strong><br/>
                                             <input type='text' name='Seasons' value='" . $exam['Seasons'] . "' id='special'></p>
                                                 
-                                            <p><strong>studentID:</strong><br/>
-                                            <input type='text' name='studentID' value='" . $exam['studentID'] . "' id='special'></p>
+                                           
                                         ";
                             }
                             ?>

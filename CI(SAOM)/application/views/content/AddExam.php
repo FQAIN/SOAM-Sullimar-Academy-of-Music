@@ -300,9 +300,7 @@
                                 <input type="text" name="Seasons" value="<?php echo set_value('Seasons'); ?>"  placeholder="Seasons" id="special"></p>
                                 <?php echo form_error('Seasons'); ?>
                              
-                               <p><strong>studentID:</strong><br/>
-                                <input type="text" name="studentID" value="<?php echo set_value('studentID'); ?>"  placeholder="studentID" id="special"></p>
-                                <?php echo form_error('studentID'); ?>
+                            
 
                             <br>
                             <p><input type="submit" name="submit" value="Add Exam"></p>

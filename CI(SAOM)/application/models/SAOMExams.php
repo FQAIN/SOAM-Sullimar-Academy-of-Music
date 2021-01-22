@@ -58,7 +58,7 @@ Class SAOMExams extends CI_Model {
         
         $exam_data['Seasons'] = $this->input->post('Seasons');
         
-        $exam_data['studentID'] = $this->input->post('studentID');
+       
 
 
 
@@ -66,7 +66,7 @@ Class SAOMExams extends CI_Model {
 
 
         //Calls the stored procedure to add a address details to the address table
-        $stored_proc_call = "CALL AddExam(?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?,?)";
+        $stored_proc_call = "CALL AddExam(?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
         $this->db->query($stored_proc_call, $exam_data);
     }
 
@@ -92,11 +92,11 @@ Class SAOMExams extends CI_Model {
             'staffID' => $this->input->post('staffID'),
             'examDescription' => $this->input->post('examDescription'),
              
-            'Seasons' => $this->input->post('Seasons'),
-            'studentID' => $this->input->post('studentID')
+            'Seasons' => $this->input->post('Seasons')
+        
         );
 
-        $stored_proc_call = "CALL updateExam(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $stored_proc_call = "CALL updateExam(?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $this->db->query($stored_proc_call, $data);
     }
@@ -124,7 +124,7 @@ Class SAOMExams extends CI_Model {
     
     
         function commitExamApplication($application) {
-        $stored_proc_call = "CALL commitExamApplication(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $stored_proc_call = "CALL commitExamApplication(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $this->db->query($stored_proc_call, $application);
     }
     
