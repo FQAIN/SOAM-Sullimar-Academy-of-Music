@@ -41,55 +41,49 @@ $gTotal = 0;
 
                                         <?php elseif (strpos($this->session->userdata('email'), '@')) : ?>
                                             <form action="<?php echo site_url('ShoppingCartStudent/deleteItem'); ?>" method="POST">
-                                        <?php endif; ?>
-                                                
-                                        <?php if (!$item['examID'] == NULL) : ?>
-                                            <input type="hidden" name="examID" value="<?php echo $item['examID']; ?>">    
-                                        <?php elseif (!$item['eventID'] == NULL) : ?>
-                                            <input type="hidden" name="eventID" value="<?php echo $item['eventID']; ?>">
-                                        <?php elseif (!$item['booksID'] == NULL) : ?>
-                                            <input type="hidden" name="booksID" value="<?php echo $item['booksID']; ?>">
-                                        <?php endif; ?>
-                                        <input type="hidden" name="userID" value="
-                                        <?php 
-                                            if (!strpos($this->session->userdata('email'), '@'))
-                                            {
+                                            <?php endif; ?>
+
+                                            <?php if (!$item['examID'] == NULL) : ?>
+                                                <input type="hidden" name="examID" value="<?php echo $item['examID']; ?>">    
+                                            <?php elseif (!$item['eventID'] == NULL) : ?>
+                                                <input type="hidden" name="eventID" value="<?php echo $item['eventID']; ?>">
+                                            <?php elseif (!$item['booksID'] == NULL) : ?>
+                                                <input type="hidden" name="booksID" value="<?php echo $item['booksID']; ?>">
+                                            <?php endif; ?>
+                                            <input type="hidden" name="userID" value="
+                                            <?php
+                                            if (!strpos($this->session->userdata('email'), '@')) {
                                                 echo $item['session_id'];
-                                            }
-                                            elseif (strpos($this->session->userdata('email'), '@'))
-                                            {
+                                            } elseif (strpos($this->session->userdata('email'), '@')) {
                                                 echo $item['email'];
-                                            } 
-                                        ?>">
+                                            }
+                                            ?>">
                                             <input type="submit" class="btn btn-light" value="Delete">
                                         </form>
                                 </td>
                             </tr>
                             <?php $gTotal += number_format($item['total'], 2); ?>
-                        <?php endforeach;?>
-                        
+                        <?php endforeach; ?>
+
                     </tbody>
-                    <td class="text-left"><h3><strong><?php echo "Total: €".number_format(($gTotal), 2); ?></strong></h3><p> Ex. VAT</p></td>
+                    <td class="text-left"><h3><strong><?php echo "Total: €" . number_format(($gTotal), 2); ?></strong></h3><p> Ex. VAT</p></td>
                 </table>
                 <hr class="mb-4">
                 <table>
                     <tbody>
                         <tr>
-                            <form action="<?php echo site_url('Home/purchases'); ?>" method="POST">
-                                <input type="hidden" name="userID" value="
-                                    <?php 
-                                        if (!strpos($this->session->userdata('email'), '@'))
-                                        {
-                                            echo $item['session_id'];
-                                        }
-                                        elseif (strpos($this->session->userdata('email'), '@'))
-                                        {
-                                            echo $item['email'];
-                                        }
-                                    ?>">
-                                <input type="submit" class="btn" value="Continue To Checkout">
-                            </form>
-                        </tr>
+                    <form action="<?php echo site_url('Home/purchases'); ?>" method="POST">
+                        <input type="hidden" name="userID" value="
+                        <?php
+                        if (!strpos($this->session->userdata('email'), '@')) {
+                            echo $item['session_id'];
+                        } elseif (strpos($this->session->userdata('email'), '@')) {
+                            echo $item['email'];
+                        }
+                        ?>">
+                        <input type="submit" class="btn" value="Continue To Checkout">
+                    </form>
+                    </tr>
                     </tbody>
                 </table>
             </div>
