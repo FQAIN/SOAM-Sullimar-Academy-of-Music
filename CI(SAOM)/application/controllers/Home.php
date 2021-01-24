@@ -83,8 +83,6 @@ class Home extends CI_Controller {
         
         $data = array();
         
-        echo $examID;
-        
         $data['ExamDetails'] = $this->SAOMExams->getSelectedExam($examID);
         
         $view_data = array(
@@ -182,8 +180,6 @@ class Home extends CI_Controller {
         $this->load->model('SAOMCourses');
         
         $data = array();
-        
-        echo $coursesID;
         
         $data['courseDetails'] = $this->SAOMCourses->getSelectedCourse($coursesID);
         
