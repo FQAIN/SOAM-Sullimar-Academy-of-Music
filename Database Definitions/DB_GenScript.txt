@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2021 at 11:51 AM
+-- Generation Time: Jan 25, 2021 at 01:00 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -1083,9 +1083,30 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`coursesID`, `courseName`, `description`, `levels`, `numberOfYears`, `groupCategory`, `image`, `staffID`, `price`, `coursetimetableID`) VALUES
-(1, 'Vioiln', 'For Mediated Students', 'Level 7 ', 3, 'Advanced', 'va.jpg', 1, '3000.00', 1),
-(3, 'Piano', 'For Advanced Students', 'Level 5', 2, 'Advanced', 'pb.jpg', 3, '3500.00', 1),
-(5, 'Guitar', 'Beginner Starter for Guitar', 'Level 8', 4, 'Beginner ', 'ga.jpg', 5, '3700.00', 1);
+(1, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade I', 'fyaz.jpg', 4, '47.65', 1),
+(2, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade II', 'fyaz.jpg', 4, '59.40', 1),
+(3, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade III', 'fyaz.jpg', 4, '63.50', 1),
+(4, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade IV', 'fyaz.jpg', 4, '73.52', 1),
+(5, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade V', 'fyaz.jpg', 4, '73.52', 1),
+(6, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade VI', 'fyaz.jpg', 4, '86.43', 1),
+(7, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade VII', 'fyaz.jpg', 4, '89.50', 1),
+(8, 'Viola', 'Viola Course', 'Full-Time', 4, 'Grade VIII', 'fyaz.jpg', 4, '96.00', 1),
+(9, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade I', 'fyaz.jpg', 4, '47.65', 1),
+(10, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade II', 'fyaz.jpg', 4, '59.40', 1),
+(11, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade III', 'fyaz.jpg', 4, '63.50', 1),
+(12, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade IV', 'fyaz.jpg', 4, '73.52', 1),
+(13, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade V', 'fyaz.jpg', 4, '73.52', 1),
+(14, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade VI', 'fyaz.jpg', 4, '86.43', 1),
+(15, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade VII', 'fyaz.jpg', 4, '89.50', 1),
+(16, 'Piano', 'Piano Course', 'Full-Time', 4, 'Grade VIII', 'fyaz.jpg', 4, '96.00', 1),
+(17, 'violin', 'violin Course', 'Full-Time', 4, 'Grade I', 'fyaz.jpg', 4, '47.65', 1),
+(18, 'violin', 'violin Course', 'Full-Time', 4, 'Grade II', 'fyaz.jpg', 4, '59.40', 1),
+(19, 'violin', 'violin Course', 'Full-Time', 4, 'Grade III', 'fyaz.jpg', 4, '63.50', 1),
+(20, 'violin', 'violin Course', 'Full-Time', 4, 'Grade IV', 'fyaz.jpg', 4, '73.52', 1),
+(21, 'violin', 'violin Course', 'Full-Time', 4, 'Grade V', 'fyaz.jpg', 4, '73.52', 1),
+(22, 'violin', 'violin Course', 'Full-Time', 4, 'Grade VI', 'fyaz.jpg', 4, '86.43', 1),
+(23, 'violin', 'violin Course', 'Full-Time', 4, 'Grade VII', 'fyaz.jpg', 4, '89.50', 1),
+(24, 'violin', 'violin Course', 'Full-Time', 4, 'Grade VIII', 'fyaz.jpg', 4, '96.00', 1);
 
 -- --------------------------------------------------------
 
@@ -1191,9 +1212,9 @@ CREATE TABLE `exams` (
 --
 
 INSERT INTO `exams` (`examID`, `examName`, `dateOfExam`, `price`, `image`, `examCategory`, `examTime`, `coursesID`, `examCenterID`, `staffID`, `examDescription`, `Seasons`) VALUES
-(23, 'Violin Advanced', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam', 'Winters'),
-(24, 'Piano Beginners ', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam', 'Summer'),
-(25, 'Guitar Amateur', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam', 'Summer');
+(23, 'Violin', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam', 'Winters'),
+(24, 'Piano', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam', 'Summer'),
+(25, 'Guitar', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam', 'Summer');
 
 -- --------------------------------------------------------
 
@@ -1431,9 +1452,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`, `courseID`, `session_id`) VALUES
 (10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', '75', 1, NULL),
 (11, 'pierce123', 'pierce123', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1, NULL),
-(12, 'joe123', 'joe123', 'joe@gmail.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', 'Evergreen 16th Street', 'fyaz.jpg', 'N/A', 1, NULL),
-(13, 'Fyaz', 'wew', 'fyazikram834@gmail.com', '2021-01-30', 894389623, '2021-01-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'ewew', 'N/A', 1, NULL),
-(14, 're', 'er', 'fyazikram834@gmail.com', '2021-01-23', 43433443, '2021-01-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'dffd', 'N/As', 1, NULL);
+(12, 'joe123', 'joe123', 'joe@gmail.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', 'Evergreen 16th Street', 'fyaz.jpg', 'N/A', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1599,7 +1618,7 @@ ALTER TABLE `courseapplications`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `coursesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `coursesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `coursetimetable`
