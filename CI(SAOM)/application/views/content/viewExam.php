@@ -28,10 +28,10 @@ $base_url = base_url();
                         </div>
                         <div class="down-content">
                             <h4><?php echo $exam['examName']; ?></h4>
-                            <span><?php echo $exam['examCategory']; ?></span>
+<!--                            <span><?php echo $exam['examCategory']; ?></span>
                             Description: <?php echo $exam['examDescription']; ?><br>
                             Price: <?php echo $exam['price']; ?><br>
-                            Time: <?php echo $exam['examTime']; ?></p>
+                            Time: <?php echo $exam['examTime']; ?></p>-->
                             <div class="row">
                                 
                                             <div class="col-md-12">
