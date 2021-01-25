@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2021 at 01:00 PM
+-- Generation Time: Jan 25, 2021 at 02:51 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -470,11 +470,11 @@ BEGIN
     WHERE p_teachersAreaID = teachersAreaID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedCourse` (IN `p_id` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedCourse` (IN `p_courseName` VARCHAR(255))  NO SQL
 BEGIN
 	SELECT coursesID, courseName, description, levels, numberOfYears, groupCategory, image, price
     FROM courses
-    WHERE coursesID = p_id;
+    WHERE courseName = p_courseName;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedExam` (IN `p_id` INT)  NO SQL
@@ -977,7 +977,9 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `viewCourseDetails` ()  NO SQL
 BEGIN
-	SELECT * FROM courses;
+	SELECT coursesID, courseName, description, levels, numberOfYears, groupCategory, image, staffID, price, coursetimetableID 
+    FROM courses
+    GROUP BY courseName;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `viewEventDetails` ()  NO SQL
@@ -1057,7 +1059,8 @@ CREATE TABLE `courseapplications` (
 INSERT INTO `courseapplications` (`courseApplicationID`, `courseName`, `courseID`, `description`, `levels`, `numberOfYears`, `category`, `price`, `fullName`, `email`, `address`, `dateOfBirth`, `phoneNumber`, `additionalInfo`, `year_added`) VALUES
 (19, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Stephen Barry', 'stephen@cco.ie', 'The Oakelieywood 10th Avenues', '1999-12-08', '877065221', 'Hey', 2021),
 (20, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Alex Olsthoorn', 'alex@gmail.com', 'The Navedown ', '1972-10-08', '892106361', 'Blessed', 2021),
-(21, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '2021-01-04', '894389623', 'fddf', 2021);
+(21, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '2021-01-04', '894389623', 'fddf', 2021),
+(28, 'Viola', 1, 'Viola Course', 'Grade V', 4, 'Full-Time', '47.65', 'some name', 'some@email.com', 'some adderss', '0001-01-01', '1122333', 'some additional ifno', 2021);
 
 -- --------------------------------------------------------
 
@@ -1612,7 +1615,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `courseapplications`
 --
 ALTER TABLE `courseapplications`
-  MODIFY `courseApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `courseApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `courses`

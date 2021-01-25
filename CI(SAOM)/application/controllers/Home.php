@@ -155,6 +155,25 @@ class Home extends CI_Controller {
         );
         $this->load->view('layout', $view_data);
     }
+    
+    public function bookCourse($coursesID) {
+        $this->load->model('SAOMCourses');
+        
+        $data['display_block'] = $this->SAOMCourses->getSelectedCourse($coursesID);
+        
+        $view_data = array(
+            'content' => $this->load->view('content/bookCourse', $data, true)
+        );
+        
+        if (!strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('layout', $view_data);
+        }
+        else if(strpos($this->session->userdata('email'), '@'))
+        {
+            $this->load->view('studentLayout', $view_data);
+        }
+    }
 
     public function viewCoursesS() {
         $this->load->model('SAOMCourses');
@@ -174,27 +193,6 @@ class Home extends CI_Controller {
             'content' => $this->load->view('content/bookLesson', null, true)
         );
         $this->load->view('layout', $view_data);
-    }
-
-    public function bookCourse($coursesID) {
-        $this->load->model('SAOMCourses');
-        
-        $data = array();
-        
-        $data['courseDetails'] = $this->SAOMCourses->getSelectedCourse($coursesID);
-        
-        $view_data = array(
-            'content' => $this->load->view('content/bookCourse', $data, true)
-        );
-        
-        if (!strpos($this->session->userdata('email'), '@'))
-        {
-            $this->load->view('layout', $view_data);
-        }
-        else if(strpos($this->session->userdata('email'), '@'))
-        {
-            $this->load->view('studentLayout', $view_data);
-        }
     }
 
     public function login() {

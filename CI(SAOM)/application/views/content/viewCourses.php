@@ -35,7 +35,7 @@ $base_url = base_url();
                                 
                                 <div class="col-md-12">
                                     <div class="text-button">
-                                        <form action="<?php echo site_url('Home/bookCourse/'  . $course['coursesID']); ?>" method="POST">
+                                        <form action="<?php echo site_url('Home/bookCourse/'  . $course['courseName']); ?>" method="POST">
                                             <button type="button" class="btn btn-light"><input type="submit" value="Apply For Course" style="border: none;"></button><br>
                                         </form>
                                     </div>
