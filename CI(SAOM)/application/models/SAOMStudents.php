@@ -64,8 +64,6 @@ Class SAOMStudents extends CI_Model {
 
         $student_data['result'] = $this->input->post('result');
 
-        $student_data['result'] = $this->input->post('result');
-
         $student_data['courseID'] = $this->input->post('courseID');
 
 
