@@ -78,16 +78,16 @@ class Home extends CI_Controller {
         $this->load->view('studentLayout', $view_data);
     }
 
-    public function bookExam($examID) {
+    public function bookExamGuitar($examID) {
         $this->load->model('SAOMExams');
         
         $data = array();
         
-        $data['display_block'] = $this->SAOMExams->getSelectedExam($examID);
+        $data['ExamDetails'] = $this->SAOMExams->getSelectedExam($examID);
         
         
         $view_data = array(
-            'content' => $this->load->view('content/bookExam', $data, true)
+            'content' => $this->load->view('content/bookExamGuitar', $data, true)
         );
         
         if (!strpos($this->session->userdata('email'), '@'))

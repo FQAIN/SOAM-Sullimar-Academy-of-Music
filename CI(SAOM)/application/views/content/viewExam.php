@@ -36,7 +36,7 @@ $base_url = base_url();
                                 
                                             <div class="col-md-12">
                                                <div class="text-button">
-                                        <form action="<?php echo site_url('Home/bookExam/'  . $exam['examID']); ?>" method="POST">
+                                        <form action="<?php echo site_url('Home/bookExam'.$exam['examName'] ); ?>" method="POST">
                                             <button type="button" class="btn btn-light"><input type="submit" value="Apply For Exam" style="border: none;"></button><br>
                                         </form>
                                     </div>

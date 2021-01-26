@@ -119,62 +119,66 @@ Class SAOMExams extends CI_Model {
         
         $query = $this->db->query($stored_proc_call, $examID);
         
-         $row = $query->row();
-        $display_block = "";
-        $display_block .= "<div class='col-md-6'>";
-        $display_block .= "<div class='form-group'>";
-        $display_block .= "<h3>Exam Info:</h3>";
-        $display_block .= "<label class='col-md-3 control-label'>Exam Name:</label>";
-        $display_block .= "<div class='col-md-9'>";
-        $display_block .= "<input name='examName' class='form-control' type='text' value='" . $row->examName . "'readonly/>";
-        $display_block .= "<input type='hidden' name='examID' value='" . $row->examID . "'>";
-        $display_block .= "</div>";
-        $display_block .= "</div>";
-        $display_block .= "<div class='form-group'>";
-        $display_block .= "<label class='col-md-3 control-label'>Description:</label>";
-        $display_block .= "<div class='col-md-9'>";
-        $display_block .= "<input name='description' class='form-control input-sm' type='text' value='" . $row->examDescription . "' readonly/>";
-        $display_block .= "</div>";
-        $display_block .= "</div>";
-        $display_block .= "<div class='form-group'>";
-        $display_block .= "<label class='col-md-3 control-label'>Levels:</label>";
-        $display_block .= "<div class='col-md-9'>";
-        $display_block .= "<select name='levels' id=''>";
-        foreach($query->result_array() as $r)
-        {
-            $display_block .= "<option name='levels' value='" . $r['examCategory']. "'>" . $r['examCategory'] . "</option>";
-        }
-        $display_block .= "</select>";
-        $display_block .= "</div>";
-        $display_block .= "</div>";
-        $display_block .= "<div class='form-group'>";
-        $display_block .= "<label class='col-md-3 control-label'>date of Exam:</label>";
-        $display_block .= "<div class='col-md-9'>";
-        $display_block .= "<input name='dateOfExam' class='form-control input-sm' type='text' value='" . $row->dateOfExam . "' readonly/>";
-        $display_block .= "</div>";
-        $display_block .= "</div>";
-        $display_block .= "<div class='form-group'>";
-        $display_block .= "<label class='col-md-3 control-label'>Time:</label>";
-        $display_block .= "<div class='col-md-9'>";
-        $display_block .= "<input name='exaTime' class='form-control input-sm' type='text' value='" . $row->examTime . "' readonly/>";
-        $display_block .= "</div>";
-        $display_block .= "</div>";
-        $display_block .= "<div class='form-group'>";
-        $display_block .= "<label class='col-md-3 control-label'>Price:</label>";
-        $display_block .= "<div class='col-md-9'>";
-        $display_block .= "<input name='price' class='form-control input-sm' type='text' value='". $row->price . "' readonly/>";
-        $display_block .= "</div>";
-        $display_block .= "</div>";
-         $display_block .= "<div class='form-group'>";
-        $display_block .= "<label class='col-md-3 control-label'>Session:</label>";
-        $display_block .= "<div class='col-md-9'>";
-        $display_block .= "<input name='Session' class='form-control input-sm' type='text' value='". $row->Seasons . "' readonly/>";
-        $display_block .= "</div>";
-        $display_block .= "</div>";
+       
+
+        return $query;
         
-        $display_block .= "</div>";
-        
-        return $display_block;
+//         $row = $query->row();
+//        $display_block = "";
+//        $display_block .= "<div class='col-md-6'>";
+//        $display_block .= "<div class='form-group'>";
+//        $display_block .= "<h3>Exam Info:</h3>";
+//        $display_block .= "<label class='col-md-3 control-label'>Exam Name:</label>";
+//        $display_block .= "<div class='col-md-9'>";
+//        $display_block .= "<input name='examName' class='form-control' type='text' value='" . $row->examName . "'readonly/>";
+//        $display_block .= "<input type='hidden' name='examID' value='" . $row->examID . "'>";
+//        $display_block .= "</div>";
+//        $display_block .= "</div>";
+//        $display_block .= "<div class='form-group'>";
+//        $display_block .= "<label class='col-md-3 control-label'>Description:</label>";
+//        $display_block .= "<div class='col-md-9'>";
+//        $display_block .= "<input name='description' class='form-control input-sm' type='text' value='" . $row->examDescription . "' readonly/>";
+//        $display_block .= "</div>";
+//        $display_block .= "</div>";
+//        $display_block .= "<div class='form-group'>";
+//        $display_block .= "<label class='col-md-3 control-label'>Levels:</label>";
+//        $display_block .= "<div class='col-md-9'>";
+//        $display_block .= "<select name='levels' id=''>";
+//        foreach($query->result_array() as $r)
+//        {
+//            $display_block .= "<option name='levels' value='" . $r['examCategory']. "'>" . $r['examCategory'] . "</option>";
+//        }
+//        $display_block .= "</select>";
+//        $display_block .= "</div>";
+//        $display_block .= "</div>";
+//        $display_block .= "<div class='form-group'>";
+//        $display_block .= "<label class='col-md-3 control-label'>date of Exam:</label>";
+//        $display_block .= "<div class='col-md-9'>";
+//        $display_block .= "<input name='dateOfExam' class='form-control input-sm' type='text' value='" . $row->dateOfExam . "' readonly/>";
+//        $display_block .= "</div>";
+//        $display_block .= "</div>";
+//        $display_block .= "<div class='form-group'>";
+//        $display_block .= "<label class='col-md-3 control-label'>Time:</label>";
+//        $display_block .= "<div class='col-md-9'>";
+//        $display_block .= "<input name='exaTime' class='form-control input-sm' type='text' value='" . $row->examTime . "' readonly/>";
+//        $display_block .= "</div>";
+//        $display_block .= "</div>";
+//        $display_block .= "<div class='form-group'>";
+//        $display_block .= "<label class='col-md-3 control-label'>Price:</label>";
+//        $display_block .= "<div class='col-md-9'>";
+//        $display_block .= "<input name='price' class='form-control input-sm' type='text' value='". $row->price . "' readonly/>";
+//        $display_block .= "</div>";
+//        $display_block .= "</div>";
+//         $display_block .= "<div class='form-group'>";
+//        $display_block .= "<label class='col-md-3 control-label'>Session:</label>";
+//        $display_block .= "<div class='col-md-9'>";
+//        $display_block .= "<input name='Session' class='form-control input-sm' type='text' value='". $row->Seasons . "' readonly/>";
+//        $display_block .= "</div>";
+//        $display_block .= "</div>";
+//        
+//        $display_block .= "</div>";
+//        
+//        return $display_block;
     }
     
     
