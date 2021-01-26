@@ -21,7 +21,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($results as $result) { ?>
+                            <?php 
+                             $sum = 0;
+                            foreach ($results as $result) { ?>
                                 <tr>
                                     <td><?php echo $result->datePurchased; ?></td>
                                     <td><?php echo $result->fName; ?></td>
@@ -29,9 +31,14 @@
                                     <td><?php echo $result->address; ?></td>
                                     <td><?php echo $result->email; ?></td>
                                     <td><?php echo $result->total; ?></td>
+                                    <?php
+                                    $total = $result->total;
+                                    $sum += $total;
+                                    ?>
                                 </tr>
                             <?php } ?>
                         </tbody>
+                          <td class="text-left"><h3><strong>Total: €<?php echo $sum; ?></strong></h3><p></p></td>
                     </table>
                 </div>
                 <!--Render pagination links--> 

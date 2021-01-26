@@ -28,7 +28,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($results as $result) { ?>
+                            <?php
+                            $sum = 0;
+                            foreach ($results as $result) {
+                                ?>
                                 <tr>
                                     <td><?php echo $result->courseName; ?></td>
                                     <td><?php echo $result->courseID; ?></td>
@@ -43,9 +46,14 @@
                                     <td><?php echo $result->dateOfBirth; ?></td>
                                     <td><?php echo $result->phoneNumber; ?></td>
                                     <td><?php echo $result->additionalInfo; ?></td>
+                                    <?php
+                                    $total = $result->price;
+                                    $sum += $total;
+                                    ?>
                                 </tr>
                             <?php } ?>
                         </tbody>
+                        <td class="text-left"><h3><strong>Total: €<?php echo $sum; ?></strong></h3><p></p></td>
                     </table>
                 </div>
                 <!--Render pagination links--> 
