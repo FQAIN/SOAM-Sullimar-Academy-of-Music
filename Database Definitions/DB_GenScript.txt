@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2021 at 02:51 PM
+-- Generation Time: Jan 26, 2021 at 01:18 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1215,9 +1215,29 @@ CREATE TABLE `exams` (
 --
 
 INSERT INTO `exams` (`examID`, `examName`, `dateOfExam`, `price`, `image`, `examCategory`, `examTime`, `coursesID`, `examCenterID`, `staffID`, `examDescription`, `Seasons`) VALUES
-(23, 'Violin', '2020-12-29', '12.09', 'va.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Advanced Violin Exam', 'Winters'),
-(24, 'Piano', '2020-12-27', '34.00', 'pb.jpg', 'Hard Instrument', '12:12:12', 1, 1, 1, 'Piano Beginners  Exam', 'Summer'),
-(25, 'Guitar', '2020-12-31', '90.00', 'ga.jpg', 'String Instruments', '12:12:12', 1, 1, 1, 'Guitar Amateur Exam', 'Summer');
+(1, 'Viola', '0000-00-00', '47.65', 'va.jpg', 'Level I', '-00:00:12', 1, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(2, 'Viola', '2020-12-29', '59.40', 'va.jpg', 'Level II', '00:00:00', 2, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(3, 'Viola', '2020-12-29', '63.50', 'va.jpg', 'Level III', '00:00:12', 3, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(4, 'Viola', '2020-12-29', '73.52', 'va.jpg', 'Level IV', '00:00:12', 4, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(5, 'Viola', '2020-12-29', '73.52', 'va.jpg', 'Level V', '00:00:12', 5, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(6, 'Viola', '2020-12-29', '86.43', 'va.jpg', 'Level VI', '00:00:12', 6, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(7, 'Viola', '2020-12-29', '89.50', 'va.jpg', 'Level VII', '00:00:12', 7, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(8, 'Viola', '2020-12-29', '96.00', 'va.jpg', 'Level VIII', '00:00:12', 8, 1, 4, 'Advanced Violin Exam', 'Winter'),
+(9, 'Piano', '2020-12-29', '47.65', 'va.jpg', 'Level I', '00:00:12', 9, 1, 4, 'Advanced Piano Exam', 'Winter'),
+(10, 'Piano', '2020-12-29', '59.40', 'va.jpg', 'Level II', '00:00:12', 10, 1, 4, 'Advanced Piano Exam', 'Winter'),
+(11, 'Piano', '2020-12-29', '73.52', 'va.jpg', 'Level IV', '00:00:12', 11, 1, 4, 'Advanced Piano Exam', 'Winter'),
+(12, 'Piano', '2020-12-29', '73.52', 'va.jpg', 'Level V', '00:00:12', 12, 1, 4, 'Advanced Piano Exam', 'Winter'),
+(13, 'Piano', '2020-12-29', '86.43', 'va.jpg', 'Level VI', '00:00:12', 13, 1, 4, 'Advanced Piano Exam', 'Winter'),
+(14, 'Piano', '2020-12-29', '89.50', 'va.jpg', 'Level VII', '00:00:12', 14, 1, 4, 'Advanced Piano Exam', 'Winter'),
+(15, 'Piano', '2020-12-29', '96.00', 'va.jpg', 'Level VIII', '00:00:12', 15, 1, 4, 'Advanced Piano Exam', 'Winter'),
+(17, 'Guitar', '2020-12-29', '47.65', 'va.jpg', 'Level I', '00:00:12', 17, 1, 4, 'Advanced Guitar Exam', 'Winter'),
+(18, 'Guitar', '2020-12-29', '59.40', 'va.jpg', 'Level II', '00:00:12', 18, 1, 4, 'Advanced Guitar Exam', 'Winter'),
+(19, 'Guitar', '2020-12-29', '63.50', 'va.jpg', 'Level III', '00:00:12', 19, 1, 4, 'Advanced Guitar Exam', 'Winter'),
+(20, 'Guitar', '2020-12-29', '73.52', 'va.jpg', 'Level IV', '00:00:12', 20, 1, 4, 'Advanced Guitar Exam', 'Winter'),
+(21, 'Guitar', '2020-12-29', '73.52', 'va.jpg', 'Level V', '00:00:12', 21, 1, 4, 'Advanced Guitar Exam', 'Winter'),
+(22, 'Guitar', '2020-12-29', '86.43', 'va.jpg', 'Level VI', '00:00:12', 22, 1, 4, 'Advanced Guitar Exam', 'Winter'),
+(23, 'Guitar', '2020-12-29', '86.50', 'va.jpg', 'Level VII', '00:00:12', 23, 1, 4, 'Advanced Guitar Exam', 'Winter'),
+(24, 'Guitar', '2020-12-29', '96.00', 'va.jpg', 'Level VIII', '00:00:12', 24, 1, 4, 'Advanced Guitar Exam', 'Winter');
 
 -- --------------------------------------------------------
 

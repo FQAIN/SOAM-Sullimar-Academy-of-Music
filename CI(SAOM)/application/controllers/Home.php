@@ -83,7 +83,8 @@ class Home extends CI_Controller {
         
         $data = array();
         
-        $data['ExamDetails'] = $this->SAOMExams->getSelectedExam($examID);
+        $data['display_block'] = $this->SAOMExams->getSelectedExam($examID);
+        
         
         $view_data = array(
             'content' => $this->load->view('content/bookExam', $data, true)
