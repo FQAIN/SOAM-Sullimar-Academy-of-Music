@@ -14,7 +14,7 @@
        
     
           
-          <?php echo $display_block2; ?>
+
           
          
     
