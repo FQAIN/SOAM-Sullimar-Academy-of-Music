@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2021 at 01:18 PM
+-- Generation Time: Jan 29, 2021 at 11:04 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -470,6 +470,13 @@ BEGIN
     WHERE p_teachersAreaID = teachersAreaID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getBookOrders` (IN `p_booksID` INT)  NO SQL
+BEGIN
+SELECT  *
+FROM shopping_cart
+WHERE p_booksID=booksID;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedCourse` (IN `p_courseName` VARCHAR(255))  NO SQL
 BEGIN
 	SELECT coursesID, courseName, description, levels, numberOfYears, groupCategory, image, price
@@ -528,6 +535,13 @@ examCenterID,
 examDescription
 FROM exams
 WHERE examID = p_examID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudent` (IN `p_email` VARCHAR(75))  NO SQL
+BEGIN
+SELECT  *
+FROM student
+WHERE p_email = email;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectBookForUpdate` (IN `p_bookID` INT)  NO SQL
