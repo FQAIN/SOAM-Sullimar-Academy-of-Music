@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2021 at 11:04 PM
+-- Generation Time: Jan 29, 2021 at 10:51 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,6 +54,22 @@ BEGIN
         p_image
     );
 END$$
+
+
+CREATE DEFINER=root@localhost PROCEDURE getBookOrders(IN p_booksID INT)
+BEGIN
+SELECT  *
+FROM shopping_cart
+WHERE p_booksID=booksID;
+END$$
+
+CREATE DEFINER=root@localhost PROCEDURE getStudent(IN p_email VARCHAR(75))
+BEGIN
+SELECT  *
+FROM student
+WHERE p_email = email;
+END$$
+
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addCourse` (IN `p_courseName` VARCHAR(45), IN `p_description` VARCHAR(250), IN `p_levels` VARCHAR(45), IN `p_numberOfYears` INT, IN `p_groupCategory` VARCHAR(45), IN `p_image` VARCHAR(45), IN `p_staffID` INT, IN `p_price` DECIMAL(6,2))  NO SQL
 BEGIN
@@ -470,13 +486,6 @@ BEGIN
     WHERE p_teachersAreaID = teachersAreaID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getBookOrders` (IN `p_booksID` INT)  NO SQL
-BEGIN
-SELECT  *
-FROM shopping_cart
-WHERE p_booksID=booksID;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedCourse` (IN `p_courseName` VARCHAR(255))  NO SQL
 BEGIN
 	SELECT coursesID, courseName, description, levels, numberOfYears, groupCategory, image, price
@@ -484,11 +493,18 @@ BEGIN
     WHERE courseName = p_courseName;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedExam` (IN `p_id` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedExam` (IN `p_examName` INT(255))  NO SQL
 BEGIN
 	SELECT examID, examName, dateOfExam, price, image, examCategory, examTime,coursesID,examCenterID,staffID,examDescription,Seasons
     FROM exams
-    WHERE examID = p_id;
+    WHERE examName = p_examName;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetSelectedExamType` ()  NO SQL
+BEGIN
+SELECT examID,examName,
+examCategory
+FROM exams;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificBook` (IN `p_booksID` INT)  BEGIN
@@ -520,7 +536,7 @@ FROM saomevents
 WHERE eventID = p_eventID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificExam` (IN `p_examID` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificExam` (IN `p_examName` INT)  BEGIN
 SELECT 	
 examID,
 examName,
@@ -534,14 +550,7 @@ examCenterID,
 
 examDescription
 FROM exams
-WHERE examID = p_examID;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudent` (IN `p_email` VARCHAR(75))  NO SQL
-BEGIN
-SELECT  *
-FROM student
-WHERE p_email = email;
+WHERE examID = p_examName;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectBookForUpdate` (IN `p_bookID` INT)  NO SQL
@@ -1003,7 +1012,9 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `viewExamDetails` ()  NO SQL
 BEGIN
-	SELECT * FROM exams;
+	SELECT examID, examName, dateOfExam,price,image,examCategory,coursesID ,staffID examDescription,Seasons 
+    FROM exams
+    GROUP BY examName;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `viewStudentDetails` ()  NO SQL
@@ -1074,7 +1085,8 @@ INSERT INTO `courseapplications` (`courseApplicationID`, `courseName`, `courseID
 (19, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Stephen Barry', 'stephen@cco.ie', 'The Oakelieywood 10th Avenues', '1999-12-08', '877065221', 'Hey', 2021),
 (20, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Alex Olsthoorn', 'alex@gmail.com', 'The Navedown ', '1972-10-08', '892106361', 'Blessed', 2021),
 (21, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '2021-01-04', '894389623', 'fddf', 2021),
-(28, 'Viola', 1, 'Viola Course', 'Grade V', 4, 'Full-Time', '47.65', 'some name', 'some@email.com', 'some adderss', '0001-01-01', '1122333', 'some additional ifno', 2021);
+(28, 'Viola', 1, 'Viola Course', 'Grade V', 4, 'Full-Time', '47.65', 'some name', 'some@email.com', 'some adderss', '0001-01-01', '1122333', 'some additional ifno', 2021),
+(29, 'Viola', 1, 'Viola Course', 'Grade V', 4, 'Full-Time', '47.65', 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '1212-12-12', '834782794', '12', 2021);
 
 -- --------------------------------------------------------
 
@@ -1183,7 +1195,25 @@ CREATE TABLE `examapplications` (
 INSERT INTO `examapplications` (`examApplicationID`, `examName`, `examID`, `examDescription`, `dateOfExam`, `examCategory`, `examTime`, `fullName`, `email`, `address`, `dateOfBirth`, `phoneNumber`, `additionalinfo`, `price`, `Seasons`, `year_added`) VALUES
 (12, 'Violin Advanced', 23, 'Advanced Violin Exam', '2020-12-29', 'String Instruments', '12:12:12', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '0000-00-00', '2021-01-19', 'Hello', '12.09', 'Winters', 2021),
 (13, 'Violin Advanced', 23, 'Advanced Violin Exam', '2020-12-29', 'String Instruments', '12:12:12', 'Pierce Griffin', 'pierce@gmail.com', '12 Abbeyville Adare', '0000-00-00', '1997-07-05', 'Greatness', '12.09', 'Winters', 2021),
-(14, 'Piano Beginners ', 24, 'Piano Beginners  Exam', '2020-12-27', 'Hard Instrument', '12:12:12', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '0000-00-00', '2020-12-28', 'erre', '34.00', 'Summer', 2021);
+(14, 'Piano Beginners ', 24, 'Piano Beginners  Exam', '2020-12-27', 'Hard Instrument', '12:12:12', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '0000-00-00', '2020-12-28', 'erre', '34.00', 'Summer', 2021),
+(16, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0323-02-23', '23', '47.65', NULL, 2021),
+(17, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0323-02-23', '23', '47.65', NULL, 2021),
+(18, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '1212-12-12', '12', '47.65', NULL, 2021),
+(19, 'Piano', 9, NULL, '2020-12-29', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0012-12-12', '12', '47.65', NULL, 2021),
+(20, 'Piano', 9, NULL, '2020-12-29', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '1212-12-12', '12', '47.65', NULL, 2021),
+(21, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '1212-12-12', '12', '47.65', NULL, 2021),
+(22, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '32323-02-23', '23', '47.65', NULL, 2021),
+(23, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '0000-00-00', '', '', NULL, NULL, 2021),
+(24, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '0000-00-00', '', '', NULL, NULL, 2021),
+(25, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
+(26, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
+(27, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
+(28, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
+(29, 'Piano', 9, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
+(30, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
+(31, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
+(32, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0323-02-23', '23', '47.65', NULL, 2021),
+(33, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '2323-02-27', '', '47.65', NULL, 2021);
 
 -- --------------------------------------------------------
 
@@ -1339,7 +1369,8 @@ CREATE TABLE `processexams` (
 INSERT INTO `processexams` (`pexamID`, `examID`, `staffID`) VALUES
 (3, 24, 3),
 (4, 23, 5),
-(5, 25, 6);
+(5, 25, 6),
+(9, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -1489,7 +1520,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`, `courseID`, `session_id`) VALUES
 (10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', '75', 1, NULL),
 (11, 'pierce123', 'pierce123', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1, NULL),
-(12, 'joe123', 'joe123', 'joe@gmail.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', 'Evergreen 16th Street', 'fyaz.jpg', 'N/A', 1, NULL);
+(12, 'joe', 'joe123', 'joe@gmail.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', 'Evergreen 16th Street', 'fyaz.jpg', 'N/A', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1649,7 +1680,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `courseapplications`
 --
 ALTER TABLE `courseapplications`
-  MODIFY `courseApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `courseApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `courses`
@@ -1667,7 +1698,7 @@ ALTER TABLE `coursetimetable`
 -- AUTO_INCREMENT for table `examapplications`
 --
 ALTER TABLE `examapplications`
-  MODIFY `examApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `examApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `exam center`
@@ -1679,7 +1710,7 @@ ALTER TABLE `exam center`
 -- AUTO_INCREMENT for table `exams`
 --
 ALTER TABLE `exams`
-  MODIFY `examID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `examID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `instruments`
@@ -1703,7 +1734,7 @@ ALTER TABLE `privatetuition`
 -- AUTO_INCREMENT for table `processexams`
 --
 ALTER TABLE `processexams`
-  MODIFY `pexamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pexamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -1739,7 +1770,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `teachersarea`
 --
 ALTER TABLE `teachersarea`
-  MODIFY `teachersAreaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `teachersAreaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
