@@ -18,7 +18,7 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
+                    <td><?php echo $Books['Description']?></td>
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>Mark</td>

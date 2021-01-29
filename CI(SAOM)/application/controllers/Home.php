@@ -299,8 +299,14 @@ class Home extends CI_Controller {
     }
 
     public function dashboardStudent() {
+         $this->load->model('Student');
+         
+         $data = array();
+         $email = $this->session->userdata('email');
+         $data["student"] = $this->Student->getStudent($email);
+        
         $view_data = array(
-            'content' => $this->load->view('content/dashboardStudent', null, true)
+            'content' => $this->load->view('content/dashboardStudent', $data, true)
         );
         $this->load->view('studentLayout', $view_data);
     }
@@ -360,14 +366,19 @@ class Home extends CI_Controller {
         );
         $this->load->view('adminLayout', $view_data);
     }
-
+    
     public function viewBookOrders() {
+          $this->load->model('SAOMBooks');
+         
+         $data = array();
+         $booksID = $this->session->userdata('booksID');
+         $data["Books"] = $this->SAOMBooks->getBookOrders($booksID);
         $view_data = array(
-            'content' => $this->load->view('content/viewBookOrders', null, true)
+            'content' => $this->load->view('content/viewBookOrders', $data, true)
         );
         $this->load->view('adminLayout', $view_data);
     }
-
+    
     public function viewEventsAdmin() {
         $view_data = array(
             'content' => $this->load->view('content/EventsAdminPerPageView', null, true)

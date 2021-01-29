@@ -100,4 +100,11 @@ Class SAOMBooks extends CI_Model {
         //Returns the stored procedure query as a row
         return $rows;
     }
+    
+    function getBookOrders($booksID){
+        $stored_proc_call = "CALL getBookOrders(?)";
+        $query = $this->db->query($stored_proc_call, $booksID );  
+        
+         return $query->result_array();
+    }
 }

@@ -28,14 +28,9 @@
                 <td>fyaz123</td>
               </tr>
               <tr>
-                <th width="30%">Password</th>
-                <td width="2%">:</td>
-                <td>fyaz123</td>
-              </tr>
-              <tr>
                 <th width="30%">Email</th>
                 <td width="2%">:</td>
-                <td>fyazikram834@gmail.com</td>
+                <td><?php echo $student["email"] ?></td>
               </tr>
               <tr>
                 <th width="30%">Date of Birth</th>

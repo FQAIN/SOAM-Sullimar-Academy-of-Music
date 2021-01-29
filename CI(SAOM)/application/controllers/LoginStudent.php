@@ -6,7 +6,7 @@ class LoginStudent extends CI_Controller {
         parent::__construct();
 
         if($this->session->userdata('loggedIn')) {
-            redirect('Home/dashboardStudent');
+           redirect('Home/dashboardStudent');
         }
     }
 

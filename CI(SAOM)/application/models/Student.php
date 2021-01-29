@@ -24,5 +24,13 @@ Class Student extends CI_Model {
             return $loggedIn;
         }
     }
+    
+    public function getStudent($email)
+    {
+        $stored_proc_call = "CALL getStudent(?)";
+        $query = $this->db->query($stored_proc_call, $email );
+        
+        return $query->result_array();
+    }
 
 }
