@@ -371,8 +371,7 @@ class Home extends CI_Controller {
           $this->load->model('SAOMBooks');
          
          $data = array();
-         $booksID = $this->session->userdata('booksID');
-         $data["Books"] = $this->SAOMBooks->getBookOrders($booksID);
+         $data["books"] = $this->SAOMBooks->getBookOrders();
         $view_data = array(
             'content' => $this->load->view('content/viewBookOrders', $data, true)
         );

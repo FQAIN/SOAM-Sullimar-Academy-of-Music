@@ -8,113 +8,28 @@
                     <th scope="col">Book Orders ID</th>
                     <th scope="col">Book Orders Name</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Purchased</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Book ID</th>
-                    <th scope="col">Expected Date</th>
-                    <th scope="col">Expected Time</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Cover Image</th>
+                    <th scope="col">Total</th>
                 </tr>
             </thead>
             <tbody>
+                 <?php foreach ($books as $book): ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td><?php echo $Books['Description']?></td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
+                    <th scope="row"><?php echo $book['id']?></th>
+                    <td><?php echo $book['product_name']?></td>
+                    <td><?php echo $book['product_desc']?></td>
+                    <td><?php echo $book['quantity']?></td>
+                    <td><?php echo $book['price']?></td>
+                    <td><?php echo $book['booksID']?></td>
+                    <td><?php echo $book['date_added']?></td>
+                    <td style = "width: 5%"><img src = "<?php echo $img_url.$book['image_path']?>"></td>
+                    <td><?php echo $book['total']?></td>
                 </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                </tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-            </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

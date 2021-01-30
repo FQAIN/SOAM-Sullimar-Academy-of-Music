@@ -101,9 +101,9 @@ Class SAOMBooks extends CI_Model {
         return $rows;
     }
     
-    function getBookOrders($booksID){
-        $stored_proc_call = "CALL getBookOrders(?)";
-        $query = $this->db->query($stored_proc_call, $booksID );  
+    function getBookOrders(){
+        $stored_proc_call = "CALL getBookOrders()";
+        $query = $this->db->query($stored_proc_call);  
         
          return $query->result_array();
     }

@@ -25,7 +25,7 @@
               <tr>
                 <th width="30%">Username</th>
                 <td width="2%">:</td>
-                <td>fyaz123</td>
+                <td><?php echo $student["username"] ?></td>
               </tr>
               <tr>
                 <th width="30%">Email</th>
@@ -35,22 +35,22 @@
               <tr>
                 <th width="30%">Date of Birth</th>
                 <td width="2%">:</td>
-                <td>Group</td>
+                <td><?php echo $student["dob"] ?></td>
               </tr>
               <tr>
                 <th width="30%">Phone</th>
                 <td width="2%">:</td>
-                <td>0894389623</td>
+                <td><?php echo $student["phone"] ?></td>
               </tr>
               <tr>
                 <th width="30%">Date of Enrollment</th>
                 <td width="2%">:</td>
-                <td>2020-12-25</td>
+                <td><?php echo $student["dateEnrollment"] ?></td>
               </tr>
               <tr>
                 <th width="30%">Address</th>
                 <td width="2%">:</td>
-                <td>25 The Crescent Kilteragh</td>
+                <td><?php echo $student["address"] ?></td>
               </tr>
             </table>
           </div>
