@@ -286,13 +286,13 @@
                                             <input type='time' name='examTime' value='" . $exam['examTime'] . "' id='special'></p>
 
                                             <p><strong>coursesID:</strong><br/>
-                                            <input type='text' name='coursesID' value='" . $exam['coursesID'] . "' id='special'/>
+                                            <input type='number' name='coursesID' value='" . $exam['coursesID'] . "' id='special'/>
                                             
                                             <p><strong>examCenterID:</strong><br/>
-                                            <input type='text' name='examCenterID' value='" . $exam['examCenterID'] . "' id='special'></p>                                                                
+                                            <input type='number' name='examCenterID' value='" . $exam['examCenterID'] . "' id='special'></p>                                                                
                                                 
                                             <p><strong>staffID:</strong><br/>
-                                            <input type='text' name='staffID' value='" . $exam['staffID'] . "' id='special'></p>
+                                            <input type='number' name='staffID' value='" . $exam['staffID'] . "' id='special'></p>
            
                                             
 

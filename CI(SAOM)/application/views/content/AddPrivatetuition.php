@@ -257,11 +257,11 @@
                                 <?php echo form_error('room'); ?>
 
                             <p><strong>Student ID:</strong><br/>
-                                <input type="text" name="studentID" value="<?php echo set_value('studentID'); ?>" placeholder="Student ID" id="special"/>
+                                <input type="number" name="studentID" value="<?php echo set_value('studentID'); ?>" placeholder="Student ID" id="special"/>
                                 <?php echo form_error('studentID'); ?>
 
                             <p><strong>Staff ID:</strong><br/>
-                                <input type="text" name="staffID" value="<?php echo set_value('staffID'); ?>" placeholder="Staff ID" id="special"/>
+                                <input type="number" name="staffID" value="<?php echo set_value('staffID'); ?>" placeholder="Staff ID" id="special"/>
                                 <?php echo form_error('staffID'); ?>
 
                             <p><strong>Note:</strong><br/>
@@ -270,7 +270,7 @@
                             
 
                             <p><strong>Course ID:</strong><br/>
-                                <input type="text" name="courseID" value="<?php echo set_value('courseID'); ?>" placeholder="Course ID" id="special"/>
+                                <input type="number" name="courseID" value="<?php echo set_value('courseID'); ?>" placeholder="Course ID" id="special"/>
                                 <?php echo form_error('courseID'); ?>
                                 
                                   <p><strong>Date:</strong><br/>

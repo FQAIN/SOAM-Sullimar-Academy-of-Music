@@ -278,7 +278,7 @@
                                             <input type='date' name='dob' value='" . $student['dob'] . "' id='special'></p>                                               
                                               
                                             <p><strong>Phone:</strong><br/>
-                                            <input type='text' name='phone' value='" . $student['phone'] . "' id='special'></p>
+                                            <input type='number' name='phone' value='" . $student['phone'] . "' id='special'></p>
                                                
                                             <p><strong>Date of Enrollment:</strong><br/>
                                             <input type='date' name='dateEnrollment' value='" . $student['dateEnrollment'] . "' id='special'></p>
@@ -299,7 +299,7 @@
                                             <input type='text' name='result' value='" . $student['result'] . "' id='special'></p>
                                                 
                                              <p><strong>Course ID:</strong><br/>
-                                            <input type='text' name='courseID' value='" . $student['courseID'] . "' id='special'></p>
+                                            <input type='number' name='courseID' value='" . $student['courseID'] . "' id='special'></p>
                                         ";
                             }
                             ?>

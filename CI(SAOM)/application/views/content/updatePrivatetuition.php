@@ -269,16 +269,16 @@
                                             <input type='text' name='room' value='" . $item['room'] . "' id='special'/>
                                                 
                                             <p><strong>Student ID:</strong><br/>
-                                            <input type='text' name='studentID' value='" . $item['studentID'] . "' id='special'/>
+                                            <input type='number' name='studentID' value='" . $item['studentID'] . "' id='special'/>
                                                 
                                             <p><strong>Staff ID:</strong><br/>
-                                            <input type='text' name='staffID' value='" . $item['staffID'] . "' id='special'/>
+                                            <input type='number' name='staffID' value='" . $item['staffID'] . "' id='special'/>
                                             
                                             <p><strong>Note:</strong><br/>
                                             <input type='text' name='note' value='" . $item['note'] . "' id='special'></p>
                                                 
                                             <p><strong>Course ID:</strong><br/>
-                                            <input type='text' name='courseID' value='" . $item['courseID'] . "' id='special'/></p>
+                                            <input type='number' name='courseID' value='" . $item['courseID'] . "' id='special'/></p>
                                                 
                                             <p><strong>date:</strong><br/>
                                             <input type='date' name='date' value='" . $item['date'] . "' id='special'/></p>

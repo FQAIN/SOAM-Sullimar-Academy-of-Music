@@ -277,16 +277,16 @@
                             <?php echo form_error('examTime'); ?>
 
                             <p><strong>Course ID:</strong><br/>
-                                <input type="text" name="coursesID" value="<?php echo set_value('coursesID'); ?>"  placeholder="Course ID" id="special"></p>
+                                <input type="number" name="coursesID" value="<?php echo set_value('coursesID'); ?>"  placeholder="Course ID" id="special"></p>
                             <?php echo form_error('coursesID'); ?>
 
                             <p><strong>Exam Center ID:</strong><br/>
-                                <input type="text" name="examCenterID" value="<?php echo set_value('examCenterID'); ?>"  placeholder="Exam Center ID" id="special"></p>
+                                <input type="number" name="examCenterID" value="<?php echo set_value('examCenterID'); ?>"  placeholder="Exam Center ID" id="special"></p>
                             <?php echo form_error('examCenterID'); ?>
 
 
                             <p><strong>Staff ID:</strong><br/>
-                                <input type="text" name="staffID" value="<?php echo set_value('staffID'); ?>"  placeholder="Staff ID" id="special"></p>
+                                <input type="number" name="staffID" value="<?php echo set_value('staffID'); ?>"  placeholder="Staff ID" id="special"></p>
                             <?php echo form_error('staffID'); ?>
 
 
