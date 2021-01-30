@@ -33,10 +33,19 @@ class Privatetuitions extends CI_Controller {
                 'label' => 'Note',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.')),
+          
             array('field' => 'courseID',
                 'label' => 'Course ID',
                 'rules' => 'required',
-                'errors' => array('required' => 'You must provide a %s.'))
+                'errors' => array('required' => 'You must provide a %s.')),
+                 array('field' => 'date',
+                'label' => 'date',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+               array('field' => 'time',
+                'label' => 'time',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
         );
 
         $this->form_validation->set_rules($privatetuition_validation_rules);
@@ -137,8 +146,17 @@ class Privatetuitions extends CI_Controller {
                 'label' => 'Note',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.')),
+                array('field' => 'date',
+          
             array('field' => 'courseID',
                 'label' => 'Course ID',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+                   'label' => 'date',
+                'rules' => 'required',
+                'errors' => array('required' => 'You must provide a %s.')),
+               array('field' => 'time',
+                'label' => 'time',
                 'rules' => 'required',
                 'errors' => array('required' => 'You must provide a %s.'))
         );

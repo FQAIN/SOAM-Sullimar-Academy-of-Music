@@ -17,8 +17,10 @@
                                 <td>studentID</td>
                                 <td>staffID</td>
                                 <td>note</td>
+                                 
                                 <td>courseID</td>
-                               
+                                <td>date</td>
+                                    <td>time</td>
                                 
                             </tr>
                         </thead>
@@ -31,6 +33,9 @@
                                     <td><?php echo $result->staffID; ?></td>
                                      <td><?php echo $result->note; ?></td>
                                       <td><?php echo $result->courseID; ?></td>
+                                      <td><?php echo $result->date; ?></td>
+                                      <td><?php echo $result->time; ?></td>
+                                      
                                 </tr>
                             <?php } ?>
                         </tbody>

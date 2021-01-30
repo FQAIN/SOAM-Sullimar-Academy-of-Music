@@ -267,10 +267,22 @@
                             <p><strong>Note:</strong><br/>
                                 <input type="text" name="note" value="<?php echo set_value('note'); ?>"  placeholder="Note" id="special"></p>
                             <?php echo form_error('note'); ?>
+                            
 
                             <p><strong>Course ID:</strong><br/>
                                 <input type="text" name="courseID" value="<?php echo set_value('courseID'); ?>" placeholder="Course ID" id="special"/>
                                 <?php echo form_error('courseID'); ?>
+                                
+                                  <p><strong>Date:</strong><br/>
+                                <input type="date" name="date" value="<?php echo set_value('date'); ?>"  placeholder="Note" id="special"></p>
+                            <?php echo form_error('date'); ?>
+                                  
+                                  
+                                    <p><strong>Time:</strong><br/>
+                                <input type="time" name="time" value="<?php echo set_value('time'); ?>"  placeholder="time" id="special"></p>
+                            <?php echo form_error('time'); ?>
+                                
+                                
                                 <br><br>
                             <p><input type="submit" name="submit" value="Add Private Tuition"></p>
                             <br>

@@ -22,11 +22,17 @@ Class SAOMPrivatetuitions extends CI_Model {
         $privatetuition_data['staffID'] = $this->input->post('staffID');
 
         $privatetuition_data['note'] = $this->input->post('note');
+        
+
 
         $privatetuition_data['courseID'] = $this->input->post('courseID');
+        
+          $privatetuition_data['date'] = $this->input->post('date');
+        
+        $privatetuition_data['time'] = $this->input->post('time');
 
         //Calls the stored procedure to add a address details to the address table
-        $stored_proc_call = "CALL AddPrivatetuition(?, ?, ?, ?, ?)";
+        $stored_proc_call = "CALL AddPrivatetuition(?, ?, ?, ?, ?, ?, ?)";
         $this->db->query($stored_proc_call, $privatetuition_data);
     }
 
@@ -58,10 +64,13 @@ Class SAOMPrivatetuitions extends CI_Model {
             'studentID' => $this->input->post('studentID'),
             'staffID' => $this->input->post('staffID'),
             'note' => $this->input->post('note'),
-            'courseID' => $this->input->post('courseID')
+    
+            'courseID' => $this->input->post('courseID'),
+                     'date' => $this->input->post('date'),
+             'time' => $this->input->post('time')
         );
 
-        $stored_proc_call = "CALL updateSelectedPrivatetuition(?, ?, ?, ?, ?, ?)";
+        $stored_proc_call = "CALL updateSelectedPrivatetuition(?, ?, ?, ?, ?, ?,?,?)";
 
         $this->db->query($stored_proc_call, $data);
     }

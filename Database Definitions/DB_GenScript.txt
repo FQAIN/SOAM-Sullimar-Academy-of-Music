@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2021 at 05:58 PM
+-- Generation Time: Jan 30, 2021 at 10:49 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -171,7 +171,7 @@ BEGIN
     );
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPrivatetuition` (IN `p_room` VARCHAR(45), IN `p_studentID` INT, IN `p_staffID` INT, IN `p_note` VARCHAR(250), IN `p_courseID` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPrivatetuition` (IN `p_room` VARCHAR(45), IN `p_studentID` INT, IN `p_staffID` INT, IN `p_note` VARCHAR(250), IN `p_courseID` INT, IN `p_date` DATE, IN `p_time` TIME)  NO SQL
 BEGIN
 	INSERT INTO privatetuition
     (
@@ -180,7 +180,9 @@ BEGIN
         staffID,
         note,
         courseID,
-        year_added
+        year_added,
+     	date,
+        time
 
     )
     VALUES
@@ -190,7 +192,9 @@ BEGIN
         p_staffID,
         p_note,
         p_courseID,
-        now()
+        now(),
+        p_date,
+        p_time
     );
 END$$
 
@@ -690,7 +694,9 @@ BEGIN
         studentID,
         staffID,
         note,
-        courseID
+        courseID,
+        date,
+        time
     FROM privatetuition
     WHERE privatetuitionID = p_privatetuitionID;
 END$$
@@ -703,7 +709,9 @@ room,
 studentID,
 staffID,
 note,
-courseID
+courseID,
+date,
+time
 FROM privatetuition
  LIMIT  p_limit,p_start;
 END$$
@@ -911,14 +919,16 @@ BEGIN
     WHERE pexamID = p_pexamID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedPrivatetuition` (IN `p_privatetuitionID` INT, IN `p_room` VARCHAR(45), IN `p_studentID` INT, IN `p_staffID` INT, IN `p_note` VARCHAR(45), IN `p_courseID` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSelectedPrivatetuition` (IN `p_privatetuitionID` INT, IN `p_room` VARCHAR(45), IN `p_studentID` INT, IN `p_staffID` INT, IN `p_note` VARCHAR(45), IN `p_courseID` INT, IN `p_date` DATE, IN `p_time` TIME)  NO SQL
 BEGIN
 	UPDATE privatetuition
     SET room = p_room,
     studentID = p_studentID,
     staffID = p_staffID,
     note = p_note,
-    courseID = p_courseID
+    courseID = p_courseID,
+    date = p_date,
+    time = p_time
     WHERE privatetuitionID = p_privatetuitionID;
 END$$
 
@@ -1333,17 +1343,19 @@ CREATE TABLE `privatetuition` (
   `staffID` int(11) DEFAULT NULL,
   `note` varchar(45) DEFAULT NULL,
   `courseID` int(11) DEFAULT NULL,
-  `year_added` year(4) DEFAULT NULL
+  `year_added` year(4) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `privatetuition`
 --
 
-INSERT INTO `privatetuition` (`privatetuitionID`, `room`, `studentID`, `staffID`, `note`, `courseID`, `year_added`) VALUES
-(1, '1A19', 10, 3, 'i will be 10 minutes late', 1, NULL),
-(4, '1A11', 10, 3, 'I will be 5 minutes early', 1, NULL),
-(6, '1A18', 12, 4, 'I will only take a 15 minute session', 1, 2021);
+INSERT INTO `privatetuition` (`privatetuitionID`, `room`, `studentID`, `staffID`, `note`, `courseID`, `year_added`, `date`, `time`) VALUES
+(1, '1A19', 10, 3, 'i will be 10 minutes late', 1, NULL, NULL, NULL),
+(4, '1A11', 10, 3, 'I will be 5 minutes early', 1, NULL, NULL, NULL),
+(6, '1A18', 12, 4, 'I will only take a 15 minute session', 1, 2021, NULL, NULL);
 
 -- --------------------------------------------------------
 

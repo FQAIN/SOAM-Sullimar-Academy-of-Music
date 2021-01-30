@@ -279,6 +279,12 @@
                                                 
                                             <p><strong>Course ID:</strong><br/>
                                             <input type='text' name='courseID' value='" . $item['courseID'] . "' id='special'/></p>
+                                                
+                                            <p><strong>date:</strong><br/>
+                                            <input type='date' name='date' value='" . $item['date'] . "' id='special'/></p>
+                                                
+                                            <p><strong>time:</strong><br/>
+                                            <input type='time' name='time' value='" . $item['time'] . "' id='special'/></p>
                                         ";
                             }
                             ?>

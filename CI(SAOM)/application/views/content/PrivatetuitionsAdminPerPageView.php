@@ -16,6 +16,9 @@
                             <td><strong>Staff ID:</strong></td>
                             <td><strong>Note:</strong></td>
                             <td><strong>Course ID:</strong></td>
+                             <td><strong>Date:</strong></td>
+                              <td><strong>Time:</strong></td>
+
                             <td><strong>Update:</strong></td>
                             <td><strong>Delete:</strong></td>
                         </tr>
@@ -29,6 +32,8 @@
                                 <td><?php echo $privatetuition['staffID']; ?></td>
                                 <td><?php echo $privatetuition['note']; ?></td>
                                 <td><?php echo $privatetuition['courseID']; ?></td>
+                                <td><?php echo $privatetuition['date']; ?></td>
+                                <td><?php echo $privatetuition['time']; ?></td>
                                 <td>
                                     <form action="<?php echo site_url('Privatetuitions/updatePrivatetuition'); ?>" method='POST'>
                                         <input type='hidden' name='privatetuitionID' value="<?php echo $privatetuition['privatetuitionID'] ?>"/>
