@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2021 at 10:51 PM
+-- Generation Time: Jan 30, 2021 at 05:58 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,22 +54,6 @@ BEGIN
         p_image
     );
 END$$
-
-
-CREATE DEFINER=root@localhost PROCEDURE getBookOrders(IN p_booksID INT)
-BEGIN
-SELECT  *
-FROM shopping_cart
-WHERE p_booksID=booksID;
-END$$
-
-CREATE DEFINER=root@localhost PROCEDURE getStudent(IN p_email VARCHAR(75))
-BEGIN
-SELECT  *
-FROM student
-WHERE p_email = email;
-END$$
-
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addCourse` (IN `p_courseName` VARCHAR(45), IN `p_description` VARCHAR(250), IN `p_levels` VARCHAR(45), IN `p_numberOfYears` INT, IN `p_groupCategory` VARCHAR(45), IN `p_image` VARCHAR(45), IN `p_staffID` INT, IN `p_price` DECIMAL(6,2))  NO SQL
 BEGIN
@@ -486,6 +470,11 @@ BEGIN
     WHERE p_teachersAreaID = teachersAreaID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getBookOrders` ()  BEGIN
+SELECT * FROM shopping_cart 
+WHERE booksID IS NOT NULL;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSelectedCourse` (IN `p_courseName` VARCHAR(255))  NO SQL
 BEGIN
 	SELECT coursesID, courseName, description, levels, numberOfYears, groupCategory, image, price
@@ -551,6 +540,12 @@ examCenterID,
 examDescription
 FROM exams
 WHERE examID = p_examName;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudent` (IN `p_email` VARCHAR(75))  BEGIN
+SELECT  *
+FROM student
+WHERE p_email = email;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectBookForUpdate` (IN `p_bookID` INT)  NO SQL
@@ -1458,7 +1453,8 @@ INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `
 (269, NULL, 1611526312, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 2, '30.00', '2021-01-24 23:12:04', '9780367592622.jpg', 60.00),
 (270, NULL, 1611526312, NULL, 21, NULL, 'Raidtown Myths', 'Folklores and Light Bass Music', 2, '34.21', '2021-01-24 23:12:15', 'audience-868074_1920.jpg', 68.42),
 (271, NULL, 1611526519, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-24 23:15:28', '9781409434146.jpg', 36.00),
-(273, NULL, 1611569948, NULL, NULL, 11, 'How Music Works', 'non-fiction', 1, '67.00', '2021-01-25 11:19:32', '9781628920437.jpg', 67.00);
+(273, NULL, 1611569948, NULL, NULL, 11, 'How Music Works', 'non-fiction', 1, '67.00', '2021-01-25 11:19:32', '9781628920437.jpg', 67.00),
+(274, NULL, 1612023723, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-30 17:22:13', '9781409434146.jpg', 24.00);
 
 -- --------------------------------------------------------
 
@@ -1518,7 +1514,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studentID`, `username`, `password`, `email`, `dob`, `phone`, `dateEnrollment`, `fName`, `lName`, `address`, `image`, `result`, `courseID`, `session_id`) VALUES
-(10, 'fyaz123', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', '75', 1, NULL),
+(10, 'fyaz12345', 'fyaz123', 'fyazikram834@gmail.com', '2000-12-08', 894389623, '2020-12-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyaz.jpg', '75', 1, NULL),
 (11, 'pierce123', 'pierce123', 'pierce@gmail.com', '1997-12-07', 856749912, '2020-12-25', 'Pierce', 'Griffin', '12 Abbeyville Adare', 'pierce.jpg', 'N/A', 1, NULL),
 (12, 'joe', 'joe123', 'joe@gmail.com', '1994-09-06', 2147483647, '2021-01-07', 'Joe', 'Moloney', 'Evergreen 16th Street', 'fyaz.jpg', 'N/A', 1, NULL);
 
@@ -1752,7 +1748,7 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
 
 --
 -- AUTO_INCREMENT for table `staffs`
