@@ -273,7 +273,7 @@
                             <?php echo form_error('address'); ?>
 
                             <p><strong>Email:</strong><br/>
-                                <input type="text" name="email" value="<?php echo set_value('email'); ?>"  placeholder="Email" id="special"></p>
+                                <input type="email" name="email" value="<?php echo set_value('email'); ?>"  placeholder="Email" id="special"></p>
                                 <?php echo form_error('email'); ?>
                             
                             <p><strong>Username:</strong><br/>
@@ -281,11 +281,11 @@
                             <?php echo form_error('username'); ?>
                             
                             <p><strong>Password:</strong><br/>
-                                <input type="text" name="password" value="<?php echo set_value('password'); ?>"  placeholder="Password" id="special"></p>
+                                <input type="password" name="password" value="<?php echo set_value('password'); ?>"  placeholder="Password" id="special"></p>
                             <?php echo form_error('password'); ?>
                             
                             <p><strong>Phone:</strong><br/>
-                                <input type="text" name="phone" value="<?php echo set_value('phone'); ?>"  placeholder="Phone" id="special"></p>
+                                <input type="number" name="phone" value="<?php echo set_value('phone'); ?>"  placeholder="Phone" id="special"></p>
                             <?php echo form_error('phone'); ?>
                             
                             <p><strong>Image:</strong><br/>
@@ -293,7 +293,7 @@
                             <?php echo form_error('image'); ?>
                             
                             <p><strong>Course ID:</strong><br/>
-                                <input type="text" name="courseID" value="<?php echo set_value('courseID'); ?>"  placeholder="Course ID" id="special"></p>
+                                <input type="number" name="courseID" value="<?php echo set_value('courseID'); ?>"  placeholder="Course ID" id="special"></p>
                             <?php echo form_error('courseID'); ?>
                             <br>
                             <p><input type="submit" name="submit" value="Add Staff"></p>

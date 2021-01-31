@@ -281,22 +281,22 @@
                                             <input type='text' name='address' value='" . $item['address'] . "' id='special'></p>
                                             
                                             <p><strong>Email:</strong><br/>
-                                            <input type='text' name='email' value='" . $item['email'] . "' id='special'></p>
+                                            <input type='email' name='email' value='" . $item['email'] . "' id='special'></p>
                                                 
                                             <p><strong>Username:</strong><br/>
                                             <input type='text' name='username' value='" . $item['username'] . "' id='special'></p>
                                             
                                             <p><strong>Password:</strong><br/>
-                                            <input type='text' name='password' value='" . $item['password'] . "' id='special'></p>
+                                            <input type='password' name='password' value='" . $item['password'] . "' id='special'></p>
                                                                                                                               
                                             <p><strong>Phone:</strong><br/>
-                                            <input type='text' name='phone' value='" . $item['phone'] . "' id='special'></p>
+                                            <input type='number' name='phone' value='" . $item['phone'] . "' id='special'></p>
                                                 
                                             <p><strong>Image:</strong><br/>
                                             <input type='text' name='image' value='" . $item['image'] . "' id='special'></p>
                                             
                                             <p><strong>Course ID:</strong><br/>
-                                            <input type='text' name='courseID' value='" . $item['courseID'] . "' id='special'></p>
+                                            <input type='number' name='courseID' value='" . $item['courseID'] . "' id='special'></p>
                                         ";
                             }
                             ?>

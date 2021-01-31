@@ -37,5 +37,6 @@
                 <!--Render pagination links--> 
                 <?php echo "</br>" . $this->pagination->create_links(); ?>   
         </form>
+        <button class='btn btn-light' onclick="window.print()">Print this page</button>
     </body>
 </html>

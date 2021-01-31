@@ -10,7 +10,7 @@
                 <label class="col-md-3 control-label">Course ID</label>
                 <div class="col-md-9">
                     <form action="<?php echo site_url('Timetables/skeyword'); ?>" method="POST">
-                        <input type="text" name="courseID" required="" style="border-radius: 5px">
+                        <input type="number" name="courseID" required="" style="border-radius: 5px">
                         <button type="button" class="btn btn-light"><input type="submit" name="submit" value="Search" style="border: none;"></button>
                     </form>
                 </div>

@@ -5,7 +5,7 @@
     </head>
     <body>
         <form>  
-            <section class="" id="">
+            <section class="timetable" id="">
                 <h2 class="text-center">All Timetable Details</h2>
                 <p class="text-center"><a href="<?php echo base_url(); ?>index.php/Home/viewStudentTimetables/" class="back"><-Back to Timetable Menu</a></p>
                 <div class="table-responsive mx-auto" style="width: 100%; padding: 40px;">
@@ -37,5 +37,7 @@
                 <!--Render pagination links--> 
                 <?php echo "</br>" . $this->pagination->create_links(); ?>   
         </form>
+
+<button class='btn btn-light' onclick="window.print()">Print this page</button>
     </body>
 </html>

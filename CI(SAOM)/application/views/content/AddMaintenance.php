@@ -249,7 +249,7 @@
                             <p><a href="<?php echo base_url(); ?>index.php/Maintenances/index/" class="back"><-Back to Maintenance Requests Listings</a></p>
 
                             <p><strong>Instrument ID:</strong><br/>
-                                <input type="text" name="instrumentID" value="<?php echo set_value('instrumentID'); ?>" placeholder="Instrument ID" id="special"/>
+                                <input type="number" name="instrumentID" value="<?php echo set_value('instrumentID'); ?>" placeholder="Instrument ID" id="special"/>
                                 <?php echo form_error('instrumentID'); ?>
 
                             <p><strong>Note:</strong><br/>

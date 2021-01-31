@@ -269,11 +269,11 @@
                             <?php echo form_error('moduleName'); ?>
 
                             <p><strong>Course ID:</strong><br/>
-                                <input type="text" name="courseID" value="<?php echo set_value('courseID'); ?>"  placeholder="Course ID" id="special"></p>
+                                <input type="number" name="courseID" value="<?php echo set_value('courseID'); ?>"  placeholder="Course ID" id="special"></p>
                             <?php echo form_error('courseID'); ?>
 
                             <p><strong>Staff ID:</strong><br/>
-                                <input type="text" name="staffID" value="<?php echo set_value('staffID'); ?>"  placeholder="Staff ID" id="special"></p>
+                                <input type="number" name="staffID" value="<?php echo set_value('staffID'); ?>"  placeholder="Staff ID" id="special"></p>
                             <?php echo form_error('staffID'); ?>
 
                             <br>
