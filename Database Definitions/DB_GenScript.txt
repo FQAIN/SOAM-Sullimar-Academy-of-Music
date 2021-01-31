@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2021 at 10:49 PM
+-- Generation Time: Jan 31, 2021 at 03:31 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -1082,17 +1082,6 @@ CREATE TABLE `courseapplications` (
   `year_added` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `courseapplications`
---
-
-INSERT INTO `courseapplications` (`courseApplicationID`, `courseName`, `courseID`, `description`, `levels`, `numberOfYears`, `category`, `price`, `fullName`, `email`, `address`, `dateOfBirth`, `phoneNumber`, `additionalInfo`, `year_added`) VALUES
-(19, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Stephen Barry', 'stephen@cco.ie', 'The Oakelieywood 10th Avenues', '1999-12-08', '877065221', 'Hey', 2021),
-(20, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Alex Olsthoorn', 'alex@gmail.com', 'The Navedown ', '1972-10-08', '892106361', 'Blessed', 2021),
-(21, 'Piano', 3, 'For Advanced Students', 'Level 5', 2, 'Advanced', '999.99', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '2021-01-04', '894389623', 'fddf', 2021),
-(28, 'Viola', 1, 'Viola Course', 'Grade V', 4, 'Full-Time', '47.65', 'some name', 'some@email.com', 'some adderss', '0001-01-01', '1122333', 'some additional ifno', 2021),
-(29, 'Viola', 1, 'Viola Course', 'Grade V', 4, 'Full-Time', '47.65', 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '1212-12-12', '834782794', '12', 2021);
-
 -- --------------------------------------------------------
 
 --
@@ -1163,10 +1152,13 @@ CREATE TABLE `coursetimetable` (
 --
 
 INSERT INTO `coursetimetable` (`courseTimetableID`, `day`, `dates`, `timeslots`, `moduleName`, `courseID`, `staffID`) VALUES
-(1, 'Monday', '2020-12-12', '11:10-12:10', 'Violin Structures', 1, 3),
-(4, 'Tuesday', '2021-01-08', '13:00-15:00', 'Guitars Advanced', 1, 3),
-(5, 'Monday', '2020-12-08', '15:00-17:00', 'Piano Advanced', 3, 4),
-(6, 'Monday', '2021-01-10', '13:00-15:00', 'Guitars Advanced', 1, 4);
+(1, 'Monday', '2020-12-12', '11:10-12:10', 'Viola Structures', 1, 4),
+(4, 'Tuesday', '2021-01-08', '13:00-15:00', 'Viola Fundamentals', 1, 4),
+(5, 'Monday', '2020-12-08', '15:00-17:00', 'Viola Techniques', 1, 4),
+(6, 'Tuesday', '2021-01-10', '13:00-15:00', 'Viola Practical', 1, 4),
+(10, 'Wednesday', '2021-01-10', '13:00-15:00', 'Viola Maintenace', 1, 4),
+(11, 'Thursday', '2021-01-10', '13:00-15:00', 'Viola Instrumentation', 1, 4),
+(12, 'Friday', '2021-01-10', '13:00-15:00', 'Viola Construction', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -1192,33 +1184,6 @@ CREATE TABLE `examapplications` (
   `Seasons` varchar(45) DEFAULT NULL,
   `year_added` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `examapplications`
---
-
-INSERT INTO `examapplications` (`examApplicationID`, `examName`, `examID`, `examDescription`, `dateOfExam`, `examCategory`, `examTime`, `fullName`, `email`, `address`, `dateOfBirth`, `phoneNumber`, `additionalinfo`, `price`, `Seasons`, `year_added`) VALUES
-(12, 'Violin Advanced', 23, 'Advanced Violin Exam', '2020-12-29', 'String Instruments', '12:12:12', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '0000-00-00', '2021-01-19', 'Hello', '12.09', 'Winters', 2021),
-(13, 'Violin Advanced', 23, 'Advanced Violin Exam', '2020-12-29', 'String Instruments', '12:12:12', 'Pierce Griffin', 'pierce@gmail.com', '12 Abbeyville Adare', '0000-00-00', '1997-07-05', 'Greatness', '12.09', 'Winters', 2021),
-(14, 'Piano Beginners ', 24, 'Piano Beginners  Exam', '2020-12-27', 'Hard Instrument', '12:12:12', 'Fyaz Ikram', 'fyazikram834@gmail.com', '25 The Crescent Kilteragh', '0000-00-00', '2020-12-28', 'erre', '34.00', 'Summer', 2021),
-(16, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0323-02-23', '23', '47.65', NULL, 2021),
-(17, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0323-02-23', '23', '47.65', NULL, 2021),
-(18, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '1212-12-12', '12', '47.65', NULL, 2021),
-(19, 'Piano', 9, NULL, '2020-12-29', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0012-12-12', '12', '47.65', NULL, 2021),
-(20, 'Piano', 9, NULL, '2020-12-29', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '1212-12-12', '12', '47.65', NULL, 2021),
-(21, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '1212-12-12', '12', '47.65', NULL, 2021),
-(22, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '32323-02-23', '23', '47.65', NULL, 2021),
-(23, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '0000-00-00', '', '', NULL, NULL, 2021),
-(24, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '0000-00-00', '', '', NULL, NULL, 2021),
-(25, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
-(26, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
-(27, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
-(28, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
-(29, 'Piano', 9, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
-(30, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
-(31, 'Guitar', 17, NULL, '2020-12-29', NULL, NULL, '', '', '', '0000-00-00', '', '', '47.65', NULL, 2021),
-(32, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '0323-02-23', '23', '47.65', NULL, 2021),
-(33, 'Viola', 1, NULL, '0000-00-00', NULL, NULL, 'pierce Griffin', 'piercegriffin19@gmail.com', 'Caherea', '0000-00-00', '2323-02-27', '', '47.65', NULL, 2021);
 
 -- --------------------------------------------------------
 
@@ -1353,9 +1318,9 @@ CREATE TABLE `privatetuition` (
 --
 
 INSERT INTO `privatetuition` (`privatetuitionID`, `room`, `studentID`, `staffID`, `note`, `courseID`, `year_added`, `date`, `time`) VALUES
-(1, '1A19', 10, 3, 'i will be 10 minutes late', 1, NULL, NULL, NULL),
-(4, '1A11', 10, 3, 'I will be 5 minutes early', 1, NULL, NULL, NULL),
-(6, '1A18', 12, 4, 'I will only take a 15 minute session', 1, 2021, NULL, NULL);
+(1, '1A19', 10, 4, 'i will be 10 minutes late', 1, 2021, '2021-01-22', '37:11:05'),
+(4, '1A11', 10, 6, 'I will be 5 minutes early', 1, 2021, '2021-01-29', '30:09:50'),
+(6, '1A18', 12, 4, 'I will only take a 15 minute session', 1, 2021, '2021-01-20', '22:20:15');
 
 -- --------------------------------------------------------
 
@@ -1396,17 +1361,6 @@ CREATE TABLE `purchase` (
   `total` double(7,2) NOT NULL,
   `year_added` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `purchase`
---
-
-INSERT INTO `purchase` (`purchaseID`, `datePurchased`, `fName`, `lName`, `address`, `email`, `session_id`, `total`, `year_added`) VALUES
-(18, '2021-01-22', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyazikram834@gmail.com', '8j597scpqh1rb6sul2grgmoe2d6eqe0o', 96.72, 2021),
-(19, '2021-01-22', 'Adam', 'Moroney', '12 Abbeyville Adare', 'adam@gmail.com', '1nct4p0sg5mufai9flla86vmapbr498e', 102.63, 2021),
-(20, '2021-01-24', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyazikram834@gmail.com', 'dd3bi81bvf33kqugd07qr04p0bfguqv1', 36.00, 2021),
-(21, '2021-01-24', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyazikram834@gmail.com', 'bhbnfgl1jv7heajgvcj8hcdsgto17jqq', 36.00, 2021),
-(22, '2021-01-25', 'Fyaz', 'Ikram', '25 The Crescent Kilteragh', 'fyazikram834@gmail.com', 'th6kc531ihpd60vp17uc63s2pjimeadj', 67.00, 2021);
 
 -- --------------------------------------------------------
 
@@ -1454,19 +1408,6 @@ CREATE TABLE `shopping_cart` (
   `image_path` varchar(225) NOT NULL,
   `total` double(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `shopping_cart`
---
-
-INSERT INTO `shopping_cart` (`id`, `email`, `session_id`, `examID`, `eventID`, `booksID`, `product_name`, `product_desc`, `quantity`, `price`, `date_added`, `image_path`, `total`) VALUES
-(267, NULL, 1611354618, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 2, '30.00', '2021-01-22 23:30:24', '9780367592622.jpg', 60.00),
-(268, NULL, 1611354618, NULL, 21, NULL, 'Raidtown Myths', 'Folklores and Light Bass Music', 3, '34.21', '2021-01-22 23:30:31', 'audience-868074_1920.jpg', 102.63),
-(269, NULL, 1611526312, NULL, NULL, 1, 'The Meaning of Mariah Carey', ' is a memoir', 2, '30.00', '2021-01-24 23:12:04', '9780367592622.jpg', 60.00),
-(270, NULL, 1611526312, NULL, 21, NULL, 'Raidtown Myths', 'Folklores and Light Bass Music', 2, '34.21', '2021-01-24 23:12:15', 'audience-868074_1920.jpg', 68.42),
-(271, NULL, 1611526519, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 3, '12.00', '2021-01-24 23:15:28', '9781409434146.jpg', 36.00),
-(273, NULL, 1611569948, NULL, NULL, 11, 'How Music Works', 'non-fiction', 1, '67.00', '2021-01-25 11:19:32', '9781628920437.jpg', 67.00),
-(274, NULL, 1612023723, NULL, NULL, 2, 'The Rest Is Noise', 'nonfiction book', 2, '12.00', '2021-01-30 17:22:13', '9781409434146.jpg', 24.00);
 
 -- --------------------------------------------------------
 
@@ -1700,13 +1641,13 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `coursetimetable`
 --
 ALTER TABLE `coursetimetable`
-  MODIFY `courseTimetableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `courseTimetableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `examapplications`
 --
 ALTER TABLE `examapplications`
-  MODIFY `examApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `examApplicationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `exam center`
@@ -1748,7 +1689,7 @@ ALTER TABLE `processexams`
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `saomevents`
@@ -1760,7 +1701,7 @@ ALTER TABLE `saomevents`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=279;
 
 --
 -- AUTO_INCREMENT for table `staffs`
