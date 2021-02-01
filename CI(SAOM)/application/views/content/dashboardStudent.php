@@ -7,7 +7,6 @@
              <br> <br> <br> <br>
           <div class="card-header bg-transparent text-center">
             <img class="profile_img" src="https://placeimg.com/640/480/arch/any" alt="">
-            <h3>Fyaz Qadir Ahmed Ikram</h3>
           </div>
             <div class="card-body" style="text-align: center">
             <p class="mb-0"><strong class="pr-1">Student ID:</strong> 10</p>
